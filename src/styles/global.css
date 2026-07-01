@@ -23,6 +23,14 @@
   --accent-blue-dim:#3b82f6;
   --accent-indigo:  #818cf8;
 
+  /* Accent — Culinary Craft */
+  --accent-ember:   #f97316;
+  --accent-ember-dim: #ea580c;
+  --accent-cream:   #fef3c7;
+  --glow-ember:     0 0 20px rgba(249,115,22,0.12), 0 0 40px rgba(249,115,22,0.06);
+  --glow-ember-strong: 0 0 28px rgba(249,115,22,0.28);
+  --border-ember:   rgba(249,115,22,0.2);
+
   /* Borders */
   --border-subtle:  rgba(255,255,255,0.06);
   --border-glow:    rgba(99,179,237,0.2);
@@ -125,6 +133,53 @@ code, pre, kbd {
   max-width: 800px;
 }
 
+/* ---- Utility: Culinary Craft Icons ---- */
+.craft-icon {
+  color: var(--accent-ember);
+  filter: drop-shadow(0 0 6px rgba(249,115,22,0.35));
+  transition: filter 0.2s ease, color 0.2s ease;
+}
+.craft-icon:hover {
+  color: var(--accent-cream);
+  filter: drop-shadow(0 0 10px rgba(249,115,22,0.55));
+}
+
+/* ---- Utility: Ember Glow Text ---- */
+.glow-text-ember {
+  text-shadow: 0 0 18px rgba(249,115,22,0.5);
+  color: var(--accent-ember);
+}
+
+/* ---- Utility: Ember Badge ---- */
+.badge-craft {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: rgba(249,115,22,0.1);
+  border: 1px solid var(--border-ember);
+  color: var(--accent-ember);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+}
+
+/* ---- Utility: Dual-tone Divider (blue → ember) ---- */
+.divider-fusion {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(99,179,237,0.3) 30%,
+    rgba(249,115,22,0.3) 70%,
+    transparent
+  );
+  margin: var(--space-3xl) auto;
+  max-width: 800px;
+}
+
 /* ---- Nav ---- */
 nav {
   position: sticky;
@@ -172,6 +227,10 @@ footer {
 @keyframes pulseGlow {
   0%, 100% { box-shadow: var(--glow-blue); }
   50%       { box-shadow: var(--glow-blue-strong); }
+}
+@keyframes pulseEmber {
+  0%, 100% { box-shadow: var(--glow-ember); }
+  50%       { box-shadow: var(--glow-ember-strong); }
 }
 
 .animate-fade-in-up {

@@ -31,6 +31,34 @@ const statusMap = {
   wip:      { label: 'In Progress', color: 'badge-wip' },
 };
 const s = statusMap[status];
+
+// Map common tech names to Devicon slugs
+const deviconMap: Record<string, string> = {
+  'JavaScript':  'javascript',
+  'TypeScript':  'typescript',
+  'Python':      'python',
+  'HTML':        'html5',
+  'HTML/CSS':    'html5',
+  'CSS':         'css3',
+  'React':       'react',
+  'Node.js':     'nodejs',
+  'Node':        'nodejs',
+  'PostgreSQL':  'postgresql',
+  'Postgres':    'postgresql',
+  'Git':         'git',
+  'Docker':      'docker',
+  'Astro':       'astro',
+  'Tailwind':    'tailwindcss',
+  'TailwindCSS': 'tailwindcss',
+  'Supabase':    'supabase',
+  'SQLite':      'sqlite',
+  'Flask':       'flask',
+  'FastAPI':     'fastapi',
+  'Go':          'go',
+  'Rust':        'rust',
+  'MCP':         null,
+  'AI APIs':     null,
+};
 ---
 
 <article class="project-card spotlight-card" id={`card-${id}`}>
@@ -53,9 +81,15 @@ const s = statusMap[status];
 
   <!-- Tech Stack -->
   <div class="card-stack">
-    {stack.map(tech => (
-      <span class="tech-chip">{tech}</span>
-    ))}
+    {stack.map(tech => {
+      const slug = deviconMap[tech];
+      return (
+        <span class="tech-chip">
+          {slug && <i class={`devicon-${slug}-plain colored`}></i>}
+          {tech}
+        </span>
+      );
+    })}
   </div>
 
   <!-- Tags -->
@@ -231,9 +265,21 @@ if (typeof window.__spotlightInit === 'undefined') {
 .card-description { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; margin: 0; }
 .card-stack, .card-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 .tech-chip {
-  font-size: 0.72rem; font-weight: 600; padding: 3px 10px; border-radius: 20px;
-  background: rgba(99,102,241,0.15); color: #a5b4fc;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: rgba(99,102,241,0.15);
+  color: #a5b4fc;
   border: 1px solid rgba(99,102,241,0.3);
+}
+.tech-chip i {
+  font-size: 0.9rem;
+  line-height: 1;
+  flex-shrink: 0;
 }
 .tag-chip { font-size: 0.7rem; color: var(--text-muted); opacity: 0.7; }
 .card-links { display: flex; flex-wrap: wrap; gap: 0.6rem; }

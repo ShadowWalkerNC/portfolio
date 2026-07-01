@@ -1,16 +1,23 @@
 {
-  "name": "CulinaryOps",
-  "emoji": "📊",
-  "tagline": "Back-of-house analytics and operations management for food service businesses",
-  "description": "CulinaryOps is the numbers side of running a kitchen — labor cost, food cost percentage, waste tracking, vendor management, purchase orders, and live KPI dashboards. It gives operators the financial visibility they need without hiring a consultant.",
-  "forWho": "General managers, kitchen managers, food service consultants, and operators who need to actually understand where their money is going. If you've ever stared at a food cost spreadsheet wondering why the numbers don't add up, this is for you.",
-  "story": "Every GM I've ever worked with was drowning in spreadsheets. Food cost calculations done by hand. Vendor invoices in a pile. Labor tracked in a notebook. CulinaryOps came from watching smart operators do important work with terrible tools. I wanted a dashboard that showed you at a glance: are we profitable today? Where did we lose money this week? What's our waste trending? It connects to CulinaryOS for live data, but runs standalone for consultants and managers who don't control the whole stack.",
-  "details": "Next.js 14 + TypeScript frontend, Supabase backend. The culinaryops-mcp server exposes all KPIs and reports to AI assistants — meaning a manager can ask in plain English 'what was our food cost last week compared to budget?' and get a real answer. Standalone SaaS with its own subscription tier, or bundled with CulinaryOS for full-stack operators.",
-  "detailedSpecs": "KPI engine calculates food cost % as (cost of goods sold / total revenue) × 100, updated on every completed order event via Supabase Realtime trigger. Labor cost pulled from shift records with role-based wage rates; prime cost (food + labor) surfaced as the primary profitability metric. Waste tracking model captures waste events with item, quantity, reason code (spoilage, over-prep, wrong order, quality reject), and responsible station — feeds into a weekly waste report ranked by dollar impact. Vendor management stores vendor contacts, contracted prices, and order lead times; auto-generates POs when inventory drops below par. culinaryops-mcp tools include: get_food_cost_report, get_labor_cost_report, get_waste_summary, create_purchase_order, compare_period_kpis. Dashboard built with Recharts for trend lines and Radix UI for accessible data tables. All financial data scoped by location for multi-site operators.",
-  "status": "In Dev",
-  "category": "food-tech",
+  "title": "CulinaryOps",
+  "tagline": "Automated social media and marketing for food businesses.",
+  "description": "CulinaryOps handles the marketing layer of a food business — auto-scheduling daily specials, posting to Instagram and Facebook, generating caption copy, and tracking engagement — so chefs can cook instead of post.",
+  "story": "After helping a friend's food truck manually post their daily specials every morning at 7am, I built a system that does it automatically. What started as a Python script became a full platform that any food business can connect to their socials.",
+  "forWho": "Food truck owners, restaurant marketers, and solo operators who know social media matters but don't have time to manage it.",
   "group": "culinary-ecosystem",
-  "stack": ["TypeScript", "Next.js", "Supabase", "MCP"],
-  "github": "https://github.com/ShadowWalkerNC/CulinaryOps",
-  "featured": true
+  "category": "Culinary Tech",
+  "tags": ["social-media", "automation", "marketing", "food-business"],
+  "stack": ["Python", "Flask", "Meta Graph API", "Google Gemini API", "Railway"],
+  "status": "active",
+  "featured": false,
+  "links": {
+    "github": "https://github.com/ShadowWalkerNC/culinaryops"
+  },
+  "detailedSpecs": {
+    "architecture": "Flask web app with a background task scheduler (APScheduler). Gemini API generates caption copy from a menu data object. Meta Graph API handles publish calls.",
+    "dataFlow": "Menu item data entered → Gemini generates caption variants → operator approves or auto-publishes → post sent to Facebook/Instagram → engagement logged.",
+    "keyPatterns": ["APScheduler for timed posts", "Gemini prompt templating for brand-consistent copy", "OAuth2 token refresh flow for Meta", "Draft/publish workflow with approval queue"],
+    "deployTarget": "Railway",
+    "notableFiles": ["app/scheduler.py", "app/gemini_caption.py", "app/meta_publisher.py"]
+  }
 }

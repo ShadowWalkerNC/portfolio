@@ -1,16 +1,21 @@
 {
-  "name": "Shoreline v4",
-  "emoji": "🏠",
-  "tagline": "Senior living operations — resident care, dietary management, scheduling, and maintenance",
-  "description": "Shoreline v4 is a full operations platform built specifically for senior living facilities. It handles resident records, special dietary needs and restrictions, menu planning, weekly production worksheets, maintenance tickets, staff scheduling, and budget tracking — all under one roof with multi-role access control.",
-  "forWho": "Dietary managers, facility administrators, and care staff at assisted living communities, nursing homes, and senior care facilities. Built after working in senior living food service and watching staff manage critical resident data through paper binders and disconnected spreadsheets.",
-  "story": "I took a job as a dietary manager at a senior living facility and on day one I was handed a binder. Residents' dietary restrictions. Allergies. Texture modifications. All on paper. One mistake could genuinely hurt someone. I went home and started building Shoreline. What started as a simple resident record system grew into a full facility operations platform over two years. v4 is stable and used. v5 is the full SaaS rebuild.",
-  "details": "v4 built in vanilla JavaScript — no framework, just a well-structured single-page application. Multi-role access (admin, dietary, maintenance, scheduling). Runs locally or on a basic server. Stable and fully functional, but the codebase is the reason v5 exists — it needed a proper TypeScript + React rebuild to scale.",
-  "detailedSpecs": "Single-page application architected as a module system — each feature area (residents, dietary, maintenance, scheduling) is a self-contained JS module loaded on demand. State managed in a hand-rolled observable store pattern predating React's rise — essentially a lightweight event emitter with subscriber callbacks per data domain. Resident records include: name, room, dietary restrictions (typed enum: low-sodium, diabetic, pureed, mechanical soft, NPO, etc.), allergies (freetext with severity flag), texture modification codes (IDDSI framework levels 0–7), supplement schedules, and physician contact. Menu planning module generates weekly production worksheets as printable HTML — quantities per menu item scaled from resident census count. Role-based access implemented via a permissions map checked on every route render. No build step — loaded directly in-browser, deployable to any static file host or LAN server. This architecture is exactly why v5 exists: no types, no testability, no safe extension path.",
-  "status": "Stable",
-  "category": "facility-ops",
-  "group": "shoreline",
-  "stack": ["JavaScript"],
-  "github": "https://github.com/ShadowWalkerNC/Shoreline",
-  "featured": false
+  "title": "Shoreline",
+  "tagline": "Full-stack hospitality management platform with analytics.",
+  "description": "Shoreline is a restaurant and hospitality management platform featuring reservation tracking, staff scheduling, inventory control, and a live analytics dashboard — built with Flask and a PostgreSQL backend.",
+  "story": "Inspired by the chaos of watching a beachside restaurant try to manage reservations on a whiteboard and staff schedules on a shared Google Sheet. Shoreline was built to be the single source of truth for a hospitality operation.",
+  "forWho": "Restaurant managers and hospitality operators who need a unified back-office system without the enterprise price tag.",
+  "category": "Culinary Tech",
+  "tags": ["hospitality", "analytics", "flask", "full-stack"],
+  "stack": ["Python", "Flask", "PostgreSQL", "Alembic", "Chart.js"],
+  "status": "stable",
+  "featured": true,
+  "links": {
+    "github": "https://github.com/ShadowWalkerNC/shoreline"
+  },
+  "detailedSpecs": {
+    "architecture": "Monolithic Flask app with Blueprint-based routing. PostgreSQL for persistent data, Alembic for schema versioning.",
+    "keyPatterns": ["Blueprint modularization per domain (reservations, staff, inventory)", "Alembic migration chain for zero-downtime schema changes", "Chart.js dashboard fed by Flask API endpoints", "Session-based auth with bcrypt hashing"],
+    "deployTarget": "Render (web service)",
+    "notableFiles": ["app/blueprints/reservations.py", "app/blueprints/analytics.py", "migrations/"]
+  }
 }

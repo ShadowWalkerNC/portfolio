@@ -1,15 +1,21 @@
 {
-  "name": "BibleDesk",
-  "emoji": "📖",
-  "tagline": "AI Bible study with original language depth — free for everyone",
-  "description": "BibleDesk is a free AI-powered Bible study platform that goes deeper than surface-level answers. Ask any question about Scripture and get a structured response across five dimensions: the text itself, its historical context, the original Hebrew or Greek meaning, theological significance, and practical application for today.",
-  "forWho": "Anyone who takes their faith seriously and wants to study Scripture more deeply — without needing a seminary degree. Pastors, small group leaders, and personal study. Built free and intended to stay that way.",
-  "story": "Faith is a big part of who I am. I wanted a tool that could help me study the Bible the way I actually wanted to — not just a search engine for verses, but something that could help me understand what a word meant in Koine Greek, what was happening historically when Paul wrote a letter, and what it means for how I live today. I built BibleDesk for myself first, and made it free because this isn't the kind of tool that should have a paywall.",
-  "details": "React frontend, Supabase for user sessions and saved studies. AI responses structured as five-dimension answers: Scripture analysis, historical context, original language (Hebrew/Greek), theological meaning, and practical application. No API key required for users — completely free access.",
-  "detailedSpecs": "Five-dimension response schema enforced via a structured output prompt: the OpenAI call uses response_format: { type: 'json_object' } with a system prompt that mandates a JSON envelope with keys scripture_analysis, historical_context, original_language, theological_significance, and practical_application — each a string block. Original language handling: a preprocessing step checks whether the queried passage is OT (Hebrew) or NT (Greek) and injects relevant Strong's concordance context for key terms into the user prompt via a lightweight concordance lookup table. Saved studies stored in Supabase with user_id, passage_reference, query_text, response_json, and created_at. Frontend renders each dimension as a collapsible section card with distinct accent colors per dimension. No server-side auth required to query — anonymous sessions allowed with a rate-limit of 20 queries/day tracked by Supabase anonymous auth token. Registered users get unlimited queries and saved study history. Hosting: Vercel for the React frontend, Supabase Edge Functions for the AI proxy to avoid exposing the OpenAI key client-side.",
-  "status": "In Dev",
-  "category": "dev-tools",
-  "stack": ["React", "Supabase", "OpenAI"],
-  "github": "https://github.com/ShadowWalkerNC/BibleDesk",
-  "featured": false
+  "title": "BibleDesk",
+  "tagline": "A clean, distraction-free Bible reading and study web app.",
+  "description": "BibleDesk is a minimal, fast web application for reading, searching, and annotating scripture — with a clean reading mode, verse bookmarking, personal notes, and offline support via a local-first data model.",
+  "story": "Every Bible app I tried was cluttered with ads, push notifications, and UI patterns lifted from social media. I wanted something that felt like opening a physical book — quiet, focused, and fast. BibleDesk is that.",
+  "forWho": "People who want to read and study the Bible without distractions, on any device, without an account required.",
+  "category": "Productivity Tools",
+  "tags": ["bible", "reading", "offline", "local-first"],
+  "stack": ["Astro", "JavaScript", "IndexedDB", "Tailwind CSS"],
+  "status": "wip",
+  "featured": false,
+  "links": {
+    "github": "https://github.com/ShadowWalkerNC/bibledesk"
+  },
+  "detailedSpecs": {
+    "architecture": "Static Astro site with client-side Bible data loaded from JSON. IndexedDB stores bookmarks, notes, and reading progress locally — no backend required.",
+    "keyPatterns": ["JSON Bible data with book/chapter/verse structure", "IndexedDB via idb wrapper for typed local storage", "Service Worker for full offline capability", "URL-based verse routing (e.g. /john/3/16)"],
+    "deployTarget": "Render (static)",
+    "notableFiles": ["src/data/kjv.json", "src/lib/db.js", "src/pages/[book]/[chapter].astro"]
+  }
 }

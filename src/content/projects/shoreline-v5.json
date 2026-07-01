@@ -1,16 +1,21 @@
 {
-  "name": "Shoreline v5",
-  "emoji": "🏠🔨",
-  "tagline": "Full ground-up rebuild — multi-facility SaaS for senior living operations",
-  "description": "Shoreline v5 is a complete rewrite of v4 — same purpose, entirely new architecture. It takes everything that worked in v4 and rebuilds it properly as a modern multi-tenant SaaS that could scale to hundreds of facilities. React 18, TypeScript, Vite, PostgreSQL, and a Next.js SaaS layer with full billing and team management.",
-  "forWho": "Senior living operators and dietary managers who need v4's functionality but with a modern, cloud-based, multi-facility system. Also built as a template for what a proper care-facility SaaS should look like.",
-  "story": "v4 worked. It solved real problems for real people. But it was built with duct tape and determination — vanilla JS, no types, hard to extend. When I leveled up as a developer, I looked back at Shoreline and knew it deserved a proper rebuild. v5 isn't just an upgrade — it's me applying everything I've learned to the project that started my serious development journey.",
-  "details": "React 18 + Vite + TypeScript + Tailwind CSS frontend. PostgreSQL database with Prisma ORM. Next.js SaaS layer handles multi-tenancy, billing, and org management. Hosted on Railway. Full feature parity with v4 as the baseline, then extended with proper API design and real-time capabilities.",
-  "detailedSpecs": "Multi-tenancy enforced at the Prisma query layer via a global middleware that injects facility_id into every read and write — no application code can accidentally leak cross-tenant data. Schema designed with facilities, residents, dietary_profiles, menu_cycles, production_worksheets, maintenance_tickets, shifts, and staff tables. Dietary profile model preserves full IDDSI texture classification (8 levels), allergy registry with cross-contamination flags, supplement tracking with administration schedule and route. Production worksheet generation is a server action that joins the menu cycle to the census count, applies portion sizes by diet type, and outputs a structured JSON worksheet renderable as a print-optimized page. Auth via NextAuth.js with credential + magic-link strategies; session carries facility_id and role claims. Billing with Stripe per-facility seat licensing. Hosted on Railway with auto-deploy from main; PostgreSQL managed instance on Railway with daily backups.",
-  "status": "Active Rebuild",
-  "category": "facility-ops",
-  "group": "shoreline",
-  "stack": ["TypeScript", "React", "Vite", "Tailwind", "PostgreSQL", "Prisma", "Railway"],
-  "github": "https://github.com/ShadowWalkerNC/shoreline-v5",
-  "featured": true
+  "title": "Shoreline v5",
+  "tagline": "The next generation — rebuilt with a modern API-first architecture.",
+  "description": "Shoreline v5 is a ground-up rebuild of the original platform, transitioning from a monolithic Flask app to a clean REST API backend with a decoupled frontend, improved auth, and a fully redesigned data model.",
+  "story": "After shipping Shoreline and watching real operators use it, the technical debt became clear. v5 isn't a patch — it's a rethink. The goal is a platform that can scale to multi-location restaurant groups without rewiring everything.",
+  "forWho": "The same restaurant operators as Shoreline, but designed to grow from a single location to a regional chain without a rewrite.",
+  "category": "Culinary Tech",
+  "tags": ["v5", "api-first", "rebuild", "rest"],
+  "stack": ["Python", "Flask", "PostgreSQL", "REST API", "Railway"],
+  "status": "wip",
+  "featured": false,
+  "links": {
+    "github": "https://github.com/ShadowWalkerNC/shoreline"
+  },
+  "detailedSpecs": {
+    "architecture": "Decoupled REST API (Flask) + headless frontend. JWT-based auth replacing sessions. Multi-tenant schema design with org-scoped data.",
+    "keyPatterns": ["JWT access + refresh token flow", "Multi-tenant row-level scoping via org_id", "OpenAPI spec generation via Flasgger", "CI/CD pipeline with automated migration runs"],
+    "deployTarget": "Railway",
+    "notableFiles": ["api/routes/v1/", "api/auth/jwt_handler.py", "db/schema_v5.sql"]
+  }
 }

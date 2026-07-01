@@ -1,16 +1,23 @@
 {
-  "name": "KitchenKit",
-  "emoji": "🍳",
-  "tagline": "Recipe management, meal planning, and mise en place — for cooks who actually cook",
-  "description": "KitchenKit handles the recipe and prep side of food operations. Scale a recipe from 2 servings to 200. Auto-generate mise en place lists. Track pantry inventory. Plan meals for the week. It's built for home cooks, personal chefs, and caterers — but it plugs directly into CulinaryOS for professional operations.",
-  "forWho": "Home cooks who want real tools, personal chefs managing client menus, caterers scaling recipes for events, and culinary students learning the craft. Also connects to restaurant operators using the full CulinaryOS ecosystem.",
-  "story": "This one came from pure kitchen frustration. Every recipe app on the market treats cooks like amateurs. None of them understand ratio-based cooking, none of them do real scaling math, and none of them generate a proper prep list. I built the Ratio Blueprint Engine first — the ability to define a recipe in ratios rather than rigid measurements — and KitchenKit grew from there. It merged two earlier projects (RecipeOS and PrepFlow) into one.",
-  "details": "Built with Next.js 14 and TypeScript on the frontend, Supabase for data. The Ratio Blueprint Engine is the core differentiator — recipes are stored as ratios so scaling is mathematically correct, not just multiplied. The kitchenkit-mcp server allows AI assistants to read and write recipes, pull prep lists, and check pantry levels via natural language. Standalone SaaS product with its own billing, but shares auth and data with CulinaryOS when used together.",
-  "detailedSpecs": "Next.js 14 App Router with React Server Components for recipe detail pages — statically generated at build time for performance, dynamically fetched for personalized data. Ratio Blueprint Engine stores each ingredient as a base weight (grams) with a baker's-percentage-style ratio relative to a key ingredient. Scaling logic recalculates all quantities server-side to avoid floating-point compounding errors. Mise en place generation walks the recipe tree, groups by prep task type (chop, dice, measure, temper), and outputs a time-sorted prep schedule based on estimated task durations. Pantry model tracks par levels and triggers low-stock flags. kitchenkit-mcp exposes: get_recipe, scale_recipe, generate_prep_list, check_pantry, add_to_shopping_list. Shared auth with CulinaryOS via Supabase JWT — org_id on the token scopes all multi-tenant data. Unit conversion handled by a custom converter supporting weight (g, kg, oz, lb), volume (ml, L, tsp, tbsp, cup, fl oz, qt, gal), and count units with ingredient-specific density tables for volume-to-weight bridging.",
-  "status": "In Dev",
-  "category": "food-tech",
+  "title": "kitchenkit",
+  "tagline": "A Discord-native kitchen management toolkit for small food operations.",
+  "description": "kitchenkit brings kitchen workflows directly into Discord — shift scheduling, prep checklists, supplier contact lists, and daily briefings — all managed through slash commands in a server your team already uses.",
+  "story": "Small food trucks and pop-up kitchens can't afford enterprise software. Most of their team communication already lives in Discord. kitchenkit meets them where they are, turning a Discord server into a fully functional operations hub.",
+  "forWho": "Food truck operators, catering teams, and pop-up kitchen crews who run lean and already live in Discord.",
   "group": "culinary-ecosystem",
-  "stack": ["TypeScript", "Next.js", "Supabase", "MCP"],
-  "github": "https://github.com/ShadowWalkerNC/KitchenKit",
-  "featured": true
+  "category": "Culinary Tech",
+  "tags": ["discord", "kitchen-ops", "slash-commands", "small-business"],
+  "stack": ["Node.js", "Discord.js", "SQLite", "Railway"],
+  "status": "active",
+  "featured": true,
+  "links": {
+    "github": "https://github.com/ShadowWalkerNC/kitchenkit"
+  },
+  "detailedSpecs": {
+    "architecture": "Single-process Discord bot with a command handler registry. SQLite stores per-guild configuration and schedule data locally.",
+    "keyPatterns": ["Dynamic slash command registration per guild", "Per-guild isolated data via guild_id scoping in SQLite", "Cron-based daily briefing scheduler", "Role-permission gating on sensitive commands"],
+    "apiSurface": "Discord Gateway API (slash commands, embeds, DM notifications)",
+    "deployTarget": "Railway (always-on process)",
+    "notableFiles": ["src/commands/schedule.js", "src/commands/checklist.js", "src/db/guild-store.js"]
+  }
 }

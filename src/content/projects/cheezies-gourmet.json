@@ -1,15 +1,21 @@
 {
-  "name": "Cheezies Gourmet",
-  "emoji": "🧀",
-  "tagline": "Branding and web presence for a Maine artisan food business",
-  "description": "A custom website and brand identity built for a local Maine artisan food company. Showcases products, tells the brand story, and handles customer inquiries. Built to feel handcrafted and authentic — the way the food itself is made.",
-  "forWho": "Small food businesses and artisan makers who need a real web presence that matches the quality of what they make — not a generic template.",
-  "story": "Maine has a deep culture of small-batch, handcrafted food. Cheezies Gourmet deserved a site that felt like that — warm, real, and personal. This project is also a preview of what I'll build for Half Baked Café & Bakehouse when the time comes.",
-  "details": "Static site with custom CSS and hand-written copy. Optimized for mobile. No CMS dependency — simple, fast, and easy for the owner to update.",
-  "detailedSpecs": "Pure static HTML/CSS/JS — zero build tooling, zero dependencies, zero runtime overhead. Typography system uses two font families: a serif display face for headings to reinforce the artisan, handcrafted brand feel, and a clean sans-serif for body copy. Color palette derived from the product packaging — warm creams, deep mustards, and earthy terracottas. Layout uses CSS Grid for the product showcase section with responsive breakpoints at 480px, 768px, and 1024px — no media query framework. Contact form handled via Formspree (serverless form endpoint) to avoid any server requirement. Images run through manual WebP conversion + lazy loading attributes for fast load on mobile. Total page weight under 200KB including all assets. Deployable to any static host — currently on Netlify with branch deploy previews for content updates.",
-  "status": "Stable",
-  "category": "food-tech",
-  "stack": ["HTML", "CSS", "JavaScript"],
-  "github": "https://github.com/ShadowWalkerNC/cheezies-gourmet",
-  "featured": false
+  "title": "Cheezies Gourmet",
+  "tagline": "Website and ordering system for a gourmet mac & cheese food truck.",
+  "description": "A custom website and lightweight online ordering system built for Cheezies Gourmet — a real food truck. Features a menu browser, order-ahead form, social integration, and a simple admin panel for the owner to update specials.",
+  "story": "Built for a real food truck owner who was taking orders via DMs on Instagram. The goal was a professional web presence that required zero technical knowledge to maintain — the owner updates the menu from their phone.",
+  "forWho": "The Cheezies Gourmet team and their customers — a real-world deployment, not a demo.",
+  "category": "Client Work",
+  "tags": ["food-truck", "ordering", "client", "real-world"],
+  "stack": ["Astro", "Tailwind CSS", "Netlify Forms", "JavaScript"],
+  "status": "active",
+  "featured": false,
+  "links": {
+    "github": "https://github.com/ShadowWalkerNC/cheezies-gourmet"
+  },
+  "detailedSpecs": {
+    "architecture": "Static Astro site with Netlify Forms for order submission. Menu data stored in a JSON file editable by the owner. No backend — zero maintenance cost.",
+    "keyPatterns": ["JSON-driven menu with category filtering", "Netlify Forms for serverless form handling", "CMS-lite: owner edits a single JSON file to update the menu", "Mobile-first layout optimized for customers ordering on phones"],
+    "deployTarget": "Render (static)",
+    "notableFiles": ["src/data/menu.json", "src/pages/order.astro", "src/pages/index.astro"]
+  }
 }

@@ -1,15 +1,21 @@
 {
-  "name": "NexCMS",
-  "emoji": "🧱",
-  "tagline": "Headless content management system built for developers",
-  "description": "NexCMS is a headless CMS — a content management system where the editing interface is separated from the front end that displays the content. Developers connect their own frontend; editors manage content through a clean dashboard. No opinionated templating, no framework lock-in.",
-  "forWho": "Developers who need a flexible content backend without being tied to a specific front-end framework. Teams that want editors to manage content without touching code.",
-  "story": "Built as a learning project that turned into something useful. The goal was to understand how headless CMS architectures actually work by building one from scratch — content modeling, API design, role-based access, media handling. It's become a useful internal tool for some of my other projects.",
-  "details": "Content types defined via JSON schema. REST + GraphQL API output. Role-based access control for editor, author, and admin roles. Media upload and management. Built to be self-hosted or deployed to any Node-compatible platform.",
-  "detailedSpecs": "Content type system: each content type is defined as a JSON schema document stored in the database — fields include name, type (text, rich_text, number, boolean, date, media, relation), required flag, and validation rules. The schema is compiled at runtime into a Zod validator used for both API input validation and form generation in the editor UI. REST API: GET /api/content/:type returns paginated entries; POST /api/content/:type creates; PATCH/DELETE scoped to entry ID. All endpoints protected by JWT middleware with role checks (admin: full access; editor: create/update own; author: draft only). GraphQL layer built with graphql-yoga — types generated dynamically from content type schemas via a schema builder that walks the JSON definition. Media handled via multer upload to local storage or S3-compatible bucket (configurable via env). PostgreSQL with a generic entries table (id, type, data JSONB, created_by, created_at, updated_at) — the JSONB column stores all content fields, letting the schema evolve without migrations. Fulltext search via PostgreSQL's tsvector on the JSONB content field.",
-  "status": "In Dev",
-  "category": "dev-tools",
-  "stack": ["TypeScript", "Node.js", "PostgreSQL"],
-  "github": "https://github.com/ShadowWalkerNC/NexCMS",
-  "featured": false
+  "title": "NexCMS",
+  "tagline": "A lightweight headless CMS built for developers who hate complexity.",
+  "description": "NexCMS is a minimal headless content management system with a clean admin UI, a REST API for content delivery, and a schema-first approach that lets you define your content types in a single config file.",
+  "story": "Every CMS I tried was either too heavy (WordPress), too expensive (Contentful), or too opinionated (Sanity). NexCMS is the CMS I always wanted: define your schema, get an API, done.",
+  "forWho": "Developers building content-driven sites who want the control of a custom backend without the overhead of a full CMS platform.",
+  "category": "Developer Tools",
+  "tags": ["cms", "headless", "rest-api", "schema-first"],
+  "stack": ["Node.js", "Express", "SQLite", "Tailwind CSS"],
+  "status": "wip",
+  "featured": false,
+  "links": {
+    "github": "https://github.com/ShadowWalkerNC/nexcms"
+  },
+  "detailedSpecs": {
+    "architecture": "Express REST API with a schema-defined data layer. Content types are defined in a JSON config; the API auto-generates CRUD endpoints for each type.",
+    "keyPatterns": ["Schema-driven endpoint generation", "SQLite with dynamic table creation per content type", "JWT auth for admin routes", "Webhook triggers on content publish/update"],
+    "deployTarget": "Railway",
+    "notableFiles": ["src/schema-loader.js", "src/api/content-router.js", "src/admin/ui/"]
+  }
 }

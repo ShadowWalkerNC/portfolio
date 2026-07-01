@@ -1,16 +1,23 @@
 {
-  "name": "CulinaryOS",
-  "emoji": "🌐",
-  "tagline": "The command center for the entire food-tech ecosystem",
-  "description": "CulinaryOS is the central hub that ties everything together — point of sale, kitchen display, inventory, online ordering, reservations, staff scheduling, payments, and reporting all in one place. Think of it like an operating system for your restaurant, but built for real operators, not investors.",
-  "forWho": "Restaurant owners, multi-location operators, and food service managers who are tired of juggling six different software subscriptions just to run their kitchen.",
-  "story": "After years of working every station in professional kitchens, I watched operators fight with clunky, overpriced, disconnected software every single day. POS here. Inventory there. Scheduling somewhere else. None of it talked to each other. CulinaryOS started as \"what if one system did all of this, and it was actually good?\" — and became the foundation for everything else I'm building.",
-  "details": "Built as a Turborepo monorepo with a TypeScript + React frontend and a Hono-based API layer. Uses Supabase for the database and auth. Integrates with KitchenKit and CulinaryOps via dedicated MCP servers, meaning any AI assistant with MCP support can query live kitchen data, adjust inventory, or pull reports in plain English. Designed as a multi-tenant SaaS from day one — not retrofitted. Will run live in Half Baked Café & Bakehouse when it opens in 2027.",
-  "detailedSpecs": "Monorepo managed by Turborepo with shared packages for types, UI components, and utilities. API layer is Hono on Node.js — chosen for its edge-compatible runtime and first-class TypeScript support over Express. Auth is Supabase Auth with Row Level Security policies enforcing tenant isolation at the database layer — every query is scoped to an org_id without application-level guards. Schema uses PostgreSQL with Supabase; core tables include orgs, locations, users, menu_items, inventory_entries, orders, shifts, and payments. MCP servers expose typed tool definitions for AI assistants: tools include get_inventory, update_stock, get_open_orders, query_sales_report, and manage_shift. Real-time order display for KDS (kitchen display) uses Supabase Realtime subscriptions over WebSockets. Frontend state managed with Zustand; no Redux overhead. Billing via Stripe with per-location seat model and usage-based overages for API calls.",
-  "status": "In Dev",
-  "category": "food-tech",
+  "title": "CulinaryOS",
+  "tagline": "The operating system for the modern kitchen.",
+  "description": "CulinaryOS is a modular, multi-service platform that unifies every layer of restaurant operations — from recipe management and prep ticketing to point-of-sale and analytics — into one coherent system.",
+  "story": "Built after years of watching kitchen staff juggle five different apps during a dinner rush. Every station had its own screen, its own tool, its own failure point. CulinaryOS started as a question: what if the whole kitchen ran on one OS?",
+  "forWho": "Restaurant owners, head chefs, and kitchen managers who need operations software built by someone who has actually worked the line.",
   "group": "culinary-ecosystem",
-  "stack": ["TypeScript", "React", "Hono", "Supabase", "Turborepo", "MCP"],
-  "github": "https://github.com/ShadowWalkerNC/CulinaryOS",
-  "featured": true
+  "category": "Culinary Tech",
+  "tags": ["flagship", "platform", "multi-service", "restaurant-ops"],
+  "stack": ["Node.js", "Python", "Flask", "PostgreSQL", "Railway"],
+  "status": "active",
+  "featured": true,
+  "links": {
+    "github": "https://github.com/ShadowWalkerNC/culinaryos"
+  },
+  "detailedSpecs": {
+    "architecture": "Microservices with a shared PostgreSQL core. Each module (RecipeOS, KDS, POS) runs as an independent service that communicates via a lightweight internal event bus.",
+    "dataFlow": "Order placed in POS → event emitted → KDS receives ticket → recipe data pulled from RecipeOS → completion event logged for analytics.",
+    "keyPatterns": ["Event-driven inter-service messaging", "Shared DB schema with service-scoped tables", "Alembic for schema migrations", "Role-based auth per module"],
+    "deployTarget": "Railway (containerized per service)",
+    "notableFiles": ["services/pos/routes.py", "services/kds/socket_handler.js", "db/migrations/"]
+  }
 }

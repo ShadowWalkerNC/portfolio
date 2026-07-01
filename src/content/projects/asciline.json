@@ -1,15 +1,21 @@
 {
-  "name": "ASCILINE-2.0",
-  "emoji": "🖥️",
-  "tagline": "Real-time video rendered as ASCII art and streamed over the network",
-  "description": "ASCILINE-2.0 converts live video into ASCII or pixel-art text frames and streams them in real time over WebSockets. It's part art experiment, part engineering challenge — turning a webcam feed or video file into animated characters, viewable in a browser or terminal, with zero GPU required.",
-  "forWho": "Developers and creative coders who appreciate clever engineering. Terminal enthusiasts. Anyone who's ever thought 'what if I could stream a movie as text characters?' Honestly, it's as much for the love of building it as anything else.",
-  "story": "This started as a one-night experiment. Can I take a webcam feed and render it as ASCII characters fast enough to look like smooth video? The answer was yes — but the real challenge was making the network streaming efficient. Raw ASCII frames are huge. I built a custom adaptive codec (RAW, ZLIB, and DELTA modes) that achieved about 375x wire savings on delta frames. What started as a weekend project became a real engine I'm genuinely proud of.",
-  "details": "Python backend using FastAPI and OpenCV for frame capture and ASCII conversion. Five color modes from pure monochrome up to full 16-million color. Adaptive codec automatically switches between RAW (first frame), ZLIB (compressed full frame), and DELTA (only changed characters) based on frame content. LAN streaming support for local network multi-viewer setups. JavaScript frontend renders frames in a browser canvas or raw terminal.",
-  "detailedSpecs": "Frame pipeline: OpenCV VideoCapture reads frames from webcam or file source → resize to target column/row dimensions → convert to grayscale (for luminance mapping) → map each pixel's brightness to a character from a density-ordered ASCII ramp (configurable, default 10-char ramp from space to '@'). Color modes: MONO (single color attr), 8-COLOR (ANSI 8), 256-COLOR (ANSI 256-color cube), TRUECOLOR (24-bit RGB per character), and PIXEL-ART (2x1 block characters for higher fidelity). Codec: frame 0 always sent as RAW JSON array. Subsequent frames compared to previous frame; if diff ratio < 15% → DELTA packet (only changed cell indices + new values, ~375x smaller than raw on static scenes); if diff ratio ≥ 15% → ZLIB-compressed full frame. WebSocket server via FastAPI's websockets support; clients negotiate codec preference on connect. Frontend: JS canvas renderer draws characters cell-by-cell using fillText; terminal renderer outputs ANSI escape sequences directly. Target frame rate: 24fps at 180×50 character resolution on LAN.",
-  "status": "In Dev",
-  "category": "experimental",
-  "stack": ["Python", "FastAPI", "OpenCV", "JavaScript", "WebSockets"],
-  "github": "https://github.com/ShadowWalkerNC/ASCILINE-2.0",
-  "featured": false
+  "title": "ASCILINE 2.0",
+  "tagline": "Real-time ASCII art video streaming engine for the browser.",
+  "description": "ASCILINE 2.0 is a web engine that converts live video streams or uploaded media into real-time ASCII art rendered directly in the browser — no plugins, no server-side processing, pure client-side canvas magic.",
+  "story": "Started as a joke: what if you could watch a movie but it looked like a Matrix screensaver? The first version was a Python script. ASCILINE 2.0 is a proper browser engine — real-time, low-latency, and surprisingly watchable.",
+  "forWho": "Developers, digital artists, and retro-tech enthusiasts who want to do something weird and interesting with video on the web.",
+  "category": "Creative Tech",
+  "tags": ["ascii", "canvas", "video", "creative-coding"],
+  "stack": ["JavaScript", "HTML5 Canvas", "WebRTC", "CSS"],
+  "status": "stable",
+  "featured": false,
+  "links": {
+    "github": "https://github.com/ShadowWalkerNC/asciline"
+  },
+  "detailedSpecs": {
+    "architecture": "Client-side only. requestAnimationFrame loop reads video frame pixels from a hidden canvas, converts pixel brightness to ASCII characters, and renders to a monospace text canvas overlay.",
+    "keyPatterns": ["Pixel sampling via CanvasRenderingContext2D.getImageData()", "Brightness-to-character mapping table (70-char gradient)", "Debounced resize handler for responsive ASCII grid", "WebRTC getUserMedia for live webcam input"],
+    "deployTarget": "Static hosting (Render / GitHub Pages)",
+    "notableFiles": ["src/engine/ascii-renderer.js", "src/engine/video-sampler.js"]
+  }
 }

@@ -1,15 +1,21 @@
 {
-  "name": "ShadowRealm",
-  "emoji": "🌑",
-  "tagline": "Personal sandbox — experimental builds, prototypes, and things that have no business existing",
-  "description": "ShadowRealm is where ideas go when they're too weird or too early for a real project. Prototypes, engine experiments, half-baked concepts (pun intended), and things I built just to see if I could. Not everything in here works. That's the point.",
-  "forWho": "Curious developers and anyone who appreciates the messy, honest side of building. This is the sketchbook, not the gallery.",
-  "story": "Every builder has a junk drawer. This is mine — made public. I got tired of the idea that every project on a portfolio has to be polished and production-ready. Some of the best things I've learned came from projects that completely failed. ShadowRealm is where that happens in the open.",
-  "details": "Various languages and frameworks depending on the experiment. No consistent stack. Check individual branches and folders for what's in there.",
-  "detailedSpecs": "No canonical stack — intentionally polyglot. Each experiment lives in its own branch or subdirectory with a minimal README describing the hypothesis, what was tried, and what the outcome was (including failed experiments). Past and ongoing experiments include: a Lua-scripted game entity component system, a Python-based generative music engine that maps code complexity metrics to MIDI note patterns, a WebGL fluid simulation, a CLI tool that converts English prose to Pig Latin via a handwritten finite-state parser, and a brainfuck interpreter written in brainfuck. Nothing here is maintained. Everything here was worth building. This is where I prove ideas before they earn a real repo.",
-  "status": "Internal",
-  "category": "experimental",
-  "stack": ["Various"],
-  "github": "https://github.com/ShadowWalkerNC/ShadowRealm",
-  "featured": false
+  "title": "ShadowRealm / ShadowBot",
+  "tagline": "Feature-rich Discord bot with a modular command architecture.",
+  "description": "ShadowBot is a multipurpose Discord bot built for community management — moderation, custom commands, role automation, music queuing, and server analytics — with a clean modular system that makes extending it trivial.",
+  "story": "My first real bot was a mess of if-else chains. ShadowBot started over from scratch with one rule: every feature lives in its own module, has its own tests, and can be toggled per-server. That constraint made it 10x easier to maintain.",
+  "forWho": "Discord server owners and community managers who want a capable, customizable bot without touching someone else's codebase.",
+  "category": "Discord Bots",
+  "tags": ["discord", "moderation", "community", "modular"],
+  "stack": ["Node.js", "Discord.js", "SQLite", "Railway"],
+  "status": "active",
+  "featured": false,
+  "links": {
+    "github": "https://github.com/ShadowWalkerNC/shadowbot"
+  },
+  "detailedSpecs": {
+    "architecture": "Command handler pattern with a dynamic module loader. Each command file exports a standard interface (name, description, execute). SQLite stores per-guild config and audit logs.",
+    "keyPatterns": ["Dynamic command registration at startup", "Per-guild feature flags via SQLite config table", "Interaction-based slash commands (no prefix commands)", "Event emitter for cross-module communication"],
+    "deployTarget": "Railway",
+    "notableFiles": ["src/handler/command-loader.js", "src/commands/mod/ban.js", "src/db/guild-config.js"]
+  }
 }

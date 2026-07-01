@@ -1,270 +1,225 @@
 ---
-const { project } = Astro.props;
-const { name, emoji, tagline, description, forWho, story, status, stack, github, details, detailedSpecs } = project.data;
+interface DetailedSpecs {
+  architecture?: string;
+  dataFlow?: string;
+  keyPatterns?: string[];
+  apiSurface?: string;
+  deployTarget?: string;
+  notableFiles?: string[];
+}
 
-const statusColor: Record<string, string> = {
-  'In Dev':         'background: rgba(234,179,8,0.15); color: #FDE047; border: 1px solid rgba(234,179,8,0.3);',
-  'Active Rebuild': 'background: rgba(14,165,233,0.15); color: #7DD3FC; border: 1px solid rgba(14,165,233,0.3);',
-  'Stable':         'background: rgba(34,197,94,0.15); color: #86EFAC; border: 1px solid rgba(34,197,94,0.3);',
-  'Internal':       'background: rgba(100,116,139,0.15); color: #94A3B8; border: 1px solid rgba(100,116,139,0.3);',
-  'Archived':       'background: rgba(239,68,68,0.15); color: #FCA5A5; border: 1px solid rgba(239,68,68,0.3);',
+interface Props {
+  title: string;
+  tagline: string;
+  description: string;
+  story?: string;
+  forWho?: string;
+  tags: string[];
+  stack: string[];
+  status: 'active' | 'stable' | 'archived' | 'wip';
+  links?: { github?: string; live?: string; docs?: string };
+  detailedSpecs?: DetailedSpecs;
+  id: string;
+}
+
+const { title, tagline, description, story, forWho, tags, stack, status, links, detailedSpecs, id } = Astro.props;
+
+const statusMap = {
+  active:   { label: 'Active',      color: 'badge-active' },
+  stable:   { label: 'Stable',      color: 'badge-stable' },
+  archived: { label: 'Archived',    color: 'badge-archived' },
+  wip:      { label: 'In Progress', color: 'badge-wip' },
 };
-
-const cardId = `card-${Math.random().toString(36).slice(2, 9)}`;
-const hasAccordion = !!(story || details || detailedSpecs);
+const s = statusMap[status];
 ---
 
-<article class="project-card glass-card flex flex-col gap-0 animate-fade-in">
-
-  <!-- Top accent bar -->
-  <div class="card-accent-bar"></div>
-
-  <div class="p-6 flex flex-col gap-4 flex-1">
-
-    <!-- Header -->
-    <div class="flex items-start justify-between gap-3">
-      <div class="flex-1 min-w-0">
-        <div class="flex items-center gap-2.5 mb-1.5">
-          <span class="text-2xl leading-none">{emoji}</span>
-          <h3 class="font-bold text-white text-lg leading-tight">{name}</h3>
-        </div>
-        <p class="text-sm leading-relaxed" style="color: var(--text-subtle);">{tagline}</p>
-      </div>
-      <span class="text-xs px-2.5 py-1 rounded-full font-mono whitespace-nowrap flex-shrink-0 mt-1"
-        style={statusColor[status] ?? statusColor['Internal']}>
-        {status}
-      </span>
+<article class="project-card" id={`card-${id}`}>
+  <!-- Header Row -->
+  <div class="card-header">
+    <div class="card-title-group">
+      <h3 class="card-title">{title}</h3>
+      <span class={`status-badge ${s.color}`}>{s.label}</span>
     </div>
-
-    <!-- Who It's For badge — visible at card level, not hidden in accordion -->
     {forWho && (
-      <div class="for-who-badge" aria-label="Who this is for">
-        <span class="for-who-icon" aria-hidden="true">👤</span>
-        <span class="for-who-text">{forWho}</span>
-      </div>
-    )}
-
-    <!-- Description: plain-English first -->
-    <p class="text-sm leading-relaxed" style="color: var(--text-body);">{description}</p>
-
-    <!-- Stack badges -->
-    <div class="flex flex-wrap gap-2">
-      {stack.map((tech: string) => (
-        <span class="tech-badge text-xs font-mono px-2 py-1 rounded">
-          {tech}
-        </span>
-      ))}
-    </div>
-
-    <!-- Chevron accordion — story, details, detailedSpecs -->
-    {hasAccordion && (
-      <div class="accordion-wrapper">
-        <button
-          class="accordion-toggle"
-          aria-expanded="false"
-          aria-controls={`${cardId}-body`}
-          id={`${cardId}-btn`}
-        >
-          <span class="accordion-label">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--blue-vivid); flex-shrink:0;">
-              <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
-            </svg>
-            <span class="text-xs font-mono uppercase tracking-widest" style="color: var(--blue-bright);">Story · How It's Built · Deep Dive</span>
-          </span>
-          <svg class="accordion-chevron" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="6 9 12 15 18 9"></polyline>
-          </svg>
-        </button>
-
-        <div class="accordion-body" id={`${cardId}-body`} role="region" aria-labelledby={`${cardId}-btn`}>
-          <div class="accordion-inner">
-            <div class="accordion-content">
-
-              {story && (
-                <div class="story-block">
-                  <p class="detail-label">📖 The Story Behind It</p>
-                  <p class="detail-text">{story}</p>
-                </div>
-              )}
-
-              {details && (
-                <div class="tech-details-block">
-                  <p class="detail-label">⚙️ How It's Built</p>
-                  <p class="detail-text">{details}</p>
-                </div>
-              )}
-
-              {detailedSpecs && (
-                <div class="detailed-specs-block">
-                  <p class="detail-label">⚡ Deep Dive — Technical Specs</p>
-                  <p class="detail-text detail-text-specs">{detailedSpecs}</p>
-                </div>
-              )}
-
-            </div>
-          </div>
-        </div>
-      </div>
-    )}
-
-    <!-- GitHub link -->
-    {github && (
-      <a
-        href={github}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="mt-auto github-link text-sm font-mono flex items-center gap-2 transition pt-1"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
-        </svg>
-        View on GitHub
-      </a>
+      <p class="for-who-badge">&#128100; {forWho}</p>
     )}
   </div>
+
+  <!-- Tagline -->
+  <p class="card-tagline">{tagline}</p>
+
+  <!-- Description -->
+  <p class="card-description">{description}</p>
+
+  <!-- Tech Stack -->
+  <div class="card-stack">
+    {stack.map(tech => (
+      <span class="tech-chip">{tech}</span>
+    ))}
+  </div>
+
+  <!-- Tags -->
+  <div class="card-tags">
+    {tags.map(tag => (
+      <span class="tag-chip">#{tag}</span>
+    ))}
+  </div>
+
+  <!-- Links -->
+  {links && (
+    <div class="card-links">
+      {links.github && <a href={links.github} target="_blank" rel="noopener" class="card-link link-github">GitHub &rarr;</a>}
+      {links.live   && <a href={links.live}   target="_blank" rel="noopener" class="card-link link-live">Live Site &rarr;</a>}
+      {links.docs   && <a href={links.docs}   target="_blank" rel="noopener" class="card-link link-docs">Docs &rarr;</a>}
+    </div>
+  )}
+
+  <!-- Accordion: Tech Deep-Dive -->
+  {(story || detailedSpecs) && (
+    <div class="accordion-wrapper">
+      <button
+        class="accordion-trigger"
+        aria-expanded="false"
+        aria-controls={`details-${id}`}
+        onclick={`toggleAccordion('${id}')`}
+      >
+        <span class="accordion-label">Technical Deep-Dive</span>
+        <svg class="chevron-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </button>
+
+      <div id={`details-${id}`} class="accordion-body" hidden>
+        {story && (
+          <div class="spec-block">
+            <h4 class="spec-heading">&#128218; Origin Story</h4>
+            <p class="spec-text">{story}</p>
+          </div>
+        )}
+        {detailedSpecs?.architecture && (
+          <div class="spec-block">
+            <h4 class="spec-heading">&#127959; Architecture</h4>
+            <p class="spec-text">{detailedSpecs.architecture}</p>
+          </div>
+        )}
+        {detailedSpecs?.dataFlow && (
+          <div class="spec-block">
+            <h4 class="spec-heading">&#10145; Data Flow</h4>
+            <p class="spec-text">{detailedSpecs.dataFlow}</p>
+          </div>
+        )}
+        {detailedSpecs?.keyPatterns && detailedSpecs.keyPatterns.length > 0 && (
+          <div class="spec-block">
+            <h4 class="spec-heading">&#128207; Key Patterns</h4>
+            <ul class="spec-list">
+              {detailedSpecs.keyPatterns.map(p => <li>{p}</li>)}
+            </ul>
+          </div>
+        )}
+        {detailedSpecs?.apiSurface && (
+          <div class="spec-block">
+            <h4 class="spec-heading">&#128225; API Surface</h4>
+            <p class="spec-text">{detailedSpecs.apiSurface}</p>
+          </div>
+        )}
+        {detailedSpecs?.deployTarget && (
+          <div class="spec-block">
+            <h4 class="spec-heading">&#128640; Deploy Target</h4>
+            <p class="spec-text">{detailedSpecs.deployTarget}</p>
+          </div>
+        )}
+        {detailedSpecs?.notableFiles && detailedSpecs.notableFiles.length > 0 && (
+          <div class="spec-block">
+            <h4 class="spec-heading">&#128196; Notable Files</h4>
+            <ul class="spec-list mono">
+              {detailedSpecs.notableFiles.map(f => <li>{f}</li>)}
+            </ul>
+          </div>
+        )}
+      </div>
+    </div>
+  )}
 </article>
 
-<style>
-  .project-card {
-    position: relative;
-    overflow: hidden;
-    border-radius: 16px;
-  }
-
-  .card-accent-bar {
-    height: 3px;
-    background: linear-gradient(90deg, var(--blue-electric), var(--blue-vivid), var(--blue-bright), transparent);
-    opacity: 0.6;
-    transition: opacity 0.3s ease, height 0.3s ease;
-  }
-
-  .project-card:hover .card-accent-bar {
-    opacity: 1;
-    height: 4px;
-  }
-
-  /* ---- Who It's For badge ---- */
-  .for-who-badge {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.5rem;
-    padding: 0.55rem 0.85rem;
-    border-radius: 10px;
-    background: rgba(14, 165, 233, 0.07);
-    border: 1px solid rgba(14, 165, 233, 0.18);
-    border-left: 3px solid var(--blue-electric);
-    transition: background 0.25s ease, border-color 0.25s ease;
-  }
-
-  .project-card:hover .for-who-badge {
-    background: rgba(14, 165, 233, 0.11);
-    border-color: rgba(14, 165, 233, 0.3);
-  }
-
-  .for-who-icon {
-    font-size: 0.85rem;
-    line-height: 1.5;
-    flex-shrink: 0;
-  }
-
-  .for-who-text {
-    font-size: 0.775rem;
-    line-height: 1.6;
-    color: var(--text-subtle);
-    font-style: italic;
-  }
-
-  /* ---- Tech badges ---- */
-  .tech-badge {
-    background: rgba(14, 45, 80, 0.8);
-    border: 1px solid rgba(14, 165, 233, 0.22);
-    color: #7DD3FC;
-    transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
-  }
-
-  .tech-badge:hover {
-    border-color: rgba(56, 189, 248, 0.5);
-    color: #fff;
-    background: rgba(14, 45, 80, 1);
-  }
-
-  /* ---- GitHub link ---- */
-  .github-link {
-    color: var(--text-muted);
-  }
-
-  .github-link:hover {
-    color: var(--blue-vivid);
-  }
-
-  /* ---- Accordion ---- */
-  .accordion-wrapper {
-    border-top: 1px solid var(--dark-border);
-    padding-top: 0.25rem;
-    margin-top: 0.25rem;
-  }
-
-  .accordion-label {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .accordion-content {
-    display: flex;
-    flex-direction: column;
-    gap: 0.85rem;
-    padding-top: 0.85rem;
-    padding-bottom: 0.25rem;
-  }
-
-  .detail-label {
-    font-size: 0.68rem;
-    font-family: 'Fira Code', monospace;
-    text-transform: uppercase;
-    letter-spacing: 0.09em;
-    color: var(--blue-bright);
-    font-weight: 700;
-    margin-bottom: 0.4rem;
-  }
-
-  .detail-text {
-    font-size: 0.8rem;
-    line-height: 1.7;
-    color: var(--text-body);
-  }
-
-  /* ---- Deep Dive / detailedSpecs block ---- */
-  .detailed-specs-block {
-    padding: 0.75rem;
-    border-radius: 8px;
-    background: rgba(7, 24, 40, 0.6);
-    border: 1px solid rgba(56, 189, 248, 0.12);
-    border-left: 3px solid rgba(56, 189, 248, 0.4);
-  }
-
-  .detailed-specs-block .detail-label {
-    color: var(--blue-vivid);
-  }
-
-  .detail-text-specs {
-    font-size: 0.75rem;
-    font-family: 'Fira Code', monospace;
-    line-height: 1.75;
-    color: var(--text-subtle);
-    white-space: pre-wrap;
-    word-break: break-word;
-  }
-</style>
-
-<script>
-  document.querySelectorAll('.accordion-toggle').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const expanded = btn.getAttribute('aria-expanded') === 'true';
-      const bodyId = btn.getAttribute('aria-controls');
-      const body = document.getElementById(bodyId!);
-      btn.setAttribute('aria-expanded', String(!expanded));
-      body?.classList.toggle('is-open', !expanded);
-    });
-  });
+<script is:inline>
+function toggleAccordion(id) {
+  const body    = document.getElementById('details-' + id);
+  const btn     = body.previousElementSibling;
+  const chevron = btn.querySelector('.chevron-icon');
+  const open    = !body.hidden;
+  body.hidden   = open;
+  btn.setAttribute('aria-expanded', String(!open));
+  chevron.style.transform = open ? 'rotate(0deg)' : 'rotate(180deg)';
+}
 </script>
+
+<style>
+.project-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.project-card:hover {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 1px var(--accent-blue), var(--glow-blue);
+}
+.card-header { display: flex; flex-direction: column; gap: 0.35rem; }
+.card-title-group { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+.card-title { font-size: 1.2rem; font-weight: 700; color: var(--text-primary); margin: 0; }
+.status-badge {
+  font-size: 0.65rem; font-weight: 600; text-transform: uppercase;
+  padding: 2px 8px; border-radius: 20px; letter-spacing: 0.05em;
+}
+.badge-active   { background: rgba(34,197,94,0.15);  color: #4ade80; border: 1px solid rgba(34,197,94,0.3); }
+.badge-stable   { background: rgba(59,130,246,0.15); color: #60a5fa; border: 1px solid rgba(59,130,246,0.3); }
+.badge-wip      { background: rgba(250,204,21,0.15); color: #fcd34d; border: 1px solid rgba(250,204,21,0.3); }
+.badge-archived { background: rgba(156,163,175,0.15);color: #9ca3af; border: 1px solid rgba(156,163,175,0.3); }
+.for-who-badge {
+  font-size: 0.78rem; color: var(--text-muted);
+  background: rgba(99,179,237,0.08); border: 1px solid rgba(99,179,237,0.2);
+  border-radius: 6px; padding: 4px 10px; margin: 0; width: fit-content;
+}
+.card-tagline { font-size: 0.95rem; color: var(--accent-blue); font-style: italic; margin: 0; }
+.card-description { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; margin: 0; }
+.card-stack, .card-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.tech-chip {
+  font-size: 0.72rem; font-weight: 600; padding: 3px 10px; border-radius: 20px;
+  background: rgba(99,102,241,0.15); color: #a5b4fc;
+  border: 1px solid rgba(99,102,241,0.3);
+}
+.tag-chip { font-size: 0.7rem; color: var(--text-muted); opacity: 0.7; }
+.card-links { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.card-link {
+  font-size: 0.8rem; font-weight: 600; padding: 5px 14px; border-radius: 6px;
+  text-decoration: none; transition: all 0.2s ease;
+}
+.link-github { background: rgba(255,255,255,0.05); color: var(--text-secondary); border: 1px solid var(--border-subtle); }
+.link-github:hover { border-color: var(--accent-blue); color: var(--accent-blue); }
+.link-live { background: var(--accent-blue); color: #0d1117; }
+.link-live:hover { filter: brightness(1.15); }
+.link-docs { background: rgba(99,179,237,0.1); color: var(--accent-blue); border: 1px solid rgba(99,179,237,0.2); }
+
+/* Accordion */
+.accordion-wrapper { border-top: 1px solid var(--border-subtle); padding-top: 0.75rem; margin-top: 0.25rem; }
+.accordion-trigger {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%; background: none; border: none; cursor: pointer;
+  color: var(--text-muted); font-size: 0.8rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.07em; padding: 0;
+  transition: color 0.2s;
+}
+.accordion-trigger:hover { color: var(--accent-blue); }
+.chevron-icon { transition: transform 0.25s ease; flex-shrink: 0; }
+.accordion-body { margin-top: 1rem; display: flex; flex-direction: column; gap: 1rem; }
+.accordion-body[hidden] { display: none; }
+.spec-block { display: flex; flex-direction: column; gap: 0.3rem; }
+.spec-heading { font-size: 0.78rem; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin: 0; }
+.spec-text { font-size: 0.83rem; color: var(--text-muted); line-height: 1.65; margin: 0; }
+.spec-list { font-size: 0.83rem; color: var(--text-muted); line-height: 1.8; margin: 0; padding-left: 1.2rem; }
+.spec-list.mono li { font-family: var(--font-mono); font-size: 0.78rem; color: #7dd3fc; }
+</style>

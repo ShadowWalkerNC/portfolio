@@ -1,550 +1,193 @@
 /* ============================================================
-   GLOBAL CSS — ShadowWalkerNC Portfolio
-   Midnight & electric blue palette, food-meets-tech identity,
-   keyframe animations, glow border utilities, icon accents
+   SHADOWWALKER PORTFOLIO — GLOBAL DESIGN SYSTEM
+   Midnight + Electric Blue palette
    ============================================================ */
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap');
 
-/* ---- CSS Variables ---- */
+/* ---- Design Tokens ---- */
 :root {
-  --blue-primary:       #3B82F6;
-  --blue-bright:        #60A5FA;
-  --blue-vivid:         #38BDF8;
-  --blue-electric:      #0EA5E9;
-  --blue-glow:          #3B82F630;
-  --blue-glow-strong:   #3B82F650;
-  --blue-dim:           #1D4ED8;
-  --blue-deep:          #0F3460;
-  --blue-midnight:      #071828;
-  --orange-warm:        #F97316;
-  --orange-glow:        #F9731620;
-  --dark-base:          #020A14;
-  --dark-surface:       #071828;
-  --dark-card:          #0B1F33;
-  --dark-card-hover:    #0F2540;
-  --dark-border:        #1A3555;
-  --dark-border-bright: #2A4F7A;
-  --text-muted:         #4E6A89;
-  --text-subtle:        #7FA8C9;
-  --text-body:          #B8D4EC;
+  /* Backgrounds */
+  --bg-base:        #0a0f1a;
+  --bg-surface:     #0d1117;
+  --bg-elevated:    #111827;
+  --card-bg:        #111827;
 
-  /* ---- Glow border utilities ---- */
-  --glow-border-soft:   rgba(56, 189, 248, 0.18);
-  --glow-border-mid:    rgba(14, 165, 233, 0.32);
-  --glow-border-strong: rgba(56, 189, 248, 0.55);
-  --glow-shadow-soft:   0 0 18px rgba(56, 189, 248, 0.08);
-  --glow-shadow-mid:    0 0 32px rgba(56, 189, 248, 0.18);
-  --glow-shadow-strong: 0 0 56px rgba(56, 189, 248, 0.32), 0 0 100px rgba(14, 165, 233, 0.12);
+  /* Text */
+  --text-primary:   #e2e8f0;
+  --text-secondary: #94a3b8;
+  --text-muted:     #64748b;
 
-  /* ---- Interactive state tokens ---- */
-  --interactive-hover-bg:     rgba(14, 165, 233, 0.07);
-  --interactive-active-bg:    rgba(14, 165, 233, 0.13);
-  --interactive-focus-ring:   0 0 0 2px rgba(56, 189, 248, 0.5);
+  /* Accent — Electric Blue */
+  --accent-blue:    #63b3ed;
+  --accent-blue-dim:#3b82f6;
+  --accent-indigo:  #818cf8;
 
-  /* ---- Typography scale ---- */
-  --text-xs:   0.75rem;   /* 12px */
-  --text-sm:   0.8125rem; /* 13px */
-  --text-base: 0.9375rem; /* 15px */
-  --text-md:   1rem;      /* 16px */
-  --text-lg:   1.125rem;  /* 18px */
-  --text-xl:   1.25rem;   /* 20px */
-  --text-2xl:  1.5rem;    /* 24px */
-  --text-3xl:  1.875rem;  /* 30px */
-  --text-4xl:  2.25rem;   /* 36px */
+  /* Borders */
+  --border-subtle:  rgba(255,255,255,0.06);
+  --border-glow:    rgba(99,179,237,0.2);
+
+  /* Glows */
+  --glow-blue:      0 0 20px rgba(99,179,237,0.08), 0 0 40px rgba(99,179,237,0.04);
+  --glow-blue-strong: 0 0 30px rgba(99,179,237,0.18);
+
+  /* Typography */
+  --font-sans:  'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono:  'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Spacing scale */
+  --space-xs:   0.25rem;
+  --space-sm:   0.5rem;
+  --space-md:   1rem;
+  --space-lg:   1.5rem;
+  --space-xl:   2rem;
+  --space-2xl:  3rem;
+  --space-3xl:  4rem;
 }
 
-/* ---- Base resets ---- */
-*, *::before, *::after { box-sizing: border-box; }
+/* ---- Reset & Base ---- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-html { scroll-behavior: smooth; }
-
-body {
-  background-color: var(--dark-base);
-  color: #D4EAF7;
-  font-family: 'Inter', system-ui, sans-serif;
+html {
+  font-family: var(--font-sans);
+  background: var(--bg-base);
+  color: var(--text-secondary);
+  scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* Blueprint grid — deep blue tint */
-  background-image:
-    linear-gradient(rgba(56,189,248,0.018) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(56,189,248,0.018) 1px, transparent 1px);
-  background-size: 64px 64px;
 }
 
-/* ---- Custom Scrollbar ---- */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--dark-base); }
-::-webkit-scrollbar-thumb { background: var(--dark-border); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: var(--blue-primary); }
-
-/* ============================================================
-   KEYFRAME ANIMATIONS
-   ============================================================ */
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(99,179,237,0.07) 0%, transparent 60%),
+    var(--bg-base);
+  line-height: 1.6;
 }
 
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(28px); }
-  to   { opacity: 1; transform: translateY(0); }
+/* ---- Typography ---- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans);
+  color: var(--text-primary);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
 }
 
-@keyframes slideDown {
-  from { opacity: 0; transform: translateY(-12px); }
-  to   { opacity: 1; transform: translateY(0); }
+p { color: var(--text-secondary); line-height: 1.7; }
+
+a { color: var(--accent-blue); text-decoration: none; transition: color 0.2s ease; }
+a:hover { color: var(--text-primary); }
+
+code, pre, kbd {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
 }
 
-@keyframes glowPulse {
-  0%, 100% { box-shadow: 0 0 20px var(--blue-glow); }
-  50%       { box-shadow: 0 0 50px var(--blue-glow-strong), 0 0 90px #3B82F615; }
+/* ---- Scrollbar ---- */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-base); }
+::-webkit-scrollbar-thumb { background: rgba(99,179,237,0.2); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(99,179,237,0.4); }
+
+/* ---- Selection ---- */
+::selection { background: rgba(99,179,237,0.25); color: var(--text-primary); }
+
+/* ---- Focus ---- */
+:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
-@keyframes borderGlow {
-  0%, 100% { border-color: var(--dark-border); }
-  50%       { border-color: var(--blue-primary); }
+/* ---- Utility: Glow Text ---- */
+.glow-text {
+  text-shadow: 0 0 20px rgba(99,179,237,0.5);
 }
 
-@keyframes floatUp {
-  0%, 100% { transform: translateY(0px); }
-  50%       { transform: translateY(-7px); }
-}
-
-@keyframes shimmer {
-  0%   { background-position: -200% center; }
-  100% { background-position: 200% center; }
-}
-
-@keyframes glowBorderPulse {
-  0%, 100% { border-color: var(--glow-border-soft); box-shadow: var(--glow-shadow-soft); }
-  50%       { border-color: var(--glow-border-mid);  box-shadow: var(--glow-shadow-mid); }
-}
-
-/* ============================================================
-   ANIMATION UTILITY CLASSES
-   ============================================================ */
-
-.animate-fade-in    { animation: fadeIn 0.6s ease forwards; }
-.animate-slide-up   { animation: slideUp 0.7s ease forwards; }
-.animate-slide-down { animation: slideDown 0.5s ease forwards; }
-.animate-glow-pulse { animation: glowPulse 3s ease-in-out infinite; }
-.animate-float      { animation: floatUp 4s ease-in-out infinite; }
-.animate-glow-border { animation: glowBorderPulse 3.5s ease-in-out infinite; }
-
-/* Staggered children */
-.stagger-children > *:nth-child(1) { animation-delay: 0ms; }
-.stagger-children > *:nth-child(2) { animation-delay: 100ms; }
-.stagger-children > *:nth-child(3) { animation-delay: 200ms; }
-.stagger-children > *:nth-child(4) { animation-delay: 300ms; }
-.stagger-children > *:nth-child(5) { animation-delay: 400ms; }
-.stagger-children > *:nth-child(6) { animation-delay: 500ms; }
-
-/* ============================================================
-   GRADIENT TEXT UTILITIES
-   ============================================================ */
-
-.text-gradient-blue {
-  background: linear-gradient(135deg, var(--blue-vivid), var(--blue-primary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.text-gradient-blue-white {
-  background: linear-gradient(135deg, #FFFFFF 0%, var(--blue-vivid) 50%, var(--blue-primary) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.text-gradient-orange {
-  background: linear-gradient(135deg, #FED7AA, var(--orange-warm));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.text-gradient-subtle {
-  background: linear-gradient(135deg, #D4EAF7, var(--text-subtle));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.text-gradient-food-tech {
-  background: linear-gradient(135deg, var(--blue-vivid) 0%, #A78BFA 50%, var(--orange-warm) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* ============================================================
-   GLASS MORPHISM
-   ============================================================ */
-
+/* ---- Utility: Glass Card ---- */
 .glass {
-  background: rgba(7, 24, 40, 0.65);
+  background: rgba(17,24,39,0.7);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(59, 130, 246, 0.15);
+  border: 1px solid var(--border-glow);
+  border-radius: 12px;
 }
 
-.glass-strong {
-  background: rgba(7, 24, 40, 0.88);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(59, 130, 246, 0.28);
+/* ---- Utility: Section Divider ---- */
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-glow), transparent);
+  margin: var(--space-3xl) auto;
+  max-width: 800px;
 }
 
-.glass-card {
-  background: linear-gradient(135deg, rgba(11, 31, 51, 0.85), rgba(7, 24, 40, 0.65));
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid var(--dark-border);
-  border-radius: 16px;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.25s ease;
-}
-
-.glass-card:hover {
-  border-color: var(--glow-border-soft);
-  box-shadow: var(--glow-shadow-mid), 0 12px 40px rgba(0, 0, 0, 0.5);
-  transform: translateY(-3px);
-}
-
-/* ============================================================
-   GLOW BORDER UTILITIES
-   ============================================================ */
-
-.glow-border-soft   { border: 1px solid var(--glow-border-soft); }
-.glow-border-mid    { border: 1px solid var(--glow-border-mid); }
-.glow-border-strong { border: 1px solid var(--glow-border-strong); }
-
-.glow-shadow-soft   { box-shadow: var(--glow-shadow-soft); }
-.glow-shadow-mid    { box-shadow: var(--glow-shadow-mid); }
-.glow-shadow-strong { box-shadow: var(--glow-shadow-strong); }
-
-/* Combined glow card helper */
-.glow-card {
-  border: 1px solid var(--glow-border-soft);
-  box-shadow: var(--glow-shadow-soft);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-.glow-card:hover {
-  border-color: var(--glow-border-mid);
-  box-shadow: var(--glow-shadow-mid);
-}
-
-/* ============================================================
-   CHEVRON ACCORDION
-   ============================================================ */
-
-.accordion-toggle {
+/* ---- Nav ---- */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(10,15,26,0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 0 1.5rem;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
-  cursor: pointer;
-  background: none;
-  border: none;
-  padding: 0.5rem 0;
-  text-align: left;
-  color: inherit;
+}
+
+nav a {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  font-weight: 500;
+  padding: 0.3rem 0.6rem;
   border-radius: 6px;
-  transition: opacity 0.2s ease;
+  transition: color 0.2s, background 0.2s;
+}
+nav a:hover,
+nav a[aria-current='page'] {
+  color: var(--text-primary);
+  background: rgba(99,179,237,0.08);
 }
 
-.accordion-toggle:hover {
-  opacity: 0.85;
+/* ---- Footer ---- */
+footer {
+  border-top: 1px solid var(--border-subtle);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.82rem;
 }
 
-.accordion-chevron {
-  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-  flex-shrink: 0;
-  color: var(--blue-primary);
-  opacity: 0.7;
+/* ---- Animations ---- */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: var(--glow-blue); }
+  50%       { box-shadow: var(--glow-blue-strong); }
 }
 
-.accordion-toggle[aria-expanded="true"] .accordion-chevron {
-  transform: rotate(180deg);
-  opacity: 1;
-  color: var(--blue-vivid);
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s ease forwards;
 }
 
-.accordion-body {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  overflow: hidden;
+/* ---- Media Queries ---- */
+@media (max-width: 768px) {
+  nav { padding: 0 1rem; }
+  nav .nav-logo { font-size: 0.9rem; }
 }
 
-.accordion-body.is-open {
-  grid-template-rows: 1fr;
-}
-
-.accordion-inner { overflow: hidden; }
-
-/* ============================================================
-   BUTTONS
-   ============================================================ */
-
-.btn-blue {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 28px;
-  background: linear-gradient(135deg, var(--blue-electric), var(--blue-dim));
-  color: #fff;
-  font-weight: 600;
-  border-radius: 10px;
-  border: 1px solid rgba(56, 189, 248, 0.3);
-  transition: box-shadow 0.3s ease, transform 0.2s ease;
-  text-decoration: none;
-  letter-spacing: 0.01em;
-}
-
-.btn-blue:hover {
-  box-shadow: 0 0 32px rgba(56, 189, 248, 0.45);
-  transform: translateY(-2px);
-}
-
-.btn-outline {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 28px;
-  background: transparent;
-  color: var(--text-subtle);
-  font-weight: 600;
-  border-radius: 10px;
-  border: 1px solid var(--dark-border);
-  transition: border-color 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-  text-decoration: none;
-  letter-spacing: 0.01em;
-}
-
-.btn-outline:hover {
-  border-color: var(--blue-electric);
-  color: #fff;
-  transform: translateY(-2px);
-  box-shadow: 0 0 20px rgba(14, 165, 233, 0.2);
-}
-
-/* ============================================================
-   SECTION DIVIDER
-   ============================================================ */
-
-.section-divider {
-  border: none;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--dark-border-bright), transparent);
-  margin: 0;
-}
-
-/* ============================================================
-   HERO BACKGROUND EFFECTS
-   ============================================================ */
-
-.hero-glow {
-  position: absolute;
-  top: -220px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 1000px;
-  height: 750px;
-  background: radial-gradient(ellipse, rgba(14, 165, 233, 0.08) 0%, transparent 65%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.hero-glow-left {
-  position: absolute;
-  top: 80px;
-  left: -220px;
-  width: 550px;
-  height: 550px;
-  background: radial-gradient(ellipse, rgba(56, 189, 248, 0.05) 0%, transparent 70%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* ============================================================
-   CATEGORY / GROUP SECTION HEADERS
-   ============================================================ */
-
-.section-group-header {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 1.5rem;
-}
-
-.section-group-line {
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(90deg, var(--dark-border-bright), transparent);
-}
-
-/* ============================================================
-   FOOD-MEETS-TECH VISUAL ACCENTS
-   ============================================================ */
-
-/* Floating emoji accents used for section backgrounds */
-.food-accent-bg {
-  position: absolute;
-  font-size: 9rem;
-  opacity: 0.035;
-  pointer-events: none;
-  z-index: 0;
-  user-select: none;
-}
-
-/* Inline tag used for tech/food split labeling */
-.world-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  font-size: 0.65rem;
-  font-family: 'Fira Code', monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.09em;
-  padding: 0.2rem 0.6rem;
-  border-radius: 999px;
-}
-
-.world-tag-tech {
-  background: rgba(14, 165, 233, 0.12);
-  border: 1px solid rgba(14, 165, 233, 0.25);
-  color: var(--blue-vivid);
-}
-
-.world-tag-food {
-  background: rgba(249, 115, 22, 0.12);
-  border: 1px solid rgba(249, 115, 22, 0.25);
-  color: #FDBA74;
-}
-
-.world-tag-both {
-  background: rgba(167, 139, 250, 0.12);
-  border: 1px solid rgba(167, 139, 250, 0.25);
-  color: #C4B5FD;
-}
-
-/* ---- Icon accent helpers — culinary/tech split visual cues ---- */
-.icon-accent {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2rem;
-  height: 2rem;
-  border-radius: 8px;
-  font-size: 1rem;
-  flex-shrink: 0;
-}
-
-.icon-accent-tech {
-  background: rgba(14, 165, 233, 0.1);
-  border: 1px solid rgba(14, 165, 233, 0.2);
-}
-
-.icon-accent-food {
-  background: rgba(249, 115, 22, 0.1);
-  border: 1px solid rgba(249, 115, 22, 0.2);
-}
-
-.icon-accent-both {
-  background: rgba(167, 139, 250, 0.1);
-  border: 1px solid rgba(167, 139, 250, 0.2);
-}
-
-/* ============================================================
-   ECOSYSTEM BANNER
-   ============================================================ */
-
-.ecosystem-banner {
-  position: relative;
-  overflow: hidden;
-  border-radius: 16px;
-  border: 1px solid rgba(14, 165, 233, 0.25);
-  background: linear-gradient(135deg, rgba(7, 24, 40, 0.97), rgba(4, 15, 28, 0.95));
-  padding: 2rem 2.25rem;
-  margin-bottom: 1.5rem;
-}
-
-.ecosystem-banner::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse at top left, rgba(14, 165, 233, 0.07) 0%, transparent 60%);
-  pointer-events: none;
-}
-
-/* ============================================================
-   FOR-WHO BADGE (card-level — not hidden in accordion)
-   ============================================================ */
-
-.for-who-badge-global {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.5rem;
-  padding: 0.55rem 0.85rem;
-  border-radius: 10px;
-  background: var(--interactive-hover-bg);
-  border: 1px solid var(--glow-border-soft);
-  border-left: 3px solid var(--blue-electric);
-  transition: background 0.25s ease, border-color 0.25s ease;
-}
-
-.for-who-badge-global:hover {
-  background: var(--interactive-active-bg);
-  border-color: var(--glow-border-mid);
-}
-
-/* ============================================================
-   DETAILED SPECS BLOCK
-   ============================================================ */
-
-.detailed-specs-block-global {
-  padding: 0.75rem;
-  border-radius: 8px;
-  background: rgba(7, 24, 40, 0.6);
-  border: 1px solid var(--glow-border-soft);
-  border-left: 3px solid rgba(56, 189, 248, 0.4);
-  transition: border-color 0.25s ease;
-}
-
-.detailed-specs-block-global:hover {
-  border-color: var(--glow-border-mid);
-}
-
-.specs-text {
-  font-size: 0.75rem;
-  font-family: 'Fira Code', monospace;
-  line-height: 1.75;
-  color: var(--text-subtle);
-  white-space: pre-wrap;
-  word-break: break-word;
-}
-
-/* ============================================================
-   TIMELINE ENHANCEMENTS
-   ============================================================ */
-
-.timeline-item:last-child {
-  padding-bottom: 0;
-}
-
-.timeline-item:hover .timeline-content {
-  background: rgba(14, 165, 233, 0.04);
-  border-radius: 8px;
-  padding: 0.5rem 0.75rem;
-  margin: -0.5rem -0.75rem;
-}
-
-.timeline-year-future {
-  color: var(--blue-vivid);
-  opacity: 0.65;
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto; }
 }

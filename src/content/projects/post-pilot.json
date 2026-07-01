@@ -1,15 +1,21 @@
 {
-  "name": "Post-Pilot",
-  "emoji": "🚀",
-  "tagline": "AI-powered social media for food & beverage businesses — set it and forget it",
-  "description": "Post-Pilot writes and schedules your restaurant's social media posts automatically. Tell it your menu, your vibe, and your posting schedule — it generates on-brand content for Facebook and Instagram and posts it for you via the Meta API. No social media manager required.",
-  "forWho": "Restaurant owners, food truck operators, coffee shops, and bars who know they need a social media presence but don't have time (or budget) to manage it. If you've ever let a week go by without posting because you were too busy running the kitchen — this is your fix.",
-  "story": "Social media for restaurants is one of those things that always falls through the cracks. Owners know it matters. They just don't have time. I'd seen it firsthand — good food, invisible online. Post-Pilot started as a script I wrote to batch-generate posts for a friend's food truck. It turned into a full SaaS with AI generation, scheduling, and automatic publishing. It's the project that proved I could build a real product from billing to deployment to live social posting.",
-  "details": "Python + Flask backend, Supabase for user data and post queues. Stripe billing with 3 subscription tiers. Magic-link auth (no password required). Vercel Cron triggers scheduled posts. Meta Graph API handles Facebook and Instagram publishing. AI generation via OpenAI with prompt templates tuned specifically for food and beverage voice.",
-  "detailedSpecs": "Flask app structured as a blueprint-based application factory. Post queue stored in Supabase with status enum (draft, scheduled, posted, failed) and scheduled_at timestamp. Vercel Cron hits a /cron/publish endpoint every 5 minutes; endpoint queries posts WHERE status='scheduled' AND scheduled_at <= now(), processes each through the Meta Graph API, and updates status. Meta Graph API integration: Facebook Page posts via /page_id/feed, Instagram posts via the Content Publishing API (create media container → publish container two-step flow). AI prompt system uses a system prompt anchored to the restaurant's brand profile (cuisine type, tone keywords, target demographic) with a user prompt requesting a specific post type (daily special, event promo, seasonal highlight). OpenAI model: gpt-4o with temperature 0.8 for creative variance. Stripe webhooks update subscription status in real time; post volume limits enforced per tier in middleware. Magic-link auth implemented with a time-limited JWT (15-min expiry) delivered via Resend transactional email.",
-  "status": "In Dev",
-  "category": "food-tech",
-  "stack": ["Python", "Flask", "Supabase", "Stripe", "OpenAI", "Meta Graph API"],
-  "github": "https://github.com/ShadowWalkerNC/Post-Pilot",
-  "featured": true
+  "title": "Post-Pilot",
+  "tagline": "Multi-platform social media automation for creators and small businesses.",
+  "description": "Post-Pilot is a content distribution automation tool that pushes a single post to multiple social platforms simultaneously — Instagram, Facebook, Twitter/X, and more — with scheduling, caption variants, and a web dashboard.",
+  "story": "Built out of frustration after manually cross-posting the same content to four platforms every day. The problem wasn't creativity — it was repetition. Post-Pilot eliminates the repetition and lets you focus on the content.",
+  "forWho": "Creators, small business owners, and social media managers who publish to multiple platforms and want to manage it from one place.",
+  "category": "Automation Tools",
+  "tags": ["social-media", "automation", "multi-platform", "scheduling"],
+  "stack": ["Python", "Flask", "Meta Graph API", "Twitter API v2", "APScheduler"],
+  "status": "stable",
+  "featured": true,
+  "links": {
+    "github": "https://github.com/ShadowWalkerNC/post-pilot"
+  },
+  "detailedSpecs": {
+    "architecture": "Flask web app with a per-platform adapter pattern. Each platform (Meta, Twitter) has its own publisher class with a common interface.",
+    "keyPatterns": ["Adapter pattern for platform-agnostic publishing", "APScheduler for deferred and recurring posts", "OAuth2 token management per connected account", "Caption variant system for A/B testing copy"],
+    "deployTarget": "Railway",
+    "notableFiles": ["app/publishers/meta.py", "app/publishers/twitter.py", "app/scheduler.py"]
+  }
 }

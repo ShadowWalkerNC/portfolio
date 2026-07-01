@@ -4,7 +4,7 @@ const { name, emoji, tagline, description, forWho, story, status, stack, github,
 
 const statusColor: Record<string, string> = {
   'In Dev':         'background: rgba(234,179,8,0.15); color: #FDE047; border: 1px solid rgba(234,179,8,0.3);',
-  'Active Rebuild': 'background: rgba(59,130,246,0.15); color: #93C5FD; border: 1px solid rgba(59,130,246,0.3);',
+  'Active Rebuild': 'background: rgba(14,165,233,0.15); color: #7DD3FC; border: 1px solid rgba(14,165,233,0.3);',
   'Stable':         'background: rgba(34,197,94,0.15); color: #86EFAC; border: 1px solid rgba(34,197,94,0.3);',
   'Internal':       'background: rgba(100,116,139,0.15); color: #94A3B8; border: 1px solid rgba(100,116,139,0.3);',
   'Archived':       'background: rgba(239,68,68,0.15); color: #FCA5A5; border: 1px solid rgba(239,68,68,0.3);',
@@ -24,20 +24,20 @@ const hasAccordion = !!(forWho || story || details);
     <!-- Header -->
     <div class="flex items-start justify-between gap-3">
       <div class="flex-1 min-w-0">
-        <div class="flex items-center gap-2 mb-1">
-          <span class="text-2xl">{emoji}</span>
+        <div class="flex items-center gap-2.5 mb-1.5">
+          <span class="text-2xl leading-none">{emoji}</span>
           <h3 class="font-bold text-white text-lg leading-tight">{name}</h3>
         </div>
-        <p class="text-sm" style="color: var(--text-muted);">{tagline}</p>
+        <p class="text-sm leading-relaxed" style="color: var(--text-subtle);">{tagline}</p>
       </div>
-      <span class="text-xs px-2 py-1 rounded-full font-mono whitespace-nowrap flex-shrink-0 mt-1"
+      <span class="text-xs px-2.5 py-1 rounded-full font-mono whitespace-nowrap flex-shrink-0 mt-1"
         style={statusColor[status] ?? statusColor['Internal']}>
         {status}
       </span>
     </div>
 
-    <!-- Description -->
-    <p class="text-sm leading-relaxed" style="color: #94A3B8;">{description}</p>
+    <!-- Description: plain-English first -->
+    <p class="text-sm leading-relaxed" style="color: var(--text-body);">{description}</p>
 
     <!-- Stack badges -->
     <div class="flex flex-wrap gap-2">
@@ -57,8 +57,13 @@ const hasAccordion = !!(forWho || story || details);
           aria-controls={`${cardId}-body`}
           id={`${cardId}-btn`}
         >
-          <span class="text-xs font-mono uppercase tracking-widest" style="color: var(--blue-primary);">More Details</span>
-          <svg class="accordion-chevron" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <span class="accordion-label">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--blue-vivid); flex-shrink:0;">
+              <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+            <span class="text-xs font-mono uppercase tracking-widest" style="color: var(--blue-bright);">Story · Who It's For · Details</span>
+          </span>
+          <svg class="accordion-chevron" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="6 9 12 15 18 9"></polyline>
           </svg>
         </button>
@@ -68,22 +73,22 @@ const hasAccordion = !!(forWho || story || details);
             <div class="accordion-content">
 
               {forWho && (
-                <div class="detail-block">
+                <div class="for-who-block">
                   <p class="detail-label">👤 Who It's For</p>
                   <p class="detail-text">{forWho}</p>
                 </div>
               )}
 
               {story && (
-                <div class="detail-block">
-                  <p class="detail-label">📖 The Story</p>
+                <div class="story-block">
+                  <p class="detail-label">📖 The Story Behind It</p>
                   <p class="detail-text">{story}</p>
                 </div>
               )}
 
               {details && (
-                <div class="detail-block">
-                  <p class="detail-label">⚙️ Technical Details</p>
+                <div class="tech-details-block">
+                  <p class="detail-label">⚙️ How It's Built</p>
                   <p class="detail-text">{details}</p>
                 </div>
               )}
@@ -100,7 +105,7 @@ const hasAccordion = !!(forWho || story || details);
         href={github}
         target="_blank"
         rel="noopener noreferrer"
-        class="mt-auto github-link text-sm font-mono flex items-center gap-1.5 transition"
+        class="mt-auto github-link text-sm font-mono flex items-center gap-2 transition pt-1"
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
           <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
@@ -115,72 +120,76 @@ const hasAccordion = !!(forWho || story || details);
   .project-card {
     position: relative;
     overflow: hidden;
-    border-radius: 14px;
+    border-radius: 16px;
   }
 
   .card-accent-bar {
     height: 3px;
-    background: linear-gradient(90deg, var(--blue-primary), var(--blue-bright), transparent);
-    opacity: 0.7;
-    transition: opacity 0.3s ease;
+    background: linear-gradient(90deg, var(--blue-electric), var(--blue-vivid), var(--blue-bright), transparent);
+    opacity: 0.6;
+    transition: opacity 0.3s ease, height 0.3s ease;
   }
 
   .project-card:hover .card-accent-bar {
     opacity: 1;
+    height: 4px;
   }
 
   .tech-badge {
-    background: rgba(30, 58, 95, 0.7);
-    border: 1px solid rgba(59, 130, 246, 0.2);
-    color: #93C5FD;
-    transition: border-color 0.2s ease, color 0.2s ease;
+    background: rgba(14, 45, 80, 0.8);
+    border: 1px solid rgba(14, 165, 233, 0.22);
+    color: #7DD3FC;
+    transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
   }
 
   .tech-badge:hover {
-    border-color: rgba(59, 130, 246, 0.5);
+    border-color: rgba(56, 189, 248, 0.5);
     color: #fff;
+    background: rgba(14, 45, 80, 1);
   }
 
   .github-link {
-    color: var(--blue-primary);
+    color: var(--text-muted);
   }
 
   .github-link:hover {
-    color: #fff;
+    color: var(--blue-vivid);
   }
 
   .accordion-wrapper {
     border-top: 1px solid var(--dark-border);
-    padding-top: 1rem;
+    padding-top: 0.25rem;
     margin-top: 0.25rem;
+  }
+
+  .accordion-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
   }
 
   .accordion-content {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    padding-top: 1rem;
-  }
-
-  .detail-block {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
+    gap: 0.85rem;
+    padding-top: 0.85rem;
+    padding-bottom: 0.25rem;
   }
 
   .detail-label {
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     font-family: 'Fira Code', monospace;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.09em;
     color: var(--blue-bright);
-    font-weight: 600;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
   }
 
   .detail-text {
     font-size: 0.8rem;
-    line-height: 1.65;
-    color: #94A3B8;
+    line-height: 1.7;
+    color: var(--text-body);
   }
 </style>
 

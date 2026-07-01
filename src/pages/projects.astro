@@ -25,11 +25,16 @@ const experimental = all.filter(p => p.data.category === 'experimental');
 <BaseLayout title="Projects — Nate Cowperthwaite" description="All projects by Nate Cowperthwaite — food tech, facility ops, dev tools, and experimental work.">
   <div class="max-w-6xl mx-auto px-6 pt-28 pb-24">
 
-    <p class="font-mono text-xs uppercase tracking-widest mb-3" style="color: var(--blue-primary);">All Work</p>
+    <p class="font-mono text-xs uppercase tracking-widest mb-3" style="color: var(--blue-vivid);">All Work</p>
     <h1 class="text-5xl font-extrabold mb-4 text-gradient-blue-white">Projects</h1>
-    <p class="text-lg mb-4 max-w-2xl" style="color: var(--text-subtle);">
-      Every project here solves a real problem I've personally lived with — either as a cook, an operator, or a developer.
-      Click <span class="font-mono text-xs px-1.5 py-0.5 rounded" style="background: rgba(59,130,246,0.15); color: #93C5FD;">More Details</span> on any card to see who it's for, the story behind it, and the technical breakdown.
+    <p class="text-lg mb-3 max-w-2xl" style="color: var(--text-subtle);">
+      Two worlds. One portfolio.
+    </p>
+    <p class="text-sm mb-4 max-w-2xl" style="color: var(--text-muted);">
+      Every project here comes from a problem I've personally lived with — as a cook, as an operator, or as a developer. Some are food-tech. Some are dev infrastructure. A few are experiments that had no business existing. All of them are real.
+    </p>
+    <p class="text-sm mb-10 max-w-2xl" style="color: var(--text-muted);">
+      Click <span class="font-mono text-xs px-1.5 py-0.5 rounded" style="background: rgba(14,165,233,0.15); color: #7DD3FC;">Story · Who It's For · Details</span> on any card to expand it — you'll see the full story behind the project, who it's built for, and how it works technically.
     </p>
 
     <hr class="section-divider mb-16" />
@@ -40,18 +45,19 @@ const experimental = all.filter(p => p.data.category === 'experimental');
         <EcosystemBanner
           icon="🍽️"
           title="The Culinary Ecosystem"
-          subtitle="Three connected products built for food service operators. Use any one standalone, or run all three together for a fully integrated AI-native kitchen OS. Built to run in Half Baked Café & Bakehouse when it opens in 2027."
+          subtitle="CulinaryOS, KitchenKit, and CulinaryOps are three connected products built for food service — from the recipe level to the business level. Use any one standalone, or run all three together for a fully integrated, AI-native kitchen operating system. All three share a common data layer and connect via MCP servers so any AI assistant can query live kitchen data across the whole stack. This is the core of what I'm building — and it all runs live in Half Baked Café & Bakehouse when we open in 2027."
         />
         <div class="ecosystem-connector">
-          <span class="connector-label">CulinaryOS → KitchenKit → CulinaryOps</span>
+          <span class="connector-label">🍳 KitchenKit (recipes + prep) → 🌐 CulinaryOS (operations hub) → 📊 CulinaryOps (analytics + cost)</span>
           <span class="connector-line"></span>
         </div>
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 stagger-children">
           {ecosystemProjects.map(p => <ProjectCard project={p} />)}
         </div>
-        <p class="mt-6 text-xs font-mono" style="color: var(--text-muted);">
-          ⚡ Each product connects to the others via dedicated MCP servers — meaning AI assistants can query live kitchen data across the entire ecosystem.
-        </p>
+        <div class="mcp-note">
+          <span class="mcp-note-icon">🤖</span>
+          <p>All three products expose <strong>MCP servers</strong> — Model Context Protocol, the standard for connecting AI models to live data. This means a chef can ask an AI assistant in plain English: <em>"What's my food cost this week?"</em> or <em>"Scale this recipe to 150 portions"</em> — and get a real answer from live data, not a canned response.</p>
+        </div>
       </section>
     )}
 
@@ -60,8 +66,9 @@ const experimental = all.filter(p => p.data.category === 'experimental');
     <!-- STANDALONE FOOD TECH -->
     {standaloneFoodTech.length > 0 && (
       <section class="mb-24">
-        <p class="font-mono text-xs uppercase tracking-widest mb-3" style="color: var(--blue-primary);">Food & Beverage</p>
-        <h2 class="text-2xl font-bold mb-8" style="color: #CBD5E1;">🚀 Standalone Food Tech</h2>
+        <p class="font-mono text-xs uppercase tracking-widest mb-2" style="color: var(--blue-vivid);">Food & Beverage</p>
+        <h2 class="text-2xl font-bold mb-2" style="color: #D4EAF7;">🚀 Standalone Food Tech</h2>
+        <p class="text-sm mb-8" style="color: var(--text-muted);">Food & beverage products that stand on their own — not part of the main ecosystem.</p>
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 stagger-children">
           {standaloneFoodTech.map(p => <ProjectCard project={p} />)}
         </div>
@@ -76,7 +83,7 @@ const experimental = all.filter(p => p.data.category === 'experimental');
         <EcosystemBanner
           icon="🏠"
           title="Shoreline Platform"
-          subtitle="Operations software for senior living facilities. Built from direct experience working as a dietary manager. v4 is stable and in use. v5 is the full SaaS rebuild."
+          subtitle="Operations software for senior living facilities — built from direct experience working as a dietary manager where resident dietary data lived in a three-ring binder. v4 is stable and has been used in a real facility. v5 is the full ground-up SaaS rebuild: multi-tenant, cloud-based, and everything v4 should have been."
         />
         <div class="grid sm:grid-cols-2 gap-6 stagger-children">
           {shorelineProjects.map(p => <ProjectCard project={p} />)}
@@ -89,8 +96,9 @@ const experimental = all.filter(p => p.data.category === 'experimental');
     <!-- DEV TOOLS -->
     {devTools.length > 0 && (
       <section class="mb-24">
-        <p class="font-mono text-xs uppercase tracking-widest mb-3" style="color: var(--blue-primary);">Dev Platforms</p>
-        <h2 class="text-2xl font-bold mb-8" style="color: #CBD5E1;">🧱 Dev Tools & Platforms</h2>
+        <p class="font-mono text-xs uppercase tracking-widest mb-2" style="color: var(--blue-vivid);">Dev Platforms</p>
+        <h2 class="text-2xl font-bold mb-2" style="color: #D4EAF7;">🧱 Dev Tools & Platforms</h2>
+        <p class="text-sm mb-8" style="color: var(--text-muted);">Tools built for developers — infrastructure, CMS, and platforms that power other projects.</p>
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 stagger-children">
           {devTools.map(p => <ProjectCard project={p} />)}
         </div>
@@ -102,8 +110,9 @@ const experimental = all.filter(p => p.data.category === 'experimental');
     <!-- EXPERIMENTAL -->
     {experimental.length > 0 && (
       <section class="mb-8">
-        <p class="font-mono text-xs uppercase tracking-widest mb-3" style="color: var(--blue-primary);">Lab Work</p>
-        <h2 class="text-2xl font-bold mb-8" style="color: #CBD5E1;">⚙️ Experimental & Engine Work</h2>
+        <p class="font-mono text-xs uppercase tracking-widest mb-2" style="color: var(--blue-vivid);">Lab Work</p>
+        <h2 class="text-2xl font-bold mb-2" style="color: #D4EAF7;">⚙️ Experimental & Engine Work</h2>
+        <p class="text-sm mb-8" style="color: var(--text-muted);">The sketchbook. Prototypes, experiments, and things built to see if they were possible — not because they needed to exist.</p>
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 stagger-children">
           {experimental.map(p => <ProjectCard project={p} />)}
         </div>
@@ -124,15 +133,48 @@ const experimental = all.filter(p => p.data.category === 'experimental');
 
   .connector-label {
     font-family: 'Fira Code', monospace;
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     color: var(--blue-primary);
     white-space: nowrap;
-    opacity: 0.7;
+    opacity: 0.75;
   }
 
   .connector-line {
     flex: 1;
     height: 1px;
-    background: linear-gradient(90deg, rgba(59,130,246,0.3), transparent);
+    background: linear-gradient(90deg, rgba(14,165,233,0.35), transparent);
+  }
+
+  .mcp-note {
+    display: flex;
+    gap: 0.85rem;
+    align-items: flex-start;
+    margin-top: 1.25rem;
+    padding: 1rem 1.25rem;
+    background: rgba(14, 165, 233, 0.06);
+    border: 1px solid rgba(14, 165, 233, 0.18);
+    border-radius: 10px;
+  }
+
+  .mcp-note-icon {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  .mcp-note p {
+    font-size: 0.78rem;
+    line-height: 1.65;
+    color: var(--text-body);
+  }
+
+  .mcp-note strong {
+    color: #7DD3FC;
+    font-weight: 600;
+  }
+
+  .mcp-note em {
+    color: #A5C8E4;
+    font-style: italic;
   }
 </style>

@@ -24,26 +24,26 @@ const stack = [
 ];
 
 const devKit = [
-  { tool: 'Cursor',    desc: 'AI-first code editor — primary daily driver' },
-  { tool: 'Claude',    desc: 'Primary AI model for architecture and code generation' },
-  { tool: 'Notion',    desc: 'Second Brain — project planning, specs, everything' },
-  { tool: 'Supabase',  desc: 'Database, auth, and real-time — default backend choice' },
-  { tool: 'Vercel',    desc: 'Deployment and CI/CD for all frontend projects' },
-  { tool: 'GitHub',    desc: 'Version control — all projects live here' },
-  { tool: 'Railway',   desc: 'Hosting for backend services and databases' },
-  { tool: 'MCP',       desc: 'Model Context Protocol — how my apps talk to AI natively' },
+  { tool: 'Cursor',    icon: '🖱️', desc: 'AI-first code editor — my primary daily driver. Every line of code starts here.' },
+  { tool: 'Claude',    icon: '🤖', desc: 'Primary AI model for architecture, code generation, and working through complex problems.' },
+  { tool: 'Notion',    icon: '📓', desc: 'Second Brain — project specs, planning docs, notes, roadmaps. The ideas start here.' },
+  { tool: 'Supabase',  icon: '⚡', desc: 'My default backend choice: database, auth, real-time, and storage in one platform.' },
+  { tool: 'Vercel',    icon: '▲',  desc: 'Deployment and CI/CD for all frontend projects. Zero-config, instant previews.' },
+  { tool: 'GitHub',    icon: '🐙', desc: 'Everything I build lives here. Version control, project tracking, open source.' },
+  { tool: 'Railway',   icon: '🚂', desc: 'Hosting for backend services and databases. Simple, predictable pricing.' },
+  { tool: 'MCP',       icon: '🔌', desc: 'Model Context Protocol — the layer that lets my apps speak directly to AI models with live data.' },
 ];
 
 const timelineEvents = [
-  { year: '~2007', label: 'First Website', desc: 'Built my first HTML page as a kid. Hooked immediately.', side: 'tech' },
-  { year: '~2010', label: 'Computer Repair', desc: 'Started doing computer repair for neighbors and family. Took apart everything I could find.', side: 'tech' },
-  { year: '2014',  label: 'First Kitchen Job', desc: 'Walked into a professional kitchen for the first time. Fell in love with the craft.', side: 'food' },
-  { year: '2017',  label: 'Back to Coding', desc: 'Started teaching myself modern web development while cooking full time. JavaScript, then React.', side: 'tech' },
-  { year: '2019',  label: 'Shoreline v1', desc: 'Built the first version of Shoreline — a dietary management app for the senior living facility where I worked. First real software that real people used.', side: 'both' },
-  { year: '2021',  label: 'Line Lead & Lead Dev', desc: 'Running a kitchen line during the day, writing TypeScript at night. The two worlds started merging.', side: 'both' },
-  { year: '2023',  label: 'Half Baked Co-Founded', desc: 'Co-founded Half Baked Café & Bakehouse. Committed to building all the software for it myself.', side: 'food' },
-  { year: '2024',  label: 'Culinary Ecosystem Begins', desc: 'Started building CulinaryOS, KitchenKit, and CulinaryOps — the full integrated stack for food service operations.', side: 'both' },
-  { year: '2027',  label: 'Half Baked Opens', desc: 'The café opens. The software runs live. Everything I built gets its real-world test.', side: 'both' },
+  { year: '~2007', label: 'First Website', desc: 'Built my first HTML page as a kid in Ellsworth, Maine. Found a copy of HTML for Dummies and couldn\'t put it down. Hooked immediately.', side: 'tech' },
+  { year: '~2010', label: 'Computer Repair', desc: 'Started doing computer repair for neighbors and family. Took apart everything I could find — desktops, laptops, printers. Diagnosed hardware, reinstalled Windows, fixed network issues.', side: 'tech' },
+  { year: '2014',  label: 'First Kitchen Job', desc: 'Walked into a professional kitchen for the first time and found something unexpected: a craft. The speed, the precision, the heat, the team. Fell in love with it completely.', side: 'food' },
+  { year: '2017',  label: 'Back to Coding', desc: 'Started teaching myself modern web development while cooking full time. JavaScript first, then React. The two worlds started living in the same brain.', side: 'tech' },
+  { year: '2019',  label: 'Shoreline v1', desc: 'Built the first version of Shoreline — a dietary management app for the senior living facility where I worked. First real software that real people used. Everything changed.', side: 'both' },
+  { year: '2021',  label: 'Line Lead & Lead Dev', desc: 'Running a kitchen line during the day, writing TypeScript at night. Both skills got serious at the same time. The gap between the worlds started closing.', side: 'both' },
+  { year: '2023',  label: 'Half Baked Co-Founded', desc: 'Co-founded Half Baked Café & Bakehouse in Bangor, Maine. Committed to building all the technology for it myself — every system, from scratch.', side: 'food' },
+  { year: '2024',  label: 'Culinary Ecosystem Begins', desc: 'Started building CulinaryOS, KitchenKit, and CulinaryOps — the full AI-native stack for food service operations. The two worlds are now one project.', side: 'both' },
+  { year: '2027',  label: 'Half Baked Opens', desc: 'The café opens its doors. Every piece of software I\'ve been building runs live behind the counter. The real-world test for everything.', side: 'both' },
 ];
 ---
 
@@ -54,9 +54,10 @@ const timelineEvents = [
     <div class="hero-glow"></div>
     <div class="hero-glow-left"></div>
     <div class="hero-food-accent">🍳</div>
+    <div class="hero-tech-accent">⌨️</div>
 
     <div class="relative z-10">
-      <p class="font-mono text-sm mb-5 tracking-widest uppercase animate-slide-down" style="color: var(--blue-bright);">
+      <p class="font-mono text-sm mb-5 tracking-widest uppercase animate-slide-down" style="color: var(--blue-vivid);">
         Bangor, Maine
       </p>
 
@@ -67,8 +68,10 @@ const timelineEvents = [
       </h1>
 
       <p class="mt-6 text-lg max-w-xl leading-relaxed animate-fade-in" style="color: var(--text-subtle); animation-delay: 200ms;">
-        10+ years in professional kitchens. Self-taught developer since 2007.
-        Building the software food operations actually need — AI-native from the ground up.
+        Started as a teenager fixing computers in Maine.
+        Spent a decade in professional kitchens.
+        Now building the software food operations actually need —
+        AI-native from the ground up.
       </p>
 
       <div class="mt-6 flex flex-wrap gap-3 animate-fade-in" style="animation-delay: 300ms;">
@@ -80,7 +83,7 @@ const timelineEvents = [
       </div>
 
       <div class="mt-8 flex flex-wrap gap-4 animate-fade-in" style="animation-delay: 450ms;">
-        <a href="/projects" class="btn-blue">See the Work</a>
+        <a href="/projects" class="btn-blue">See the Work →</a>
         <a href="/contact" class="btn-outline">Get in Touch</a>
       </div>
     </div>
@@ -89,49 +92,67 @@ const timelineEvents = [
   <hr class="section-divider" />
 
   <!-- ABOUT -->
-  <section class="px-6 py-24 max-w-6xl mx-auto">
-    <p class="font-mono text-xs uppercase tracking-widest mb-3" style="color: var(--blue-primary);">About</p>
-    <h2 class="text-3xl sm:text-4xl font-bold mb-12 text-gradient-blue-white">The Full Story</h2>
+  <section class="relative px-6 py-24 max-w-6xl mx-auto section-ambient-blue" id="about">
+    <div class="food-accent-bg" style="right: -1rem; top: 2rem;">🔪</div>
+    <div class="food-accent-bg" style="right: 12rem; bottom: 2rem; font-size: 7rem;">🖥️</div>
 
-    <div class="about-grid">
+    <p class="font-mono text-xs uppercase tracking-widest mb-3 relative z-10" style="color: var(--blue-vivid);">About</p>
+    <h2 class="text-3xl sm:text-4xl font-bold mb-3 text-gradient-blue-white relative z-10">The Full Story</h2>
+    <p class="text-sm mb-12 max-w-2xl relative z-10" style="color: var(--text-muted);">From a kid with an HTML book, to line cook, to building the software that runs a real kitchen.</p>
+
+    <div class="about-grid relative z-10">
 
       <div class="about-block animate-slide-up">
         <div class="about-block-icon">🖥️</div>
-        <h3 class="about-block-title">Started in Tech</h3>
+        <div class="world-tag world-tag-tech mb-3">💻 Tech World</div>
+        <h3 class="about-block-title">Started in Tech — As a Teenager</h3>
         <p class="about-block-text">
-          I grew up in Ellsworth, Maine, and got into computers young. I was building websites as a teenager — not because anyone told me to, but because I found a copy of HTML for Dummies and couldn't put it down. By my early teens I was doing computer repair for neighbors, diagnosing hardware, reinstalling Windows, fixing network issues. It wasn't a career plan. It was just the thing I naturally did.
+          I grew up in Ellsworth, Maine, and got into computers young — not because anyone told me to, but because I found a copy of HTML for Dummies and couldn't stop reading it. By my early teens I was building websites for fun and doing computer repair for neighbors: diagnosing hardware failures, reinstalling operating systems, fixing network issues, cleaning out viruses. I wasn't charging much — sometimes nothing — but I was learning everything. That was my first dev kit: a used laptop, a borrowed book, and a lot of time.
         </p>
       </div>
 
       <div class="about-block animate-slide-up" style="animation-delay: 100ms;">
         <div class="about-block-icon">🍳</div>
+        <div class="world-tag world-tag-food mb-3">🍴 Food World</div>
         <h3 class="about-block-title">Found the Kitchen</h3>
         <p class="about-block-text">
-          In 2014 I walked into a professional kitchen for the first time and found something I hadn't expected: a craft. The speed, the precision, the heat, the team — I was hooked. Over the next decade I worked every station from prep cook to line lead to dietary manager. I learned food from the inside out: how to scale recipes, manage food cost, run a station under pressure, care for residents with complex dietary needs.
+          In 2014 I walked into a professional kitchen for the first time and found something I hadn't expected: a craft that demanded the same precision and speed as programming, just with heat and a knife. Over the next decade I worked every station — prep cook, line cook, line lead, dietary manager. I learned to scale recipes for 200 covers, manage food cost to the dollar, run a station under fire, and care for residents with complex dietary needs. The kitchen didn't replace the code. It deepened it.
         </p>
       </div>
 
       <div class="about-block animate-slide-up" style="animation-delay: 200ms;">
         <div class="about-block-icon">💡</div>
-        <h3 class="about-block-title">Noticed the Gap</h3>
+        <div class="world-tag world-tag-both mb-3">⚡ Both Worlds</div>
+        <h3 class="about-block-title">Saw the Gap</h3>
         <p class="about-block-text">
-          The longer I cooked, the more I saw how broken the software side of food operations was. POS systems from the '90s. Scheduling on paper. Dietary restrictions in a binder. Inventory tracked in spreadsheets. Food cost calculations done by hand. Nobody was building tools for operators because most developers have never worked in a kitchen. I had — and I still knew how to build software.
+          The longer I worked in food service, the more obvious it became: the software was broken. POS systems that hadn't been updated since the '90s. Scheduling done on paper. Resident dietary restrictions kept in a three-ring binder. Food cost calculations done by hand on a calculator at 11pm. Inventory in spreadsheets nobody could read. Nobody was building better tools because most developers have never worked a shift in a kitchen. I had — and I still knew how to write code.
         </p>
       </div>
 
       <div class="about-block animate-slide-up" style="animation-delay: 300ms;">
         <div class="about-block-icon">🔨</div>
+        <div class="world-tag world-tag-tech mb-3">💻 Tech World</div>
         <h3 class="about-block-title">Started Building</h3>
         <p class="about-block-text">
-          In 2017 I started teaching myself modern development while cooking full time — JavaScript, then React, then TypeScript, then backend work. In 2019 I built Shoreline v1, a dietary management system for the senior living facility where I worked. It was the first thing I built that real people used in a real environment. That changed everything. I wasn't building to learn anymore. I was building to solve problems.
+          In 2017 I started teaching myself modern web development while cooking full time — JavaScript, then React, then TypeScript, then backend architecture. In 2019 I built Shoreline v1: a dietary management system for the senior living facility where I worked. It was the first software I built that real people used in a real, high-stakes environment. That changed everything. I stopped building to learn. I started building to solve actual problems, for actual people, in places where bad software has real consequences.
         </p>
       </div>
 
-      <div class="about-block animate-slide-up about-block-full" style="animation-delay: 400ms;">
+      <div class="about-block animate-slide-up about-block-wide" style="animation-delay: 400ms;">
         <div class="about-block-icon">🏗️</div>
+        <div class="world-tag world-tag-both mb-3">⚡ Merging Both</div>
         <h3 class="about-block-title">Building the Whole Stack</h3>
         <p class="about-block-text">
-          Today I'm building a vertically integrated food-tech ecosystem: CulinaryOS (the full restaurant OS), KitchenKit (recipe management and mise en place), CulinaryOps (back-of-house analytics), and Post-Pilot (AI social media for F&B). All four connect via MCP servers — which means any AI assistant can query live kitchen data, pull reports, or update inventory in plain English. In 2023 I co-founded Half Baked Café & Bakehouse in Bangor, Maine. When it opens in 2027, all of this software runs live in our kitchen. I'm not building for investors. I'm building for operators — because I am one.
+          Today I'm building a vertically integrated food-tech ecosystem: <strong style="color: #D4EAF7;">CulinaryOS</strong> (the full restaurant operating system), <strong style="color: #D4EAF7;">KitchenKit</strong> (recipe management and mise en place), <strong style="color: #D4EAF7;">CulinaryOps</strong> (back-of-house analytics and cost tracking), and <strong style="color: #D4EAF7;">Post-Pilot</strong> (AI social media for food & beverage). All four connect via MCP servers — a protocol that lets any AI assistant query live kitchen data, pull reports, or update inventory in plain English. No one else is building this from the kitchen floor up. I'm not building for investors or for a market report. I'm building because in 2027, Half Baked Café & Bakehouse opens in Bangor, Maine — and this software runs on day one.
+        </p>
+      </div>
+
+      <div class="about-block animate-slide-up about-block-wide" style="animation-delay: 500ms;">
+        <div class="about-block-icon">🥐</div>
+        <div class="world-tag world-tag-food mb-3">🍴 Food World</div>
+        <h3 class="about-block-title">The Food Side</h3>
+        <p class="about-block-text">
+          The kitchen isn't just context for the code — it's its own passion. I care deeply about food: the craft of a well-executed dish, the math behind a balanced menu, the culture of a kitchen that works together under pressure. I've worked in senior care dining, high-volume line cooking, and now I'm building a café from scratch. Every recipe app I build, I've used. Every cost problem I've solved in software, I've felt personally. Half Baked isn't just the business that tests the tech — it's the place I want to feed people good food, baked from scratch, in a place that feels like Maine.
         </p>
       </div>
 
@@ -141,18 +162,19 @@ const timelineEvents = [
   <hr class="section-divider" />
 
   <!-- TIMELINE -->
-  <section class="px-6 py-24 max-w-6xl mx-auto">
-    <p class="font-mono text-xs uppercase tracking-widest mb-3" style="color: var(--blue-primary);">Journey</p>
-    <h2 class="text-3xl sm:text-4xl font-bold mb-12 text-gradient-blue-white">Tech ↔ Kitchen</h2>
+  <section class="px-6 py-24 max-w-6xl mx-auto" id="journey">
+    <p class="font-mono text-xs uppercase tracking-widest mb-3" style="color: var(--blue-vivid);">Journey</p>
+    <h2 class="text-3xl sm:text-4xl font-bold mb-3 text-gradient-blue-white">Tech ↔ Kitchen</h2>
+    <p class="text-sm mb-12 max-w-xl" style="color: var(--text-muted);">Two worlds that have been running in parallel since 2007 — and are now the same project.</p>
 
     <div class="timeline">
       {timelineEvents.map((evt, i) => (
         <div class={`timeline-item timeline-${evt.side} animate-fade-in`} style={`animation-delay: ${i * 80}ms`}>
-          <div class="timeline-year">{evt.year}</div>
+          <div class={`timeline-year ${evt.year === '2027' ? 'timeline-year-future' : ''}`}>{evt.year}</div>
           <div class="timeline-dot"></div>
           <div class="timeline-content">
             <div class="timeline-label">
-              {evt.side === 'tech' ? '💻' : evt.side === 'food' ? '🍳' : '⚡'}
+              {evt.side === 'tech' ? <span class="world-tag world-tag-tech" style="padding: 0.1rem 0.5rem; font-size:0.6rem;">💻 tech</span> : evt.side === 'food' ? <span class="world-tag world-tag-food" style="padding: 0.1rem 0.5rem; font-size:0.6rem;">🍴 food</span> : <span class="world-tag world-tag-both" style="padding: 0.1rem 0.5rem; font-size:0.6rem;">⚡ both</span>}
               <span>{evt.label}</span>
             </div>
             <p class="timeline-desc">{evt.desc}</p>
@@ -165,15 +187,15 @@ const timelineEvents = [
   <hr class="section-divider" />
 
   <!-- STACK -->
-  <section class="px-6 py-24 max-w-6xl mx-auto">
-    <p class="font-mono text-xs uppercase tracking-widest mb-3" style="color: var(--blue-primary);">Tech</p>
-    <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-gradient-blue-white">Stack & Dev Kit</h2>
+  <section class="px-6 py-24 max-w-6xl mx-auto" id="stack">
+    <p class="font-mono text-xs uppercase tracking-widest mb-3" style="color: var(--blue-vivid);">Tech</p>
+    <h2 class="text-3xl sm:text-4xl font-bold mb-3 text-gradient-blue-white">Stack & Dev Kit</h2>
     <p class="text-sm mb-10 max-w-2xl" style="color: var(--text-subtle);">
-      The languages, frameworks, and tools I build with every day. Self-taught — every item on this list came from solving a real problem in a real project.
+      Every tool and language on this list came from building something real — not a tutorial, not a certification. I'm entirely self-taught. My stack was chosen because it solves problems, not because it's trendy.
     </p>
 
-    <h3 class="text-sm font-mono uppercase tracking-widest mb-5" style="color: var(--text-muted);">Languages & Frameworks</h3>
-    <div class="stack-grid mb-12">
+    <h3 class="text-xs font-mono uppercase tracking-widest mb-5" style="color: var(--text-muted);">// Languages & Frameworks</h3>
+    <div class="stack-grid mb-14">
       {stack.map(s => (
         <div class="stack-item">
           <span class="stack-icon">{s.icon}</span>
@@ -185,11 +207,12 @@ const timelineEvents = [
       ))}
     </div>
 
-    <h3 class="text-sm font-mono uppercase tracking-widest mb-5" style="color: var(--text-muted);">Dev Kit — Tools I Work With Daily</h3>
+    <h3 class="text-xs font-mono uppercase tracking-widest mb-2" style="color: var(--text-muted);">// Dev Kit — Tools I Use Every Day</h3>
+    <p class="text-xs mb-6" style="color: var(--text-muted);">The tools that actually run my workflow. These aren't affiliates — these are just what I open every morning.</p>
     <div class="devkit-grid">
       {devKit.map(d => (
         <div class="devkit-item">
-          <p class="devkit-tool">{d.tool}</p>
+          <p class="devkit-tool"><span class="devkit-icon">{d.icon}</span> {d.tool}</p>
           <p class="devkit-desc">{d.desc}</p>
         </div>
       ))}
@@ -199,16 +222,18 @@ const timelineEvents = [
   <hr class="section-divider" />
 
   <!-- FEATURED PROJECTS -->
-  <section class="px-6 py-24 max-w-6xl mx-auto">
-    <div class="flex items-center justify-between mb-10">
+  <section class="px-6 py-24 max-w-6xl mx-auto" id="projects">
+    <div class="flex items-center justify-between mb-6">
       <div>
-        <p class="font-mono text-xs uppercase tracking-widest mb-3" style="color: var(--blue-primary);">Work</p>
+        <p class="font-mono text-xs uppercase tracking-widest mb-3" style="color: var(--blue-vivid);">Work</p>
         <h2 class="text-3xl sm:text-4xl font-bold text-gradient-blue-white">Featured Projects</h2>
       </div>
       <a href="/projects" class="text-sm font-mono transition" style="color: var(--blue-primary);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--blue-primary)'">View all →</a>
     </div>
     <p class="text-sm mb-10 max-w-2xl" style="color: var(--text-subtle);">
-      Each card below has a <span class="font-mono text-xs px-1.5 py-0.5 rounded" style="background: rgba(59,130,246,0.15); color: #93C5FD;">More Details</span> dropdown — click it to see who the project is for, the story behind it, and the technical breakdown.
+      Each card is a real project solving a real problem I've personally lived with. Click
+      <span class="font-mono text-xs px-1.5 py-0.5 rounded" style="background: rgba(14,165,233,0.15); color: #7DD3FC;">Story · Who It's For · Details</span>
+      on any card to see the full picture — who it's built for, why I built it, and how it works under the hood.
     </p>
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 stagger-children">
       {featured.map(p => <ProjectCard project={p} />)}
@@ -222,9 +247,12 @@ const timelineEvents = [
       <div class="half-baked-inner">
         <div class="half-baked-text">
           <p class="font-mono text-xs uppercase tracking-widest mb-2" style="color: var(--orange-warm);">Coming 2027 · Bangor, ME</p>
-          <h2 class="text-2xl sm:text-3xl font-bold mb-3" style="color: #E2E8F0;">Half Baked Café & Bakehouse</h2>
-          <p class="text-sm leading-relaxed" style="color: var(--text-subtle);">
-            Maine-inspired scratch café and bakehouse. When we open, every piece of software I'm building will be running live behind the counter — the POS, the kitchen display, the inventory, the scheduling. It's not a side project. It's the whole point.
+          <h2 class="text-2xl sm:text-3xl font-bold mb-3" style="color: #E8F4FD;">Half Baked Café & Bakehouse</h2>
+          <p class="text-sm leading-relaxed mb-4" style="color: #9BB8CE;">
+            Maine-inspired scratch café and bakehouse. House-baked goods. Real food. The kind of place that feels like where you actually want to be.
+          </p>
+          <p class="text-sm leading-relaxed" style="color: #9BB8CE;">
+            When we open, every piece of software I'm building — the POS, the kitchen display, the inventory, the scheduling, the dietary tracking — will be running live behind the counter. Half Baked isn't a side project. It's the whole point.
           </p>
         </div>
         <div class="half-baked-badge">🥐</div>
@@ -236,24 +264,41 @@ const timelineEvents = [
 
 <style>
   .identity-pill {
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     font-family: 'Fira Code', monospace;
-    padding: 0.35rem 0.85rem;
+    padding: 0.35rem 0.9rem;
     border-radius: 999px;
-    background: rgba(59, 130, 246, 0.1);
-    border: 1px solid rgba(59, 130, 246, 0.25);
-    color: #93C5FD;
+    background: rgba(14, 165, 233, 0.1);
+    border: 1px solid rgba(14, 165, 233, 0.22);
+    color: #7DD3FC;
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+
+  .identity-pill:hover {
+    background: rgba(14, 165, 233, 0.18);
+    border-color: rgba(56, 189, 248, 0.45);
   }
 
   .hero-food-accent {
     position: absolute;
     right: 2rem;
     top: 30%;
-    font-size: 8rem;
+    font-size: 9rem;
     opacity: 0.04;
     pointer-events: none;
     z-index: 0;
     transform: rotate(-15deg);
+  }
+
+  .hero-tech-accent {
+    position: absolute;
+    right: 14rem;
+    bottom: 15%;
+    font-size: 5rem;
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 0;
+    transform: rotate(10deg);
   }
 
   /* About blocks */
@@ -270,39 +315,41 @@ const timelineEvents = [
   }
 
   .about-block {
-    background: linear-gradient(135deg, rgba(15, 30, 53, 0.7), rgba(10, 22, 40, 0.5));
+    background: linear-gradient(135deg, rgba(11, 31, 51, 0.75), rgba(7, 24, 40, 0.55));
     border: 1px solid var(--dark-border);
-    border-radius: 14px;
-    padding: 1.75rem;
-    transition: border-color 0.3s ease;
+    border-radius: 16px;
+    padding: 1.85rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
   }
 
   .about-block:hover {
-    border-color: rgba(59, 130, 246, 0.3);
+    border-color: rgba(56, 189, 248, 0.28);
+    box-shadow: 0 0 30px rgba(14, 165, 233, 0.05);
   }
 
-  .about-block-full {
+  .about-block-wide {
     grid-column: 1 / -1;
-    background: linear-gradient(135deg, rgba(15, 30, 53, 0.9), rgba(10, 22, 40, 0.8));
-    border-color: rgba(59, 130, 246, 0.2);
+    background: linear-gradient(135deg, rgba(11, 31, 51, 0.92), rgba(7, 24, 40, 0.85));
+    border-color: rgba(14, 165, 233, 0.18);
   }
 
   .about-block-icon {
-    font-size: 1.75rem;
-    margin-bottom: 0.75rem;
+    font-size: 1.85rem;
+    margin-bottom: 0.6rem;
   }
 
   .about-block-title {
     font-size: 1rem;
     font-weight: 700;
-    color: #E2E8F0;
-    margin-bottom: 0.6rem;
+    color: #D4EAF7;
+    margin-bottom: 0.65rem;
+    margin-top: 0.35rem;
   }
 
   .about-block-text {
     font-size: 0.875rem;
-    line-height: 1.75;
-    color: #94A3B8;
+    line-height: 1.8;
+    color: var(--text-body);
   }
 
   /* Timeline */
@@ -318,7 +365,7 @@ const timelineEvents = [
     top: 0;
     bottom: 0;
     width: 2px;
-    background: linear-gradient(180deg, transparent, var(--dark-border) 10%, var(--dark-border) 90%, transparent);
+    background: linear-gradient(180deg, transparent, var(--dark-border-bright) 8%, var(--dark-border-bright) 92%, transparent);
   }
 
   .timeline-item {
@@ -326,37 +373,45 @@ const timelineEvents = [
     grid-template-columns: 5.5rem 1rem 1fr;
     align-items: start;
     gap: 1rem;
-    padding-bottom: 2rem;
+    padding-bottom: 2.25rem;
     position: relative;
   }
 
   .timeline-year {
     font-family: 'Fira Code', monospace;
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     color: var(--text-muted);
     text-align: right;
-    padding-top: 0.15rem;
+    padding-top: 0.2rem;
   }
 
   .timeline-dot {
-    width: 10px;
-    height: 10px;
+    width: 11px;
+    height: 11px;
     border-radius: 50%;
-    margin-top: 0.25rem;
+    margin-top: 0.22rem;
     flex-shrink: 0;
     position: relative;
     z-index: 1;
   }
 
-  .timeline-tech .timeline-dot { background: var(--blue-primary); box-shadow: 0 0 8px rgba(59,130,246,0.5); }
-  .timeline-food .timeline-dot { background: var(--orange-warm); box-shadow: 0 0 8px rgba(249,115,22,0.5); }
-  .timeline-both .timeline-dot {
-    background: linear-gradient(135deg, var(--blue-primary), var(--orange-warm));
-    box-shadow: 0 0 8px rgba(139,92,246,0.5);
+  .timeline-tech .timeline-dot  { background: var(--blue-electric); box-shadow: 0 0 10px rgba(14,165,233,0.6); }
+  .timeline-food .timeline-dot  { background: var(--orange-warm);   box-shadow: 0 0 10px rgba(249,115,22,0.5); }
+  .timeline-both .timeline-dot  {
+    background: linear-gradient(135deg, var(--blue-electric), var(--orange-warm));
+    box-shadow: 0 0 10px rgba(167,139,250,0.6);
   }
 
   .timeline-content {
     padding-bottom: 0.25rem;
+    transition: all 0.2s ease;
+  }
+
+  .timeline-item:hover .timeline-content {
+    background: rgba(14, 165, 233, 0.04);
+    border-radius: 10px;
+    padding: 0.6rem 0.85rem;
+    margin: -0.6rem -0.85rem;
   }
 
   .timeline-label {
@@ -365,20 +420,20 @@ const timelineEvents = [
     gap: 0.5rem;
     font-size: 0.9rem;
     font-weight: 600;
-    color: #E2E8F0;
-    margin-bottom: 0.3rem;
+    color: #D4EAF7;
+    margin-bottom: 0.4rem;
   }
 
   .timeline-desc {
     font-size: 0.8rem;
-    line-height: 1.6;
-    color: #94A3B8;
+    line-height: 1.65;
+    color: var(--text-body);
   }
 
   /* Stack grid */
   .stack-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(158px, 1fr));
     gap: 0.75rem;
   }
 
@@ -386,64 +441,75 @@ const timelineEvents = [
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    padding: 0.75rem 1rem;
-    background: rgba(15, 30, 53, 0.6);
+    padding: 0.85rem 1rem;
+    background: rgba(11, 31, 51, 0.7);
     border: 1px solid var(--dark-border);
     border-radius: 10px;
-    transition: border-color 0.2s ease;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
   }
 
-  .stack-item:hover { border-color: rgba(59,130,246,0.35); }
+  .stack-item:hover {
+    border-color: rgba(14, 165, 233, 0.35);
+    box-shadow: 0 0 16px rgba(14, 165, 233, 0.06);
+  }
 
   .stack-icon { font-size: 1.1rem; flex-shrink: 0; }
-  .stack-name { font-size: 0.8rem; font-weight: 600; color: #CBD5E1; line-height: 1.2; }
-  .stack-note { font-size: 0.65rem; font-family: 'Fira Code', monospace; color: var(--text-muted); margin-top: 0.1rem; }
+  .stack-name { font-size: 0.8rem; font-weight: 600; color: #D4EAF7; line-height: 1.2; }
+  .stack-note { font-size: 0.63rem; font-family: 'Fira Code', monospace; color: var(--text-muted); margin-top: 0.1rem; }
 
   /* Dev kit grid */
   .devkit-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 0.75rem;
+    gap: 0.85rem;
   }
 
   .devkit-item {
-    padding: 1rem 1.25rem;
-    background: rgba(15, 30, 53, 0.5);
+    padding: 1.1rem 1.35rem;
+    background: rgba(11, 31, 51, 0.6);
     border: 1px solid var(--dark-border);
-    border-left: 3px solid var(--blue-primary);
-    border-radius: 8px;
-    transition: border-color 0.2s ease;
+    border-left: 3px solid var(--blue-electric);
+    border-radius: 10px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
   }
 
-  .devkit-item:hover { border-color: rgba(59,130,246,0.4); }
+  .devkit-item:hover {
+    border-color: rgba(56, 189, 248, 0.4);
+    box-shadow: 0 0 20px rgba(14, 165, 233, 0.07);
+  }
+
+  .devkit-icon { font-size: 0.9rem; }
 
   .devkit-tool {
-    font-size: 0.85rem;
+    font-size: 0.88rem;
     font-weight: 700;
-    color: #E2E8F0;
-    margin-bottom: 0.25rem;
+    color: #D4EAF7;
+    margin-bottom: 0.3rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
   }
 
   .devkit-desc {
-    font-size: 0.75rem;
-    color: #94A3B8;
-    line-height: 1.5;
+    font-size: 0.76rem;
+    color: var(--text-body);
+    line-height: 1.55;
   }
 
   /* Half Baked banner */
   .half-baked-banner {
     position: relative;
     overflow: hidden;
-    border-radius: 16px;
-    border: 1px solid rgba(249, 115, 22, 0.25);
-    background: linear-gradient(135deg, rgba(20, 10, 5, 0.95), rgba(15, 8, 3, 0.9));
-    padding: 2.5rem;
+    border-radius: 18px;
+    border: 1px solid rgba(249, 115, 22, 0.22);
+    background: linear-gradient(135deg, rgba(18, 8, 4, 0.97), rgba(12, 5, 2, 0.93));
+    padding: 2.75rem;
   }
 
   .half-baked-glow {
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse at top right, rgba(249, 115, 22, 0.06) 0%, transparent 60%);
+    background: radial-gradient(ellipse at top right, rgba(249, 115, 22, 0.07) 0%, transparent 55%);
     pointer-events: none;
   }
 
@@ -459,8 +525,9 @@ const timelineEvents = [
   .half-baked-text { flex: 1; }
 
   .half-baked-badge {
-    font-size: 4rem;
-    opacity: 0.6;
+    font-size: 4.5rem;
+    opacity: 0.55;
     flex-shrink: 0;
+    animation: floatUp 5s ease-in-out infinite;
   }
 </style>

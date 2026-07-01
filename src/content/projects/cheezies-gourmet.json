@@ -11,10 +11,7 @@
   "stack": [],
   "status": "active",
   "featured": true,
-  "links": {
-    "github": null,
-    "demo": null
-  },
+  "links": {},
   "detailedSpecs": {
     "architecture": "Brand and menu documentation — no code stack.",
     "keyPatterns": [

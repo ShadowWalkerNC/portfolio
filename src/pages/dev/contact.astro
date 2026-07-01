@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Contact — Nate Cowperthwaite" description="Get in touch with Nate Cowperthwaite." side="dev">
+  <main class="section">
+    <h1 class="section-heading reveal">Get in Touch</h1>
+    <p class="section-sub reveal">Have a project, question, or collaboration in mind? Reach out.</p>
+    <div class="contact-grid">
+      <a href="mailto:shadowwalkernc@gmail.com" class="contact-card card reveal">
+        <div class="contact-icon">&#9993;&#65039;</div>
+        <div class="contact-label">Email</div>
+        <div class="contact-value">shadowwalkernc@gmail.com</div>
+      </a>
+      <a href="https://github.com/ShadowWalkerNC" target="_blank" rel="noopener" class="contact-card card reveal">
+        <div class="contact-icon">&#128049;</div>
+        <div class="contact-label">GitHub</div>
+        <div class="contact-value">ShadowWalkerNC</div>
+      </a>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+  max-width: 600px;
+}
+.contact-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 2rem 1.5rem;
+  text-decoration: none;
+  text-align: center;
+}
+.contact-icon  { font-size: 2rem; }
+.contact-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); }
+.contact-value { font-size: 0.9rem; font-weight: 600; color: var(--accent-blue); }
+</style>

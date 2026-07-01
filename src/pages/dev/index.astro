@@ -1,0 +1,351 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+
+const projects = await getCollection('projects');
+const featured = projects.filter(p => p.data.featured).slice(0, 3);
+---
+
+<BaseLayout title="Nate Cowperthwaite — Developer" description="Agentic coding, AI tools, and API-driven software built by a professional chef who started coding in 2025." side="dev">
+  <main>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+      <div class="hero-content">
+        <div class="hero-kicker">
+          <span class="badge badge-blue">&#128187; Developer Portfolio</span>
+        </div>
+        <h1 class="hero-title">
+          Software built by someone<br />
+          <span class="hero-accent-blue">who lived</span>
+          <span class="hero-accent-ember"> the problem.</span>
+        </h1>
+        <p class="hero-subtitle">
+          Professional chef. Side-project developer since 2025.
+          I started coding because no one was building the tools kitchens actually need &mdash;
+          so I built them myself using agentic workflows, AI tools, and modern APIs.
+        </p>
+        <div class="hero-actions">
+          <a href="/dev/projects" class="btn btn-primary">See the Work</a>
+          <a href="/dev/contact" class="btn btn-ghost">Get in Touch</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><span class="stat-num">10+</span><span class="stat-label">Projects Shipped</span></div>
+          <div class="stat-divider"></div>
+          <div class="stat"><span class="stat-num stat-ember">3</span><span class="stat-label">Culinary Tech Apps</span></div>
+          <div class="stat-divider"></div>
+          <div class="stat"><span class="stat-num">2025</span><span class="stat-label">Started Coding</span></div>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="code-block animate-scale-in">
+          <div class="code-line"><span class="c-comment">// chef who codes</span></div>
+          <div class="code-line">&nbsp;</div>
+          <div class="code-line"><span class="c-keyword">const</span> <span class="c-var">nate</span> <span class="c-op">=</span> <span class="c-paren">{</span></div>
+          <div class="code-line">&nbsp; <span class="c-prop">craft</span><span class="c-op">:</span>   <span class="c-ember">'culinary'</span><span class="c-op">,</span></div>
+          <div class="code-line">&nbsp; <span class="c-prop">coding</span><span class="c-op">:</span>  <span class="c-string">'2025-present'</span><span class="c-op">,</span></div>
+          <div class="code-line">&nbsp; <span class="c-prop">style</span><span class="c-op">:</span>   <span class="c-string">'agentic'</span><span class="c-op">,</span></div>
+          <div class="code-line">&nbsp; <span class="c-prop">tools</span><span class="c-op">:</span>   <span class="c-string">'AI + APIs'</span></div>
+          <div class="code-line"><span class="c-paren">};</span></div>
+          <div class="code-line">&nbsp;</div>
+          <div class="code-line"><span class="c-keyword">function</span> <span class="c-fn">solve</span><span class="c-paren">(</span><span class="c-var">problem</span><span class="c-paren">) {</span></div>
+          <div class="code-line">&nbsp; <span class="c-comment">// lived it first.</span></div>
+          <div class="code-line">&nbsp; <span class="c-keyword">return</span> <span class="c-fn">ship</span><span class="c-paren">(</span><span class="c-var">solution</span><span class="c-paren">);</span></div>
+          <div class="code-line"><span class="c-paren">}</span></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider-fusion"></div>
+
+    <!-- ===== JOURNEY TIMELINE ===== -->
+    <section class="section">
+      <h2 class="section-heading reveal">The Journey</h2>
+      <p class="section-sub reveal">A decade in professional kitchens &mdash; and one side project that grew from all of it.</p>
+      <div class="timeline">
+
+        <div class="timeline-item reveal-left">
+          <div class="timeline-dot dot-blue"></div>
+          <div class="timeline-content">
+            <div class="timeline-era">2014 &mdash; First Kitchen Role</div>
+            <h3 class="timeline-title">Samoset Resort, Rockport ME</h3>
+            <p class="timeline-text">Premier Maine coastal resort. First major culinary role — banquet, hospitality, and the discipline of a real kitchen. Where the foundation was laid.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal-left">
+          <div class="timeline-dot dot-ember"></div>
+          <div class="timeline-content">
+            <div class="timeline-era era-ember">2019–2022 &mdash; Rising Through the Ranks</div>
+            <h3 class="timeline-title">Boynton McKay → Ports of Italy → Daddy B's</h3>
+            <p class="timeline-text">Scratch breakfast at an iconic Maine café, sous chef at Italian fine dining, then sous chef on a food truck &mdash; the role that directly sparked Northern Fixin's. Each step added technique, leadership, and clarity about what kitchens were missing.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal-left">
+          <div class="timeline-dot dot-ember"></div>
+          <div class="timeline-content">
+            <div class="timeline-era era-ember">2023–Present &mdash; Co-Founder</div>
+            <h3 class="timeline-title">Northern Fixin's / Half Baked Co.</h3>
+            <p class="timeline-text">Co-founded a Maine-inspired elevated café, scratch bakehouse, and food truck concept. Brick-and-mortar café targeting 2027. Still actively cooking and running kitchen operations at Ross Manor.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal-left timeline-branch">
+          <div class="timeline-dot dot-blue dot-branch"></div>
+          <div class="timeline-content">
+            <div class="timeline-era">2025–Present &mdash; Side Project</div>
+            <h3 class="timeline-title">Developer <span class="timeline-branch-tag">Branch</span></h3>
+            <p class="timeline-text">Started coding in 2025 using agentic workflows, AI tools, and APIs. Built CulinaryOS, KitchenKit, CulinaryOps, and more &mdash; every project rooted in real kitchen problems. Still cooking full-time; this is a side project that got serious.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ===== DEV KIT ===== -->
+    <section class="section">
+      <h2 class="section-heading reveal">The Dev Kit</h2>
+      <p class="section-sub reveal">Tools I use to ship production software.</p>
+      <div class="devkit-grid reveal">
+        <div class="kit-group">
+          <div class="kit-group-label">Languages</div>
+          <div class="kit-chips">
+            <span class="kit-chip">JavaScript</span>
+            <span class="kit-chip">Python</span>
+            <span class="kit-chip">TypeScript</span>
+            <span class="kit-chip">HTML/CSS</span>
+            <span class="kit-chip">SQL</span>
+          </div>
+        </div>
+        <div class="kit-group">
+          <div class="kit-group-label">Frameworks</div>
+          <div class="kit-chips">
+            <span class="kit-chip">Astro</span>
+            <span class="kit-chip">Flask</span>
+            <span class="kit-chip">Node.js</span>
+            <span class="kit-chip">Discord.js</span>
+            <span class="kit-chip">Tailwind CSS</span>
+            <span class="kit-chip">React</span>
+          </div>
+        </div>
+        <div class="kit-group">
+          <div class="kit-group-label">Data &amp; Infra</div>
+          <div class="kit-chips">
+            <span class="kit-chip">PostgreSQL</span>
+            <span class="kit-chip">SQLite</span>
+            <span class="kit-chip">Supabase</span>
+            <span class="kit-chip">Railway</span>
+            <span class="kit-chip">Render</span>
+          </div>
+        </div>
+        <div class="kit-group">
+          <div class="kit-group-label">AI &amp; APIs</div>
+          <div class="kit-chips">
+            <span class="kit-chip">MCP</span>
+            <span class="kit-chip">Google Gemini</span>
+            <span class="kit-chip">Discord API</span>
+            <span class="kit-chip">Meta Graph API</span>
+            <span class="kit-chip">Twitter API v2</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ===== FEATURED PROJECTS ===== -->
+    <section class="section">
+      <h2 class="section-heading reveal">Featured Work</h2>
+      <p class="section-sub reveal">A handful of projects that show the range. <a href="/dev/projects" class="inline-link">See everything &rarr;</a></p>
+      <div class="featured-grid">
+        {featured.map(p => (
+          <ProjectCard
+            id={p.id}
+            title={p.data.title}
+            tagline={p.data.tagline}
+            description={p.data.description}
+            story={p.data.story}
+            forWho={p.data.forWho}
+            tags={p.data.tags}
+            stack={p.data.stack}
+            status={p.data.status}
+            links={p.data.links}
+            detailedSpecs={p.data.detailedSpecs}
+          />
+        ))}
+      </div>
+    </section>
+
+  </main>
+</BaseLayout>
+
+<style>
+/* ---- Hero ---- */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  padding: 5rem 1.5rem 4rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.hero-kicker  { margin-bottom: 1rem; }
+.hero-title {
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  font-weight: 900;
+  line-height: 1.1;
+  color: var(--text-primary);
+  letter-spacing: -0.03em;
+  margin-bottom: 1.2rem;
+}
+.hero-accent-blue  { color: var(--accent-blue); }
+.hero-accent-ember { color: var(--accent-ember); }
+.hero-subtitle {
+  font-size: 1rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 2rem;
+  max-width: 480px;
+}
+.hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+.hero-stats   { display: flex; align-items: center; gap: 1.5rem; }
+.stat { display: flex; flex-direction: column; gap: 2px; }
+.stat-num {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1;
+}
+.stat-num.stat-ember { color: var(--accent-ember); }
+.stat-label {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.stat-divider { width: 1px; height: 2rem; background: var(--border-subtle); }
+
+/* Code block */
+.code-block {
+  background: #0f172a;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-lg);
+  padding: 1.5rem 1.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  line-height: 1.9;
+  box-shadow: var(--shadow-lg);
+}
+.code-line { white-space: pre; }
+.c-comment { color: #4a5568; }
+.c-keyword { color: #c792ea; }
+.c-var     { color: #82aaff; }
+.c-prop    { color: #82aaff; }
+.c-fn      { color: #82cfff; }
+.c-string  { color: #c3e88d; }
+.c-ember   { color: var(--accent-ember); }
+.c-op      { color: #89ddff; }
+.c-paren   { color: #a9b1d6; }
+
+/* Timeline */
+.timeline {
+  padding-left: 1.5rem;
+  border-left: 2px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+}
+.timeline-item {
+  position: relative;
+  padding: 0 0 2.5rem 1.75rem;
+}
+.timeline-branch { margin-top: 0.5rem; }
+.timeline-dot {
+  position: absolute;
+  left: -9px;
+  top: 5px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--bg-base);
+}
+.dot-blue  { background: var(--accent-blue);  box-shadow: 0 0 0 3px var(--accent-blue-pale); }
+.dot-ember { background: var(--accent-ember); box-shadow: 0 0 0 3px var(--accent-ember-pale); }
+.dot-branch { border: 2px solid var(--accent-blue); background: white; }
+.timeline-era {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent-blue);
+  margin-bottom: 0.3rem;
+  opacity: 0.8;
+}
+.era-ember { color: var(--accent-ember) !important; }
+.timeline-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 0.4rem;
+}
+.timeline-text {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin: 0;
+  max-width: 560px;
+}
+.timeline-branch-tag {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: var(--accent-blue-pale);
+  color: var(--accent-blue);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  vertical-align: middle;
+  margin-left: 0.4rem;
+}
+
+/* Dev Kit */
+.devkit-grid  { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem; }
+.kit-group    { display: flex; flex-direction: column; gap: 0.5rem; }
+.kit-group-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); }
+.kit-chips    { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.kit-chip {
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 5px 13px;
+  border-radius: var(--radius-full);
+  background: var(--bg-surface);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.kit-chip:hover {
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
+  background: var(--accent-blue-pale);
+}
+
+/* Featured */
+.featured-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.25rem; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 1rem 2rem; }
+  .hero-visual { display: none; }
+  .featured-grid { grid-template-columns: 1fr; }
+  .devkit-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .devkit-grid { grid-template-columns: 1fr; }
+  .hero-stats  { flex-wrap: wrap; gap: 1rem; }
+}
+</style>

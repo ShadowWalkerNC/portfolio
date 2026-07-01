@@ -16,6 +16,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <div class="split-icon">&#128187;</div>
         <h2 class="split-title split-title-dev">Developer</h2>
         <p class="split-desc">Projects, tools, and the tech side of the story.</p>
+        <!-- Always visible chips on mobile; hover-revealed on desktop -->
         <div class="split-chips">
           <span class="split-chip chip-dev">Astro</span>
           <span class="split-chip chip-dev">Python</span>
@@ -98,9 +99,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   text-decoration: none;
   transition: flex 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.split-half:hover { flex: 1.45; }
-.split-page:has(.split-dev:hover) .split-food { flex: 0.6; }
-.split-page:has(.split-food:hover) .split-dev  { flex: 0.6; }
+/* Desktop hover expansion */
+@media (hover: hover) {
+  .split-half:hover { flex: 1.45; }
+  .split-page:has(.split-dev:hover)  .split-food { flex: 0.6; }
+  .split-page:has(.split-food:hover) .split-dev  { flex: 0.6; }
+}
 
 /* Backgrounds */
 .split-dev  { background: linear-gradient(135deg, #1e3a5f 0%, #1e40af 50%, #2563eb 100%); }
@@ -112,8 +116,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   opacity: 0;
   transition: opacity 0.45s ease;
 }
-.split-dev:hover .split-bg-dev   { opacity: 1; }
-.split-food:hover .split-bg-food { opacity: 1; }
+@media (hover: hover) {
+  .split-dev:hover  .split-bg-dev  { opacity: 1; }
+  .split-food:hover .split-bg-food { opacity: 1; }
+}
 .split-bg-dev  { background: radial-gradient(ellipse at center, rgba(99,179,237,0.15), transparent 70%); }
 .split-bg-food { background: radial-gradient(ellipse at center, rgba(253,186,116,0.15), transparent 70%); }
 
@@ -129,7 +135,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   text-align: center;
   transition: transform 0.3s ease;
 }
-.split-half:hover .split-inner { transform: scale(1.03); }
+@media (hover: hover) {
+  .split-half:hover .split-inner { transform: scale(1.03); }
+}
 
 .split-icon {
   font-size: 3rem;
@@ -155,6 +163,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   line-height: 1.5;
 }
 
+/* Chips: hidden on desktop until hover, always shown on touch devices */
 .split-chips {
   display: flex;
   flex-wrap: wrap;
@@ -164,9 +173,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   transform: translateY(8px);
   transition: opacity 0.3s ease 0.05s, transform 0.3s ease 0.05s;
 }
-.split-half:hover .split-chips {
-  opacity: 1;
-  transform: translateY(0);
+@media (hover: hover) {
+  .split-half:hover .split-chips { opacity: 1; transform: translateY(0); }
+}
+@media (hover: none) {
+  /* Touch devices — always show chips & CTA */
+  .split-chips, .split-cta { opacity: 1 !important; transform: none !important; }
 }
 .split-chip {
   font-size: 0.7rem;
@@ -188,10 +200,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   transform: translateY(6px);
   transition: opacity 0.3s ease 0.1s, transform 0.3s ease 0.1s;
 }
-.split-half:hover .split-cta {
-  opacity: 1;
-  transform: translateY(0);
-  color: rgba(255,255,255,0.95);
+@media (hover: hover) {
+  .split-half:hover .split-cta { opacity: 1; transform: translateY(0); color: rgba(255,255,255,0.95); }
 }
 
 /* Vertical divider line */
@@ -217,12 +227,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
   .split-half {
     flex: none;
-    min-height: 50vh;
+    min-height: 48vh;
     transition: none;
   }
-  .split-half:hover { flex: none; }
-  .split-page:has(.split-dev:hover) .split-food  { flex: none; }
-  .split-page:has(.split-food:hover) .split-dev  { flex: none; }
   .split-page::after { display: none; }
   .split-brand {
     position: relative;
@@ -234,6 +241,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     width: 100%;
   }
   .split-brand-name { color: white; }
-  .split-chips, .split-cta { opacity: 1; transform: none; }
+  .split-icon { font-size: 2.4rem; }
+  .split-title { font-size: clamp(1.6rem, 8vw, 2.4rem); }
+  .split-desc { font-size: 0.82rem; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-7px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .split-icon { animation: none; }
 }
 </style>

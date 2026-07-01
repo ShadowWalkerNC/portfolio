@@ -78,8 +78,8 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
           <div class="timeline-dot dot-ember"></div>
           <div class="timeline-content">
             <div class="timeline-era era-ember">2019–2022 &mdash; Rising Through the Ranks</div>
-            <h3 class="timeline-title">Boynton McKay → Ports of Italy → Daddy B’s</h3>
-            <p class="timeline-text">Scratch breakfast at an iconic Maine café, sous chef at Italian fine dining, then sous chef on a food truck &mdash; the role that directly sparked Northern Fixin’s. Each step added technique, leadership, and clarity about what kitchens were missing.</p>
+            <h3 class="timeline-title">Boynton McKay → Ports of Italy → Daddy B's</h3>
+            <p class="timeline-text">Scratch breakfast at an iconic Maine café, sous chef at Italian fine dining, then sous chef on a food truck &mdash; the role that directly sparked Northern Fixin's. Each step added technique, leadership, and clarity about what kitchens were missing.</p>
           </div>
         </div>
 
@@ -87,7 +87,7 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
           <div class="timeline-dot dot-ember"></div>
           <div class="timeline-content">
             <div class="timeline-era era-ember">2023–Present &mdash; Co-Founder</div>
-            <h3 class="timeline-title">Northern Fixin’s / Half Baked Co.</h3>
+            <h3 class="timeline-title">Northern Fixin's / Half Baked Co.</h3>
             <p class="timeline-text">Co-founded a Maine-inspired elevated café, scratch bakehouse, and food truck concept. Brick-and-mortar café targeting 2027. Still actively cooking and running kitchen operations at Ross Manor.</p>
           </div>
         </div>
@@ -213,41 +213,13 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
   </main>
 </BaseLayout>
 
-<!-- ===== SCROLL REVEAL + STAGGER OBSERVER ===== -->
-<script>
-  (function () {
-    // Targets: reveal, reveal-left, reveal-right
-    const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
-    if (!revealEls.length) return;
-
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          const el = entry.target;
-          el.classList.add('is-visible');
-
-          // Stagger chips inside kit-card that just became visible
-          if (el.classList.contains('kit-card')) {
-            el.querySelectorAll('.kit-chip').forEach((chip, idx) => {
-              (chip as HTMLElement).style.transitionDelay = `${0.12 + idx * 0.06}s`;
-              chip.classList.add('chip-visible');
-            });
-          }
-
-          io.unobserve(el);
-        });
-      },
-      { threshold: 0.12 }
-    );
-
-    revealEls.forEach((el) => io.observe(el));
-  })();
-</script>
+<!-- NOTE: Scroll reveal + chip stagger is now handled in BaseLayout's unified observer -->
+<!-- No duplicate observer script needed here -->
 
 <style>
 /* ============================================================
-   SCROLL REVEAL — base hidden states + visible transitions
+   SCROLL REVEAL — base hidden states
+   BaseLayout adds both .revealed AND .is-visible
    ============================================================ */
 .reveal {
   opacity: 0;
@@ -264,14 +236,15 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
   transform: translateX(24px);
   transition: opacity 0.55s ease, transform 0.55s ease;
 }
-.reveal.is-visible,
-.reveal-left.is-visible,
-.reveal-right.is-visible {
+/* Both class names trigger the visible state */
+.reveal.is-visible,    .reveal.revealed,
+.reveal-left.is-visible, .reveal-left.revealed,
+.reveal-right.is-visible, .reveal-right.revealed {
   opacity: 1;
   transform: none;
 }
 
-/* Hero entry animations (run on load, no observer needed) */
+/* Hero entry animations */
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(28px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -284,8 +257,8 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
   0%, 100% { transform: translateY(0);    }
   50%       { transform: translateY(-7px); }
 }
-.animate-fade-in-up  { animation: fadeInUp 0.65s ease both; }
-.animate-scale-in    { animation: scaleIn  0.65s ease 0.2s both; }
+.animate-fade-in-up { animation: fadeInUp 0.65s ease both; }
+.animate-scale-in   { animation: scaleIn  0.65s ease 0.2s both; }
 
 /* ---- Hero ---- */
 .hero {
@@ -299,7 +272,7 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
 }
 .hero-kicker  { margin-bottom: 1rem; }
 .hero-title {
-  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  font-size: clamp(1.75rem, 4vw, 3rem);
   font-weight: 900;
   line-height: 1.1;
   color: var(--text-primary);
@@ -316,7 +289,7 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
   max-width: 480px;
 }
 .hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
-.hero-stats   { display: flex; align-items: center; gap: 1.5rem; }
+.hero-stats   { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
 .stat { display: flex; flex-direction: column; gap: 2px; }
 .stat-num {
   font-size: 1.5rem;
@@ -343,6 +316,7 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
   font-size: 0.82rem;
   line-height: 1.9;
   box-shadow: var(--shadow-lg);
+  overflow-x: auto;
 }
 .code-line { white-space: pre; }
 .c-comment { color: #4a5568; }
@@ -357,14 +331,14 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
 
 /* ---- Timeline ---- */
 .timeline {
-  padding-left: 1.5rem;
+  padding-left: 1rem;
   border-left: 2px solid var(--border-subtle);
   display: flex;
   flex-direction: column;
 }
 .timeline-item {
   position: relative;
-  padding: 0 0 2.5rem 1.75rem;
+  padding: 0 0 2.5rem 1.5rem;
 }
 .timeline-branch { margin-top: 0.5rem; }
 .timeline-dot {
@@ -379,14 +353,15 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
 .dot-blue  { background: var(--accent-blue);  box-shadow: 0 0 0 3px var(--accent-blue-pale); }
 .dot-ember { background: var(--accent-ember); box-shadow: 0 0 0 3px var(--accent-ember-pale); }
 .dot-branch { border: 2px solid var(--accent-blue); background: white; }
-/* Pulse on the active/branch dot */
 @keyframes pulse-ring {
   0%   { box-shadow: 0 0 0 0 rgba(59,130,246,0.45); }
   70%  { box-shadow: 0 0 0 8px rgba(59,130,246,0); }
   100% { box-shadow: 0 0 0 0 rgba(59,130,246,0); }
 }
 .dot-branch.is-visible,
-.timeline-item.is-visible .dot-branch {
+.dot-branch.revealed,
+.timeline-item.is-visible .dot-branch,
+.timeline-item.revealed .dot-branch {
   animation: pulse-ring 2s ease-out infinite;
 }
 .timeline-era {
@@ -400,10 +375,11 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
 }
 .era-ember { color: var(--accent-ember) !important; }
 .timeline-title {
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: 700;
   color: var(--text-primary);
   margin: 0 0 0.4rem;
+  word-break: break-word;
 }
 .timeline-text {
   font-size: 0.88rem;
@@ -473,13 +449,13 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
 }
 .kit-chips { display: flex; flex-wrap: wrap; gap: 0.35rem; }
 
-/* Chips start hidden; JS adds chip-visible when the card enters viewport */
+/* Chips: hidden until JS fires chip-visible */
 .kit-chip {
   font-size: 0.78rem;
   font-weight: 600;
   padding: 4px 12px;
   border-radius: var(--radius-full);
-  background: var(--bg-card);
+  background: var(--bg-card, var(--bg-elevated));
   color: var(--text-secondary);
   border: 1px solid var(--border-subtle);
   opacity: 0;
@@ -503,18 +479,36 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
 }
 
 /* Featured */
-.featured-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.25rem; }
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.25rem;
+}
 
 /* ---- Responsive ---- */
-@media (max-width: 768px) {
-  .hero { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 1rem 2rem; }
+/* Tablet: hide code block, single-column hero */
+@media (max-width: 860px) {
+  .hero { grid-template-columns: 1fr; gap: 2rem; padding: 3.5rem 1.25rem 2.5rem; }
   .hero-visual { display: none; }
-  .featured-grid { grid-template-columns: 1fr; }
-  .devkit-grid { grid-template-columns: 1fr 1fr; }
 }
-@media (max-width: 480px) {
+/* Mobile: tighter padding, single-column grids */
+@media (max-width: 640px) {
+  .hero { padding: 2.5rem 1rem 2rem; }
+  .hero-title { font-size: clamp(1.6rem, 7vw, 2.2rem); }
+  .hero-subtitle { font-size: 0.92rem; }
+  .hero-actions { gap: 0.5rem; }
+  .hero-actions .btn { padding: 0.55rem 1.1rem; font-size: 0.85rem; }
+  .hero-stats { gap: 0.75rem; }
+  .stat-divider { display: none; }
   .devkit-grid { grid-template-columns: 1fr; }
-  .hero-stats  { flex-wrap: wrap; gap: 1rem; }
+  .featured-grid { grid-template-columns: 1fr; }
+  .timeline { padding-left: 0.75rem; }
+  .timeline-item { padding-left: 1.25rem; }
+  .timeline-title { font-size: 0.95rem; }
+}
+@media (max-width: 400px) {
+  .hero-actions { flex-direction: column; }
+  .hero-actions .btn { width: 100%; justify-content: center; }
 }
 
 /* Respect prefers-reduced-motion */

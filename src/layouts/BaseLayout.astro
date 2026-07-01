@@ -19,7 +19,13 @@ const { title, description, side } = Astro.props;
     <a href="/" class="nav-logo">
       <span class="nav-logo-name">Nate Cowperthwaite</span>
     </a>
-    <div class="nav-links">
+
+    <!-- Mobile hamburger -->
+    <button class="nav-burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false" aria-controls="navMenu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <div class="nav-links" id="navMenu">
       {side === 'dev' && (
         <>
           <a href="/dev">Home</a>
@@ -55,32 +61,70 @@ const { title, description, side } = Astro.props;
     </p>
   </footer>
 
-  <!-- ===== SCROLL REVEAL SCRIPT ===== -->
+  <!-- ===== UNIFIED SCROLL REVEAL ===== -->
+  <!-- Uses 'revealed' class — matches global.css. Page-level scripts also add 'is-visible' for chip stagger -->
   <script>
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('revealed');
-            observer.unobserve(entry.target);
-          }
+    (function () {
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            const el = entry.target as HTMLElement;
+            // Both class names so page-level and global CSS both trigger
+            el.classList.add('revealed', 'is-visible');
+
+            // Stagger kit-chips inside a card that just came into view
+            if (el.classList.contains('kit-card')) {
+              el.querySelectorAll<HTMLElement>('.kit-chip').forEach((chip, idx) => {
+                chip.style.transitionDelay = `${0.12 + idx * 0.06}s`;
+                chip.classList.add('chip-visible');
+              });
+            }
+
+            io.unobserve(el);
+          });
+        },
+        { threshold: 0.10 }
+      );
+
+      document
+        .querySelectorAll('.reveal, .reveal-left, .reveal-right')
+        .forEach((el) => io.observe(el));
+    })();
+  </script>
+
+  <!-- ===== HAMBURGER SCRIPT ===== -->
+  <script>
+    const burger  = document.getElementById('navBurger');
+    const menu    = document.getElementById('navMenu');
+    if (burger && menu) {
+      burger.addEventListener('click', () => {
+        const open = menu.classList.toggle('nav-open');
+        burger.classList.toggle('is-active', open);
+        burger.setAttribute('aria-expanded', String(open));
+      });
+      // Close menu when a link is tapped
+      menu.querySelectorAll('a').forEach((a) => {
+        a.addEventListener('click', () => {
+          menu.classList.remove('nav-open');
+          burger.classList.remove('is-active');
+          burger.setAttribute('aria-expanded', 'false');
         });
-      },
-      { threshold: 0.12 }
-    );
-    document.querySelectorAll('.reveal, .reveal-left, .reveal-right')
-      .forEach(el => observer.observe(el));
+      });
+    }
   </script>
 
 </body>
 </html>
 
 <style>
+/* ---- Nav logo ---- */
 .nav-logo {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   text-decoration: none;
+  flex-shrink: 0;
 }
 .nav-logo-name {
   font-size: 0.95rem;
@@ -88,6 +132,8 @@ const { title, description, side } = Astro.props;
   color: var(--text-primary);
   letter-spacing: -0.02em;
 }
+
+/* ---- Nav links (desktop) ---- */
 .nav-links {
   display: flex;
   align-items: center;
@@ -109,16 +155,72 @@ const { title, description, side } = Astro.props;
   border-radius: var(--radius-full) !important;
   padding: 0.25rem 0.8rem !important;
 }
-.nav-switch-dev:hover {
-  background: var(--accent-blue) !important;
-  color: white !important;
+.nav-switch-dev:hover  { background: var(--accent-blue)  !important; color: white !important; }
+.nav-switch-food:hover { background: var(--accent-ember) !important; color: white !important; }
+
+/* ---- Hamburger button ---- */
+.nav-burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: var(--radius-sm);
+  transition: background 0.15s;
 }
-.nav-switch-food:hover {
-  background: var(--accent-ember) !important;
-  color: white !important;
+.nav-burger:hover { background: var(--bg-elevated); }
+.nav-burger span {
+  display: block;
+  height: 2px;
+  width: 22px;
+  background: var(--text-secondary);
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+  transform-origin: center;
 }
-@media (max-width: 480px) {
-  .nav-logo-name { display: none; }
-  .nav-links { gap: 0.15rem; }
+/* Animated X when open */
+.nav-burger.is-active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-burger.is-active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.nav-burger.is-active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ---- Mobile nav ---- */
+@media (max-width: 640px) {
+  .nav-logo-name { font-size: 0.88rem; }
+
+  .nav-burger { display: flex; }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background: rgba(248,250,252,0.97);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-subtle);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 0.5rem 1rem 1rem;
+    z-index: 99;
+    box-shadow: 0 8px 24px rgba(15,23,42,0.10);
+  }
+  .nav-links.nav-open { display: flex; }
+  .nav-links a {
+    padding: 0.65rem 0.75rem;
+    font-size: 0.95rem;
+    border-radius: var(--radius-sm);
+    text-align: left;
+  }
+  .nav-switch-dev, .nav-switch-food {
+    margin-top: 0.25rem;
+    text-align: center !important;
+  }
 }
 </style>

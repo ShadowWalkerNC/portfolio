@@ -1,0 +1,300 @@
+/* ============================================================
+   GLOBAL CSS — ShadowWalkerNC Portfolio
+   Blue theme, keyframe animations, glass morphism, utilities
+   ============================================================ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---- CSS Variables ---- */
+:root {
+  --blue-primary:   #3B82F6;
+  --blue-bright:    #60A5FA;
+  --blue-glow:      #3B82F630;
+  --blue-dim:       #1D4ED8;
+  --dark-base:      #020817;
+  --dark-surface:   #0A1628;
+  --dark-card:      #0F1E35;
+  --dark-border:    #1E3A5F;
+  --text-muted:     #64748B;
+  --text-subtle:    #94A3B8;
+}
+
+/* ---- Base resets ---- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--dark-base);
+  color: #E2E8F0;
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ---- Custom Scrollbar ---- */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--dark-base);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--dark-border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--blue-primary);
+}
+
+/* ============================================================
+   KEYFRAME ANIMATIONS
+   ============================================================ */
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 20px var(--blue-glow); }
+  50%       { box-shadow: 0 0 40px #3B82F650, 0 0 80px #3B82F620; }
+}
+
+@keyframes borderGlow {
+  0%, 100% { border-color: var(--dark-border); }
+  50%       { border-color: var(--blue-primary); }
+}
+
+@keyframes chevronOpen {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(180deg); }
+}
+
+@keyframes chevronClose {
+  from { transform: rotate(180deg); }
+  to   { transform: rotate(0deg); }
+}
+
+/* ============================================================
+   ANIMATION UTILITY CLASSES
+   ============================================================ */
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.7s ease forwards;
+}
+
+.animate-slide-down {
+  animation: slideDown 0.5s ease forwards;
+}
+
+.animate-glow-pulse {
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+/* Staggered children */
+.stagger-children > *:nth-child(1) { animation-delay: 0ms; }
+.stagger-children > *:nth-child(2) { animation-delay: 100ms; }
+.stagger-children > *:nth-child(3) { animation-delay: 200ms; }
+.stagger-children > *:nth-child(4) { animation-delay: 300ms; }
+.stagger-children > *:nth-child(5) { animation-delay: 400ms; }
+.stagger-children > *:nth-child(6) { animation-delay: 500ms; }
+
+/* ============================================================
+   GRADIENT TEXT UTILITIES
+   ============================================================ */
+
+.text-gradient-blue {
+  background: linear-gradient(135deg, var(--blue-bright), var(--blue-primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-blue-white {
+  background: linear-gradient(135deg, #FFFFFF 0%, var(--blue-bright) 60%, var(--blue-primary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-subtle {
+  background: linear-gradient(135deg, #E2E8F0, var(--text-subtle));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================================
+   GLASS MORPHISM
+   ============================================================ */
+
+.glass {
+  background: rgba(10, 22, 40, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(59, 130, 246, 0.15);
+}
+
+.glass-strong {
+  background: rgba(10, 22, 40, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(59, 130, 246, 0.25);
+}
+
+.glass-card {
+  background: linear-gradient(135deg, rgba(15, 30, 53, 0.8), rgba(10, 22, 40, 0.6));
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--dark-border);
+  border-radius: 12px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.glass-card:hover {
+  border-color: rgba(59, 130, 246, 0.4);
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.08), 0 8px 32px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
+}
+
+/* ============================================================
+   CHEVRON ACCORDION
+   ============================================================ */
+
+.accordion-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  text-align: left;
+  color: inherit;
+}
+
+.accordion-chevron {
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+  color: var(--text-muted);
+}
+
+.accordion-toggle[aria-expanded="true"] .accordion-chevron {
+  transform: rotate(180deg);
+}
+
+.accordion-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s ease;
+  overflow: hidden;
+}
+
+.accordion-body.is-open {
+  grid-template-rows: 1fr;
+}
+
+.accordion-inner {
+  overflow: hidden;
+}
+
+/* ============================================================
+   BLUE GLOW BUTTON
+   ============================================================ */
+
+.btn-blue {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, var(--blue-primary), var(--blue-dim));
+  color: #fff;
+  font-weight: 600;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  transition: box-shadow 0.3s ease, transform 0.2s ease, opacity 0.2s ease;
+  text-decoration: none;
+}
+
+.btn-blue:hover {
+  box-shadow: 0 0 24px rgba(59, 130, 246, 0.4);
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: transparent;
+  color: var(--text-subtle);
+  font-weight: 600;
+  border-radius: 8px;
+  border: 1px solid var(--dark-border);
+  transition: border-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+  text-decoration: none;
+}
+
+.btn-outline:hover {
+  border-color: var(--blue-primary);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+/* ============================================================
+   SECTION DIVIDER
+   ============================================================ */
+
+.section-divider {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--dark-border), transparent);
+  margin: 0;
+}
+
+/* ============================================================
+   HERO BACKGROUND GLOW
+   ============================================================ */
+
+.hero-glow {
+  position: absolute;
+  top: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 600px;
+  background: radial-gradient(ellipse, rgba(59, 130, 246, 0.06) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-glow-left {
+  position: absolute;
+  top: 100px;
+  left: -200px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(ellipse, rgba(59, 130, 246, 0.04) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}

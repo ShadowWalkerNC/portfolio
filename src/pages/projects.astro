@@ -13,11 +13,13 @@ const categories = [
 ];
 ---
 
-<BaseLayout title="Projects — ShadowWalkerNC" description="All projects by ShadowWalkerNC — food tech, facility ops, dev tools, and experimental work.">
-  <div class="max-w-6xl mx-auto px-6 pt-28 pb-20">
-    <h1 class="text-5xl font-bold mb-4">Projects</h1>
-    <p class="text-gray-400 text-lg mb-16 max-w-2xl">
-      Everything I'm building — a food-tech ecosystem, a facility ops platform, dev tools, and experimental engines.
+<BaseLayout title="Projects — Nate Cowperthwaite" description="All projects by Nate Cowperthwaite — food tech, facility ops, dev tools, and experimental work.">
+  <div class="max-w-6xl mx-auto px-6 pt-28 pb-24">
+
+    <p class="font-mono text-xs uppercase tracking-widest mb-3" style="color: var(--blue-primary);">All Work</p>
+    <h1 class="text-5xl font-extrabold mb-4 text-gradient-blue-white">Projects</h1>
+    <p class="text-lg mb-16 max-w-2xl" style="color: var(--text-subtle);">
+      A food-tech ecosystem, a facility ops platform, dev tools, and experimental engines.
       Each product is AI-native and MCP-connected.
     </p>
 
@@ -25,9 +27,9 @@ const categories = [
       const items = all.filter(p => p.data.category === cat.key);
       if (items.length === 0) return null;
       return (
-        <section class="mb-16">
-          <h2 class="text-2xl font-bold mb-6 text-gray-200">{cat.label}</h2>
-          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <section class="mb-20">
+          <h2 class="text-2xl font-bold mb-8" style="color: #CBD5E1;">{cat.label}</h2>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 stagger-children">
             {items.map(p => <ProjectCard project={p} />)}
           </div>
         </section>

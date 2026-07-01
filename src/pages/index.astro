@@ -13,57 +13,76 @@ const stack = [
 ];
 ---
 
-<BaseLayout title="ShadowWalkerNC — Cook. Builder. Founder.">
+<BaseLayout title="Nate Cowperthwaite — Cook. Builder. Founder.">
+
   <!-- HERO -->
-  <section class="min-h-screen flex flex-col justify-center px-6 pt-24 pb-16 max-w-6xl mx-auto">
-    <p class="text-brand-purple font-mono text-sm mb-4 tracking-widest uppercase">Bangor, Maine</p>
-    <h1 class="text-5xl sm:text-7xl font-bold leading-tight tracking-tight">
-      Cook.<br />
-      Builder.<br />
-      <span class="text-brand-purple">Founder.</span>
-    </h1>
-    <p class="mt-6 text-gray-400 text-lg max-w-xl leading-relaxed">
-      10+ years in professional kitchens. Self-taught developer since 2017.
-      Building the software food operations actually need — AI-native from the ground up.
-    </p>
-    <div class="mt-8 flex flex-wrap gap-4">
-      <a
-        href="/projects"
-        class="px-6 py-3 bg-brand-purple text-white font-semibold rounded-lg hover:bg-brand-purple/80 transition"
-      >
-        See the Work
-      </a>
-      <a
-        href="/contact"
-        class="px-6 py-3 border border-brand-border text-gray-300 font-semibold rounded-lg hover:border-brand-purple hover:text-white transition"
-      >
-        Get in Touch
-      </a>
+  <section class="relative min-h-screen flex flex-col justify-center px-6 pt-24 pb-16 max-w-6xl mx-auto overflow-hidden">
+    <div class="hero-glow"></div>
+    <div class="hero-glow-left"></div>
+
+    <div class="relative z-10">
+      <p class="font-mono text-sm mb-5 tracking-widest uppercase animate-slide-down" style="color: var(--blue-bright);">
+        Bangor, Maine
+      </p>
+
+      <h1 class="text-5xl sm:text-7xl font-extrabold leading-tight tracking-tight animate-slide-up">
+        Cook.<br />
+        Builder.<br />
+        <span class="text-gradient-blue">Founder.</span>
+      </h1>
+
+      <p class="mt-6 text-lg max-w-xl leading-relaxed animate-fade-in" style="color: var(--text-subtle); animation-delay: 200ms;">
+        10+ years in professional kitchens. Self-taught developer since 2017.
+        Building the software food operations actually need — AI-native from the ground up.
+      </p>
+
+      <div class="mt-8 flex flex-wrap gap-4 animate-fade-in" style="animation-delay: 350ms;">
+        <a href="/projects" class="btn-blue">See the Work</a>
+        <a href="/contact" class="btn-outline">Get in Touch</a>
+      </div>
     </div>
   </section>
 
+  <hr class="section-divider" />
+
   <!-- ABOUT -->
-  <section class="px-6 py-20 max-w-6xl mx-auto border-t border-brand-border">
-    <h2 class="text-3xl font-bold mb-8">Who I Am</h2>
-    <div class="grid md:grid-cols-2 gap-10 text-gray-400 leading-relaxed">
-      <div>
-        <p class="mb-4">
-          I spent over a decade working every station in professional kitchens — from prep cook to line lead.
-          Then I started noticing how broken the software side of food operations was, and started building the fix.
+  <section class="px-6 py-24 max-w-6xl mx-auto">
+    <p class="font-mono text-xs uppercase tracking-widest mb-3" style="color: var(--blue-primary);">About</p>
+    <h2 class="text-3xl sm:text-4xl font-bold mb-10 text-gradient-blue-white">Who I Am</h2>
+
+    <div class="grid md:grid-cols-2 gap-10 leading-relaxed" style="color: var(--text-subtle);">
+      <div class="animate-slide-up">
+        <p class="mb-5">
+          I'm Nate Cowperthwaite — born and raised in Ellsworth, Maine, now building in Bangor.
+          I spent over a decade working every station in professional kitchens, from prep cook to line lead,
+          until I started noticing how broken the software side of food operations really was.
+          So I started building the fix.
         </p>
-        <p>
-          I'm a self-taught developer building a vertically integrated food-tech ecosystem:
+        <p class="mb-5">
+          I'm a self-taught developer constructing a vertically integrated food-tech ecosystem:
           4 products, 9 MCP servers, one AI-native network.
           Everything I'm building will run in my own kitchen when
-          <span class="text-white font-medium">Half Baked Café & Bakehouse</span> opens in 2027.
+          <span class="font-semibold" style="color: #E2E8F0;">Half Baked Café & Bakehouse</span> opens in 2027.
+        </p>
+        <p>
+          When the café opens, the tech will already be live and battle-tested.
+          I'm not building software for investors — I'm building it for operators,
+          because I am one.
         </p>
       </div>
-      <div>
-        <p class="mb-4">
-          I'm a Concrete Random thinker — I pattern-match across domains most people keep separate:
-          kitchen ops, software architecture, AI tooling.
+      <div class="animate-slide-up" style="animation-delay: 150ms;">
+        <p class="mb-5">
+          I'm a <span class="font-semibold" style="color: #E2E8F0;">Concrete Random thinker</span> —
+          I pattern-match across domains most people keep separate:
+          kitchen ops, software architecture, AI tooling, systems design.
+          Give me a hard problem and I'll find the angle nobody tried yet.
         </p>
-        <p class="text-brand-purple font-mono text-sm">
+        <p class="mb-5">
+          My aesthetic is <span class="font-semibold" style="color: #E2E8F0;">Grit & Grace</span> —
+          the craft is serious, the work is real, but it doesn't have to be ugly.
+          Precision with soul. That's what I build.
+        </p>
+        <p class="font-mono text-sm" style="color: var(--blue-bright);">
           Build for operators, not investors.<br />
           Ship real things that run in real kitchens.
         </p>
@@ -71,26 +90,36 @@ const stack = [
     </div>
   </section>
 
+  <hr class="section-divider" />
+
   <!-- STACK -->
-  <section class="px-6 py-20 max-w-6xl mx-auto border-t border-brand-border">
-    <h2 class="text-3xl font-bold mb-8">Stack</h2>
-    <div class="flex flex-wrap gap-3">
+  <section class="px-6 py-24 max-w-6xl mx-auto">
+    <p class="font-mono text-xs uppercase tracking-widest mb-3" style="color: var(--blue-primary);">Tech</p>
+    <h2 class="text-3xl sm:text-4xl font-bold mb-10 text-gradient-blue-white">Stack</h2>
+    <div class="flex flex-wrap gap-3 stagger-children">
       {stack.map(s => (
-        <span class="text-sm font-mono bg-brand-card border border-brand-border text-gray-300 px-3 py-1.5 rounded-lg">
+        <span class="animate-fade-in text-sm font-mono px-3 py-1.5 rounded-lg"
+          style="background: var(--dark-card); border: 1px solid var(--dark-border); color: #CBD5E1;">
           {s}
         </span>
       ))}
     </div>
   </section>
 
+  <hr class="section-divider" />
+
   <!-- FEATURED PROJECTS -->
-  <section class="px-6 py-20 max-w-6xl mx-auto border-t border-brand-border">
-    <div class="flex items-center justify-between mb-8">
-      <h2 class="text-3xl font-bold">Featured Projects</h2>
-      <a href="/projects" class="text-sm text-brand-purple hover:text-white transition font-mono">View all →</a>
+  <section class="px-6 py-24 max-w-6xl mx-auto">
+    <div class="flex items-center justify-between mb-10">
+      <div>
+        <p class="font-mono text-xs uppercase tracking-widest mb-3" style="color: var(--blue-primary);">Work</p>
+        <h2 class="text-3xl sm:text-4xl font-bold text-gradient-blue-white">Featured Projects</h2>
+      </div>
+      <a href="/projects" class="text-sm font-mono transition" style="color: var(--blue-primary);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--blue-primary)'">View all →</a>
     </div>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 stagger-children">
       {featured.map(p => <ProjectCard project={p} />)}
     </div>
   </section>
+
 </BaseLayout>

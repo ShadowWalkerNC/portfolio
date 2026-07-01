@@ -1,6 +1,6 @@
 ---
 const { project } = Astro.props;
-const { name, emoji, tagline, description, forWho, story, status, stack, github, details } = project.data;
+const { name, emoji, tagline, description, forWho, story, status, stack, github, details, detailedSpecs } = project.data;
 
 const statusColor: Record<string, string> = {
   'In Dev':         'background: rgba(234,179,8,0.15); color: #FDE047; border: 1px solid rgba(234,179,8,0.3);',
@@ -11,7 +11,7 @@ const statusColor: Record<string, string> = {
 };
 
 const cardId = `card-${Math.random().toString(36).slice(2, 9)}`;
-const hasAccordion = !!(forWho || story || details);
+const hasAccordion = !!(story || details || detailedSpecs);
 ---
 
 <article class="project-card glass-card flex flex-col gap-0 animate-fade-in">
@@ -36,6 +36,14 @@ const hasAccordion = !!(forWho || story || details);
       </span>
     </div>
 
+    <!-- Who It's For badge — visible at card level, not hidden in accordion -->
+    {forWho && (
+      <div class="for-who-badge" aria-label="Who this is for">
+        <span class="for-who-icon" aria-hidden="true">👤</span>
+        <span class="for-who-text">{forWho}</span>
+      </div>
+    )}
+
     <!-- Description: plain-English first -->
     <p class="text-sm leading-relaxed" style="color: var(--text-body);">{description}</p>
 
@@ -48,7 +56,7 @@ const hasAccordion = !!(forWho || story || details);
       ))}
     </div>
 
-    <!-- Chevron accordion -->
+    <!-- Chevron accordion — story, details, detailedSpecs -->
     {hasAccordion && (
       <div class="accordion-wrapper">
         <button
@@ -61,7 +69,7 @@ const hasAccordion = !!(forWho || story || details);
             <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--blue-vivid); flex-shrink:0;">
               <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
             </svg>
-            <span class="text-xs font-mono uppercase tracking-widest" style="color: var(--blue-bright);">Story · Who It's For · Details</span>
+            <span class="text-xs font-mono uppercase tracking-widest" style="color: var(--blue-bright);">Story · How It's Built · Deep Dive</span>
           </span>
           <svg class="accordion-chevron" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="6 9 12 15 18 9"></polyline>
@@ -71,13 +79,6 @@ const hasAccordion = !!(forWho || story || details);
         <div class="accordion-body" id={`${cardId}-body`} role="region" aria-labelledby={`${cardId}-btn`}>
           <div class="accordion-inner">
             <div class="accordion-content">
-
-              {forWho && (
-                <div class="for-who-block">
-                  <p class="detail-label">👤 Who It's For</p>
-                  <p class="detail-text">{forWho}</p>
-                </div>
-              )}
 
               {story && (
                 <div class="story-block">
@@ -90,6 +91,13 @@ const hasAccordion = !!(forWho || story || details);
                 <div class="tech-details-block">
                   <p class="detail-label">⚙️ How It's Built</p>
                   <p class="detail-text">{details}</p>
+                </div>
+              )}
+
+              {detailedSpecs && (
+                <div class="detailed-specs-block">
+                  <p class="detail-label">⚡ Deep Dive — Technical Specs</p>
+                  <p class="detail-text detail-text-specs">{detailedSpecs}</p>
                 </div>
               )}
 
@@ -135,6 +143,38 @@ const hasAccordion = !!(forWho || story || details);
     height: 4px;
   }
 
+  /* ---- Who It's For badge ---- */
+  .for-who-badge {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 0.55rem 0.85rem;
+    border-radius: 10px;
+    background: rgba(14, 165, 233, 0.07);
+    border: 1px solid rgba(14, 165, 233, 0.18);
+    border-left: 3px solid var(--blue-electric);
+    transition: background 0.25s ease, border-color 0.25s ease;
+  }
+
+  .project-card:hover .for-who-badge {
+    background: rgba(14, 165, 233, 0.11);
+    border-color: rgba(14, 165, 233, 0.3);
+  }
+
+  .for-who-icon {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    flex-shrink: 0;
+  }
+
+  .for-who-text {
+    font-size: 0.775rem;
+    line-height: 1.6;
+    color: var(--text-subtle);
+    font-style: italic;
+  }
+
+  /* ---- Tech badges ---- */
   .tech-badge {
     background: rgba(14, 45, 80, 0.8);
     border: 1px solid rgba(14, 165, 233, 0.22);
@@ -148,6 +188,7 @@ const hasAccordion = !!(forWho || story || details);
     background: rgba(14, 45, 80, 1);
   }
 
+  /* ---- GitHub link ---- */
   .github-link {
     color: var(--text-muted);
   }
@@ -156,6 +197,7 @@ const hasAccordion = !!(forWho || story || details);
     color: var(--blue-vivid);
   }
 
+  /* ---- Accordion ---- */
   .accordion-wrapper {
     border-top: 1px solid var(--dark-border);
     padding-top: 0.25rem;
@@ -190,6 +232,28 @@ const hasAccordion = !!(forWho || story || details);
     font-size: 0.8rem;
     line-height: 1.7;
     color: var(--text-body);
+  }
+
+  /* ---- Deep Dive / detailedSpecs block ---- */
+  .detailed-specs-block {
+    padding: 0.75rem;
+    border-radius: 8px;
+    background: rgba(7, 24, 40, 0.6);
+    border: 1px solid rgba(56, 189, 248, 0.12);
+    border-left: 3px solid rgba(56, 189, 248, 0.4);
+  }
+
+  .detailed-specs-block .detail-label {
+    color: var(--blue-vivid);
+  }
+
+  .detail-text-specs {
+    font-size: 0.75rem;
+    font-family: 'Fira Code', monospace;
+    line-height: 1.75;
+    color: var(--text-subtle);
+    white-space: pre-wrap;
+    word-break: break-word;
   }
 </style>
 

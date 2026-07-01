@@ -1,0 +1,90 @@
+---
+/**
+ * ProjectGroup.astro
+ * Wraps a set of related projects into a visually unified ecosystem section.
+ *
+ * Props:
+ *   label      — short ecosystem label shown in the section header  (e.g. "Culinary Ecosystem")
+ *   icon       — emoji or icon string shown beside the label          (e.g. "🌐")
+ *   description — one-line description of what ties the projects together
+ *   projects   — array of Astro content collection entries to render as cards
+ */
+import ProjectCard from './ProjectCard.astro';
+
+const { label, icon = '🔗', description, projects } = Astro.props;
+---
+
+<section class="project-group" aria-label={label}>
+
+  <!-- Group header -->
+  <div class="section-group-header">
+    <span class="group-icon" aria-hidden="true">{icon}</span>
+    <h2 class="group-label">{label}</h2>
+    <div class="section-group-line"></div>
+  </div>
+
+  <!-- Ecosystem banner -->
+  {description && (
+    <div class="ecosystem-banner" role="note">
+      <!-- Subtle food-accent background emoji -->
+      <span class="food-accent-bg" style="top: -10px; right: 24px; font-size: 7rem;" aria-hidden="true">
+        {icon}
+      </span>
+      <p class="ecosystem-description">{description}</p>
+    </div>
+  )}
+
+  <!-- Project cards grid -->
+  <div class="project-group-grid">
+    {projects.map((project: any) => (
+      <ProjectCard project={project} />
+    ))}
+  </div>
+
+</section>
+
+<style>
+  .project-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 3.5rem;
+  }
+
+  .group-icon {
+    font-size: 1.4rem;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .group-label {
+    font-size: 1rem;
+    font-family: 'Fira Code', monospace;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--blue-bright);
+    white-space: nowrap;
+  }
+
+  .ecosystem-description {
+    position: relative;
+    z-index: 1;
+    font-size: 0.875rem;
+    line-height: 1.7;
+    color: var(--text-body);
+    max-width: 72ch;
+  }
+
+  .project-group-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.25rem;
+  }
+
+  @media (max-width: 640px) {
+    .project-group-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

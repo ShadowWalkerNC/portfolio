@@ -1,0 +1,11 @@
+{
+  "name": "Shoreline v5",
+  "emoji": "🏠🔨",
+  "tagline": "Full rebuild — multi-facility SaaS platform",
+  "description": "Ground-up rebuild of Shoreline. React 18 + Vite + TypeScript + Tailwind, PostgreSQL + Prisma backend, Next.js SaaS layer. Built to scale to a real multi-facility product. Replaces Shoreline v4.",
+  "status": "Active Rebuild",
+  "category": "facility-ops",
+  "stack": ["TypeScript", "React", "Vite", "Tailwind", "PostgreSQL", "Prisma", "Railway"],
+  "github": "https://github.com/ShadowWalkerNC/shoreline-v5",
+  "featured": true
+}

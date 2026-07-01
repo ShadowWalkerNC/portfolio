@@ -1,0 +1,11 @@
+{
+  "name": "Post-Pilot",
+  "emoji": "🚀",
+  "tagline": "AI F&B social media SaaS",
+  "description": "AI-generated food & beverage social posts → Facebook & Instagram via Meta Graph API. Flask SaaS with Stripe billing (3 plans), magic-link auth, Vercel Cron scheduler.",
+  "status": "In Dev",
+  "category": "food-tech",
+  "stack": ["Python", "Flask", "Supabase", "Stripe"],
+  "github": "https://github.com/ShadowWalkerNC/Post-Pilot",
+  "featured": true
+}

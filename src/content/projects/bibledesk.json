@@ -1,0 +1,11 @@
+{
+  "name": "BibleDesk",
+  "emoji": "📖",
+  "tagline": "AI Bible study — Hebrew/Greek, 5-dimension answers",
+  "description": "Free AI-powered Bible study platform. Ask any question — get structured answers across 5 dimensions: Scripture analysis, historical context, original Hebrew/Greek, theological meaning, and practical application.",
+  "status": "In Dev",
+  "category": "dev-tools",
+  "stack": ["React", "Supabase"],
+  "github": "https://github.com/ShadowWalkerNC/BibleDesk",
+  "featured": false
+}

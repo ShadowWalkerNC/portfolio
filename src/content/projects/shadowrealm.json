@@ -1,0 +1,11 @@
+{
+  "name": "ShadowRealm",
+  "emoji": "🌑",
+  "tagline": "Self-hosted AI workspace",
+  "description": "Chat, agents, research, docs, tasks, and calendar — fully self-hosted AI workspace.",
+  "status": "In Dev",
+  "category": "dev-tools",
+  "stack": ["Python", "JavaScript"],
+  "github": "https://github.com/ShadowWalkerNC/ShadowRealm",
+  "featured": false
+}

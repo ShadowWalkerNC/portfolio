@@ -1,0 +1,11 @@
+{
+  "name": "Shoreline",
+  "emoji": "🏠",
+  "tagline": "Senior living facility operations platform (v4 stable)",
+  "description": "Resident records, dietary management, menu planning, production worksheets, maintenance ticketing, staff scheduling, budget tracking, multi-role access. v4 stable. Superseded by Shoreline v5.",
+  "status": "Stable",
+  "category": "facility-ops",
+  "stack": ["JavaScript"],
+  "github": "https://github.com/ShadowWalkerNC/Shoreline",
+  "featured": false
+}

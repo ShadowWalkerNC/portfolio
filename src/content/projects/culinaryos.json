@@ -1,0 +1,11 @@
+{
+  "name": "CulinaryOS",
+  "emoji": "🌐",
+  "tagline": "Full-stack restaurant SaaS OS",
+  "description": "POS · KDS · Inventory · Payments · Online Ordering · Reservations · Scheduling · Reporting · AI hub via MCP. Hub of the entire ecosystem.",
+  "status": "In Dev",
+  "category": "food-tech",
+  "stack": ["TypeScript", "React", "Hono", "Supabase", "Turborepo"],
+  "github": "https://github.com/ShadowWalkerNC/CulinaryOS",
+  "featured": true
+}

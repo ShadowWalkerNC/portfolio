@@ -1,0 +1,96 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+
+const allProjects = await getCollection('projects');
+const featured = allProjects.filter(p => p.data.featured);
+
+const stack = [
+  'TypeScript', 'Python', 'Kotlin', 'JavaScript',
+  'React', 'Next.js', 'Tailwind', 'Vite', 'Flask',
+  'Supabase', 'Vercel', 'Node.js', 'MCP',
+];
+---
+
+<BaseLayout title="ShadowWalkerNC — Cook. Builder. Founder.">
+  <!-- HERO -->
+  <section class="min-h-screen flex flex-col justify-center px-6 pt-24 pb-16 max-w-6xl mx-auto">
+    <p class="text-brand-purple font-mono text-sm mb-4 tracking-widest uppercase">Bangor, Maine</p>
+    <h1 class="text-5xl sm:text-7xl font-bold leading-tight tracking-tight">
+      Cook.<br />
+      Builder.<br />
+      <span class="text-brand-purple">Founder.</span>
+    </h1>
+    <p class="mt-6 text-gray-400 text-lg max-w-xl leading-relaxed">
+      10+ years in professional kitchens. Self-taught developer since 2017.
+      Building the software food operations actually need — AI-native from the ground up.
+    </p>
+    <div class="mt-8 flex flex-wrap gap-4">
+      <a
+        href="/projects"
+        class="px-6 py-3 bg-brand-purple text-white font-semibold rounded-lg hover:bg-brand-purple/80 transition"
+      >
+        See the Work
+      </a>
+      <a
+        href="/contact"
+        class="px-6 py-3 border border-brand-border text-gray-300 font-semibold rounded-lg hover:border-brand-purple hover:text-white transition"
+      >
+        Get in Touch
+      </a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="px-6 py-20 max-w-6xl mx-auto border-t border-brand-border">
+    <h2 class="text-3xl font-bold mb-8">Who I Am</h2>
+    <div class="grid md:grid-cols-2 gap-10 text-gray-400 leading-relaxed">
+      <div>
+        <p class="mb-4">
+          I spent over a decade working every station in professional kitchens — from prep cook to line lead.
+          Then I started noticing how broken the software side of food operations was, and started building the fix.
+        </p>
+        <p>
+          I'm a self-taught developer building a vertically integrated food-tech ecosystem:
+          4 products, 9 MCP servers, one AI-native network.
+          Everything I'm building will run in my own kitchen when
+          <span class="text-white font-medium">Half Baked Café & Bakehouse</span> opens in 2027.
+        </p>
+      </div>
+      <div>
+        <p class="mb-4">
+          I'm a Concrete Random thinker — I pattern-match across domains most people keep separate:
+          kitchen ops, software architecture, AI tooling.
+        </p>
+        <p class="text-brand-purple font-mono text-sm">
+          Build for operators, not investors.<br />
+          Ship real things that run in real kitchens.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- STACK -->
+  <section class="px-6 py-20 max-w-6xl mx-auto border-t border-brand-border">
+    <h2 class="text-3xl font-bold mb-8">Stack</h2>
+    <div class="flex flex-wrap gap-3">
+      {stack.map(s => (
+        <span class="text-sm font-mono bg-brand-card border border-brand-border text-gray-300 px-3 py-1.5 rounded-lg">
+          {s}
+        </span>
+      ))}
+    </div>
+  </section>
+
+  <!-- FEATURED PROJECTS -->
+  <section class="px-6 py-20 max-w-6xl mx-auto border-t border-brand-border">
+    <div class="flex items-center justify-between mb-8">
+      <h2 class="text-3xl font-bold">Featured Projects</h2>
+      <a href="/projects" class="text-sm text-brand-purple hover:text-white transition font-mono">View all →</a>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {featured.map(p => <ProjectCard project={p} />)}
+    </div>
+  </section>
+</BaseLayout>

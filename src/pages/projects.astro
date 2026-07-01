@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+
+const all = await getCollection('projects');
+
+const categories = [
+  { key: 'food-tech',      label: '🍽️ Food & Restaurant Tech' },
+  { key: 'facility-ops',  label: '🏠 Senior Living & Facility Ops' },
+  { key: 'dev-tools',     label: '🧱 Dev Platforms & Tools' },
+  { key: 'experimental',  label: '⚙️ Experimental & Engine Work' },
+];
+---
+
+<BaseLayout title="Projects — ShadowWalkerNC" description="All projects by ShadowWalkerNC — food tech, facility ops, dev tools, and experimental work.">
+  <div class="max-w-6xl mx-auto px-6 pt-28 pb-20">
+    <h1 class="text-5xl font-bold mb-4">Projects</h1>
+    <p class="text-gray-400 text-lg mb-16 max-w-2xl">
+      Everything I'm building — a food-tech ecosystem, a facility ops platform, dev tools, and experimental engines.
+      Each product is AI-native and MCP-connected.
+    </p>
+
+    {categories.map(cat => {
+      const items = all.filter(p => p.data.category === cat.key);
+      if (items.length === 0) return null;
+      return (
+        <section class="mb-16">
+          <h2 class="text-2xl font-bold mb-6 text-gray-200">{cat.label}</h2>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {items.map(p => <ProjectCard project={p} />)}
+          </div>
+        </section>
+      );
+    })}
+  </div>
+</BaseLayout>

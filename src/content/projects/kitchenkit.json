@@ -1,0 +1,11 @@
+{
+  "name": "KitchenKit",
+  "emoji": "🍳",
+  "tagline": "Recipe manager · meal planner · pantry · nutrition",
+  "description": "Ratio Blueprint Engine, mise en place, prep lists. Standalone for home cooks, caterers & personal chefs. Bridges into CulinaryOS via kitchenkit-mcp. Merges RecipeOS + PrepFlow.",
+  "status": "In Dev",
+  "category": "food-tech",
+  "stack": ["TypeScript", "Next.js", "Supabase", "MCP"],
+  "github": "https://github.com/ShadowWalkerNC/KitchenKit",
+  "featured": true
+}

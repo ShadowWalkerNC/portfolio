@@ -1,0 +1,11 @@
+{
+  "name": "NexCMS",
+  "emoji": "🖥️",
+  "tagline": "Restaurant website builder — no dev required",
+  "description": "Drag-and-drop restaurant site builder. Future: optional CulinaryOS live menu feed.",
+  "status": "In Dev",
+  "category": "food-tech",
+  "stack": ["React", "Supabase"],
+  "github": "https://github.com/ShadowWalkerNC/NexCMS",
+  "featured": false
+}

@@ -1,0 +1,11 @@
+{
+  "name": "ASCILINE-2.0",
+  "emoji": "🖥️",
+  "tagline": "Real-time ASCII/pixel video rendering engine",
+  "description": "Streams video as text frames over WebSockets. Adaptive codec (RAW/ZLIB/DELTA, ~375× wire savings) · 5 color modes up to 16M · zero GPU required · LAN streaming support.",
+  "status": "In Dev",
+  "category": "experimental",
+  "stack": ["Python", "FastAPI", "JavaScript", "WebSockets"],
+  "github": "https://github.com/ShadowWalkerNC/ASCILINE-2.0",
+  "featured": false
+}

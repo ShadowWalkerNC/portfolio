@@ -1,0 +1,11 @@
+{
+  "name": "Cheezies Gourmet",
+  "emoji": "🧀",
+  "tagline": "Gourmet food brand web presence",
+  "description": "Brand website and online presence for Cheezies Gourmet.",
+  "status": "In Dev",
+  "category": "food-tech",
+  "stack": ["JavaScript"],
+  "github": "https://github.com/ShadowWalkerNC/Cheezies-Gourmet",
+  "featured": false
+}

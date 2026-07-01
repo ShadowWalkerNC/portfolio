@@ -1,0 +1,11 @@
+{
+  "name": "CulinaryOps",
+  "emoji": "📊",
+  "tagline": "B2B back-of-house ops SaaS",
+  "description": "Labor cost, food cost, waste tracking, vendor & PO management, live KPI dashboard. Standalone for GMs, operators & consultants. Bridges into CulinaryOS via culinaryops-mcp.",
+  "status": "In Dev",
+  "category": "food-tech",
+  "stack": ["TypeScript", "Next.js", "Supabase", "MCP"],
+  "github": "https://github.com/ShadowWalkerNC/CulinaryOps",
+  "featured": true
+}

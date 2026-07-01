@@ -2,42 +2,326 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="Contact — Nate Cowperthwaite" description="Get in touch with Nate Cowperthwaite." side="dev">
-  <main class="section">
-    <h1 class="section-heading reveal">Get in Touch</h1>
-    <p class="section-sub reveal">Have a project, question, or collaboration in mind? Reach out.</p>
-    <div class="contact-grid">
-      <a href="mailto:shadowwalkernc@gmail.com" class="contact-card card reveal">
-        <div class="contact-icon">&#9993;&#65039;</div>
-        <div class="contact-label">Email</div>
-        <div class="contact-value">shadowwalkernc@gmail.com</div>
-      </a>
-      <a href="https://github.com/ShadowWalkerNC" target="_blank" rel="noopener" class="contact-card card reveal">
-        <div class="contact-icon">&#128049;</div>
-        <div class="contact-label">GitHub</div>
-        <div class="contact-value">ShadowWalkerNC</div>
-      </a>
-    </div>
+<BaseLayout
+  title="Contact — Nate Cowperthwaite"
+  description="Get in touch with Nate Cowperthwaite — developer and chef. Open to collaborations, culinary tech, and interesting problems."
+  side="dev"
+>
+  <main>
+
+    <!-- ===== HERO ===== -->
+    <section class="contact-hero hero-gradient-bg">
+      <div class="orb-container" aria-hidden="true">
+        <div class="orb orb-blue"></div>
+        <div class="orb orb-indigo"></div>
+      </div>
+      <div class="contact-hero-inner">
+        <div class="animate-fade-in-up">
+          <span class="badge badge-blue">&#128172; Contact</span>
+        </div>
+        <h1 class="contact-hero-title animate-fade-in-up" style="animation-delay:0.07s">
+          Let's build something<br />
+          <span class="shimmer-text">worth shipping.</span>
+        </h1>
+        <p class="contact-hero-sub animate-fade-in-up" style="animation-delay:0.14s">
+          Whether you have a project idea, a collaboration in mind, or just want to talk
+          culinary tech — I'm genuinely interested in hearing it.
+          Best way to reach me is email; I check GitHub notifications too.
+        </p>
+        <p class="contact-hero-back animate-fade-in-up" style="animation-delay:0.20s">
+          <a href="/dev" class="inline-link">&larr; Back to Dev Home</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== CONTACT CARDS ===== -->
+    <section class="section">
+      <h2 class="section-heading reveal">Reach Out</h2>
+      <p class="section-sub reveal">Two reliable ways to get in touch.</p>
+
+      <div class="contact-grid stagger">
+
+        <!-- Email -->
+        <a
+          href="mailto:shadowwalkernc@gmail.com"
+          class="contact-card card card-glow-blue reveal"
+          aria-label="Send an email to Nate"
+        >
+          <div class="contact-card-icon" aria-hidden="true">&#9993;&#65039;</div>
+          <div class="contact-card-body">
+            <div class="contact-card-label">Email</div>
+            <div class="contact-card-value">shadowwalkernc@gmail.com</div>
+            <p class="contact-card-note">
+              Best for project inquiries, collabs, and anything that needs a real conversation.
+              I try to reply within a day or two.
+            </p>
+          </div>
+          <div class="contact-card-cta">Send a message &rarr;</div>
+        </a>
+
+        <!-- GitHub -->
+        <a
+          href="https://github.com/ShadowWalkerNC"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="contact-card card card-glow-blue reveal"
+          aria-label="View Nate's GitHub profile"
+        >
+          <div class="contact-card-icon" aria-hidden="true">&#128049;</div>
+          <div class="contact-card-body">
+            <div class="contact-card-label">GitHub</div>
+            <div class="contact-card-value">ShadowWalkerNC</div>
+            <p class="contact-card-note">
+              Browse active repos, open an issue, or follow along on whatever I'm shipping.
+              Pull requests and honest feedback welcome.
+            </p>
+          </div>
+          <div class="contact-card-cta">View profile &rarr;</div>
+        </a>
+
+      </div>
+    </section>
+
+    <div class="divider-animated"></div>
+
+    <!-- ===== WHAT I'M OPEN TO ===== -->
+    <section class="section open-section">
+      <h2 class="section-heading reveal">What I'm Open To</h2>
+      <p class="section-sub reveal">
+        Still cooking full-time — dev is a serious side project. Here's where collaboration makes sense.
+      </p>
+
+      <div class="open-grid stagger">
+
+        <div class="open-card card reveal">
+          <div class="open-card-icon">&#127860;</div>
+          <h3 class="open-card-title">Culinary Tech</h3>
+          <p class="open-card-text">
+            If you're building for kitchens, restaurants, or food operations — I've lived that side
+            and can bring real insight. Recipe management, kitchen ops tools, menu systems, you name it.
+          </p>
+          <div class="open-chips">
+            <span class="kit-chip">Kitchen Ops</span>
+            <span class="kit-chip">Recipe Systems</span>
+            <span class="kit-chip">Food Tech</span>
+          </div>
+        </div>
+
+        <div class="open-card card reveal">
+          <div class="open-card-icon">&#129302;</div>
+          <h3 class="open-card-title">Agentic / AI Projects</h3>
+          <p class="open-card-text">
+            I build with MCP, AI APIs, and agentic workflows daily. If you're exploring that space
+            and need a collaborator who can actually ship something, let's talk.
+          </p>
+          <div class="open-chips">
+            <span class="kit-chip">MCP</span>
+            <span class="kit-chip">AI APIs</span>
+            <span class="kit-chip">Automation</span>
+          </div>
+        </div>
+
+        <div class="open-card card reveal">
+          <div class="open-card-icon">&#128295;</div>
+          <h3 class="open-card-title">Side-Project Collabs</h3>
+          <p class="open-card-text">
+            Small teams, interesting problems, and building things that actually get used.
+            Not looking for big corporate contracts — looking for builders with a real problem to solve.
+          </p>
+          <div class="open-chips">
+            <span class="kit-chip">Open Source</span>
+            <span class="kit-chip">Small Teams</span>
+            <span class="kit-chip">Builders</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== NOT OPEN TO (small honest note) ===== -->
+    <section class="section not-open-section">
+      <div class="not-open-inner reveal">
+        <span class="badge badge-blue" style="margin-bottom:0.75rem">&#128683; Not the right fit</span>
+        <p class="not-open-text">
+          Not currently looking for full-time roles, agency work, or anything that pulls me away from
+          the kitchen. If your pitch starts with "We'd love to have you on our team full-time" —
+          I appreciate it, but the answer is no for now.
+        </p>
+      </div>
+    </section>
+
   </main>
 </BaseLayout>
 
 <style>
+/* ---- Hero ---- */
+.contact-hero {
+  position: relative;
+  padding: 5rem 1.5rem 4rem;
+  overflow: hidden;
+}
+.contact-hero-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+.contact-hero-inner .badge { margin-bottom: 1.25rem; }
+.contact-hero-title {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--text-primary);
+  margin-bottom: 1.25rem;
+}
+.contact-hero-sub {
+  font-size: 1rem;
+  color: var(--text-muted);
+  line-height: 1.75;
+  max-width: 540px;
+  margin-bottom: 1.25rem;
+}
+.contact-hero-back { font-size: 0.88rem; }
+
+/* ---- Contact Cards ---- */
 .contact-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 1rem;
-  max-width: 600px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.25rem;
+  max-width: 720px;
 }
 .contact-card {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 2rem 1.5rem;
+  gap: 0.75rem;
+  padding: 2rem 1.75rem 1.5rem;
   text-decoration: none;
-  text-align: center;
+  cursor: pointer;
+  transition: transform 0.22s cubic-bezier(0.16,1,0.3,1),
+              box-shadow 0.22s ease,
+              border-color 0.22s ease;
 }
-.contact-icon  { font-size: 2rem; }
-.contact-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); }
-.contact-value { font-size: 0.9rem; font-weight: 600; color: var(--accent-blue); }
+.contact-card:hover { transform: translateY(-5px); }
+.contact-card-icon {
+  font-size: 2.4rem;
+  line-height: 1;
+  filter: drop-shadow(0 2px 8px rgba(37,99,235,0.15));
+}
+.contact-card-body { display: flex; flex-direction: column; gap: 0.25rem; flex: 1; }
+.contact-card-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+}
+.contact-card-value {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--accent-blue);
+  margin-bottom: 0.4rem;
+}
+.contact-card-note {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+.contact-card-cta {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--accent-blue);
+  letter-spacing: 0.03em;
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.contact-card:hover .contact-card-cta {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ---- Open To ---- */
+.open-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+.open-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1.75rem 1.5rem;
+}
+.open-card-icon {
+  font-size: 1.8rem;
+  line-height: 1;
+}
+.open-card-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+.open-card-text {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin: 0;
+  flex: 1;
+}
+.open-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.25rem;
+}
+.kit-chip {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  background: var(--bg-surface);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-subtle);
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.kit-chip:hover {
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
+  background: var(--accent-blue-pale);
+}
+
+/* ---- Not Open To ---- */
+.not-open-section { padding-top: 0; }
+.not-open-inner {
+  max-width: 600px;
+  padding: 1.5rem 2rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.not-open-text {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 640px) {
+  .contact-hero { padding: 3.5rem 1rem 2.5rem; }
+  .contact-grid  { grid-template-columns: 1fr; }
+  .open-grid     { grid-template-columns: 1fr; }
+  .not-open-inner { padding: 1.25rem 1.25rem; }
+}
 </style>

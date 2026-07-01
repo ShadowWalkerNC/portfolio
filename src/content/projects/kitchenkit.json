@@ -1,23 +1,23 @@
 {
   "title": "kitchenkit",
   "tagline": "Modular kitchen ops tools — standalone or as MCPs inside CulinaryOS.",
-  "description": "kitchenkit is a suite of focused, role-specific apps for managing kitchen operations — prep tracking, inventory, shift management, and more. Each tool works independently for operators who need just one piece, or connects as an MCP into CulinaryOS for unified hub-level orchestration.",
+  "description": "kitchenkit is a suite of focused, role-specific apps for managing kitchen operations — prep tracking, recipe management, and more. Each tool works independently for operators who need just one piece, or connects as an MCP into CulinaryOS for unified hub-level orchestration.",
   "story": "Not every kitchen needs a full platform. Some just need one tight tool that works. kitchenkit was built to solve that — task-specific apps that respect the way different roles actually use software, designed from the start to snap into CulinaryOS when the operation grows.",
   "forWho": "Kitchen managers, prep cooks, and food service operators who need targeted ops tooling — whether running standalone or inside the CulinaryOS ecosystem.",
   "group": "culinary-ecosystem",
   "category": "Culinary Tech",
   "tags": ["kitchen-ops", "modular", "mcp", "culinaryos", "task-management"],
-  "stack": ["Node.js", "Python", "SQLite", "Railway"],
+  "stack": ["Node.js", "TypeScript", "Supabase", "Turborepo", "pnpm", "Railway"],
   "status": "active",
   "featured": true,
   "links": {
     "github": "https://github.com/ShadowWalkerNC/kitchenkit"
   },
   "detailedSpecs": {
-    "architecture": "Suite of independent micro-apps, each scoped to a specific kitchen role or task domain. Apps expose an MCP-compatible interface so CulinaryOS can connect them as orchestrated modules within the main hub.",
-    "dataFlow": "Standalone: app manages its own data store and surfaces a focused UI per task. As MCP: CulinaryOS calls kitchenkit modules via the MCP layer — task data flows into the shared hub and surfaces in the operator dashboard.",
-    "keyPatterns": ["Role-scoped app isolation — each tool targets a specific user type", "MCP interface layer for CulinaryOS integration", "Standalone-first design — no hub dependency required", "SQLite per-app data stores with optional sync to CulinaryOS core"],
+    "architecture": "pnpm monorepo managed by Turborepo. Apps and MCP modules live in separate workspaces, with shared logic extracted into reusable packages. Supabase handles the data layer. Each MCP module exposes a CulinaryOS-compatible interface for hub integration.",
+    "dataFlow": "Standalone: apps/web surfaces the UI, drawing on packages/prep-engine and packages/ratio-engine for core logic, backed by Supabase. As MCP: mcp/prep-mcp and mcp/recipe-mcp connect to CulinaryOS, routing task data through the hub and into the operator dashboard.",
+    "keyPatterns": ["pnpm workspaces + Turborepo for monorepo orchestration", "Role-scoped MCP modules — each targets a specific kitchen task domain", "Shared engines (prep, ratio) consumed by both the web app and MCP layer", "Standalone-first design — no CulinaryOS dependency required"],
     "deployTarget": "Railway (standalone) or embedded via CulinaryOS MCP layer",
-    "notableFiles": ["apps/prep/index.js", "apps/inventory/index.js", "mcp/adapter.js"]
+    "notableFiles": ["apps/web", "mcp/prep-mcp", "mcp/recipe-mcp", "packages/prep-engine", "packages/ratio-engine", "supabase/"]
   }
 }

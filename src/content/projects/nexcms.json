@@ -1,21 +1,29 @@
 {
   "title": "NexCMS",
-  "tagline": "A lightweight headless CMS built for developers who hate complexity.",
-  "description": "NexCMS is a minimal headless content management system with a clean admin UI, a REST API for content delivery, and a schema-first approach that lets you define your content types in a single config file.",
-  "story": "Every CMS I tried was either too heavy (WordPress), too expensive (Contentful), or too opinionated (Sanity). NexCMS is the CMS I always wanted: define your schema, get an API, done.",
-  "forWho": "Developers building content-driven sites who want the control of a custom backend without the overhead of a full CMS platform.",
-  "category": "Developer Tools",
-  "tags": ["cms", "headless", "rest-api", "schema-first"],
-  "stack": ["Node.js", "Express", "SQLite", "Tailwind CSS"],
-  "status": "wip",
+  "type": "original",
+  "tagline": "Headless CMS with a clean API and a minimal admin UI.",
+  "description": "NexCMS is a lightweight headless content management system with a REST API, a minimal admin dashboard, and flexible content type definitions — designed to be embedded into existing stacks without friction.",
+  "story": "Built out of frustration with CMS tools that either do too much or require too much config to do anything useful. NexCMS starts from a clean API contract and builds up from there.",
+  "journey": "NexCMS came from a recurring pattern — every project I built needed some form of content management, but full CMS platforms were always overkill and raw database access was always too raw. I wanted something that sat cleanly in the middle: a headless API with a minimal admin UI and flexible content types, without the 40-plugin setup. Building it also forced me to think carefully about schema design and API contract stability.",
+  "forWho": "Developers who need a lightweight, embeddable CMS without the overhead of a full platform.",
+  "category": "Dev Tools",
+  "tags": ["cms", "headless", "api", "admin"],
+  "stack": ["Node.js", "Express", "PostgreSQL", "React"],
+  "status": "stable",
   "featured": false,
   "links": {
-    "github": "https://github.com/ShadowWalkerNC/nexcms"
+    "github": "https://github.com/ShadowWalkerNC/NexCMS",
+    "demo": null
   },
   "detailedSpecs": {
-    "architecture": "Express REST API with a schema-defined data layer. Content types are defined in a JSON config; the API auto-generates CRUD endpoints for each type.",
-    "keyPatterns": ["Schema-driven endpoint generation", "SQLite with dynamic table creation per content type", "JWT auth for admin routes", "Webhook triggers on content publish/update"],
-    "deployTarget": "Railway",
-    "notableFiles": ["src/schema-loader.js", "src/api/content-router.js", "src/admin/ui/"]
+    "architecture": "Express REST API with a React admin dashboard. PostgreSQL for content storage with dynamic content type definitions.",
+    "keyPatterns": [
+      "Dynamic content type definitions via API",
+      "REST endpoints for content CRUD",
+      "Minimal React admin UI",
+      "JWT-based API auth"
+    ],
+    "deployTarget": "Any Node.js host",
+    "notableFiles": ["src/api/", "src/admin/", "src/db/schema.sql"]
   }
 }

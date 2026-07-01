@@ -1,21 +1,29 @@
 {
-  "title": "Post-Pilot",
-  "tagline": "Multi-platform social media automation for creators and small businesses.",
-  "description": "Post-Pilot is a content distribution automation tool that pushes a single post to multiple social platforms simultaneously — Instagram, Facebook, Twitter/X, and more — with scheduling, caption variants, and a web dashboard.",
-  "story": "Built out of frustration after manually cross-posting the same content to four platforms every day. The problem wasn't creativity — it was repetition. Post-Pilot eliminates the repetition and lets you focus on the content.",
-  "forWho": "Creators, small business owners, and social media managers who publish to multiple platforms and want to manage it from one place.",
-  "category": "Automation Tools",
-  "tags": ["social-media", "automation", "multi-platform", "scheduling"],
-  "stack": ["Python", "Flask", "Meta Graph API", "Twitter API v2", "APScheduler"],
+  "title": "PostPilot",
+  "type": "original",
+  "tagline": "Social media scheduling and queue management for solo creators.",
+  "description": "PostPilot is a lightweight social media scheduling tool built for solo creators and small teams — queue posts, manage drafts, and track scheduled content across platforms without the enterprise overhead.",
+  "story": "Built for the creator who needs a queue, not a dashboard with 40 analytics panels. PostPilot is intentionally minimal — schedule it, forget it, move on.",
+  "journey": "PostPilot came from a genuine personal need — I kept scheduling posts manually and losing track of drafts across platforms. Most scheduling tools are built for marketing teams and priced accordingly. I wanted something that covered the core loop (draft, schedule, publish) without the noise. It was also a good excuse to work through OAuth flows for multiple platforms in one project.",
+  "forWho": "Solo creators, freelancers, and small teams who need post scheduling without the enterprise price tag or complexity.",
+  "category": "Dev Tools",
+  "tags": ["social", "scheduling", "creator", "queue"],
+  "stack": ["Node.js", "Express", "PostgreSQL", "React", "Bull"],
   "status": "stable",
-  "featured": true,
+  "featured": false,
   "links": {
-    "github": "https://github.com/ShadowWalkerNC/post-pilot"
+    "github": "https://github.com/ShadowWalkerNC/PostPilot",
+    "demo": null
   },
   "detailedSpecs": {
-    "architecture": "Flask web app with a per-platform adapter pattern. Each platform (Meta, Twitter) has its own publisher class with a common interface.",
-    "keyPatterns": ["Adapter pattern for platform-agnostic publishing", "APScheduler for deferred and recurring posts", "OAuth2 token management per connected account", "Caption variant system for A/B testing copy"],
-    "deployTarget": "Railway",
-    "notableFiles": ["app/publishers/meta.py", "app/publishers/twitter.py", "app/scheduler.py"]
+    "architecture": "Express API with a Bull job queue for scheduled publishing. React frontend for draft and queue management. PostgreSQL for post storage.",
+    "keyPatterns": [
+      "Bull queue for reliable scheduled publishing",
+      "Draft and queue management UI",
+      "Multi-platform OAuth integration",
+      "PostgreSQL post and schedule storage"
+    ],
+    "deployTarget": "Any Node.js host with Redis for Bull",
+    "notableFiles": ["src/queue/", "src/api/posts.js", "src/frontend/"]
   }
 }

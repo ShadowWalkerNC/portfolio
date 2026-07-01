@@ -1,17 +1,21 @@
 {
   "title": "CulinaryOps",
+  "type": "original",
   "tagline": "AI-powered restaurant operations — standalone or as a CulinaryOS MCP server.",
   "description": "CulinaryOps handles the operational intelligence layer of a food business — shift scheduling and labor-cost tracking, recipe costing with actual vs. theoretical variance, vendor catalog and purchase order management, and waste logging with trend analysis. It runs independently for operators who need focused ops tooling, or connects as the culinaryops-mcp server into CulinaryOS for unified hub-level access.",
   "story": "Kitchens lose money in four places: labor overruns, food cost variance, vendor invoicing gaps, and untracked waste. CulinaryOps was built to close all four — with an MCP interface so CulinaryOS can surface the data wherever it's needed, without the operator having to switch tools.",
+  "journey": "CulinaryOps came from watching kitchens hemorrhage money in slow, invisible ways — a few extra labor hours here, a few percentage points of food cost there, vendor invoices that never quite matched the PO. I wanted a tool that tracked all four bleeding points in one place. The MCP layer came second, once it was clear that CulinaryOS would need to pull this data into an AI workflow without the operator having to tab-switch mid-service.",
   "forWho": "Restaurant managers, food service operators, and kitchen owners who need tight control over labor, food cost, vendors, and waste — whether running standalone or inside the CulinaryOS ecosystem.",
   "group": "culinary-ecosystem",
   "category": "Culinary Tech",
   "tags": ["operations", "labor", "food-cost", "vendor", "waste", "mcp", "culinaryos"],
   "stack": ["TypeScript", "React 18", "Vite", "TailwindCSS", "Supabase", "Turborepo", "pnpm"],
-  "status": "active",
+  "status": "wip",
+  "inDevelopment": true,
   "featured": false,
   "links": {
-    "github": "https://github.com/ShadowWalkerNC/CulinaryOps"
+    "github": "https://github.com/ShadowWalkerNC/CulinaryOps",
+    "demo": null
   },
   "detailedSpecs": {
     "architecture": "pnpm monorepo managed by Turborepo. React 18 + Vite web app backed by Supabase (PostgreSQL + RLS + RPC). Auth is shared with KitchenKit via Supabase magic link. The culinaryops-mcp server exposes all four modules as MCP tools, allowing CulinaryOS to orchestrate ops intelligence alongside kitchen and recipe data in one AI agent session.",

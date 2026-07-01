@@ -1,17 +1,21 @@
 {
   "title": "CulinaryOS",
+  "type": "original",
   "tagline": "The operating system for the modern restaurant.",
   "description": "CulinaryOS is a web-based SaaS restaurant OS built in the Toast model — one platform covering the full service cycle: tablet POS, real-time Kitchen Display System, inventory and pantry tracking with automated purchase orders, end-of-day reporting, Stripe-powered payments, a customer-facing online ordering storefront, and an owner/manager back-office. KitchenKit and CulinaryOps connect as MCP servers, giving CulinaryOS AI-agent access across recipe scaling, prep planning, labor, food cost, vendor management, and waste tracking.",
   "story": "Built after years of watching kitchen staff juggle five different apps during a dinner rush. Every station had its own screen, its own tool, its own failure point. CulinaryOS started as a question: what if the whole kitchen ran on one OS? The Ratio Blueprint Engine — which stores recipes as relationships, not fixed quantities — is what makes it not just another POS.",
+  "journey": "CulinaryOS is the project that everything else in the culinary ecosystem feeds into. It started as a simple question — why does a kitchen need five apps open during service? — and grew into a full platform architecture. The Ratio Blueprint Engine was the technical unlock: once recipes became ratio relationships instead of fixed quantities, the entire prep, scaling, and AI-agent layer became possible. KitchenKit and CulinaryOps were built alongside it as standalone tools that also snap in as MCP servers, so CulinaryOS becomes the hub without forcing operators into a closed ecosystem.",
   "forWho": "Restaurant owners, head chefs, and kitchen managers who need operations software built by someone who has actually worked the line.",
   "group": "culinary-ecosystem",
   "category": "Culinary Tech",
   "tags": ["flagship", "platform", "restaurant-os", "mcp-hub", "pos", "kds", "inventory"],
   "stack": ["TypeScript", "React 18", "Vite", "Hono", "Supabase", "Stripe", "Turborepo", "pnpm", "Railway"],
-  "status": "active",
+  "status": "wip",
+  "inDevelopment": true,
   "featured": true,
   "links": {
-    "github": "https://github.com/ShadowWalkerNC/CulinaryOS"
+    "github": "https://github.com/ShadowWalkerNC/CulinaryOS",
+    "demo": null
   },
   "detailedSpecs": {
     "architecture": "pnpm monorepo managed by Turborepo. Five React 18 + Vite apps (pos, kds, admin, web, server) share a Hono API gateway, a Supabase PostgreSQL backend, and a suite of typed packages. Domain-split MCP servers expose the full operation layer to any MCP-compatible AI agent. KitchenKit and CulinaryOps plug in as external MCP servers, making CulinaryOS the unified hub across the entire culinary ecosystem.",

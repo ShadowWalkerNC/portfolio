@@ -1,21 +1,29 @@
 {
-  "title": "ASCILINE 2.0",
-  "tagline": "Real-time ASCII art video streaming engine for the browser.",
-  "description": "ASCILINE 2.0 is a web engine that converts live video streams or uploaded media into real-time ASCII art rendered directly in the browser — no plugins, no server-side processing, pure client-side canvas magic.",
-  "story": "Started as a joke: what if you could watch a movie but it looked like a Matrix screensaver? The first version was a Python script. ASCILINE 2.0 is a proper browser engine — real-time, low-latency, and surprisingly watchable.",
-  "forWho": "Developers, digital artists, and retro-tech enthusiasts who want to do something weird and interesting with video on the web.",
-  "category": "Creative Tech",
-  "tags": ["ascii", "canvas", "video", "creative-coding"],
-  "stack": ["JavaScript", "HTML5 Canvas", "WebRTC", "CSS"],
-  "status": "stable",
+  "title": "Asciline",
+  "type": "original",
+  "tagline": "ASCII art generation engine with a clean CLI and web interface.",
+  "description": "Asciline converts images and text into styled ASCII art with configurable character sets, density mapping, and output formatting. Available as a CLI tool and a lightweight web interface.",
+  "story": "Started as a one-night experiment to see how far image-to-ASCII mapping could go with just character density and contrast math. Ended up building a full engine with a CLI and web layer.",
+  "journey": "Asciline was a late-night rabbit hole — I wanted to understand image-to-ASCII conversion at the math level, not just use a library. Once I had the density mapping working, the CLI came together fast. The web interface was a natural add-on so it wasn't just a terminal toy. It's the kind of project that's small enough to finish, but deep enough to actually learn from.",
+  "forWho": "Developers, terminal enthusiasts, and anyone who wants to turn images or text into styled ASCII art programmatically or in a browser.",
+  "category": "Dev Tools",
+  "tags": ["ascii", "cli", "image-processing", "terminal"],
+  "stack": ["Python", "Flask", "Pillow", "HTML", "CSS"],
+  "status": "active",
   "featured": false,
   "links": {
-    "github": "https://github.com/ShadowWalkerNC/asciline"
+    "github": "https://github.com/ShadowWalkerNC/Asciline",
+    "demo": null
   },
   "detailedSpecs": {
-    "architecture": "Client-side only. requestAnimationFrame loop reads video frame pixels from a hidden canvas, converts pixel brightness to ASCII characters, and renders to a monospace text canvas overlay.",
-    "keyPatterns": ["Pixel sampling via CanvasRenderingContext2D.getImageData()", "Brightness-to-character mapping table (70-char gradient)", "Debounced resize handler for responsive ASCII grid", "WebRTC getUserMedia for live webcam input"],
-    "deployTarget": "Static hosting (Render / GitHub Pages)",
-    "notableFiles": ["src/engine/ascii-renderer.js", "src/engine/video-sampler.js"]
+    "architecture": "Pure Python core (no external ML dependencies). Pillow handles image loading and greyscale conversion. Density mapping uses a configurable character ramp. Flask serves a minimal web frontend.",
+    "keyPatterns": [
+      "Configurable character ramp for density-to-ASCII mapping",
+      "Greyscale + contrast normalization via Pillow",
+      "CLI with argparse for batch processing",
+      "Flask web layer for browser-based input/output"
+    ],
+    "deployTarget": "Local CLI or any Python-capable host",
+    "notableFiles": ["asciline/core.py", "asciline/cli.py", "web/app.py"]
   }
 }

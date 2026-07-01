@@ -1,21 +1,28 @@
 {
   "title": "Cheezies Gourmet",
-  "tagline": "Website and ordering system for a gourmet mac & cheese food truck.",
-  "description": "A custom website and lightweight online ordering system built for Cheezies Gourmet — a real food truck. Features a menu browser, order-ahead form, social integration, and a simple admin panel for the owner to update specials.",
-  "story": "Built for a real food truck owner who was taking orders via DMs on Instagram. The goal was a professional web presence that required zero technical knowledge to maintain — the owner updates the menu from their phone.",
-  "forWho": "The Cheezies Gourmet team and their customers — a real-world deployment, not a demo.",
-  "category": "Client Work",
-  "tags": ["food-truck", "ordering", "client", "real-world"],
-  "stack": ["Astro", "Tailwind CSS", "Netlify Forms", "JavaScript"],
+  "type": "original",
+  "tagline": "Artisan grilled cheese — a real food brand, documented.",
+  "description": "Cheezies Gourmet is a real artisan grilled cheese concept — menu development, branding, and the story of building a food business from the kitchen up. The portfolio page documents the brand, the menu, and the journey.",
+  "story": "Cheezies Gourmet came out of a simple obsession: making the best grilled cheese possible, then figuring out what it would take to turn that into a real business. Every sandwich on the menu has a reason for existing.",
+  "journey": "Cheezies started as a personal project to actually do the thing — not just cook, but build a brand around it. Menu development, naming, pricing, the whole arc of taking a food idea from a home kitchen to something you could hand to a customer. It lives in the portfolio as proof that my relationship with food isn't theoretical — it's in the build.",
+  "forWho": "Anyone curious about the intersection of culinary craft and brand building — or just really good grilled cheese.",
+  "category": "Culinary",
+  "tags": ["food", "brand", "menu", "grilled-cheese", "artisan"],
+  "stack": [],
   "status": "active",
-  "featured": false,
+  "featured": true,
   "links": {
-    "github": "https://github.com/ShadowWalkerNC/cheezies-gourmet"
+    "github": null,
+    "demo": null
   },
   "detailedSpecs": {
-    "architecture": "Static Astro site with Netlify Forms for order submission. Menu data stored in a JSON file editable by the owner. No backend — zero maintenance cost.",
-    "keyPatterns": ["JSON-driven menu with category filtering", "Netlify Forms for serverless form handling", "CMS-lite: owner edits a single JSON file to update the menu", "Mobile-first layout optimized for customers ordering on phones"],
-    "deployTarget": "Render (static)",
-    "notableFiles": ["src/data/menu.json", "src/pages/order.astro", "src/pages/index.astro"]
+    "architecture": "Brand and menu documentation — no code stack.",
+    "keyPatterns": [
+      "Menu development with intentional flavour pairing",
+      "Brand identity — name, voice, and visual direction",
+      "Pricing and positioning for a real food concept"
+    ],
+    "deployTarget": "Portfolio page",
+    "notableFiles": []
   }
 }

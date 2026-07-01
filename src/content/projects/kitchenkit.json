@@ -1,17 +1,21 @@
 {
-  "title": "kitchenkit",
+  "title": "KitchenKit",
+  "type": "original",
   "tagline": "Recipe manager and shift prep planner — standalone or as CulinaryOS MCP servers.",
   "description": "KitchenKit is a standalone recipe manager and shift prep planner for anyone who cooks seriously — home cooks, personal chefs, caterers, and restaurant teams. It merges recipe management (with ratio-based scaling and unit conversion) and shift prep planning into one product. Each capability is also exposed as a dedicated MCP server, allowing CulinaryOS to call recipe and prep tools directly as part of its unified hub orchestration.",
   "story": "Most recipe apps store 500g. KitchenKit stores 100% — baker's percentages and ratio relationships that hold true at any scale. That same engine powers the shift prep planner, so a mise en place list for 12 covers is generated from the same blueprint as one for 200. Built to work on its own, and designed from the start to snap into CulinaryOS when the operation grows.",
+  "journey": "KitchenKit grew out of a personal frustration: every recipe app I tried was built for the home cook scaling a casserole, not a chef building production prep lists. The ratio engine came first — just a TypeScript module I kept reusing. The shift prep planner followed naturally once I realized the same percentage relationships that govern a bread formula also govern a 200-cover mise en place. It's designed to stand alone, but also snaps into CulinaryOS as an MCP server when the kitchen needs the full ecosystem.",
   "forWho": "Home cooks, personal chefs, caterers, and restaurant teams who need serious recipe scaling and prep planning — whether running standalone or inside the CulinaryOS ecosystem.",
   "group": "culinary-ecosystem",
   "category": "Culinary Tech",
   "tags": ["recipe-manager", "prep-planning", "ratio-engine", "mcp", "culinaryos", "kitchen-ops"],
   "stack": ["TypeScript", "React 18", "Vite", "Supabase", "Turborepo", "pnpm"],
   "status": "wip",
+  "inDevelopment": true,
   "featured": true,
   "links": {
-    "github": "https://github.com/ShadowWalkerNC/KitchenKit"
+    "github": "https://github.com/ShadowWalkerNC/KitchenKit",
+    "demo": null
   },
   "detailedSpecs": {
     "architecture": "pnpm monorepo managed by Turborepo. React 18 + Vite web app (apps/web) backed by Supabase. Core logic lives in two shared packages — ratio-engine (pure TypeScript, zero dependencies) and prep-engine — consumed by both the web app and the MCP servers. recipe-mcp and prep-mcp expose tool interfaces for CulinaryOS hub integration.",

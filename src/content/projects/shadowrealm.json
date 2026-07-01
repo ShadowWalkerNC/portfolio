@@ -1,21 +1,29 @@
 {
-  "title": "ShadowRealm / ShadowBot",
-  "tagline": "Feature-rich Discord bot with a modular command architecture.",
-  "description": "ShadowBot is a multipurpose Discord bot built for community management — moderation, custom commands, role automation, music queuing, and server analytics — with a clean modular system that makes extending it trivial.",
-  "story": "My first real bot was a mess of if-else chains. ShadowBot started over from scratch with one rule: every feature lives in its own module, has its own tests, and can be toggled per-server. That constraint made it 10x easier to maintain.",
-  "forWho": "Discord server owners and community managers who want a capable, customizable bot without touching someone else's codebase.",
-  "category": "Discord Bots",
-  "tags": ["discord", "moderation", "community", "modular"],
-  "stack": ["Node.js", "Discord.js", "SQLite", "Railway"],
+  "title": "ShadowRealm",
+  "type": "original",
+  "tagline": "Personal homelab and self-hosted infrastructure playground.",
+  "description": "ShadowRealm is the personal homelab environment — self-hosted services, network configuration, containerized workloads, and infrastructure experiments. Documented as a living reference for setup, tooling, and lessons learned.",
+  "story": "Every developer needs a place to break things safely. ShadowRealm is that place — where new stacks get tested, network configs get experimented on, and nothing is production-critical.",
+  "journey": "ShadowRealm started as a single Raspberry Pi and turned into a proper homelab over time. The real value wasn't the hardware — it was having a place where I could run anything, break anything, and actually understand what was happening at the infrastructure level. Networking, DNS, containers, reverse proxies — things that are abstracted away in cloud platforms became real and tangible here.",
+  "forWho": "Developers and infrastructure enthusiasts interested in self-hosted tooling, homelab setups, and hands-on networking.",
+  "category": "Infrastructure",
+  "tags": ["homelab", "self-hosted", "docker", "networking", "infrastructure"],
+  "stack": ["Docker", "Proxmox", "Nginx", "Cloudflare", "Linux"],
   "status": "active",
   "featured": false,
   "links": {
-    "github": "https://github.com/ShadowWalkerNC/shadowbot"
+    "github": "https://github.com/ShadowWalkerNC/ShadowRealm",
+    "demo": null
   },
   "detailedSpecs": {
-    "architecture": "Command handler pattern with a dynamic module loader. Each command file exports a standard interface (name, description, execute). SQLite stores per-guild config and audit logs.",
-    "keyPatterns": ["Dynamic command registration at startup", "Per-guild feature flags via SQLite config table", "Interaction-based slash commands (no prefix commands)", "Event emitter for cross-module communication"],
-    "deployTarget": "Railway",
-    "notableFiles": ["src/handler/command-loader.js", "src/commands/mod/ban.js", "src/db/guild-config.js"]
+    "architecture": "Proxmox hypervisor running containerized and VM workloads. Nginx reverse proxy with Cloudflare DNS. Docker Compose for service orchestration.",
+    "keyPatterns": [
+      "Proxmox VM and LXC container management",
+      "Nginx reverse proxy with SSL termination",
+      "Cloudflare DNS + tunnel for external access",
+      "Docker Compose service stacks"
+    ],
+    "deployTarget": "On-premise homelab hardware",
+    "notableFiles": ["docker-compose/", "nginx/", "docs/network-map.md"]
   }
 }

@@ -1,21 +1,51 @@
 {
   "title": "Shoreline",
+  "type": "original",
   "tagline": "Full-stack hospitality management platform with analytics.",
   "description": "Shoreline is a restaurant and hospitality management platform featuring reservation tracking, staff scheduling, inventory control, and a live analytics dashboard — built with Flask and a PostgreSQL backend.",
   "story": "Inspired by the chaos of watching a beachside restaurant try to manage reservations on a whiteboard and staff schedules on a shared Google Sheet. Shoreline was built to be the single source of truth for a hospitality operation.",
+  "journey": "Shoreline started as a direct response to a real problem I watched play out in an actual kitchen — paper schedules, whiteboard reservations, no single system. I built the first version in Flask to prove the concept worked. After watching operators use it, the technical debt became obvious: the monolith needed to become an API. v5 is that rethink — a ground-up rebuild designed to scale from one location to a regional chain without rewiring everything.",
   "forWho": "Restaurant managers and hospitality operators who need a unified back-office system without the enterprise price tag.",
   "category": "Culinary Tech",
   "tags": ["hospitality", "analytics", "flask", "full-stack"],
   "stack": ["Python", "Flask", "PostgreSQL", "Alembic", "Chart.js"],
-  "status": "stable",
+  "status": "active",
   "featured": true,
   "links": {
-    "github": "https://github.com/ShadowWalkerNC/shoreline"
+    "github": "https://github.com/ShadowWalkerNC/shoreline",
+    "demo": null
   },
   "detailedSpecs": {
     "architecture": "Monolithic Flask app with Blueprint-based routing. PostgreSQL for persistent data, Alembic for schema versioning.",
-    "keyPatterns": ["Blueprint modularization per domain (reservations, staff, inventory)", "Alembic migration chain for zero-downtime schema changes", "Chart.js dashboard fed by Flask API endpoints", "Session-based auth with bcrypt hashing"],
+    "keyPatterns": [
+      "Blueprint modularization per domain (reservations, staff, inventory)",
+      "Alembic migration chain for zero-downtime schema changes",
+      "Chart.js dashboard fed by Flask API endpoints",
+      "Session-based auth with bcrypt hashing"
+    ],
     "deployTarget": "Render (web service)",
     "notableFiles": ["app/blueprints/reservations.py", "app/blueprints/analytics.py", "migrations/"]
+  },
+  "futureBranch": {
+    "label": "v5",
+    "tagline": "The next generation — rebuilt with a modern API-first architecture.",
+    "description": "Shoreline v5 is a ground-up rebuild transitioning from a monolithic Flask app to a clean REST API backend with a decoupled frontend, improved JWT auth, and a fully redesigned multi-tenant data model.",
+    "stack": ["Python", "Flask", "PostgreSQL", "REST API", "Railway"],
+    "status": "wip",
+    "links": {
+      "github": "https://github.com/ShadowWalkerNC/shoreline",
+      "demo": null
+    },
+    "detailedSpecs": {
+      "architecture": "Decoupled REST API (Flask) + headless frontend. JWT-based auth replacing sessions. Multi-tenant schema design with org-scoped data.",
+      "keyPatterns": [
+        "JWT access + refresh token flow",
+        "Multi-tenant row-level scoping via org_id",
+        "OpenAPI spec generation via Flasgger",
+        "CI/CD pipeline with automated migration runs"
+      ],
+      "deployTarget": "Railway",
+      "notableFiles": ["api/routes/v1/", "api/auth/jwt_handler.py", "db/schema_v5.sql"]
+    }
   }
 }

@@ -1,11 +1,15 @@
 {
   "name": "CulinaryOS",
   "emoji": "🌐",
-  "tagline": "Full-stack restaurant SaaS OS",
-  "description": "POS · KDS · Inventory · Payments · Online Ordering · Reservations · Scheduling · Reporting · AI hub via MCP. Hub of the entire ecosystem.",
+  "tagline": "The command center for the entire food-tech ecosystem",
+  "description": "CulinaryOS is the central hub that ties everything together — point of sale, kitchen display, inventory, online ordering, reservations, staff scheduling, payments, and reporting all in one place. Think of it like an operating system for your restaurant, but built for real operators, not investors.",
+  "forWho": "Restaurant owners, multi-location operators, and food service managers who are tired of juggling six different software subscriptions just to run their kitchen.",
+  "story": "After years of working every station in professional kitchens, I watched operators fight with clunky, overpriced, disconnected software every single day. POS here. Inventory there. Scheduling somewhere else. None of it talked to each other. CulinaryOS started as \"what if one system did all of this, and it was actually good?\" — and became the foundation for everything else I'm building.",
+  "details": "Built as a Turborepo monorepo with a TypeScript + React frontend and a Hono-based API layer. Uses Supabase for the database and auth. Integrates with KitchenKit and CulinaryOps via dedicated MCP servers, meaning any AI assistant with MCP support can query live kitchen data, adjust inventory, or pull reports in plain English. Designed as a multi-tenant SaaS from day one — not retrofitted. Will run live in Half Baked Café & Bakehouse when it opens in 2027.",
   "status": "In Dev",
   "category": "food-tech",
-  "stack": ["TypeScript", "React", "Hono", "Supabase", "Turborepo"],
+  "group": "culinary-ecosystem",
+  "stack": ["TypeScript", "React", "Hono", "Supabase", "Turborepo", "MCP"],
   "github": "https://github.com/ShadowWalkerNC/CulinaryOS",
   "featured": true
 }

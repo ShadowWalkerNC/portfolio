@@ -1,11 +1,14 @@
 {
   "name": "NexCMS",
-  "emoji": "🖥️",
-  "tagline": "Restaurant website builder — no dev required",
-  "description": "Drag-and-drop restaurant site builder. Future: optional CulinaryOS live menu feed.",
+  "emoji": "🧱",
+  "tagline": "Headless content management system built for developers",
+  "description": "NexCMS is a headless CMS — a content management system where the editing interface is separated from the front end that displays the content. Developers connect their own frontend; editors manage content through a clean dashboard. No opinionated templating, no framework lock-in.",
+  "forWho": "Developers who need a flexible content backend without being tied to a specific front-end framework. Teams that want editors to manage content without touching code.",
+  "story": "Built as a learning project that turned into something useful. The goal was to understand how headless CMS architectures actually work by building one from scratch — content modeling, API design, role-based access, media handling. It's become a useful internal tool for some of my other projects.",
+  "details": "Content types defined via JSON schema. REST + GraphQL API output. Role-based access control for editor, author, and admin roles. Media upload and management. Built to be self-hosted or deployed to any Node-compatible platform.",
   "status": "In Dev",
-  "category": "food-tech",
-  "stack": ["React", "Supabase"],
+  "category": "dev-tools",
+  "stack": ["TypeScript", "Node.js", "PostgreSQL"],
   "github": "https://github.com/ShadowWalkerNC/NexCMS",
   "featured": false
 }

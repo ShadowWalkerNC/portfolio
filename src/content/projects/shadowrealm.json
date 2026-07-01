@@ -1,11 +1,14 @@
 {
   "name": "ShadowRealm",
   "emoji": "🌑",
-  "tagline": "Self-hosted AI workspace",
-  "description": "Chat, agents, research, docs, tasks, and calendar — fully self-hosted AI workspace.",
-  "status": "In Dev",
-  "category": "dev-tools",
-  "stack": ["Python", "JavaScript"],
+  "tagline": "Personal sandbox — experimental builds, prototypes, and things that have no business existing",
+  "description": "ShadowRealm is where ideas go when they're too weird or too early for a real project. Prototypes, engine experiments, half-baked concepts (pun intended), and things I built just to see if I could. Not everything in here works. That's the point.",
+  "forWho": "Curious developers and anyone who appreciates the messy, honest side of building. This is the sketchbook, not the gallery.",
+  "story": "Every builder has a junk drawer. This is mine — made public. I got tired of the idea that every project on a portfolio has to be polished and production-ready. Some of the best things I've learned came from projects that completely failed. ShadowRealm is where that happens in the open.",
+  "details": "Various languages and frameworks depending on the experiment. No consistent stack. Check individual branches and folders for what's in there.",
+  "status": "Internal",
+  "category": "experimental",
+  "stack": ["Various"],
   "github": "https://github.com/ShadowWalkerNC/ShadowRealm",
   "featured": false
 }

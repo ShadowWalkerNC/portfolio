@@ -1,11 +1,14 @@
 {
   "name": "Cheezies Gourmet",
   "emoji": "🧀",
-  "tagline": "Gourmet food brand web presence",
-  "description": "Brand website and online presence for Cheezies Gourmet.",
-  "status": "In Dev",
+  "tagline": "Branding and web presence for a Maine artisan food business",
+  "description": "A custom website and brand identity built for a local Maine artisan food company. Showcases products, tells the brand story, and handles customer inquiries. Built to feel handcrafted and authentic — the way the food itself is made.",
+  "forWho": "Small food businesses and artisan makers who need a real web presence that matches the quality of what they make — not a generic template.",
+  "story": "Maine has a deep culture of small-batch, handcrafted food. Cheezies Gourmet deserved a site that felt like that — warm, real, and personal. This project is also a preview of what I'll build for Half Baked Café & Bakehouse when the time comes.",
+  "details": "Static site with custom CSS and hand-written copy. Optimized for mobile. No CMS dependency — simple, fast, and easy for the owner to update.",
+  "status": "Stable",
   "category": "food-tech",
-  "stack": ["JavaScript"],
-  "github": "https://github.com/ShadowWalkerNC/Cheezies-Gourmet",
+  "stack": ["HTML", "CSS", "JavaScript"],
+  "github": "https://github.com/ShadowWalkerNC/cheezies-gourmet",
   "featured": false
 }

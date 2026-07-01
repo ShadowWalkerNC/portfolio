@@ -1,11 +1,14 @@
 {
   "name": "Post-Pilot",
   "emoji": "🚀",
-  "tagline": "AI F&B social media SaaS",
-  "description": "AI-generated food & beverage social posts → Facebook & Instagram via Meta Graph API. Flask SaaS with Stripe billing (3 plans), magic-link auth, Vercel Cron scheduler.",
+  "tagline": "AI-powered social media for food & beverage businesses — set it and forget it",
+  "description": "Post-Pilot writes and schedules your restaurant's social media posts automatically. Tell it your menu, your vibe, and your posting schedule — it generates on-brand content for Facebook and Instagram and posts it for you via the Meta API. No social media manager required.",
+  "forWho": "Restaurant owners, food truck operators, coffee shops, and bars who know they need a social media presence but don't have time (or budget) to manage it. If you've ever let a week go by without posting because you were too busy running the kitchen — this is your fix.",
+  "story": "Social media for restaurants is one of those things that always falls through the cracks. Owners know it matters. They just don't have time. I'd seen it firsthand — good food, invisible online. Post-Pilot started as a script I wrote to batch-generate posts for a friend's food truck. It turned into a full SaaS with AI generation, scheduling, and automatic publishing. It's the project that proved I could build a real product from billing to deployment to live social posting.",
+  "details": "Python + Flask backend, Supabase for user data and post queues. Stripe billing with 3 subscription tiers. Magic-link auth (no password required). Vercel Cron triggers scheduled posts. Meta Graph API handles Facebook and Instagram publishing. AI generation via OpenAI with prompt templates tuned specifically for food and beverage voice.",
   "status": "In Dev",
   "category": "food-tech",
-  "stack": ["Python", "Flask", "Supabase", "Stripe"],
+  "stack": ["Python", "Flask", "Supabase", "Stripe", "OpenAI", "Meta Graph API"],
   "github": "https://github.com/ShadowWalkerNC/Post-Pilot",
   "featured": true
 }

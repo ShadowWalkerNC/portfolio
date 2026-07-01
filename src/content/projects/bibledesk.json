@@ -1,11 +1,14 @@
 {
   "name": "BibleDesk",
   "emoji": "📖",
-  "tagline": "AI Bible study — Hebrew/Greek, 5-dimension answers",
-  "description": "Free AI-powered Bible study platform. Ask any question — get structured answers across 5 dimensions: Scripture analysis, historical context, original Hebrew/Greek, theological meaning, and practical application.",
+  "tagline": "AI Bible study with original language depth — free for everyone",
+  "description": "BibleDesk is a free AI-powered Bible study platform that goes deeper than surface-level answers. Ask any question about Scripture and get a structured response across five dimensions: the text itself, its historical context, the original Hebrew or Greek meaning, theological significance, and practical application for today.",
+  "forWho": "Anyone who takes their faith seriously and wants to study Scripture more deeply — without needing a seminary degree. Pastors, small group leaders, and personal study. Built free and intended to stay that way.",
+  "story": "Faith is a big part of who I am. I wanted a tool that could help me study the Bible the way I actually wanted to — not just a search engine for verses, but something that could help me understand what a word meant in Koine Greek, what was happening historically when Paul wrote a letter, and what it means for how I live today. I built BibleDesk for myself first, and made it free because this isn't the kind of tool that should have a paywall.",
+  "details": "React frontend, Supabase for user sessions and saved studies. AI responses structured as five-dimension answers: Scripture analysis, historical context, original language (Hebrew/Greek), theological meaning, and practical application. No API key required for users — completely free access.",
   "status": "In Dev",
   "category": "dev-tools",
-  "stack": ["React", "Supabase"],
+  "stack": ["React", "Supabase", "OpenAI"],
   "github": "https://github.com/ShadowWalkerNC/BibleDesk",
   "featured": false
 }

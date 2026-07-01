@@ -1,10 +1,14 @@
 {
   "name": "Shoreline v5",
   "emoji": "🏠🔨",
-  "tagline": "Full rebuild — multi-facility SaaS platform",
-  "description": "Ground-up rebuild of Shoreline. React 18 + Vite + TypeScript + Tailwind, PostgreSQL + Prisma backend, Next.js SaaS layer. Built to scale to a real multi-facility product. Replaces Shoreline v4.",
+  "tagline": "Full ground-up rebuild — multi-facility SaaS for senior living operations",
+  "description": "Shoreline v5 is a complete rewrite of v4 — same purpose, entirely new architecture. It takes everything that worked in v4 and rebuilds it properly as a modern multi-tenant SaaS that could scale to hundreds of facilities. React 18, TypeScript, Vite, PostgreSQL, and a Next.js SaaS layer with full billing and team management.",
+  "forWho": "Senior living operators and dietary managers who need v4's functionality but with a modern, cloud-based, multi-facility system. Also built as a template for what a proper care-facility SaaS should look like.",
+  "story": "v4 worked. It solved real problems for real people. But it was built with duct tape and determination — vanilla JS, no types, hard to extend. When I leveled up as a developer, I looked back at Shoreline and knew it deserved a proper rebuild. v5 isn't just an upgrade — it's me applying everything I've learned to the project that started my serious development journey.",
+  "details": "React 18 + Vite + TypeScript + Tailwind CSS frontend. PostgreSQL database with Prisma ORM. Next.js SaaS layer handles multi-tenancy, billing, and org management. Hosted on Railway. Full feature parity with v4 as the baseline, then extended with proper API design and real-time capabilities.",
   "status": "Active Rebuild",
   "category": "facility-ops",
+  "group": "shoreline",
   "stack": ["TypeScript", "React", "Vite", "Tailwind", "PostgreSQL", "Prisma", "Railway"],
   "github": "https://github.com/ShadowWalkerNC/shoreline-v5",
   "featured": true

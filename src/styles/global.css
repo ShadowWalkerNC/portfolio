@@ -1,6 +1,6 @@
 /* ============================================================
    GLOBAL CSS — ShadowWalkerNC Portfolio
-   Blue theme, keyframe animations, glass morphism, utilities
+   Blue theme, food-meets-tech identity, keyframe animations
    ============================================================ */
 
 @tailwind base;
@@ -13,6 +13,9 @@
   --blue-bright:    #60A5FA;
   --blue-glow:      #3B82F630;
   --blue-dim:       #1D4ED8;
+  --blue-deep:      #0F3460;
+  --orange-warm:    #F97316;
+  --orange-glow:    #F9731620;
   --dark-base:      #020817;
   --dark-surface:   #0A1628;
   --dark-card:      #0F1E35;
@@ -24,9 +27,7 @@
 /* ---- Base resets ---- */
 *, *::before, *::after { box-sizing: border-box; }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
   background-color: var(--dark-base);
@@ -34,22 +35,18 @@ body {
   font-family: 'Inter', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Subtle blueprint-grid background */
+  background-image:
+    linear-gradient(rgba(59,130,246,0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59,130,246,0.015) 1px, transparent 1px);
+  background-size: 60px 60px;
 }
 
 /* ---- Custom Scrollbar ---- */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: var(--dark-base);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--dark-border);
-  border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--blue-primary);
-}
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--dark-base); }
+::-webkit-scrollbar-thumb { background: var(--dark-border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--blue-primary); }
 
 /* ============================================================
    KEYFRAME ANIMATIONS
@@ -80,35 +77,20 @@ body {
   50%       { border-color: var(--blue-primary); }
 }
 
-@keyframes chevronOpen {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(180deg); }
-}
-
-@keyframes chevronClose {
-  from { transform: rotate(180deg); }
-  to   { transform: rotate(0deg); }
+@keyframes floatUp {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-6px); }
 }
 
 /* ============================================================
    ANIMATION UTILITY CLASSES
    ============================================================ */
 
-.animate-fade-in {
-  animation: fadeIn 0.6s ease forwards;
-}
-
-.animate-slide-up {
-  animation: slideUp 0.7s ease forwards;
-}
-
-.animate-slide-down {
-  animation: slideDown 0.5s ease forwards;
-}
-
-.animate-glow-pulse {
-  animation: glowPulse 3s ease-in-out infinite;
-}
+.animate-fade-in  { animation: fadeIn 0.6s ease forwards; }
+.animate-slide-up { animation: slideUp 0.7s ease forwards; }
+.animate-slide-down { animation: slideDown 0.5s ease forwards; }
+.animate-glow-pulse { animation: glowPulse 3s ease-in-out infinite; }
+.animate-float { animation: floatUp 4s ease-in-out infinite; }
 
 /* Staggered children */
 .stagger-children > *:nth-child(1) { animation-delay: 0ms; }
@@ -131,6 +113,13 @@ body {
 
 .text-gradient-blue-white {
   background: linear-gradient(135deg, #FFFFFF 0%, var(--blue-bright) 60%, var(--blue-primary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-orange {
+  background: linear-gradient(135deg, #FED7AA, var(--orange-warm));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -166,12 +155,12 @@ body {
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border: 1px solid var(--dark-border);
-  border-radius: 12px;
+  border-radius: 14px;
   transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
 }
 
 .glass-card:hover {
-  border-color: rgba(59, 130, 246, 0.4);
+  border-color: rgba(59, 130, 246, 0.35);
   box-shadow: 0 0 30px rgba(59, 130, 246, 0.08), 0 8px 32px rgba(0, 0, 0, 0.4);
   transform: translateY(-2px);
 }
@@ -214,12 +203,10 @@ body {
   grid-template-rows: 1fr;
 }
 
-.accordion-inner {
-  overflow: hidden;
-}
+.accordion-inner { overflow: hidden; }
 
 /* ============================================================
-   BLUE GLOW BUTTON
+   BUTTONS
    ============================================================ */
 
 .btn-blue {
@@ -232,7 +219,7 @@ body {
   font-weight: 600;
   border-radius: 8px;
   border: 1px solid transparent;
-  transition: box-shadow 0.3s ease, transform 0.2s ease, opacity 0.2s ease;
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
   text-decoration: none;
 }
 
@@ -273,7 +260,7 @@ body {
 }
 
 /* ============================================================
-   HERO BACKGROUND GLOW
+   HERO BACKGROUND EFFECTS
    ============================================================ */
 
 .hero-glow {
@@ -281,9 +268,9 @@ body {
   top: -200px;
   left: 50%;
   transform: translateX(-50%);
-  width: 800px;
-  height: 600px;
-  background: radial-gradient(ellipse, rgba(59, 130, 246, 0.06) 0%, transparent 70%);
+  width: 900px;
+  height: 700px;
+  background: radial-gradient(ellipse, rgba(59, 130, 246, 0.07) 0%, transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
@@ -297,4 +284,21 @@ body {
   background: radial-gradient(ellipse, rgba(59, 130, 246, 0.04) 0%, transparent 70%);
   pointer-events: none;
   z-index: 0;
+}
+
+/* ============================================================
+   CATEGORY / GROUP SECTION HEADERS
+   ============================================================ */
+
+.section-group-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.section-group-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--dark-border), transparent);
 }

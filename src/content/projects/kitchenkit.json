@@ -1,10 +1,14 @@
 {
   "name": "KitchenKit",
   "emoji": "🍳",
-  "tagline": "Recipe manager · meal planner · pantry · nutrition",
-  "description": "Ratio Blueprint Engine, mise en place, prep lists. Standalone for home cooks, caterers & personal chefs. Bridges into CulinaryOS via kitchenkit-mcp. Merges RecipeOS + PrepFlow.",
+  "tagline": "Recipe management, meal planning, and mise en place — for cooks who actually cook",
+  "description": "KitchenKit handles the recipe and prep side of food operations. Scale a recipe from 2 servings to 200. Auto-generate mise en place lists. Track pantry inventory. Plan meals for the week. It's built for home cooks, personal chefs, and caterers — but it plugs directly into CulinaryOS for professional operations.",
+  "forWho": "Home cooks who want real tools, personal chefs managing client menus, caterers scaling recipes for events, and culinary students learning the craft. Also connects to restaurant operators using the full CulinaryOS ecosystem.",
+  "story": "This one came from pure kitchen frustration. Every recipe app on the market treats cooks like amateurs. None of them understand ratio-based cooking, none of them do real scaling math, and none of them generate a proper prep list. I built the Ratio Blueprint Engine first — the ability to define a recipe in ratios rather than rigid measurements — and KitchenKit grew from there. It merged two earlier projects (RecipeOS and PrepFlow) into one.",
+  "details": "Built with Next.js 14 and TypeScript on the frontend, Supabase for data. The Ratio Blueprint Engine is the core differentiator — recipes are stored as ratios so scaling is mathematically correct, not just multiplied. The kitchenkit-mcp server allows AI assistants to read and write recipes, pull prep lists, and check pantry levels via natural language. Standalone SaaS product with its own billing, but shares auth and data with CulinaryOS when used together.",
   "status": "In Dev",
   "category": "food-tech",
+  "group": "culinary-ecosystem",
   "stack": ["TypeScript", "Next.js", "Supabase", "MCP"],
   "github": "https://github.com/ShadowWalkerNC/KitchenKit",
   "featured": true

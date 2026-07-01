@@ -1,6 +1,6 @@
 ---
 const { project } = Astro.props;
-const { name, emoji, tagline, description, status, stack, github, details } = project.data;
+const { name, emoji, tagline, description, forWho, story, status, stack, github, details } = project.data;
 
 const statusColor: Record<string, string> = {
   'In Dev':         'background: rgba(234,179,8,0.15); color: #FDE047; border: 1px solid rgba(234,179,8,0.3);',
@@ -11,79 +11,180 @@ const statusColor: Record<string, string> = {
 };
 
 const cardId = `card-${Math.random().toString(36).slice(2, 9)}`;
+const hasAccordion = !!(forWho || story || details);
 ---
 
-<article class="glass-card p-6 flex flex-col gap-4 animate-fade-in">
+<article class="project-card glass-card flex flex-col gap-0 animate-fade-in">
 
-  <!-- Header (always visible) -->
-  <div class="flex items-start justify-between gap-3">
-    <div>
-      <h3 class="font-semibold text-white text-lg">
-        <span class="mr-2">{emoji}</span>{name}
-      </h3>
-      <p class="text-sm mt-0.5" style="color: var(--text-muted);">{tagline}</p>
-    </div>
-    <span class="text-xs px-2 py-1 rounded-full font-mono whitespace-nowrap flex-shrink-0"
-      style={statusColor[status] ?? statusColor['Internal']}>
-      {status}
-    </span>
-  </div>
+  <!-- Top accent bar -->
+  <div class="card-accent-bar"></div>
 
-  <!-- Description -->
-  <p class="text-sm leading-relaxed" style="color: #94A3B8;">{description}</p>
+  <div class="p-6 flex flex-col gap-4 flex-1">
 
-  <!-- Stack badges -->
-  <div class="flex flex-wrap gap-2">
-    {stack.map((tech: string) => (
-      <span class="text-xs font-mono px-2 py-1 rounded"
-        style="background: var(--dark-border); color: #CBD5E1;">
-        {tech}
+    <!-- Header -->
+    <div class="flex items-start justify-between gap-3">
+      <div class="flex-1 min-w-0">
+        <div class="flex items-center gap-2 mb-1">
+          <span class="text-2xl">{emoji}</span>
+          <h3 class="font-bold text-white text-lg leading-tight">{name}</h3>
+        </div>
+        <p class="text-sm" style="color: var(--text-muted);">{tagline}</p>
+      </div>
+      <span class="text-xs px-2 py-1 rounded-full font-mono whitespace-nowrap flex-shrink-0 mt-1"
+        style={statusColor[status] ?? statusColor['Internal']}>
+        {status}
       </span>
-    ))}
-  </div>
+    </div>
 
-  {details && (
-    <!-- Chevron accordion for extended details -->
-    <div class="border-t pt-4" style="border-color: var(--dark-border);">
-      <button
-        class="accordion-toggle"
-        aria-expanded="false"
-        aria-controls={`${cardId}-body`}
-        id={`${cardId}-btn`}
-      >
-        <span class="text-sm font-mono" style="color: var(--blue-primary);">Details</span>
-        <svg class="accordion-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="6 9 12 15 18 9"></polyline>
-        </svg>
-      </button>
-      <div class="accordion-body" id={`${cardId}-body`} role="region" aria-labelledby={`${cardId}-btn`}>
-        <div class="accordion-inner">
-          <p class="text-sm leading-relaxed pt-3" style="color: #94A3B8;">{details}</p>
+    <!-- Description -->
+    <p class="text-sm leading-relaxed" style="color: #94A3B8;">{description}</p>
+
+    <!-- Stack badges -->
+    <div class="flex flex-wrap gap-2">
+      {stack.map((tech: string) => (
+        <span class="tech-badge text-xs font-mono px-2 py-1 rounded">
+          {tech}
+        </span>
+      ))}
+    </div>
+
+    <!-- Chevron accordion -->
+    {hasAccordion && (
+      <div class="accordion-wrapper">
+        <button
+          class="accordion-toggle"
+          aria-expanded="false"
+          aria-controls={`${cardId}-body`}
+          id={`${cardId}-btn`}
+        >
+          <span class="text-xs font-mono uppercase tracking-widest" style="color: var(--blue-primary);">More Details</span>
+          <svg class="accordion-chevron" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+
+        <div class="accordion-body" id={`${cardId}-body`} role="region" aria-labelledby={`${cardId}-btn`}>
+          <div class="accordion-inner">
+            <div class="accordion-content">
+
+              {forWho && (
+                <div class="detail-block">
+                  <p class="detail-label">👤 Who It's For</p>
+                  <p class="detail-text">{forWho}</p>
+                </div>
+              )}
+
+              {story && (
+                <div class="detail-block">
+                  <p class="detail-label">📖 The Story</p>
+                  <p class="detail-text">{story}</p>
+                </div>
+              )}
+
+              {details && (
+                <div class="detail-block">
+                  <p class="detail-label">⚙️ Technical Details</p>
+                  <p class="detail-text">{details}</p>
+                </div>
+              )}
+
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  )}
+    )}
 
-  {github && (
-    <a
-      href={github}
-      target="_blank"
-      rel="noopener noreferrer"
-      class="mt-auto text-sm font-mono flex items-center gap-1.5 transition"
-      style="color: var(--blue-primary);"
-      onmouseover="this.style.color='#fff'"
-      onmouseout="this.style.color='var(--blue-primary)'"
-    >
-      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
-      </svg>
-      View on GitHub
-    </a>
-  )}
+    <!-- GitHub link -->
+    {github && (
+      <a
+        href={github}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mt-auto github-link text-sm font-mono flex items-center gap-1.5 transition"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+        View on GitHub
+      </a>
+    )}
+  </div>
 </article>
 
+<style>
+  .project-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 14px;
+  }
+
+  .card-accent-bar {
+    height: 3px;
+    background: linear-gradient(90deg, var(--blue-primary), var(--blue-bright), transparent);
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+  }
+
+  .project-card:hover .card-accent-bar {
+    opacity: 1;
+  }
+
+  .tech-badge {
+    background: rgba(30, 58, 95, 0.7);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    color: #93C5FD;
+    transition: border-color 0.2s ease, color 0.2s ease;
+  }
+
+  .tech-badge:hover {
+    border-color: rgba(59, 130, 246, 0.5);
+    color: #fff;
+  }
+
+  .github-link {
+    color: var(--blue-primary);
+  }
+
+  .github-link:hover {
+    color: #fff;
+  }
+
+  .accordion-wrapper {
+    border-top: 1px solid var(--dark-border);
+    padding-top: 1rem;
+    margin-top: 0.25rem;
+  }
+
+  .accordion-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-top: 1rem;
+  }
+
+  .detail-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .detail-label {
+    font-size: 0.7rem;
+    font-family: 'Fira Code', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--blue-bright);
+    font-weight: 600;
+  }
+
+  .detail-text {
+    font-size: 0.8rem;
+    line-height: 1.65;
+    color: #94A3B8;
+  }
+</style>
+
 <script>
-  // Chevron accordion JS toggle
   document.querySelectorAll('.accordion-toggle').forEach(btn => {
     btn.addEventListener('click', () => {
       const expanded = btn.getAttribute('aria-expanded') === 'true';

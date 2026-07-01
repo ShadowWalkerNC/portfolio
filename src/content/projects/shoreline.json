@@ -1,10 +1,14 @@
 {
-  "name": "Shoreline",
+  "name": "Shoreline v4",
   "emoji": "🏠",
-  "tagline": "Senior living facility operations platform (v4 stable)",
-  "description": "Resident records, dietary management, menu planning, production worksheets, maintenance ticketing, staff scheduling, budget tracking, multi-role access. v4 stable. Superseded by Shoreline v5.",
+  "tagline": "Senior living operations — resident care, dietary management, scheduling, and maintenance",
+  "description": "Shoreline v4 is a full operations platform built specifically for senior living facilities. It handles resident records, special dietary needs and restrictions, menu planning, weekly production worksheets, maintenance tickets, staff scheduling, and budget tracking — all under one roof with multi-role access control.",
+  "forWho": "Dietary managers, facility administrators, and care staff at assisted living communities, nursing homes, and senior care facilities. Built after working in senior living food service and watching staff manage critical resident data through paper binders and disconnected spreadsheets.",
+  "story": "I took a job as a dietary manager at a senior living facility and on day one I was handed a binder. Residents' dietary restrictions. Allergies. Texture modifications. All on paper. One mistake could genuinely hurt someone. I went home and started building Shoreline. What started as a simple resident record system grew into a full facility operations platform over two years. v4 is stable and used. v5 is the full SaaS rebuild.",
+  "details": "v4 built in vanilla JavaScript — no framework, just a well-structured single-page application. Multi-role access (admin, dietary, maintenance, scheduling). Runs locally or on a basic server. Stable and fully functional, but the codebase is the reason v5 exists — it needed a proper TypeScript + React rebuild to scale.",
   "status": "Stable",
   "category": "facility-ops",
+  "group": "shoreline",
   "stack": ["JavaScript"],
   "github": "https://github.com/ShadowWalkerNC/Shoreline",
   "featured": false

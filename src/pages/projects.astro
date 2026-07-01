@@ -1,16 +1,25 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ProjectCard from '../components/ProjectCard.astro';
+import EcosystemBanner from '../components/EcosystemBanner.astro';
 import { getCollection } from 'astro:content';
 
 const all = await getCollection('projects');
 
-const categories = [
-  { key: 'food-tech',      label: '🍽️ Food & Restaurant Tech' },
-  { key: 'facility-ops',  label: '🏠 Senior Living & Facility Ops' },
-  { key: 'dev-tools',     label: '🧱 Dev Platforms & Tools' },
-  { key: 'experimental',  label: '⚙️ Experimental & Engine Work' },
-];
+// Culinary Ecosystem group
+const ecosystemProjects = all.filter(p => p.data.group === 'culinary-ecosystem');
+
+// Shoreline group
+const shorelineProjects = all.filter(p => p.data.group === 'shoreline');
+
+// Standalone food-tech (not in ecosystem)
+const standaloneFoodTech = all.filter(p => p.data.category === 'food-tech' && !p.data.group);
+
+// Dev tools
+const devTools = all.filter(p => p.data.category === 'dev-tools');
+
+// Experimental
+const experimental = all.filter(p => p.data.category === 'experimental');
 ---
 
 <BaseLayout title="Projects — Nate Cowperthwaite" description="All projects by Nate Cowperthwaite — food tech, facility ops, dev tools, and experimental work.">
@@ -18,22 +27,112 @@ const categories = [
 
     <p class="font-mono text-xs uppercase tracking-widest mb-3" style="color: var(--blue-primary);">All Work</p>
     <h1 class="text-5xl font-extrabold mb-4 text-gradient-blue-white">Projects</h1>
-    <p class="text-lg mb-16 max-w-2xl" style="color: var(--text-subtle);">
-      A food-tech ecosystem, a facility ops platform, dev tools, and experimental engines.
-      Each product is AI-native and MCP-connected.
+    <p class="text-lg mb-4 max-w-2xl" style="color: var(--text-subtle);">
+      Every project here solves a real problem I've personally lived with — either as a cook, an operator, or a developer.
+      Click <span class="font-mono text-xs px-1.5 py-0.5 rounded" style="background: rgba(59,130,246,0.15); color: #93C5FD;">More Details</span> on any card to see who it's for, the story behind it, and the technical breakdown.
     </p>
 
-    {categories.map(cat => {
-      const items = all.filter(p => p.data.category === cat.key);
-      if (items.length === 0) return null;
-      return (
-        <section class="mb-20">
-          <h2 class="text-2xl font-bold mb-8" style="color: #CBD5E1;">{cat.label}</h2>
-          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 stagger-children">
-            {items.map(p => <ProjectCard project={p} />)}
-          </div>
-        </section>
-      );
-    })}
+    <hr class="section-divider mb-16" />
+
+    <!-- CULINARY ECOSYSTEM -->
+    {ecosystemProjects.length > 0 && (
+      <section class="mb-24">
+        <EcosystemBanner
+          icon="🍽️"
+          title="The Culinary Ecosystem"
+          subtitle="Three connected products built for food service operators. Use any one standalone, or run all three together for a fully integrated AI-native kitchen OS. Built to run in Half Baked Café & Bakehouse when it opens in 2027."
+        />
+        <div class="ecosystem-connector">
+          <span class="connector-label">CulinaryOS → KitchenKit → CulinaryOps</span>
+          <span class="connector-line"></span>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 stagger-children">
+          {ecosystemProjects.map(p => <ProjectCard project={p} />)}
+        </div>
+        <p class="mt-6 text-xs font-mono" style="color: var(--text-muted);">
+          ⚡ Each product connects to the others via dedicated MCP servers — meaning AI assistants can query live kitchen data across the entire ecosystem.
+        </p>
+      </section>
+    )}
+
+    <hr class="section-divider mb-20" />
+
+    <!-- STANDALONE FOOD TECH -->
+    {standaloneFoodTech.length > 0 && (
+      <section class="mb-24">
+        <p class="font-mono text-xs uppercase tracking-widest mb-3" style="color: var(--blue-primary);">Food & Beverage</p>
+        <h2 class="text-2xl font-bold mb-8" style="color: #CBD5E1;">🚀 Standalone Food Tech</h2>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 stagger-children">
+          {standaloneFoodTech.map(p => <ProjectCard project={p} />)}
+        </div>
+      </section>
+    )}
+
+    <hr class="section-divider mb-20" />
+
+    <!-- SHORELINE -->
+    {shorelineProjects.length > 0 && (
+      <section class="mb-24">
+        <EcosystemBanner
+          icon="🏠"
+          title="Shoreline Platform"
+          subtitle="Operations software for senior living facilities. Built from direct experience working as a dietary manager. v4 is stable and in use. v5 is the full SaaS rebuild."
+        />
+        <div class="grid sm:grid-cols-2 gap-6 stagger-children">
+          {shorelineProjects.map(p => <ProjectCard project={p} />)}
+        </div>
+      </section>
+    )}
+
+    <hr class="section-divider mb-20" />
+
+    <!-- DEV TOOLS -->
+    {devTools.length > 0 && (
+      <section class="mb-24">
+        <p class="font-mono text-xs uppercase tracking-widest mb-3" style="color: var(--blue-primary);">Dev Platforms</p>
+        <h2 class="text-2xl font-bold mb-8" style="color: #CBD5E1;">🧱 Dev Tools & Platforms</h2>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 stagger-children">
+          {devTools.map(p => <ProjectCard project={p} />)}
+        </div>
+      </section>
+    )}
+
+    <hr class="section-divider mb-20" />
+
+    <!-- EXPERIMENTAL -->
+    {experimental.length > 0 && (
+      <section class="mb-8">
+        <p class="font-mono text-xs uppercase tracking-widest mb-3" style="color: var(--blue-primary);">Lab Work</p>
+        <h2 class="text-2xl font-bold mb-8" style="color: #CBD5E1;">⚙️ Experimental & Engine Work</h2>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 stagger-children">
+          {experimental.map(p => <ProjectCard project={p} />)}
+        </div>
+      </section>
+    )}
+
   </div>
 </BaseLayout>
+
+<style>
+  .ecosystem-connector {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 0 0.25rem;
+  }
+
+  .connector-label {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.7rem;
+    color: var(--blue-primary);
+    white-space: nowrap;
+    opacity: 0.7;
+  }
+
+  .connector-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(59,130,246,0.3), transparent);
+  }
+</style>

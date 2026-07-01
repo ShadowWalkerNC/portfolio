@@ -1,0 +1,69 @@
+---
+const { title, subtitle, icon } = Astro.props;
+---
+<div class="ecosystem-banner">
+  <div class="ecosystem-banner-glow"></div>
+  <div class="ecosystem-banner-inner">
+    <span class="ecosystem-icon">{icon}</span>
+    <div>
+      <p class="ecosystem-eyebrow">Ecosystem</p>
+      <h2 class="ecosystem-title">{title}</h2>
+      {subtitle && <p class="ecosystem-sub">{subtitle}</p>}
+    </div>
+  </div>
+</div>
+
+<style>
+  .ecosystem-banner {
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    background: linear-gradient(135deg, rgba(15, 30, 53, 0.95), rgba(10, 22, 40, 0.9));
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .ecosystem-banner-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at top left, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .ecosystem-banner-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .ecosystem-icon {
+    font-size: 2.5rem;
+    flex-shrink: 0;
+  }
+
+  .ecosystem-eyebrow {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--blue-primary);
+    margin-bottom: 0.25rem;
+  }
+
+  .ecosystem-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #E2E8F0;
+    line-height: 1.2;
+  }
+
+  .ecosystem-sub {
+    font-size: 0.85rem;
+    color: var(--text-subtle);
+    margin-top: 0.35rem;
+    line-height: 1.5;
+  }
+</style>

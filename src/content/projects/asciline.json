@@ -1,11 +1,14 @@
 {
   "name": "ASCILINE-2.0",
   "emoji": "🖥️",
-  "tagline": "Real-time ASCII/pixel video rendering engine",
-  "description": "Streams video as text frames over WebSockets. Adaptive codec (RAW/ZLIB/DELTA, ~375× wire savings) · 5 color modes up to 16M · zero GPU required · LAN streaming support.",
+  "tagline": "Real-time video rendered as ASCII art and streamed over the network",
+  "description": "ASCILINE-2.0 converts live video into ASCII or pixel-art text frames and streams them in real time over WebSockets. It's part art experiment, part engineering challenge — turning a webcam feed or video file into animated characters, viewable in a browser or terminal, with zero GPU required.",
+  "forWho": "Developers and creative coders who appreciate clever engineering. Terminal enthusiasts. Anyone who's ever thought 'what if I could stream a movie as text characters?' Honestly, it's as much for the love of building it as anything else.",
+  "story": "This started as a one-night experiment. Can I take a webcam feed and render it as ASCII characters fast enough to look like smooth video? The answer was yes — but the real challenge was making the network streaming efficient. Raw ASCII frames are huge. I built a custom adaptive codec (RAW, ZLIB, and DELTA modes) that achieved about 375x wire savings on delta frames. What started as a weekend project became a real engine I'm genuinely proud of.",
+  "details": "Python backend using FastAPI and OpenCV for frame capture and ASCII conversion. Five color modes from pure monochrome up to full 16-million color. Adaptive codec automatically switches between RAW (first frame), ZLIB (compressed full frame), and DELTA (only changed characters) based on frame content. LAN streaming support for local network multi-viewer setups. JavaScript frontend renders frames in a browser canvas or raw terminal.",
   "status": "In Dev",
   "category": "experimental",
-  "stack": ["Python", "FastAPI", "JavaScript", "WebSockets"],
+  "stack": ["Python", "FastAPI", "OpenCV", "JavaScript", "WebSockets"],
   "github": "https://github.com/ShadowWalkerNC/ASCILINE-2.0",
   "featured": false
 }

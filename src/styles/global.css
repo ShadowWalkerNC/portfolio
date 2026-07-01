@@ -1,5 +1,5 @@
 /* ============================================================
-   SHADOWWALKER PORTFOLIO — GLOBAL DESIGN SYSTEM v2
+   SHADOWWALKER PORTFOLIO — GLOBAL DESIGN SYSTEM v3
    Light base · Blue primary · Ember culinary accent
    ============================================================ */
 
@@ -30,11 +30,11 @@
   --accent-ember-pale:  #ffedd5;
   --accent-cream:       #fef3c7;
 
-  /* Glows (subtle on light theme) */
-  --glow-blue:         0 4px 24px rgba(37,99,235,0.10);
-  --glow-blue-strong:  0 4px 32px rgba(37,99,235,0.20);
-  --glow-ember:        0 4px 24px rgba(249,115,22,0.10);
-  --glow-ember-strong: 0 4px 32px rgba(249,115,22,0.20);
+  /* Glows */
+  --glow-blue:         0 4px 24px rgba(37,99,235,0.12);
+  --glow-blue-strong:  0 4px 40px rgba(37,99,235,0.28);
+  --glow-ember:        0 4px 24px rgba(249,115,22,0.12);
+  --glow-ember-strong: 0 4px 40px rgba(249,115,22,0.28);
 
   /* Borders */
   --border-subtle:  #e2e8f0;
@@ -42,10 +42,10 @@
   --border-ember:   rgba(249,115,22,0.25);
 
   /* Shadows */
-  --shadow-sm:  0 1px 3px rgba(15,23,42,0.08), 0 1px 2px rgba(15,23,42,0.06);
-  --shadow-md:  0 4px 16px rgba(15,23,42,0.08), 0 2px 6px rgba(15,23,42,0.05);
-  --shadow-lg:  0 10px 40px rgba(15,23,42,0.10), 0 4px 16px rgba(15,23,42,0.06);
-  --shadow-hover: 0 8px 30px rgba(37,99,235,0.12), 0 4px 12px rgba(15,23,42,0.08);
+  --shadow-sm:    0 1px 3px rgba(15,23,42,0.08), 0 1px 2px rgba(15,23,42,0.06);
+  --shadow-md:    0 4px 16px rgba(15,23,42,0.08), 0 2px 6px rgba(15,23,42,0.05);
+  --shadow-lg:    0 10px 40px rgba(15,23,42,0.10), 0 4px 16px rgba(15,23,42,0.06);
+  --shadow-hover: 0 8px 30px rgba(37,99,235,0.14), 0 4px 12px rgba(15,23,42,0.08);
 
   /* Typography */
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
@@ -61,10 +61,10 @@
   --space-3xl: 4rem;
 
   /* Radius */
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 16px;
-  --radius-xl: 24px;
+  --radius-sm:   6px;
+  --radius-md:   10px;
+  --radius-lg:   16px;
+  --radius-xl:   24px;
   --radius-full: 999px;
 }
 
@@ -88,6 +88,7 @@ body {
   min-height: 100vh;
   background: var(--bg-base);
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
 /* ---- Typography ---- */
@@ -129,9 +130,9 @@ nav {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(248,250,252,0.90);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(248,250,252,0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border-subtle);
   padding: 0 1.5rem;
   height: 60px;
@@ -164,11 +165,11 @@ footer {
   background: var(--bg-surface);
 }
 
+
 /* ============================================================
-   ANIMATION SYSTEM
+   KEYFRAMES
    ============================================================ */
 
-/* Keyframes */
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(24px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -189,6 +190,24 @@ footer {
   from { opacity: 0; transform: translateY(-12px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
+}
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33%       { transform: translateY(-12px) rotate(2deg); }
+  66%       { transform: translateY(-6px) rotate(-1deg); }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+@keyframes shimmerBorder {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 @keyframes pulseBlue {
   0%, 100% { box-shadow: var(--glow-blue); }
   50%       { box-shadow: var(--glow-blue-strong); }
@@ -197,61 +216,182 @@ footer {
   0%, 100% { box-shadow: var(--glow-ember); }
   50%       { box-shadow: var(--glow-ember-strong); }
 }
-@keyframes shimmer {
-  0%   { background-position: -200% center; }
-  100% { background-position:  200% center; }
+@keyframes heroGradientPulse {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50%       { transform: translateY(-6px); }
+@keyframes orbDrift {
+  0%   { transform: translate(0,    0)    scale(1); }
+  33%  { transform: translate(30px, -20px) scale(1.05); }
+  66%  { transform: translate(-20px, 15px) scale(0.97); }
+  100% { transform: translate(0,    0)    scale(1); }
+}
+@keyframes orbDriftAlt {
+  0%   { transform: translate(0,    0)    scale(1); }
+  33%  { transform: translate(-25px, 20px) scale(1.04); }
+  66%  { transform: translate(20px, -15px) scale(0.98); }
+  100% { transform: translate(0,    0)    scale(1); }
+}
+@keyframes typewriter {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+@keyframes caretBlink {
+  0%, 100% { border-right-color: var(--accent-blue); }
+  50%       { border-right-color: transparent; }
+}
+@keyframes grainShift {
+  0%   { transform: translate(0, 0); }
+  25%  { transform: translate(-2px, 2px); }
+  50%  { transform: translate(2px, -2px); }
+  75%  { transform: translate(-1px, 3px); }
+  100% { transform: translate(0, 0); }
+}
+@keyframes badgePop {
+  0%   { transform: scale(0.85); opacity: 0; }
+  70%  { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); }
+}
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }
 
-/* Utility animation classes */
-.animate-fade-in-up    { animation: fadeInUp   0.5s ease forwards; }
-.animate-fade-in-left  { animation: fadeInLeft 0.5s ease forwards; }
+
+/* ============================================================
+   ANIMATION UTILITY CLASSES
+   ============================================================ */
+
+.animate-fade-in-up    { animation: fadeInUp    0.5s ease forwards; }
+.animate-fade-in-left  { animation: fadeInLeft  0.5s ease forwards; }
 .animate-fade-in-right { animation: fadeInRight 0.5s ease forwards; }
-.animate-scale-in      { animation: scaleIn    0.4s ease forwards; }
-.animate-slide-down    { animation: slideDown  0.35s ease forwards; }
-.animate-float         { animation: float 3s ease-in-out infinite; }
+.animate-scale-in      { animation: scaleIn     0.4s ease forwards; }
+.animate-slide-down    { animation: slideDown   0.35s ease forwards; }
+.animate-float         { animation: float       3s ease-in-out infinite; }
+.animate-float-slow    { animation: floatSlow   6s ease-in-out infinite; }
+.animate-badge-pop     { animation: badgePop    0.45s cubic-bezier(0.34,1.56,0.64,1) forwards; }
+.animate-spin-slow     { animation: spinSlow    12s linear infinite; }
 
-/* Staggered children */
+/* Stagger children */
 .stagger > *:nth-child(1) { animation-delay: 0.05s; }
 .stagger > *:nth-child(2) { animation-delay: 0.10s; }
 .stagger > *:nth-child(3) { animation-delay: 0.15s; }
 .stagger > *:nth-child(4) { animation-delay: 0.20s; }
 .stagger > *:nth-child(5) { animation-delay: 0.25s; }
 .stagger > *:nth-child(6) { animation-delay: 0.30s; }
+.stagger > *:nth-child(7) { animation-delay: 0.35s; }
+.stagger > *:nth-child(8) { animation-delay: 0.40s; }
 
-/* Scroll-reveal — hidden until JS adds .revealed */
+/* Scroll-reveal */
 .reveal {
   opacity: 0;
   transform: translateY(28px);
-  transition: opacity 0.55s ease, transform 0.55s ease;
+  transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1);
 }
-.reveal.revealed {
-  opacity: 1;
-  transform: translateY(0);
-}
+.reveal.revealed { opacity: 1; transform: translateY(0); }
+
 .reveal-left {
   opacity: 0;
   transform: translateX(-28px);
-  transition: opacity 0.55s ease, transform 0.55s ease;
+  transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1);
 }
-.reveal-left.revealed {
-  opacity: 1;
-  transform: translateX(0);
-}
+.reveal-left.revealed { opacity: 1; transform: translateX(0); }
+
 .reveal-right {
   opacity: 0;
   transform: translateX(28px);
-  transition: opacity 0.55s ease, transform 0.55s ease;
+  transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1);
 }
-.reveal-right.revealed {
-  opacity: 1;
-  transform: translateX(0);
+.reveal-right.revealed { opacity: 1; transform: translateX(0); }
+
+
+/* ============================================================
+   HERO VISUAL EFFECTS
+   ============================================================ */
+
+/* Animated gradient hero background — add .hero-gradient-bg to any section */
+.hero-gradient-bg {
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    #f8fafc 0%,
+    #eff6ff 25%,
+    #f8fafc 50%,
+    #fff7ed 75%,
+    #f8fafc 100%
+  );
+  background-size: 400% 400%;
+  animation: heroGradientPulse 12s ease infinite;
 }
 
-/* Shimmer text effect */
+/* Ambient orbs — place two .orb elements inside a .orb-container */
+.orb-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.35;
+}
+.orb-blue {
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle, rgba(37,99,235,0.25) 0%, transparent 70%);
+  top: -120px;
+  left: -80px;
+  animation: orbDrift 18s ease-in-out infinite;
+}
+.orb-indigo {
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, rgba(79,70,229,0.20) 0%, transparent 70%);
+  bottom: -100px;
+  right: -60px;
+  animation: orbDriftAlt 22s ease-in-out infinite;
+}
+.orb-ember {
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(249,115,22,0.20) 0%, transparent 70%);
+  top: -100px;
+  right: -60px;
+  animation: orbDrift 20s ease-in-out infinite;
+}
+.orb-ember-alt {
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(234,88,12,0.15) 0%, transparent 70%);
+  bottom: -80px;
+  left: -40px;
+  animation: orbDriftAlt 25s ease-in-out infinite;
+}
+
+/* Grain texture overlay — add .grain to any section/container */
+.grain::before {
+  content: '';
+  position: absolute;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.5;
+  animation: grainShift 0.5s steps(1) infinite;
+}
+
+
+/* ============================================================
+   SHIMMER TEXT & BORDERS
+   ============================================================ */
+
+/* Shimmer text — blue */
 .shimmer-text {
   background: linear-gradient(
     90deg,
@@ -266,34 +406,161 @@ footer {
   animation: shimmer 3s linear infinite;
 }
 
+/* Shimmer text — ember */
+.shimmer-text-ember {
+  background: linear-gradient(
+    90deg,
+    var(--accent-ember) 0%,
+    #fbbf24 40%,
+    var(--accent-ember) 80%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+
+/* Animated shimmer border — wrap content with .shimmer-border */
+.shimmer-border {
+  position: relative;
+  border-radius: var(--radius-lg);
+  padding: 2px;
+  background: linear-gradient(
+    270deg,
+    rgba(37,99,235,0.7),
+    rgba(79,70,229,0.7),
+    rgba(37,99,235,0.3),
+    rgba(79,70,229,0.7)
+  );
+  background-size: 300% 300%;
+  animation: shimmerBorder 4s ease infinite;
+}
+.shimmer-border > * {
+  background: var(--card-bg);
+  border-radius: calc(var(--radius-lg) - 2px);
+}
+
+.shimmer-border-ember {
+  position: relative;
+  border-radius: var(--radius-lg);
+  padding: 2px;
+  background: linear-gradient(
+    270deg,
+    rgba(249,115,22,0.7),
+    rgba(234,88,12,0.5),
+    rgba(251,191,36,0.6),
+    rgba(249,115,22,0.7)
+  );
+  background-size: 300% 300%;
+  animation: shimmerBorder 4s ease infinite;
+}
+.shimmer-border-ember > * {
+  background: var(--card-bg);
+  border-radius: calc(var(--radius-lg) - 2px);
+}
+
+
 /* ============================================================
-   UTILITY CLASSES
+   TYPEWRITER
    ============================================================ */
 
-/* Cards */
+/* Usage: <span class="typewriter">your text</span>
+   Defaults work for ~20 chars. */
+.typewriter {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid var(--accent-blue);
+  width: 0;
+  animation:
+    typewriter 1.8s steps(30, end) 0.5s forwards,
+    caretBlink 0.75s step-end 0.5s infinite;
+}
+
+
+/* ============================================================
+   GLOW CARD VARIANTS
+   ============================================================ */
+
 .card {
   background: var(--card-bg);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  transition: transform 0.22s cubic-bezier(0.16,1,0.3,1),
+              box-shadow 0.22s ease,
+              border-color 0.22s ease;
 }
 .card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-4px);
   box-shadow: var(--shadow-hover);
-  border-color: rgba(37,99,235,0.2);
+  border-color: rgba(37,99,235,0.22);
 }
 
-/* Glass (for overlays on light bg) */
+/* Blue glow card */
+.card-glow-blue {
+  border-color: rgba(37,99,235,0.15);
+  box-shadow: var(--shadow-sm), 0 0 0 1px rgba(37,99,235,0.08);
+}
+.card-glow-blue:hover {
+  box-shadow: var(--glow-blue-strong), var(--shadow-md);
+  border-color: rgba(37,99,235,0.35);
+}
+
+/* Ember glow card */
+.card-glow-ember {
+  border-color: rgba(249,115,22,0.15);
+  box-shadow: var(--shadow-sm), 0 0 0 1px rgba(249,115,22,0.08);
+}
+.card-glow-ember:hover {
+  box-shadow: var(--glow-ember-strong), var(--shadow-md);
+  border-color: rgba(249,115,22,0.35);
+}
+
+/* Featured / pinned card — persistent subtle glow */
+.card-featured {
+  border-color: rgba(37,99,235,0.20);
+  box-shadow: var(--shadow-md), 0 0 24px rgba(37,99,235,0.10);
+}
+.card-featured:hover {
+  box-shadow: var(--glow-blue-strong), var(--shadow-lg);
+  border-color: rgba(37,99,235,0.40);
+}
+
+/* Glass card */
 .glass {
   background: rgba(255,255,255,0.80);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
 }
+.glass:hover {
+  background: rgba(255,255,255,0.92);
+  border-color: rgba(37,99,235,0.18);
+}
 
-/* Dividers */
+/* Glassmorphism ember (food side) */
+.glass-ember {
+  background: rgba(255,255,255,0.78);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(249,115,22,0.15);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm), 0 0 0 1px rgba(249,115,22,0.05);
+}
+.glass-ember:hover {
+  background: rgba(255,255,255,0.92);
+  border-color: rgba(249,115,22,0.30);
+  box-shadow: var(--glow-ember), var(--shadow-md);
+}
+
+
+/* ============================================================
+   DIVIDERS
+   ============================================================ */
+
 .divider {
   height: 1px;
   background: var(--border-subtle);
@@ -305,15 +572,35 @@ footer {
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(37,99,235,0.25) 30%,
-    rgba(249,115,22,0.25) 70%,
+    rgba(37,99,235,0.30) 30%,
+    rgba(249,115,22,0.30) 70%,
     transparent
   );
   margin: var(--space-3xl) auto;
   max-width: 800px;
 }
+/* Animated version — add .divider-animated */
+.divider-animated {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(37,99,235,0.5),
+    rgba(79,70,229,0.5),
+    rgba(37,99,235,0.5),
+    transparent
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3s linear infinite;
+  margin: var(--space-3xl) auto;
+  max-width: 900px;
+}
 
-/* Badges */
+
+/* ============================================================
+   BADGES
+   ============================================================ */
+
 .badge {
   display: inline-flex;
   align-items: center;
@@ -335,13 +622,37 @@ footer {
   color: var(--accent-ember);
   border: 1px solid var(--border-ember);
 }
-.badge-craft { /* legacy alias */
+.badge-craft {
   background: var(--accent-ember-pale);
   color: var(--accent-ember);
   border: 1px solid var(--border-ember);
 }
 
-/* Buttons */
+/* shields.io badge strip — flex row, wraps, gap */
+.badge-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+.badge-strip img {
+  height: 26px;
+  border-radius: 4px;
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+.badge-strip img:hover {
+  transform: translateY(-2px) scale(1.06);
+  filter: drop-shadow(0 3px 8px rgba(37,99,235,0.25));
+}
+.badge-strip-ember img:hover {
+  filter: drop-shadow(0 3px 8px rgba(249,115,22,0.30));
+}
+
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -356,15 +667,16 @@ footer {
   transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
 }
 .btn:hover { transform: translateY(-2px); }
+
 .btn-primary {
   background: var(--accent-blue);
-  color: #ffffff;
+  color: #fff;
   box-shadow: 0 2px 12px rgba(37,99,235,0.25);
 }
 .btn-primary:hover {
   background: var(--accent-indigo);
-  box-shadow: 0 4px 20px rgba(37,99,235,0.35);
-  color: #ffffff;
+  box-shadow: 0 4px 20px rgba(37,99,235,0.38);
+  color: #fff;
 }
 .btn-ghost {
   background: transparent;
@@ -378,29 +690,36 @@ footer {
 }
 .btn-ember {
   background: var(--accent-ember);
-  color: #ffffff;
+  color: #fff;
   box-shadow: 0 2px 12px rgba(249,115,22,0.25);
 }
 .btn-ember:hover {
   background: var(--accent-ember-dim);
-  box-shadow: 0 4px 20px rgba(249,115,22,0.35);
-  color: #ffffff;
+  box-shadow: 0 4px 20px rgba(249,115,22,0.38);
+  color: #fff;
 }
 
-/* Glow text */
-.glow-text       { color: var(--accent-blue);  text-shadow: 0 0 20px rgba(37,99,235,0.3); }
-.glow-text-ember { color: var(--accent-ember); text-shadow: 0 0 20px rgba(249,115,22,0.3); }
 
-/* Craft icons */
+/* ============================================================
+   GLOW TEXT
+   ============================================================ */
+
+.glow-text       { color: var(--accent-blue);  text-shadow: 0 0 24px rgba(37,99,235,0.35); }
+.glow-text-ember { color: var(--accent-ember); text-shadow: 0 0 24px rgba(249,115,22,0.35); }
+
 .craft-icon {
   color: var(--accent-ember);
-  transition: filter 0.2s ease, color 0.2s ease;
+  transition: filter 0.2s ease;
 }
 .craft-icon:hover {
-  filter: drop-shadow(0 0 6px rgba(249,115,22,0.45));
+  filter: drop-shadow(0 0 8px rgba(249,115,22,0.5));
 }
 
-/* Section layout */
+
+/* ============================================================
+   SECTION LAYOUT
+   ============================================================ */
+
 .section {
   max-width: 1100px;
   margin: 0 auto;
@@ -421,9 +740,15 @@ footer {
 .inline-link { color: var(--accent-blue); text-decoration: none; font-weight: 500; }
 .inline-link:hover { text-decoration: underline; }
 
-/* ---- Media Queries ---- */
+
+/* ============================================================
+   MEDIA QUERIES
+   ============================================================ */
+
 @media (max-width: 768px) {
   nav { padding: 0 1rem; }
+  .orb-blue, .orb-indigo { width: 280px; height: 280px; }
+  .orb-ember, .orb-ember-alt { width: 240px; height: 240px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -436,4 +761,6 @@ footer {
     opacity: 1 !important;
     transform: none !important;
   }
+  .hero-gradient-bg { animation: none; background: var(--bg-base); }
+  .grain::before { animation: none; }
 }

@@ -1,5 +1,5 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import { getCollection } from 'astro:content';
 
@@ -7,7 +7,7 @@ const projects = await getCollection('projects');
 const featured = projects.filter(p => p.data.featured).slice(0, 3);
 ---
 
-<Layout title="ShadowWalkerNC — Chef × Developer" description="I spent years cooking professionally. Now I write the software kitchens should have had all along.">
+<BaseLayout title="ShadowWalkerNC — Chef × Developer" description="I spent years cooking professionally. Now I write the software kitchens should have had all along.">
   <main>
 
     <!-- ===== HERO ===== -->
@@ -177,7 +177,7 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
     </section>
 
   </main>
-</Layout>
+</BaseLayout>
 
 <style>
 /* ---- Hero ---- */

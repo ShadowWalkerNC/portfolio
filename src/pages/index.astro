@@ -13,15 +13,20 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
     <!-- ===== HERO ===== -->
     <section class="hero">
       <div class="hero-content">
-        <div class="hero-kicker">&#128104;&#8205;&#127859; Chef &nbsp;&#215;&nbsp; &#128187; Developer</div>
+        <div class="hero-kicker">
+          <span class="kicker-craft">&#127859; Culinary</span>
+          <span class="kicker-sep">&times;</span>
+          <span class="kicker-tech">&#128187; Engineering</span>
+        </div>
         <h1 class="hero-title">
-          Building the software<br />
-          <span class="hero-accent">kitchens deserve.</span>
+          The software<br />
+          <span class="hero-accent-blue">kitchens</span> <span class="hero-accent-ember">deserve.</span>
         </h1>
         <p class="hero-subtitle">
-          I spent years working professional kitchens — line cook, prep chef, food truck operator.
-          When I started coding, I built the tools I always wished existed.
-          That intersection is what drives everything I make.
+          I cooked professionally for years &mdash; prep, line, food truck.
+          When I started building software, I had one advantage most devs don&rsquo;t:
+          I knew exactly what was broken and why.
+          Everything I ship comes from that intersection.
         </p>
         <div class="hero-actions">
           <a href="/projects" class="btn btn-primary">See the Work</a>
@@ -30,26 +35,31 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
         <div class="hero-stats">
           <div class="stat"><span class="stat-num">10+</span><span class="stat-label">Projects Shipped</span></div>
           <div class="stat-divider"></div>
-          <div class="stat"><span class="stat-num">3</span><span class="stat-label">Culinary Tech Apps</span></div>
+          <div class="stat"><span class="stat-num stat-ember">3</span><span class="stat-label">Culinary Tech Apps</span></div>
           <div class="stat-divider"></div>
-          <div class="stat"><span class="stat-num">5+</span><span class="stat-label">Years in Kitchens</span></div>
+          <div class="stat"><span class="stat-num stat-ember">5+</span><span class="stat-label">Years in Kitchens</span></div>
         </div>
       </div>
       <div class="hero-visual" aria-hidden="true">
         <div class="hero-glow"></div>
         <div class="code-block">
-          <div class="code-line"><span class="c-comment">// the origin</span></div>
-          <div class="code-line"><span class="c-keyword">const</span> <span class="c-var">dev</span> <span class="c-op">=</span> <span class="c-string">&#39;chef who codes&#39;</span><span class="c-op">;</span></div>
-          <div class="code-line"><span class="c-keyword">const</span> <span class="c-var">mission</span> <span class="c-op">=</span> <span class="c-string">&#39;bridge the gap&#39;</span><span class="c-op">;</span></div>
+          <div class="code-line"><span class="c-comment">// two domains. one dev.</span></div>
           <div class="code-line c-dim">&nbsp;</div>
-          <div class="code-line"><span class="c-keyword">function</span> <span class="c-fn">buildFor</span><span class="c-paren">(</span><span class="c-var">kitchens</span><span class="c-paren">) {</span></div>
-          <div class="code-line">&nbsp; <span class="c-keyword">return</span> <span class="c-var">kitchens</span><span class="c-op">.</span><span class="c-fn">map</span><span class="c-paren">(</span><span class="c-var">k</span> <span class="c-op">=&gt;</span></div>
-          <div class="code-line">&nbsp;&nbsp;&nbsp; <span class="c-fn">solve</span><span class="c-paren">(</span><span class="c-var">k</span><span class="c-op">.</span><span class="c-var">realProblems</span><span class="c-paren">)</span></div>
-          <div class="code-line">&nbsp; <span class="c-paren">);</span></div>
+          <div class="code-line"><span class="c-keyword">const</span> <span class="c-var">identity</span> <span class="c-op">=</span> <span class="c-paren">{</span></div>
+          <div class="code-line">&nbsp; <span class="c-prop">craft</span><span class="c-op">:</span>  <span class="c-ember">'culinary'</span><span class="c-op">,</span></div>
+          <div class="code-line">&nbsp; <span class="c-prop">stack</span><span class="c-op">:</span>  <span class="c-string">'full-stack'</span><span class="c-op">,</span></div>
+          <div class="code-line">&nbsp; <span class="c-prop">builds</span><span class="c-op">:</span> <span class="c-string">'real tools'</span></div>
+          <div class="code-line"><span class="c-paren">};</span></div>
+          <div class="code-line c-dim">&nbsp;</div>
+          <div class="code-line"><span class="c-keyword">function</span> <span class="c-fn">solve</span><span class="c-paren">(</span><span class="c-var">problem</span><span class="c-paren">) {</span></div>
+          <div class="code-line">&nbsp; <span class="c-comment">// lived it first.</span></div>
+          <div class="code-line">&nbsp; <span class="c-keyword">return</span> <span class="c-fn">ship</span><span class="c-paren">(</span><span class="c-var">solution</span><span class="c-paren">);</span></div>
           <div class="code-line"><span class="c-paren">}</span></div>
         </div>
       </div>
     </section>
+
+    <div class="divider-fusion"></div>
 
     <!-- ===== JOURNEY TIMELINE ===== -->
     <section class="timeline-section">
@@ -59,37 +69,39 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
         <div class="timeline-item">
           <div class="timeline-dot dot-blue"></div>
           <div class="timeline-content">
-            <div class="timeline-era">Early 2010s — Age 14–16</div>
-            <h3 class="timeline-title">Hardware Repair & First Code</h3>
-            <p class="timeline-text">Fixing neighbors' laptops, building first websites with HTML/CSS. Learned that understanding how something breaks is the fastest way to understand how it works.</p>
+            <div class="timeline-era">Early 2010s &mdash; Age 14&ndash;16</div>
+            <h3 class="timeline-title">Hardware Repair &amp; First Code</h3>
+            <p class="timeline-text">Fixing neighbors&rsquo; laptops, building first websites with HTML/CSS. Learned that understanding how something breaks is the fastest way to understand how it works.</p>
           </div>
         </div>
         <div class="timeline-item">
-          <div class="timeline-dot dot-orange"></div>
+          <div class="timeline-dot dot-ember"></div>
           <div class="timeline-content">
-            <div class="timeline-era">Mid 2010s — Age 17–21</div>
+            <div class="timeline-era era-ember">Mid 2010s &mdash; Age 17&ndash;21</div>
             <h3 class="timeline-title">Into the Kitchen</h3>
-            <p class="timeline-text">Traded keyboards for knives. Worked the line, ran prep, operated a food truck. Learned what real operational pressure looks like — and how badly most kitchens needed better software.</p>
+            <p class="timeline-text">Traded keyboards for knives. Worked the line, ran prep, operated a food truck. Learned what real operational pressure looks like &mdash; and how badly most kitchens needed better software.</p>
           </div>
         </div>
         <div class="timeline-item">
           <div class="timeline-dot dot-blue"></div>
           <div class="timeline-content">
-            <div class="timeline-era">2020–2022</div>
-            <h3 class="timeline-title">Back to Code — With a Purpose</h3>
+            <div class="timeline-era">2020&ndash;2022</div>
+            <h3 class="timeline-title">Back to Code &mdash; With a Purpose</h3>
             <p class="timeline-text">Started building the tools I always wished existed on the line. First real projects: scripts to automate food truck social posts, a basic KDS, a reservation tracker. Python first, then Node.js.</p>
           </div>
         </div>
         <div class="timeline-item">
           <div class="timeline-dot dot-green"></div>
           <div class="timeline-content">
-            <div class="timeline-era">2023–Present</div>
-            <h3 class="timeline-title">Full-Stack & Shipping</h3>
+            <div class="timeline-era">2023&ndash;Present</div>
+            <h3 class="timeline-title">Full-Stack &amp; Shipping</h3>
             <p class="timeline-text">Built and shipped CulinaryOS, Shoreline, kitchenkit, Post-Pilot, ASCILINE, and more. Focused on production-grade architecture, real deployments, and tools that solve problems for people who actually work in food.</p>
           </div>
         </div>
       </div>
     </section>
+
+    <div class="divider"></div>
 
     <!-- ===== DEV KIT ===== -->
     <section class="devkit-section">
@@ -107,7 +119,7 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
           </div>
         </div>
         <div class="kit-group">
-          <div class="kit-group-label">Frameworks & Libraries</div>
+          <div class="kit-group-label">Frameworks &amp; Libraries</div>
           <div class="kit-chips">
             <span class="kit-chip">Astro</span>
             <span class="kit-chip">Flask</span>
@@ -118,7 +130,7 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
           </div>
         </div>
         <div class="kit-group">
-          <div class="kit-group-label">Data & Infra</div>
+          <div class="kit-group-label">Data &amp; Infra</div>
           <div class="kit-chips">
             <span class="kit-chip">PostgreSQL</span>
             <span class="kit-chip">SQLite</span>
@@ -128,7 +140,7 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
           </div>
         </div>
         <div class="kit-group">
-          <div class="kit-group-label">AI & APIs</div>
+          <div class="kit-group-label">AI &amp; APIs</div>
           <div class="kit-chips">
             <span class="kit-chip">Google Gemini</span>
             <span class="kit-chip">Discord API</span>
@@ -138,6 +150,8 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
         </div>
       </div>
     </section>
+
+    <div class="divider"></div>
 
     <!-- ===== FEATURED PROJECTS ===== -->
     <section class="featured-section">
@@ -177,14 +191,19 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
   margin: 0 auto;
 }
 .hero-kicker {
-  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.78rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: var(--accent-blue);
+  letter-spacing: 0.14em;
   margin-bottom: 1rem;
-  opacity: 0.85;
 }
+.kicker-craft  { color: var(--accent-ember); opacity: 0.9; }
+.kicker-sep    { color: var(--text-muted); }
+.kicker-tech   { color: var(--accent-blue);  opacity: 0.9; }
+
 .hero-title {
   font-size: clamp(2.2rem, 5vw, 3.4rem);
   font-weight: 900;
@@ -193,7 +212,9 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
   letter-spacing: -0.03em;
   margin: 0 0 1.2rem;
 }
-.hero-accent { color: var(--accent-blue); }
+.hero-accent-blue  { color: var(--accent-blue); }
+.hero-accent-ember { color: var(--accent-ember); }
+
 .hero-subtitle {
   font-size: 1rem;
   color: var(--text-muted);
@@ -219,9 +240,11 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
   border: 1px solid var(--border-subtle);
 }
 .btn-ghost:hover { border-color: var(--accent-blue); color: var(--accent-blue); }
+
 .hero-stats { display: flex; align-items: center; gap: 1.5rem; }
 .stat { display: flex; flex-direction: column; gap: 2px; }
 .stat-num { font-size: 1.5rem; font-weight: 800; color: var(--text-primary); line-height: 1; }
+.stat-num.stat-ember { color: var(--accent-ember); }
 .stat-label { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; }
 .stat-divider { width: 1px; height: 2rem; background: var(--border-subtle); }
 
@@ -230,7 +253,12 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
 .hero-glow {
   position: absolute;
   inset: -20%;
-  background: radial-gradient(ellipse at center, rgba(99,179,237,0.12) 0%, transparent 70%);
+  background: radial-gradient(
+    ellipse at center,
+    rgba(99,179,237,0.08) 0%,
+    rgba(249,115,22,0.04) 60%,
+    transparent 80%
+  );
   pointer-events: none;
   z-index: 0;
 }
@@ -251,8 +279,10 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
 .c-comment { color: #4a5568; }
 .c-keyword  { color: #c792ea; }
 .c-var      { color: #82aaff; }
+.c-prop     { color: #82aaff; }
 .c-fn       { color: #82cfff; }
 .c-string   { color: #c3e88d; }
+.c-ember    { color: var(--accent-ember); }
 .c-op       { color: #89ddff; }
 .c-paren    { color: #a9b1d6; }
 .c-dim      { opacity: 0.3; }
@@ -277,7 +307,13 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
 }
 .inline-link { color: var(--accent-blue); text-decoration: none; }
 .inline-link:hover { text-decoration: underline; }
-.timeline { display: flex; flex-direction: column; gap: 0; padding-left: 1.5rem; border-left: 2px solid var(--border-glow); }
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding-left: 1.5rem;
+  border-left: 2px solid var(--border-glow);
+}
 .timeline-item { position: relative; padding: 0 0 2.5rem 1.75rem; }
 .timeline-dot {
   position: absolute;
@@ -288,12 +324,21 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
   border-radius: 50%;
   border: 2px solid var(--bg-base);
 }
-.dot-blue   { background: var(--accent-blue); box-shadow: 0 0 8px var(--accent-blue); }
-.dot-orange { background: #fb923c; box-shadow: 0 0 8px #fb923c; }
-.dot-green  { background: #4ade80; box-shadow: 0 0 8px #4ade80; }
-.timeline-era { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-blue); margin-bottom: 0.3rem; opacity: 0.8; }
+.dot-blue  { background: var(--accent-blue);  box-shadow: 0 0 8px var(--accent-blue); }
+.dot-ember { background: var(--accent-ember); box-shadow: 0 0 8px var(--accent-ember); }
+.dot-green { background: #4ade80;             box-shadow: 0 0 8px #4ade80; }
+.timeline-era {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent-blue);
+  margin-bottom: 0.3rem;
+  opacity: 0.8;
+}
+.era-ember { color: var(--accent-ember) !important; }
 .timeline-title { font-size: 1.05rem; font-weight: 700; color: var(--text-primary); margin: 0 0 0.4rem; }
-.timeline-text { font-size: 0.88rem; color: var(--text-muted); line-height: 1.65; margin: 0; max-width: 560px; }
+.timeline-text  { font-size: 0.88rem; color: var(--text-muted); line-height: 1.65; margin: 0; max-width: 560px; }
 
 /* ---- Dev Kit ---- */
 .devkit-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem; }

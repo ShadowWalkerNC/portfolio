@@ -37,6 +37,7 @@ const { title, description, side } = Astro.props;
       {side === 'food' && (
         <>
           <a href="/food">Home</a>
+          <a href="/dev/contact">Contact</a>
           <a href="/dev" class="nav-switch nav-switch-dev">&#128187; Dev Side</a>
         </>
       )}
@@ -57,12 +58,12 @@ const { title, description, side } = Astro.props;
     <p>&copy; {new Date().getFullYear()} Nathaniel Cowperthwaite &mdash;
       <a href="/dev">Developer</a> &nbsp;&bull;&nbsp;
       <a href="/food">Chef</a> &nbsp;&bull;&nbsp;
+      <a href="/dev/contact">Contact</a> &nbsp;&bull;&nbsp;
       <a href="https://github.com/ShadowWalkerNC" target="_blank" rel="noopener">GitHub</a>
     </p>
   </footer>
 
   <!-- ===== UNIFIED SCROLL REVEAL ===== -->
-  <!-- Uses 'revealed' class — matches global.css. Page-level scripts also add 'is-visible' for chip stagger -->
   <script>
     (function () {
       const io = new IntersectionObserver(
@@ -70,10 +71,8 @@ const { title, description, side } = Astro.props;
           entries.forEach((entry) => {
             if (!entry.isIntersecting) return;
             const el = entry.target as HTMLElement;
-            // Both class names so page-level and global CSS both trigger
             el.classList.add('revealed', 'is-visible');
 
-            // Stagger kit-chips inside a card that just came into view
             if (el.classList.contains('kit-card')) {
               el.querySelectorAll<HTMLElement>('.kit-chip').forEach((chip, idx) => {
                 chip.style.transitionDelay = `${0.12 + idx * 0.06}s`;
@@ -103,7 +102,6 @@ const { title, description, side } = Astro.props;
         burger.classList.toggle('is-active', open);
         burger.setAttribute('aria-expanded', String(open));
       });
-      // Close menu when a link is tapped
       menu.querySelectorAll('a').forEach((a) => {
         a.addEventListener('click', () => {
           menu.classList.remove('nav-open');
@@ -183,7 +181,6 @@ const { title, description, side } = Astro.props;
   transition: transform 0.25s ease, opacity 0.2s ease;
   transform-origin: center;
 }
-/* Animated X when open */
 .nav-burger.is-active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .nav-burger.is-active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
 .nav-burger.is-active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }

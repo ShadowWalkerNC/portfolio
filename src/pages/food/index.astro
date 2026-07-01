@@ -9,34 +9,33 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 >
   <main>
 
-    <!-- ===== RESUME HEADER ===== -->
-    <section class="resume-header">
-      <div class="resume-header-inner animate-fade-in-up">
-        <div class="rh-top">
-          <div>
-            <h1 class="rh-name">Nathaniel Cowperthwaite</h1>
-            <p class="rh-title">Professional Cook &amp; Kitchen Lead &mdash; 10+ Years</p>
-            <div class="rh-meta">
-              <span class="rh-meta-item">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-                Bangor, ME
-              </span>
-              <span class="rh-meta-sep">&middot;</span>
-              <span class="rh-meta-item">Maine-based</span>
-              <span class="rh-meta-sep">&middot;</span>
-              <a href="mailto:shadowwalkernc@gmail.com" class="rh-meta-link">shadowwalkernc@gmail.com</a>
-            </div>
-          </div>
-          <div class="rh-stats">
-            <div class="rh-stat"><span class="rh-stat-num">10+</span><span class="rh-stat-label">Years</span></div>
-            <div class="rh-stat-div"></div>
-            <div class="rh-stat"><span class="rh-stat-num ember">12+</span><span class="rh-stat-label">Roles</span></div>
-            <div class="rh-stat-div"></div>
-            <div class="rh-stat"><span class="rh-stat-num">2</span><span class="rh-stat-label">Sous Chef</span></div>
-          </div>
+    <!-- ===== HERO ===== -->
+    <section class="food-hero hero-gradient-bg">
+      <div class="orb-container" aria-hidden="true">
+        <div class="orb orb-ember"></div>
+        <div class="orb orb-amber"></div>
+      </div>
+      <div class="food-hero-inner">
+        <div class="animate-fade-in-up">
+          <span class="badge badge-ember">&#127859; Chef &amp; Kitchen Lead</span>
         </div>
-        <div class="rh-actions">
-          <a href="https://photos.app.goo.gl/JGgx37aAA1vhip3z9" target="_blank" rel="noopener" class="btn btn-ember">View Food Gallery</a>
+        <h1 class="food-hero-title animate-fade-in-up" style="animation-delay:0.07s">
+          10+ years behind<br />
+          <span class="shimmer-text-ember">the pass.</span>
+        </h1>
+        <p class="food-hero-sub animate-fade-in-up" style="animation-delay:0.14s">
+          From coastal Maine resort kitchens to fine dining and food truck ops —
+          scratch cooking, shift leadership, and the craft behind the food.
+        </p>
+        <div class="food-hero-stats animate-fade-in-up" style="animation-delay:0.20s">
+          <div class="fhs"><span class="fhs-num">10+</span><span class="fhs-label">Years</span></div>
+          <div class="fhs-div"></div>
+          <div class="fhs"><span class="fhs-num ember">12+</span><span class="fhs-label">Roles</span></div>
+          <div class="fhs-div"></div>
+          <div class="fhs"><span class="fhs-num">2</span><span class="fhs-label">Sous Chef</span></div>
+        </div>
+        <div class="food-hero-actions animate-fade-in-up" style="animation-delay:0.26s">
+          <a href="https://photos.app.goo.gl/JGgx37aAA1vhip3z9" target="_blank" rel="noopener" class="btn btn-ember">&#127752; View Food Gallery</a>
           <a href="#experience" class="btn btn-ghost">Jump to Experience</a>
         </div>
       </div>
@@ -49,7 +48,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       <div class="skills-table reveal">
 
         <div class="skills-row">
-          <div class="skills-cat">Technique</div>
+          <div class="skills-cat">&#128298; Technique</div>
           <div class="skills-chips">
             <span class="sk">Knife Skills</span>
             <span class="sk">Saut&eacute;ing</span>
@@ -63,7 +62,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         </div>
 
         <div class="skills-row">
-          <div class="skills-cat">Service Types</div>
+          <div class="skills-cat">&#127869; Service Types</div>
           <div class="skills-chips">
             <span class="sk">Breakfast / Brunch</span>
             <span class="sk">Fine Dining</span>
@@ -75,7 +74,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         </div>
 
         <div class="skills-row">
-          <div class="skills-cat">Leadership &amp; Ops</div>
+          <div class="skills-cat">&#128736; Leadership &amp; Ops</div>
           <div class="skills-chips">
             <span class="sk">Shift Supervision</span>
             <span class="sk">Staff Coordination</span>
@@ -88,7 +87,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         </div>
 
         <div class="skills-row">
-          <div class="skills-cat">Certifications</div>
+          <div class="skills-cat">&#127941; Certifications</div>
           <div class="skills-chips">
             <span class="sk sk-cert">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
@@ -112,7 +111,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
       <!-- CURRENT -->
       <div class="exp-group reveal">
-        <div class="exp-group-label exp-current">Currently Active</div>
+        <div class="exp-group-label exp-current">&#128994; Currently Active</div>
         <div class="exp-cards">
 
           <div class="exp-card card">
@@ -168,7 +167,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
       <!-- 2024-2025 -->
       <div class="exp-group reveal">
-        <div class="exp-group-label exp-recent">2024&ndash;2025</div>
+        <div class="exp-group-label exp-recent">&#128992; 2024&ndash;2025</div>
         <div class="exp-cards">
 
           <div class="exp-card card">
@@ -216,7 +215,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
       <!-- DEFINING ROLES -->
       <div class="exp-group reveal">
-        <div class="exp-group-label exp-defining">Defining Roles</div>
+        <div class="exp-group-label exp-defining">&#11088; Defining Roles</div>
         <div class="exp-cards">
 
           <div class="exp-card card exp-card-key">
@@ -303,7 +302,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     <section class="section reveal">
       <div class="gallery-strip">
         <div class="gallery-strip-text">
-          <div class="gallery-strip-title">Food Photography</div>
+          <div class="gallery-strip-title">&#127752; Food Photography</div>
           <p class="gallery-strip-sub">Dishes and kitchen work from real service &mdash; no staged shots.</p>
         </div>
         <a href="https://photos.app.goo.gl/JGgx37aAA1vhip3z9" target="_blank" rel="noopener" class="btn btn-ember">Open Gallery &rarr;</a>
@@ -314,76 +313,103 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 </BaseLayout>
 
 <style>
-/* ===== Resume Header ===== */
-.resume-header {
-  border-bottom: 1px solid var(--border-subtle);
-  padding: 3.5rem 1.5rem 2.5rem;
+/* ===== Ember Orbs (food-side hero) ===== */
+.orb-ember {
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(249,115,22,0.22) 0%, transparent 70%);
+  top: -80px;
+  right: -80px;
+  animation: orbFloat 9s ease-in-out infinite;
 }
-.resume-header-inner {
-  max-width: 920px;
+.orb-amber {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(245,158,11,0.16) 0%, transparent 70%);
+  bottom: -60px;
+  left: 5%;
+  animation: orbFloat 12s ease-in-out infinite reverse;
+}
+
+/* ===== Shimmer text — ember variant ===== */
+.shimmer-text-ember {
+  background: linear-gradient(
+    90deg,
+    var(--accent-ember) 0%,
+    #f59e0b 30%,
+    #fbbf24 50%,
+    #f59e0b 70%,
+    var(--accent-ember) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3.5s linear infinite;
+}
+
+/* ===== Hero ===== */
+.food-hero {
+  position: relative;
+  padding: 5rem 1.5rem 4rem;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(249,115,22,0.18);
+}
+.food-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg,
+    rgba(249,115,22,0.07) 0%,
+    transparent 60%);
+  pointer-events: none;
+}
+.food-hero-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
   margin: 0 auto;
+  text-align: center;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  align-items: center;
+  gap: 0;
 }
-.rh-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 2rem;
-  flex-wrap: wrap;
-}
-.rh-name {
-  font-size: clamp(1.6rem, 4vw, 2.4rem);
+.food-hero-inner .badge { margin-bottom: 1.25rem; }
+.food-hero-title {
+  font-size: clamp(2rem, 5vw, 3.4rem);
   font-weight: 900;
   letter-spacing: -0.03em;
+  line-height: 1.1;
   color: var(--text-primary);
-  margin: 0 0 0.2rem;
+  margin-bottom: 1.25rem;
 }
-.rh-title {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--accent-ember);
-  margin: 0 0 0.6rem;
-}
-.rh-meta {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-  font-size: 0.82rem;
+.food-hero-sub {
+  font-size: 1rem;
   color: var(--text-muted);
+  line-height: 1.75;
+  max-width: 540px;
+  margin-bottom: 1.5rem;
 }
-.rh-meta-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-}
-.rh-meta-sep { color: var(--border-subtle); }
-.rh-meta-link {
-  color: var(--accent-ember);
-  text-decoration: none;
-  font-weight: 500;
-}
-.rh-meta-link:hover { text-decoration: underline; }
 
-.rh-stats {
+/* ===== Hero stats ===== */
+.food-hero-stats {
   display: flex;
   gap: 1rem;
   align-items: center;
   background: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
+  border: 1px solid rgba(249,115,22,0.20);
   border-radius: var(--radius-lg);
-  padding: 1rem 1.25rem;
-  flex-shrink: 0;
+  padding: 0.85rem 1.5rem;
+  margin-bottom: 1.5rem;
 }
-.rh-stat { display: flex; flex-direction: column; align-items: center; gap: 1px; }
-.rh-stat-num { font-size: 1.5rem; font-weight: 800; color: var(--text-primary); line-height: 1; }
-.rh-stat-num.ember { color: var(--accent-ember); }
-.rh-stat-label { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); }
-.rh-stat-div { width: 1px; height: 32px; background: var(--border-subtle); }
+.fhs { display: flex; flex-direction: column; align-items: center; gap: 1px; }
+.fhs-num { font-size: 1.5rem; font-weight: 800; color: var(--text-primary); line-height: 1; }
+.fhs-num.ember { color: var(--accent-ember); }
+.fhs-label { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); }
+.fhs-div { width: 1px; height: 32px; background: rgba(249,115,22,0.18); }
 
-.rh-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+.food-hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; }
 
 /* ===== Skills Table ===== */
 .section-ember-tint {
@@ -401,14 +427,14 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 }
 .skills-row {
   display: grid;
-  grid-template-columns: 160px 1fr;
+  grid-template-columns: 170px 1fr;
   gap: 1rem;
   padding: 0.9rem 1.25rem;
   border-bottom: 1px solid var(--border-subtle);
   align-items: start;
 }
 .skills-row:last-child { border-bottom: none; }
-.skills-row:nth-child(odd) { background: var(--bg-surface); }
+.skills-row:nth-child(odd)  { background: var(--bg-surface); }
 .skills-row:nth-child(even) { background: var(--bg-elevated); }
 .skills-cat {
   font-size: 0.72rem;
@@ -417,6 +443,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   letter-spacing: 0.1em;
   color: var(--text-muted);
   padding-top: 3px;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
 }
 .skills-chips { display: flex; flex-wrap: wrap; gap: 0.35rem; }
 .sk {
@@ -530,10 +559,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
 /* ===== Responsive ===== */
 @media (max-width: 640px) {
-  .resume-header { padding: 2.5rem 1rem 1.75rem; }
-  .rh-stats { width: 100%; justify-content: center; }
+  .food-hero  { padding: 3.5rem 1rem 2.5rem; }
+  .food-hero-stats { padding: 0.75rem 1rem; }
   .skills-row { grid-template-columns: 1fr; gap: 0.5rem; }
-  .exp-cards { grid-template-columns: 1fr; }
+  .exp-cards  { grid-template-columns: 1fr; }
   .gallery-strip { flex-direction: column; align-items: flex-start; }
 }
 </style>

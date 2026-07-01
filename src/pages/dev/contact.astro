@@ -3,41 +3,140 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout
-  title="Contact — Nate Cowperthwaite"
-  description="Get in touch with Nate Cowperthwaite — developer and chef. Open to collaborations, culinary tech, and interesting problems."
+  title="About — Nate Cowperthwaite"
+  description="Chef turned self-taught developer. I build small tools to solve real problems — not for hire, just for fun."
   side="dev"
 >
   <main>
 
     <!-- ===== HERO ===== -->
-    <section class="contact-hero hero-gradient-bg">
+    <section class="about-hero hero-gradient-bg">
       <div class="orb-container" aria-hidden="true">
         <div class="orb orb-blue"></div>
         <div class="orb orb-indigo"></div>
       </div>
-      <div class="contact-hero-inner">
+      <div class="about-hero-inner">
         <div class="animate-fade-in-up">
-          <span class="badge badge-blue">&#128172; Contact</span>
+          <span class="badge badge-blue">👤 About Me</span>
         </div>
-        <h1 class="contact-hero-title animate-fade-in-up" style="animation-delay:0.07s">
-          Let's build something<br />
-          <span class="shimmer-text">worth shipping.</span>
+        <h1 class="about-hero-title animate-fade-in-up" style="animation-delay:0.07s">
+          Chef by trade.<br />
+          <span class="shimmer-text">Builder by habit.</span>
         </h1>
-        <p class="contact-hero-sub animate-fade-in-up" style="animation-delay:0.14s">
-          Whether you have a project idea, a collaboration in mind, or just want to talk
-          culinary tech — I'm genuinely interested in hearing it.
-          Best way to reach me is email; I check GitHub notifications too.
+        <p class="about-hero-sub animate-fade-in-up" style="animation-delay:0.14s">
+          I've spent 10+ years in professional kitchens — from line cook to sous chef.
+          Somewhere along the way I started building tools to fix the friction I kept running into.
+          That became a genuine obsession. I'm not looking for a job or clients.
+          I just like making things that actually work.
         </p>
-        <p class="contact-hero-back animate-fade-in-up" style="animation-delay:0.20s">
+        <p class="about-hero-back animate-fade-in-up" style="animation-delay:0.20s">
           <a href="/dev" class="inline-link">&larr; Back to Dev Home</a>
         </p>
       </div>
     </section>
 
-    <!-- ===== CONTACT CARDS ===== -->
+    <!-- ===== WHO I AM ===== -->
     <section class="section section-blue-tint">
-      <h2 class="section-heading reveal">Reach Out</h2>
-      <p class="section-sub reveal">Two reliable ways to get in touch.</p>
+      <h2 class="section-heading reveal">Who I Am</h2>
+      <p class="section-sub reveal">The short version.</p>
+
+      <div class="who-grid stagger">
+
+        <div class="who-card card card-blue-left reveal">
+          <div class="who-card-icon">🔪</div>
+          <h3 class="who-card-title">Still a Chef</h3>
+          <p class="who-card-text">
+            Full-time kitchen work is still my day job. I've led BOH teams, written menus,
+            managed food cost, and done the hard unglamorous stuff that keeps a kitchen alive.
+            Dev is what I do when service ends.
+          </p>
+        </div>
+
+        <div class="who-card card card-blue-left reveal">
+          <div class="who-card-icon">🛠️</div>
+          <h3 class="who-card-title">Self-Taught Dev</h3>
+          <p class="who-card-text">
+            No bootcamp, no CS degree. I learned by building things I actually needed — recipe tools,
+            kitchen ops automation, AI-assisted workflows. If something bugs me enough I'll figure out
+            how to fix it.
+          </p>
+        </div>
+
+        <div class="who-card card card-blue-left reveal">
+          <div class="who-card-icon">🧪</div>
+          <h3 class="who-card-title">Driven by Real Problems</h3>
+          <p class="who-card-text">
+            Every project here started with a genuine irritation — something slow, something missing,
+            something that should exist but doesn't. I'm not building for a portfolio.
+            I'm building because I needed it to exist.
+          </p>
+        </div>
+
+        <div class="who-card card card-blue-left reveal">
+          <div class="who-card-icon">🤖</div>
+          <h3 class="who-card-title">Deep in AI/Agentic Workflows</h3>
+          <p class="who-card-text">
+            MCP, AI APIs, agentic tooling — I work with this stuff daily. Not as a trend chaser,
+            but because it's actually useful when you point it at a real workflow
+            instead of a demo.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="divider-animated"></div>
+
+    <!-- ===== WHAT I BUILD ===== -->
+    <section class="section section-blue-wash">
+      <h2 class="section-heading reveal">What I Build</h2>
+      <p class="section-sub reveal">Small tools. Real use cases. No roadmaps.</p>
+
+      <div class="build-list stagger">
+
+        <div class="build-item reveal">
+          <span class="build-dot">▸</span>
+          <div>
+            <strong>Kitchen & food ops tools</strong> — recipe scaling, cost tracking,
+            prep management. Stuff chefs actually need and can't afford at enterprise pricing.
+          </div>
+        </div>
+
+        <div class="build-item reveal">
+          <span class="build-dot">▸</span>
+          <div>
+            <strong>Automation for repetitive workflows</strong> — if I'm doing the same thing
+            more than twice I'm building something to handle it.
+          </div>
+        </div>
+
+        <div class="build-item reveal">
+          <span class="build-dot">▸</span>
+          <div>
+            <strong>AI integrations that are actually useful</strong> — not chatbots for the sake of it,
+            but agents that slot into a real task and make it faster.
+          </div>
+        </div>
+
+        <div class="build-item reveal">
+          <span class="build-dot">▸</span>
+          <div>
+            <strong>Whatever I'm annoyed by this week</strong> — the best projects start with
+            "why doesn't this exist yet."
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="divider-animated"></div>
+
+    <!-- ===== CONTACT ===== -->
+    <section class="section section-blue-tint">
+      <h2 class="section-heading reveal">Say Hi</h2>
+      <p class="section-sub reveal">
+        Not hiring, not for hire. But if something here is interesting to you — I'm around.
+      </p>
 
       <div class="contact-grid stagger">
 
@@ -47,13 +146,13 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           class="contact-card card card-glow-blue reveal"
           aria-label="Send an email to Nate"
         >
-          <div class="contact-card-icon" aria-hidden="true">&#9993;&#65039;</div>
+          <div class="contact-card-icon" aria-hidden="true">✉️</div>
           <div class="contact-card-body">
             <div class="contact-card-label">Email</div>
             <div class="contact-card-value">shadowwalkernc@gmail.com</div>
             <p class="contact-card-note">
-              Best for project inquiries, collabs, and anything that needs a real conversation.
-              I try to reply within a day or two.
+              Best for anything that needs an actual conversation — feedback, ideas,
+              collaboration on a weird side project. I try to reply within a couple days.
             </p>
           </div>
           <div class="contact-card-cta">Send a message &rarr;</div>
@@ -67,13 +166,13 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           class="contact-card card card-glow-blue reveal"
           aria-label="View Nate's GitHub profile"
         >
-          <div class="contact-card-icon" aria-hidden="true">&#128049;</div>
+          <div class="contact-card-icon" aria-hidden="true">🐱</div>
           <div class="contact-card-body">
             <div class="contact-card-label">GitHub</div>
             <div class="contact-card-value">ShadowWalkerNC</div>
             <p class="contact-card-note">
-              Browse active repos, open an issue, or follow along on whatever I'm shipping.
-              Pull requests and honest feedback welcome.
+              Everything I'm building lives here. Open issues, leave feedback, or
+              just poke around. Pull requests on anything public are welcome.
             </p>
           </div>
           <div class="contact-card-cta">View profile &rarr;</div>
@@ -82,79 +181,11 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       </div>
     </section>
 
-    <div class="divider-animated"></div>
-
-    <!-- ===== WHAT I'M OPEN TO ===== -->
-    <section class="section open-section section-blue-wash">
-      <h2 class="section-heading reveal">What I'm Open To</h2>
-      <p class="section-sub reveal">
-        Still cooking full-time — dev is a serious side project. Here's where collaboration makes sense.
-      </p>
-
-      <div class="open-grid stagger">
-
-        <div class="open-card card card-blue-left reveal">
-          <div class="open-card-icon">&#127860;</div>
-          <h3 class="open-card-title">Culinary Tech</h3>
-          <p class="open-card-text">
-            If you're building for kitchens, restaurants, or food operations — I've lived that side
-            and can bring real insight. Recipe management, kitchen ops tools, menu systems, you name it.
-          </p>
-          <div class="open-chips">
-            <span class="kit-chip">Kitchen Ops</span>
-            <span class="kit-chip">Recipe Systems</span>
-            <span class="kit-chip">Food Tech</span>
-          </div>
-        </div>
-
-        <div class="open-card card card-blue-left reveal">
-          <div class="open-card-icon">&#129302;</div>
-          <h3 class="open-card-title">Agentic / AI Projects</h3>
-          <p class="open-card-text">
-            I build with MCP, AI APIs, and agentic workflows daily. If you're exploring that space
-            and need a collaborator who can actually ship something, let's talk.
-          </p>
-          <div class="open-chips">
-            <span class="kit-chip">MCP</span>
-            <span class="kit-chip">AI APIs</span>
-            <span class="kit-chip">Automation</span>
-          </div>
-        </div>
-
-        <div class="open-card card card-blue-left reveal">
-          <div class="open-card-icon">&#128295;</div>
-          <h3 class="open-card-title">Side-Project Collabs</h3>
-          <p class="open-card-text">
-            Small teams, interesting problems, and building things that actually get used.
-            Not looking for big corporate contracts — looking for builders with a real problem to solve.
-          </p>
-          <div class="open-chips">
-            <span class="kit-chip">Open Source</span>
-            <span class="kit-chip">Small Teams</span>
-            <span class="kit-chip">Builders</span>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ===== NOT OPEN TO ===== -->
-    <section class="section not-open-section">
-      <div class="not-open-inner reveal">
-        <span class="badge badge-blue" style="margin-bottom:0.75rem">&#128683; Not the right fit</span>
-        <p class="not-open-text">
-          Not currently looking for full-time roles, agency work, or anything that pulls me away from
-          the kitchen. If your pitch starts with "We'd love to have you on our team full-time" —
-          I appreciate it, but the answer is no for now.
-        </p>
-      </div>
-    </section>
-
   </main>
 </BaseLayout>
 
 <style>
-/* ---- Blue section tints ---- */
+/* ---- Section tints ---- */
 .section-blue-tint {
   background: linear-gradient(180deg,
     rgba(37, 99, 235, 0.04) 0%,
@@ -170,13 +201,13 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 }
 
 /* ---- Hero ---- */
-.contact-hero {
+.about-hero {
   position: relative;
   padding: 5rem 1.5rem 4rem;
   overflow: hidden;
   border-bottom: 1px solid rgba(37, 99, 235, 0.18);
 }
-.contact-hero::after {
+.about-hero::after {
   content: '';
   position: absolute;
   inset: 0;
@@ -185,7 +216,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     transparent 60%);
   pointer-events: none;
 }
-.contact-hero-inner {
+.about-hero-inner {
   position: relative;
   z-index: 2;
   max-width: 680px;
@@ -196,8 +227,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   align-items: center;
   gap: 0;
 }
-.contact-hero-inner .badge { margin-bottom: 1.25rem; }
-.contact-hero-title {
+.about-hero-inner .badge { margin-bottom: 1.25rem; }
+.about-hero-title {
   font-size: clamp(2rem, 5vw, 3.2rem);
   font-weight: 900;
   letter-spacing: -0.03em;
@@ -205,16 +236,81 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   color: var(--text-primary);
   margin-bottom: 1.25rem;
 }
-.contact-hero-sub {
+.about-hero-sub {
   font-size: 1rem;
   color: var(--text-muted);
   line-height: 1.75;
-  max-width: 540px;
+  max-width: 560px;
   margin-bottom: 1.25rem;
 }
-.contact-hero-back { font-size: 0.88rem; }
+.about-hero-back { font-size: 0.88rem; }
 
-/* ---- Contact Cards ---- */
+/* ---- Who I Am grid ---- */
+.who-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+.who-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1.75rem 1.5rem;
+}
+.card-blue-left {
+  border-left: 3px solid rgba(37, 99, 235, 0.30);
+  background: linear-gradient(135deg,
+    rgba(37, 99, 235, 0.05) 0%,
+    var(--bg-elevated) 60%);
+}
+.card-blue-left:hover { border-left-color: var(--accent-blue); }
+.who-card-icon { font-size: 1.8rem; line-height: 1; }
+.who-card-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+.who-card-text {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ---- What I Build list ---- */
+.build-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 680px;
+}
+.build-item {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  font-size: 0.93rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-lg);
+  background: rgba(37, 99, 235, 0.04);
+  border: 1px solid rgba(37, 99, 235, 0.10);
+  transition: border-color 0.2s, background 0.2s;
+}
+.build-item:hover {
+  border-color: rgba(37, 99, 235, 0.25);
+  background: rgba(37, 99, 235, 0.07);
+}
+.build-item strong { color: var(--text-primary); }
+.build-dot {
+  color: var(--accent-blue);
+  font-size: 0.75rem;
+  margin-top: 0.28rem;
+  flex-shrink: 0;
+}
+
+/* ---- Contact cards ---- */
 .contact-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -279,93 +375,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   transform: translateX(0);
 }
 
-/* ---- Open To ---- */
-.open-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.25rem;
-}
-.open-card {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-  padding: 1.75rem 1.5rem;
-}
-/* Blue left border accent on open-to cards */
-.card-blue-left {
-  border-left: 3px solid rgba(37, 99, 235, 0.30);
-  background: linear-gradient(135deg,
-    rgba(37, 99, 235, 0.05) 0%,
-    var(--bg-elevated) 60%);
-}
-.card-blue-left:hover {
-  border-left-color: var(--accent-blue);
-}
-.open-card-icon {
-  font-size: 1.8rem;
-  line-height: 1;
-}
-.open-card-title {
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  margin: 0;
-}
-.open-card-text {
-  font-size: 0.88rem;
-  color: var(--text-muted);
-  line-height: 1.65;
-  margin: 0;
-  flex: 1;
-}
-.open-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-top: 0.25rem;
-}
-.kit-chip {
-  font-size: 0.75rem;
-  font-weight: 600;
-  padding: 4px 12px;
-  border-radius: var(--radius-full);
-  background: rgba(37, 99, 235, 0.08);
-  color: var(--accent-blue);
-  border: 1px solid rgba(37, 99, 235, 0.20);
-  transition: border-color 0.2s, background 0.2s;
-}
-.kit-chip:hover {
-  border-color: var(--accent-blue);
-  background: rgba(37, 99, 235, 0.16);
-}
-
-/* ---- Not Open To ---- */
-.not-open-section { padding-top: 0; }
-.not-open-inner {
-  max-width: 600px;
-  padding: 1.5rem 2rem;
-  background: linear-gradient(135deg,
-    rgba(37, 99, 235, 0.05) 0%,
-    var(--bg-elevated) 70%);
-  border: 1px solid rgba(37, 99, 235, 0.15);
-  border-left: 3px solid rgba(37, 99, 235, 0.35);
-  border-radius: var(--radius-lg);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-.not-open-text {
-  font-size: 0.88rem;
-  color: var(--text-muted);
-  line-height: 1.7;
-  margin: 0;
-}
-
 /* ---- Responsive ---- */
 @media (max-width: 640px) {
-  .contact-hero { padding: 3.5rem 1rem 2.5rem; }
-  .contact-grid  { grid-template-columns: 1fr; }
-  .open-grid     { grid-template-columns: 1fr; }
-  .not-open-inner { padding: 1.25rem 1.25rem; }
+  .about-hero   { padding: 3.5rem 1rem 2.5rem; }
+  .who-grid     { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; }
 }
 </style>

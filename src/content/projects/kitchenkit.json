@@ -8,7 +8,7 @@
   "category": "Culinary Tech",
   "tags": ["recipe-manager", "prep-planning", "ratio-engine", "mcp", "culinaryos", "kitchen-ops"],
   "stack": ["TypeScript", "React 18", "Vite", "Supabase", "Turborepo", "pnpm"],
-  "status": "planning",
+  "status": "wip",
   "featured": true,
   "links": {
     "github": "https://github.com/ShadowWalkerNC/KitchenKit"

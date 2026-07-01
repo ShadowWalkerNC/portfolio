@@ -10,6 +10,7 @@ const projects = defineCollection({
     forWho: z.string().optional(),
     story: z.string().optional(),
     details: z.string().optional(),
+    detailedSpecs: z.string().optional(),
     status: z.enum(['In Dev', 'Active Rebuild', 'Stable', 'Internal', 'Archived']),
     category: z.enum(['food-tech', 'facility-ops', 'dev-tools', 'experimental']),
     group: z.string().optional(),

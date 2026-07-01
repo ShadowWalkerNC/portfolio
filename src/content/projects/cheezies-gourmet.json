@@ -6,6 +6,7 @@
   "forWho": "Small food businesses and artisan makers who need a real web presence that matches the quality of what they make — not a generic template.",
   "story": "Maine has a deep culture of small-batch, handcrafted food. Cheezies Gourmet deserved a site that felt like that — warm, real, and personal. This project is also a preview of what I'll build for Half Baked Café & Bakehouse when the time comes.",
   "details": "Static site with custom CSS and hand-written copy. Optimized for mobile. No CMS dependency — simple, fast, and easy for the owner to update.",
+  "detailedSpecs": "Pure static HTML/CSS/JS — zero build tooling, zero dependencies, zero runtime overhead. Typography system uses two font families: a serif display face for headings to reinforce the artisan, handcrafted brand feel, and a clean sans-serif for body copy. Color palette derived from the product packaging — warm creams, deep mustards, and earthy terracottas. Layout uses CSS Grid for the product showcase section with responsive breakpoints at 480px, 768px, and 1024px — no media query framework. Contact form handled via Formspree (serverless form endpoint) to avoid any server requirement. Images run through manual WebP conversion + lazy loading attributes for fast load on mobile. Total page weight under 200KB including all assets. Deployable to any static host — currently on Netlify with branch deploy previews for content updates.",
   "status": "Stable",
   "category": "food-tech",
   "stack": ["HTML", "CSS", "JavaScript"],

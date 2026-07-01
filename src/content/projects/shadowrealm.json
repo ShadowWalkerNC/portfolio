@@ -6,6 +6,7 @@
   "forWho": "Curious developers and anyone who appreciates the messy, honest side of building. This is the sketchbook, not the gallery.",
   "story": "Every builder has a junk drawer. This is mine — made public. I got tired of the idea that every project on a portfolio has to be polished and production-ready. Some of the best things I've learned came from projects that completely failed. ShadowRealm is where that happens in the open.",
   "details": "Various languages and frameworks depending on the experiment. No consistent stack. Check individual branches and folders for what's in there.",
+  "detailedSpecs": "No canonical stack — intentionally polyglot. Each experiment lives in its own branch or subdirectory with a minimal README describing the hypothesis, what was tried, and what the outcome was (including failed experiments). Past and ongoing experiments include: a Lua-scripted game entity component system, a Python-based generative music engine that maps code complexity metrics to MIDI note patterns, a WebGL fluid simulation, a CLI tool that converts English prose to Pig Latin via a handwritten finite-state parser, and a brainfuck interpreter written in brainfuck. Nothing here is maintained. Everything here was worth building. This is where I prove ideas before they earn a real repo.",
   "status": "Internal",
   "category": "experimental",
   "stack": ["Various"],

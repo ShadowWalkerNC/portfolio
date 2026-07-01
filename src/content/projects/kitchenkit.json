@@ -1,23 +1,37 @@
 {
   "title": "kitchenkit",
-  "tagline": "Modular kitchen ops tools — standalone or as MCPs inside CulinaryOS.",
-  "description": "kitchenkit is a suite of focused, role-specific apps for managing kitchen operations — prep tracking, recipe management, and more. Each tool works independently for operators who need just one piece, or connects as an MCP into CulinaryOS for unified hub-level orchestration.",
-  "story": "Not every kitchen needs a full platform. Some just need one tight tool that works. kitchenkit was built to solve that — task-specific apps that respect the way different roles actually use software, designed from the start to snap into CulinaryOS when the operation grows.",
-  "forWho": "Kitchen managers, prep cooks, and food service operators who need targeted ops tooling — whether running standalone or inside the CulinaryOS ecosystem.",
+  "tagline": "Recipe manager and shift prep planner — standalone or as CulinaryOS MCP servers.",
+  "description": "KitchenKit is a standalone recipe manager and shift prep planner for anyone who cooks seriously — home cooks, personal chefs, caterers, and restaurant teams. It merges recipe management (with ratio-based scaling and unit conversion) and shift prep planning into one product. Each capability is also exposed as a dedicated MCP server, allowing CulinaryOS to call recipe and prep tools directly as part of its unified hub orchestration.",
+  "story": "Most recipe apps store 500g. KitchenKit stores 100% — baker's percentages and ratio relationships that hold true at any scale. That same engine powers the shift prep planner, so a mise en place list for 12 covers is generated from the same blueprint as one for 200. Built to work on its own, and designed from the start to snap into CulinaryOS when the operation grows.",
+  "forWho": "Home cooks, personal chefs, caterers, and restaurant teams who need serious recipe scaling and prep planning — whether running standalone or inside the CulinaryOS ecosystem.",
   "group": "culinary-ecosystem",
   "category": "Culinary Tech",
-  "tags": ["kitchen-ops", "modular", "mcp", "culinaryos", "task-management"],
-  "stack": ["Node.js", "TypeScript", "Supabase", "Turborepo", "pnpm", "Railway"],
-  "status": "active",
+  "tags": ["recipe-manager", "prep-planning", "ratio-engine", "mcp", "culinaryos", "kitchen-ops"],
+  "stack": ["TypeScript", "React 18", "Vite", "Supabase", "Turborepo", "pnpm"],
+  "status": "planning",
   "featured": true,
   "links": {
-    "github": "https://github.com/ShadowWalkerNC/kitchenkit"
+    "github": "https://github.com/ShadowWalkerNC/KitchenKit"
   },
   "detailedSpecs": {
-    "architecture": "pnpm monorepo managed by Turborepo. Apps and MCP modules live in separate workspaces, with shared logic extracted into reusable packages. Supabase handles the data layer. Each MCP module exposes a CulinaryOS-compatible interface for hub integration.",
-    "dataFlow": "Standalone: apps/web surfaces the UI, drawing on packages/prep-engine and packages/ratio-engine for core logic, backed by Supabase. As MCP: mcp/prep-mcp and mcp/recipe-mcp connect to CulinaryOS, routing task data through the hub and into the operator dashboard.",
-    "keyPatterns": ["pnpm workspaces + Turborepo for monorepo orchestration", "Role-scoped MCP modules — each targets a specific kitchen task domain", "Shared engines (prep, ratio) consumed by both the web app and MCP layer", "Standalone-first design — no CulinaryOS dependency required"],
+    "architecture": "pnpm monorepo managed by Turborepo. React 18 + Vite web app (apps/web) backed by Supabase. Core logic lives in two shared packages — ratio-engine (pure TypeScript, zero dependencies) and prep-engine — consumed by both the web app and the MCP servers. recipe-mcp and prep-mcp expose tool interfaces for CulinaryOS hub integration.",
+    "dataFlow": "Standalone: apps/web surfaces the recipe manager and shift prep planner, drawing on ratio-engine and prep-engine for all scaling and mise en place logic, backed by Supabase. As MCP: recipe-mcp (scale_recipe, get_ratio, list_recipes, generate_prep_list) and prep-mcp (build_shift_prep, get_mise_en_place, project_batch_size) connect to CulinaryOS, routing recipe and prep data into the operator hub.",
+    "keyPatterns": [
+      "Ratio Blueprint Engine — recipes stored as ratio relationships (baker's percentages), not fixed quantities",
+      "recipe-mcp: scale_recipe · get_ratio · list_recipes · generate_prep_list",
+      "prep-mcp: build_shift_prep · get_mise_en_place · project_batch_size",
+      "Shared packages (ratio-engine, prep-engine) consumed by both web app and MCP layer",
+      "Standalone-first — no CulinaryOS dependency required",
+      "Shared Supabase auth with CulinaryOps (magic link)"
+    ],
     "deployTarget": "Railway (standalone) or embedded via CulinaryOS MCP layer",
-    "notableFiles": ["apps/web", "mcp/prep-mcp", "mcp/recipe-mcp", "packages/prep-engine", "packages/ratio-engine", "supabase/"]
+    "notableFiles": [
+      "apps/web",
+      "mcp/recipe-mcp",
+      "mcp/prep-mcp",
+      "packages/ratio-engine",
+      "packages/prep-engine",
+      "supabase/"
+    ]
   }
 }

@@ -1,23 +1,39 @@
 {
   "title": "CulinaryOS",
-  "tagline": "The operating system for the modern kitchen.",
-  "description": "CulinaryOS is a modular, multi-service platform that unifies every layer of restaurant operations — from recipe management and prep ticketing to point-of-sale and analytics — into one coherent system.",
-  "story": "Built after years of watching kitchen staff juggle five different apps during a dinner rush. Every station had its own screen, its own tool, its own failure point. CulinaryOS started as a question: what if the whole kitchen ran on one OS?",
+  "tagline": "The operating system for the modern restaurant.",
+  "description": "CulinaryOS is a web-based SaaS restaurant OS built in the Toast model — one platform covering the full service cycle: tablet POS, real-time Kitchen Display System, inventory and pantry tracking with automated purchase orders, end-of-day reporting, Stripe-powered payments, a customer-facing online ordering storefront, and an owner/manager back-office. KitchenKit and CulinaryOps connect as MCP servers, giving CulinaryOS AI-agent access across recipe scaling, prep planning, labor, food cost, vendor management, and waste tracking.",
+  "story": "Built after years of watching kitchen staff juggle five different apps during a dinner rush. Every station had its own screen, its own tool, its own failure point. CulinaryOS started as a question: what if the whole kitchen ran on one OS? The Ratio Blueprint Engine — which stores recipes as relationships, not fixed quantities — is what makes it not just another POS.",
   "forWho": "Restaurant owners, head chefs, and kitchen managers who need operations software built by someone who has actually worked the line.",
   "group": "culinary-ecosystem",
   "category": "Culinary Tech",
-  "tags": ["flagship", "platform", "multi-service", "restaurant-ops"],
-  "stack": ["Node.js", "Python", "Flask", "PostgreSQL", "Railway"],
+  "tags": ["flagship", "platform", "restaurant-os", "mcp-hub", "pos", "kds", "inventory"],
+  "stack": ["TypeScript", "React 18", "Vite", "Hono", "Supabase", "Stripe", "Turborepo", "pnpm", "Railway"],
   "status": "active",
   "featured": true,
   "links": {
-    "github": "https://github.com/ShadowWalkerNC/culinaryos"
+    "github": "https://github.com/ShadowWalkerNC/CulinaryOS"
   },
   "detailedSpecs": {
-    "architecture": "Microservices with a shared PostgreSQL core. Each module (RecipeOS, KDS, POS) runs as an independent service that communicates via a lightweight internal event bus.",
-    "dataFlow": "Order placed in POS → event emitted → KDS receives ticket → recipe data pulled from RecipeOS → completion event logged for analytics.",
-    "keyPatterns": ["Event-driven inter-service messaging", "Shared DB schema with service-scoped tables", "Alembic for schema migrations", "Role-based auth per module"],
-    "deployTarget": "Railway (containerized per service)",
-    "notableFiles": ["services/pos/routes.py", "services/kds/socket_handler.js", "db/migrations/"]
+    "architecture": "pnpm monorepo managed by Turborepo. Five React 18 + Vite apps (pos, kds, admin, web, server) share a Hono API gateway, a Supabase PostgreSQL backend, and a suite of typed packages. Domain-split MCP servers expose the full operation layer to any MCP-compatible AI agent. KitchenKit and CulinaryOps plug in as external MCP servers, making CulinaryOS the unified hub across the entire culinary ecosystem.",
+    "dataFlow": "Order placed in POS → event emitted to event-bus → KDS receives ticket via Supabase Realtime → ratio-engine scales prep quantities → completion event written to domain_events audit ledger → EOD reports aggregated from domain_events.",
+    "keyPatterns": [
+      "Ratio Blueprint Engine — recipes stored as ratio relationships, not fixed quantities",
+      "Domain-split MCP servers (pos, kds, inventory, admin, payments) — Zod-validated, never direct DB access",
+      "KitchenKit (recipe-mcp, prep-mcp) and CulinaryOps (culinaryops-mcp) connect as external MCP servers",
+      "Supabase RLS with mandatory tenant_id on every table",
+      "domain_events append-only audit ledger on every mutation",
+      "Stripe PaymentIntents for online payments + Stripe Terminal for card-present (Phase 12)"
+    ],
+    "deployTarget": "Railway (containerized per service) + Supabase hosted",
+    "notableFiles": [
+      "apps/pos",
+      "apps/kds",
+      "apps/admin",
+      "apps/web",
+      "apps/server",
+      "packages/ratio-engine",
+      "mcp/culinary-os-server.ts",
+      "supabase/migrations/"
+    ]
   }
 }

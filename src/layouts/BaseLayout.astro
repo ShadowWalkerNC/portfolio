@@ -31,14 +31,14 @@ const { title, description, side } = Astro.props;
         <>
           <a href="/dev">Home</a>
           <a href="/dev/projects">Projects</a>
-          <a href="/dev/contact">Contact</a>
+          <a href="/contact">Contact</a>
           <a href="/food" class="nav-switch nav-switch-food">&#127859; Chef Side</a>
         </>
       )}
       {side === 'food' && (
         <>
           <a href="/food">Home</a>
-          <a href="/dev/contact">Contact</a>
+          <a href="/contact">Contact</a>
           <a href="/dev" class="nav-switch nav-switch-dev">&#128187; Dev Side</a>
         </>
       )}
@@ -59,7 +59,7 @@ const { title, description, side } = Astro.props;
     <p>&copy; {new Date().getFullYear()} Nathaniel Cowperthwaite &mdash;
       <a href="/dev">Developer</a> &nbsp;&bull;&nbsp;
       <a href="/food">Chef</a> &nbsp;&bull;&nbsp;
-      <a href="/dev/contact">Contact</a> &nbsp;&bull;&nbsp;
+      <a href="/contact">Contact</a> &nbsp;&bull;&nbsp;
       <a href="https://github.com/ShadowWalkerNC" target="_blank" rel="noopener">GitHub</a>
     </p>
   </footer>

@@ -12,7 +12,7 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
 
     <!-- ===== HERO ===== -->
     <section class="hero">
-      <div class="hero-content">
+      <div class="hero-content animate-fade-in-up">
         <div class="hero-kicker">
           <span class="badge badge-blue">&#128187; Developer Portfolio</span>
         </div>
@@ -78,8 +78,8 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
           <div class="timeline-dot dot-ember"></div>
           <div class="timeline-content">
             <div class="timeline-era era-ember">2019–2022 &mdash; Rising Through the Ranks</div>
-            <h3 class="timeline-title">Boynton McKay → Ports of Italy → Daddy B's</h3>
-            <p class="timeline-text">Scratch breakfast at an iconic Maine café, sous chef at Italian fine dining, then sous chef on a food truck &mdash; the role that directly sparked Northern Fixin's. Each step added technique, leadership, and clarity about what kitchens were missing.</p>
+            <h3 class="timeline-title">Boynton McKay → Ports of Italy → Daddy B’s</h3>
+            <p class="timeline-text">Scratch breakfast at an iconic Maine café, sous chef at Italian fine dining, then sous chef on a food truck &mdash; the role that directly sparked Northern Fixin’s. Each step added technique, leadership, and clarity about what kitchens were missing.</p>
           </div>
         </div>
 
@@ -87,7 +87,7 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
           <div class="timeline-dot dot-ember"></div>
           <div class="timeline-content">
             <div class="timeline-era era-ember">2023–Present &mdash; Co-Founder</div>
-            <h3 class="timeline-title">Northern Fixin's / Half Baked Co.</h3>
+            <h3 class="timeline-title">Northern Fixin’s / Half Baked Co.</h3>
             <p class="timeline-text">Co-founded a Maine-inspired elevated café, scratch bakehouse, and food truck concept. Brick-and-mortar café targeting 2027. Still actively cooking and running kitchen operations at Ross Manor.</p>
           </div>
         </div>
@@ -107,51 +107,81 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
     <div class="divider"></div>
 
     <!-- ===== DEV KIT ===== -->
-    <section class="section">
+    <section class="section" id="devkit">
       <h2 class="section-heading reveal">The Dev Kit</h2>
       <p class="section-sub reveal">Tools I use to ship production software.</p>
-      <div class="devkit-grid reveal">
-        <div class="kit-group">
-          <div class="kit-group-label">Languages</div>
+
+      <div class="devkit-grid">
+
+        <!-- Languages -->
+        <div class="kit-card reveal">
+          <div class="kit-card-header">
+            <span class="kit-icon kit-icon-blue">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </span>
+            <span class="kit-label">Languages</span>
+          </div>
           <div class="kit-chips">
-            <span class="kit-chip">JavaScript</span>
-            <span class="kit-chip">Python</span>
-            <span class="kit-chip">TypeScript</span>
-            <span class="kit-chip">HTML/CSS</span>
-            <span class="kit-chip">SQL</span>
+            <span class="kit-chip" style="--i:0">JavaScript</span>
+            <span class="kit-chip" style="--i:1">Python</span>
+            <span class="kit-chip" style="--i:2">TypeScript</span>
+            <span class="kit-chip" style="--i:3">HTML / CSS</span>
+            <span class="kit-chip" style="--i:4">SQL</span>
           </div>
         </div>
-        <div class="kit-group">
-          <div class="kit-group-label">Frameworks</div>
+
+        <!-- Frameworks -->
+        <div class="kit-card reveal">
+          <div class="kit-card-header">
+            <span class="kit-icon kit-icon-blue">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </span>
+            <span class="kit-label">Frameworks</span>
+          </div>
           <div class="kit-chips">
-            <span class="kit-chip">Astro</span>
-            <span class="kit-chip">Flask</span>
-            <span class="kit-chip">Node.js</span>
-            <span class="kit-chip">Discord.js</span>
-            <span class="kit-chip">Tailwind CSS</span>
-            <span class="kit-chip">React</span>
+            <span class="kit-chip" style="--i:0">Astro</span>
+            <span class="kit-chip" style="--i:1">Flask</span>
+            <span class="kit-chip" style="--i:2">Node.js</span>
+            <span class="kit-chip" style="--i:3">Discord.js</span>
+            <span class="kit-chip" style="--i:4">Tailwind CSS</span>
+            <span class="kit-chip" style="--i:5">React</span>
           </div>
         </div>
-        <div class="kit-group">
-          <div class="kit-group-label">Data &amp; Infra</div>
+
+        <!-- Data & Infra -->
+        <div class="kit-card reveal">
+          <div class="kit-card-header">
+            <span class="kit-icon kit-icon-blue">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg>
+            </span>
+            <span class="kit-label">Data &amp; Infra</span>
+          </div>
           <div class="kit-chips">
-            <span class="kit-chip">PostgreSQL</span>
-            <span class="kit-chip">SQLite</span>
-            <span class="kit-chip">Supabase</span>
-            <span class="kit-chip">Railway</span>
-            <span class="kit-chip">Render</span>
+            <span class="kit-chip" style="--i:0">PostgreSQL</span>
+            <span class="kit-chip" style="--i:1">SQLite</span>
+            <span class="kit-chip" style="--i:2">Supabase</span>
+            <span class="kit-chip" style="--i:3">Railway</span>
+            <span class="kit-chip" style="--i:4">Render</span>
           </div>
         </div>
-        <div class="kit-group">
-          <div class="kit-group-label">AI &amp; APIs</div>
+
+        <!-- AI & APIs -->
+        <div class="kit-card reveal">
+          <div class="kit-card-header">
+            <span class="kit-icon kit-icon-blue">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a4 4 0 0 1 4 4v1h1a3 3 0 0 1 0 6h-1v1a4 4 0 0 1-8 0v-1H7a3 3 0 0 1 0-6h1V6a4 4 0 0 1 4-4Z"/><circle cx="12" cy="10" r="2"/></svg>
+            </span>
+            <span class="kit-label">AI &amp; APIs</span>
+          </div>
           <div class="kit-chips">
-            <span class="kit-chip">MCP</span>
-            <span class="kit-chip">Google Gemini</span>
-            <span class="kit-chip">Discord API</span>
-            <span class="kit-chip">Meta Graph API</span>
-            <span class="kit-chip">Twitter API v2</span>
+            <span class="kit-chip" style="--i:0">MCP</span>
+            <span class="kit-chip" style="--i:1">Google Gemini</span>
+            <span class="kit-chip" style="--i:2">Discord API</span>
+            <span class="kit-chip" style="--i:3">Meta Graph API</span>
+            <span class="kit-chip" style="--i:4">Twitter API v2</span>
           </div>
         </div>
+
       </div>
     </section>
 
@@ -183,7 +213,80 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
   </main>
 </BaseLayout>
 
+<!-- ===== SCROLL REVEAL + STAGGER OBSERVER ===== -->
+<script>
+  (function () {
+    // Targets: reveal, reveal-left, reveal-right
+    const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+    if (!revealEls.length) return;
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target;
+          el.classList.add('is-visible');
+
+          // Stagger chips inside kit-card that just became visible
+          if (el.classList.contains('kit-card')) {
+            el.querySelectorAll('.kit-chip').forEach((chip, idx) => {
+              (chip as HTMLElement).style.transitionDelay = `${0.12 + idx * 0.06}s`;
+              chip.classList.add('chip-visible');
+            });
+          }
+
+          io.unobserve(el);
+        });
+      },
+      { threshold: 0.12 }
+    );
+
+    revealEls.forEach((el) => io.observe(el));
+  })();
+</script>
+
 <style>
+/* ============================================================
+   SCROLL REVEAL — base hidden states + visible transitions
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-24px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.reveal-right {
+  opacity: 0;
+  transform: translateX(24px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.reveal.is-visible,
+.reveal-left.is-visible,
+.reveal-right.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Hero entry animations (run on load, no observer needed) */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.93); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0);    }
+  50%       { transform: translateY(-7px); }
+}
+.animate-fade-in-up  { animation: fadeInUp 0.65s ease both; }
+.animate-scale-in    { animation: scaleIn  0.65s ease 0.2s both; }
+
 /* ---- Hero ---- */
 .hero {
   display: grid;
@@ -233,7 +336,7 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
 /* Code block */
 .code-block {
   background: #0f172a;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #1e293b;
   border-radius: var(--radius-lg);
   padding: 1.5rem 1.75rem;
   font-family: var(--font-mono);
@@ -252,7 +355,7 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
 .c-op      { color: #89ddff; }
 .c-paren   { color: #a9b1d6; }
 
-/* Timeline */
+/* ---- Timeline ---- */
 .timeline {
   padding-left: 1.5rem;
   border-left: 2px solid var(--border-subtle);
@@ -276,6 +379,16 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
 .dot-blue  { background: var(--accent-blue);  box-shadow: 0 0 0 3px var(--accent-blue-pale); }
 .dot-ember { background: var(--accent-ember); box-shadow: 0 0 0 3px var(--accent-ember-pale); }
 .dot-branch { border: 2px solid var(--accent-blue); background: white; }
+/* Pulse on the active/branch dot */
+@keyframes pulse-ring {
+  0%   { box-shadow: 0 0 0 0 rgba(59,130,246,0.45); }
+  70%  { box-shadow: 0 0 0 8px rgba(59,130,246,0); }
+  100% { box-shadow: 0 0 0 0 rgba(59,130,246,0); }
+}
+.dot-branch.is-visible,
+.timeline-item.is-visible .dot-branch {
+  animation: pulse-ring 2s ease-out infinite;
+}
 .timeline-era {
   font-size: 0.72rem;
   font-weight: 700;
@@ -312,32 +425,87 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
   margin-left: 0.4rem;
 }
 
-/* Dev Kit */
-.devkit-grid  { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem; }
-.kit-group    { display: flex; flex-direction: column; gap: 0.5rem; }
-.kit-group-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); }
-.kit-chips    { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+/* ---- Dev Kit ---- */
+.devkit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.25rem;
+}
+.kit-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.25rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.kit-card:hover {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 3px var(--accent-blue-pale);
+}
+.kit-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.kit-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-md);
+  flex-shrink: 0;
+}
+.kit-icon-blue {
+  background: var(--accent-blue-pale);
+  color: var(--accent-blue);
+  border: 1px solid color-mix(in srgb, var(--accent-blue) 20%, transparent);
+}
+.kit-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+.kit-chips { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+
+/* Chips start hidden; JS adds chip-visible when the card enters viewport */
 .kit-chip {
   font-size: 0.78rem;
   font-weight: 600;
-  padding: 5px 13px;
+  padding: 4px 12px;
   border-radius: var(--radius-full);
-  background: var(--bg-surface);
+  background: var(--bg-card);
   color: var(--text-secondary);
   border: 1px solid var(--border-subtle);
-  box-shadow: var(--shadow-sm);
-  transition: border-color 0.2s, color 0.2s, background 0.2s;
+  opacity: 0;
+  transform: translateY(6px) scale(0.95);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease,
+    border-color 0.2s,
+    color 0.2s,
+    background 0.2s;
+}
+.kit-chip.chip-visible {
+  opacity: 1;
+  transform: none;
 }
 .kit-chip:hover {
   border-color: var(--accent-blue);
   color: var(--accent-blue);
   background: var(--accent-blue-pale);
+  cursor: default;
 }
 
 /* Featured */
 .featured-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.25rem; }
 
-/* Responsive */
+/* ---- Responsive ---- */
 @media (max-width: 768px) {
   .hero { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 1rem 2rem; }
   .hero-visual { display: none; }
@@ -347,5 +515,14 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
 @media (max-width: 480px) {
   .devkit-grid { grid-template-columns: 1fr; }
   .hero-stats  { flex-wrap: wrap; gap: 1rem; }
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal-left, .reveal-right,
+  .animate-fade-in-up, .animate-scale-in,
+  .kit-chip { transition: none !important; animation: none !important; }
+  .reveal, .reveal-left, .reveal-right { opacity: 1; transform: none; }
+  .kit-chip { opacity: 1; transform: none; }
 }
 </style>

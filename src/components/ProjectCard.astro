@@ -33,7 +33,7 @@ const statusMap = {
 const s = statusMap[status];
 ---
 
-<article class="project-card" id={`card-${id}`}>
+<article class="project-card spotlight-card" id={`card-${id}`}>
   <!-- Header Row -->
   <div class="card-header">
     <div class="card-title-group">
@@ -151,6 +151,20 @@ function toggleAccordion(id) {
   btn.setAttribute('aria-expanded', String(!open));
   chevron.style.transform = open ? 'rotate(0deg)' : 'rotate(180deg)';
 }
+
+// Spotlight hover — runs once per page
+if (typeof window.__spotlightInit === 'undefined') {
+  window.__spotlightInit = true;
+  document.addEventListener('mousemove', (e) => {
+    document.querySelectorAll('.spotlight-card').forEach((card) => {
+      const rect = card.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top)  / rect.height) * 100;
+      card.style.setProperty('--sx', x + '%');
+      card.style.setProperty('--sy', y + '%');
+    });
+  });
+}
 </script>
 
 <style>
@@ -163,7 +177,36 @@ function toggleAccordion(id) {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  position: relative;
+  overflow: hidden;
 }
+
+/* Spotlight beam layer */
+.spotlight-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    500px circle at var(--sx, 50%) var(--sy, 50%),
+    rgba(37, 99, 235, 0.07),
+    transparent 60%
+  );
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 0;
+}
+.spotlight-card:hover::before {
+  opacity: 1;
+}
+
+/* Push card content above the spotlight layer */
+.project-card > * {
+  position: relative;
+  z-index: 1;
+}
+
 .project-card:hover {
   border-color: var(--accent-blue);
   box-shadow: 0 0 0 1px var(--accent-blue), var(--glow-blue);

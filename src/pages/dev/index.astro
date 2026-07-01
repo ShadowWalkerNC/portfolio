@@ -18,7 +18,7 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
         </div>
         <h1 class="hero-title">
           Software built by someone<br />
-          <span class="hero-accent-blue">who lived</span>
+          <span class="hero-accent-blue glitch" data-text="who lived">who lived</span>
           <span class="hero-accent-ember"> the problem.</span>
         </h1>
         <p class="hero-subtitle">
@@ -31,15 +31,15 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
           <a href="/dev/contact" class="btn btn-ghost">Get in Touch</a>
         </div>
         <div class="hero-stats">
-          <div class="stat"><span class="stat-num">10+</span><span class="stat-label">Projects Shipped</span></div>
+          <div class="stat"><span class="stat-num counter" data-target="10" data-suffix="+">10+</span><span class="stat-label">Projects Shipped</span></div>
           <div class="stat-divider"></div>
-          <div class="stat"><span class="stat-num stat-ember">3</span><span class="stat-label">Culinary Tech Apps</span></div>
+          <div class="stat"><span class="stat-num stat-ember counter" data-target="3" data-suffix="">3</span><span class="stat-label">Culinary Tech Apps</span></div>
           <div class="stat-divider"></div>
-          <div class="stat"><span class="stat-num">2025</span><span class="stat-label">Started Coding</span></div>
+          <div class="stat"><span class="stat-num counter" data-target="2025" data-suffix="">2025</span><span class="stat-label">Started Coding</span></div>
         </div>
       </div>
       <div class="hero-visual" aria-hidden="true">
-        <div class="code-block animate-scale-in">
+        <div class="code-block animate-scale-in animate-float">
           <div class="code-line"><span class="c-comment">// chef who codes</span></div>
           <div class="code-line">&nbsp;</div>
           <div class="code-line"><span class="c-keyword">const</span> <span class="c-var">nate</span> <span class="c-op">=</span> <span class="c-paren">{</span></div>
@@ -213,6 +213,42 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
   </main>
 </BaseLayout>
 
+<!-- Counter roll-up on hero stats -->
+<script>
+(function () {
+  const counters = document.querySelectorAll<HTMLElement>('.counter');
+  if (!counters.length) return;
+
+  const animateCounter = (el: HTMLElement) => {
+    const target = parseInt(el.dataset.target ?? '0', 10);
+    const suffix = el.dataset.suffix ?? '';
+    const duration = 1400;
+    const startTime = performance.now();
+
+    const step = (now: number) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      // Ease-out cubic
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = Math.round(eased * target);
+      el.textContent = current + suffix;
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      animateCounter(entry.target as HTMLElement);
+      io.unobserve(entry.target);
+    });
+  }, { threshold: 0.5 });
+
+  counters.forEach(el => io.observe(el));
+})();
+</script>
+
 <!-- NOTE: Scroll reveal + chip stagger is now handled in BaseLayout's unified observer -->
 <!-- No duplicate observer script needed here -->
 
@@ -259,6 +295,40 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
 }
 .animate-fade-in-up { animation: fadeInUp 0.65s ease both; }
 .animate-scale-in   { animation: scaleIn  0.65s ease 0.2s both; }
+.animate-float      { animation: float 4s ease-in-out infinite; }
+
+/* ---- Glitch effect on hero title accent ---- */
+@keyframes glitch-clip {
+  0%   { clip-path: inset(0 0 95% 0); transform: translateX(-3px); }
+  20%  { clip-path: inset(30% 0 50% 0); transform: translateX(3px); }
+  40%  { clip-path: inset(60% 0 20% 0); transform: translateX(-2px); }
+  60%  { clip-path: inset(80% 0 5% 0);  transform: translateX(2px); }
+  80%  { clip-path: inset(10% 0 75% 0); transform: translateX(-1px); }
+  100% { clip-path: inset(0 0 95% 0);   transform: translateX(0); }
+}
+.glitch {
+  position: relative;
+  display: inline-block;
+}
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.glitch::before {
+  color: var(--accent-blue);
+  animation: glitch-clip 5s infinite;
+  animation-delay: 2s;
+  opacity: 0.75;
+}
+.glitch::after {
+  color: var(--accent-ember);
+  animation: glitch-clip 5s infinite;
+  animation-delay: 2.1s;
+  opacity: 0.6;
+}
 
 /* ---- Hero ---- */
 .hero {
@@ -486,12 +556,10 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
 }
 
 /* ---- Responsive ---- */
-/* Tablet: hide code block, single-column hero */
 @media (max-width: 860px) {
   .hero { grid-template-columns: 1fr; gap: 2rem; padding: 3.5rem 1.25rem 2.5rem; }
   .hero-visual { display: none; }
 }
-/* Mobile: tighter padding, single-column grids */
 @media (max-width: 640px) {
   .hero { padding: 2.5rem 1rem 2rem; }
   .hero-title { font-size: clamp(1.6rem, 7vw, 2.2rem); }
@@ -514,8 +582,8 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
 /* Respect prefers-reduced-motion */
 @media (prefers-reduced-motion: reduce) {
   .reveal, .reveal-left, .reveal-right,
-  .animate-fade-in-up, .animate-scale-in,
-  .kit-chip { transition: none !important; animation: none !important; }
+  .animate-fade-in-up, .animate-scale-in, .animate-float,
+  .kit-chip, .glitch::before, .glitch::after { transition: none !important; animation: none !important; }
   .reveal, .reveal-left, .reveal-right { opacity: 1; transform: none; }
   .kit-chip { opacity: 1; transform: none; }
 }

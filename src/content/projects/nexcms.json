@@ -2,15 +2,15 @@
   "title": "NexCMS",
   "type": "original",
   "tagline": "A guided website builder for the restaurant and hospitality industry.",
-  "description": "NexCMS walks restaurant owners, food truck operators, bars, and caf\u00e9s through every step of building a professional website \u2014 business info, hours, menu, branding, social media \u2014 and produces a fully deployable, SEO-optimized site. No developer required.",
+  "description": "NexCMS walks restaurant owners, food truck operators, bars, and cafés through every step of building a professional website — business info, hours, menu, branding, social media — and produces a fully deployable, SEO-optimized site. No developer required.",
   "story": "Built because restaurant owners shouldn't need a developer to have a great website. Every existing option is either too expensive, too generic, or too technical. NexCMS fills that gap with hospitality-first templates, a coaching wizard, and full export ownership.",
-  "journey": "NexCMS started as a headless CMS experiment and fully pivoted once the real problem became clear: it's not that restaurant owners lack a CMS, it's that every website builder treats them like a generic small business. The rebuild focused entirely on hospitality \u2014 food truck schedules, menu builders, delivery platform links, and a mobile-first SaaS dashboard designed for owners who run their business from their phone.",
-  "forWho": "Restaurant owners, food truck operators, bar and caf\u00e9 owners, and hospitality businesses who want a professional website without hiring a developer or paying monthly SaaS fees.",
-  "category": "food-tech",
+  "journey": "NexCMS started as a headless CMS experiment and fully pivoted once the real problem became clear: it's not that restaurant owners lack a CMS, it's that every website builder treats them like a generic small business. The rebuild focused entirely on hospitality — food truck schedules, menu builders, delivery platform links, and a mobile-first SaaS dashboard designed for owners who run their business from their phone.",
+  "forWho": "Restaurant owners, food truck operators, bar and café owners, and hospitality businesses who want a professional website without hiring a developer or paying monthly SaaS fees.",
+  "category": "food",
   "tags": ["cms", "website-builder", "hospitality", "restaurants", "astro", "saas", "typescript"],
   "stack": ["TypeScript", "Astro 5", "React 19", "Supabase", "Tailwind CSS", "Turborepo", "Railway", "Cloudflare"],
-  "status": "in-progress",
-  "phase": "Phase 0 \u2014 Planning",
+  "status": "wip",
+  "phase": "Phase 0 — Planning",
   "featured": true,
   "links": {
     "github": "https://github.com/ShadowWalkerNC/NexCMS",
@@ -18,48 +18,48 @@
     "live": null
   },
   "detailedSpecs": {
-    "architecture": "Turborepo monorepo with pnpm workspaces. Astro 5 hybrid mode for SaaS. React 19 + Vite for the local builder wizard. Supabase (PostgreSQL + Auth + Storage) for the SaaS backend. Single Astro server instance on Railway serving all tenant sites via domain resolution. Cloudflare edge caching with cache purge on content save \u2014 live edits in under 10 seconds.",
+    "architecture": "Turborepo monorepo with pnpm workspaces. Astro 5 hybrid mode for SaaS. React 19 + Vite for the local builder wizard. Supabase (PostgreSQL + Auth + Storage) for the SaaS backend. Single Astro server instance on Railway serving all tenant sites via domain resolution. Cloudflare edge caching with cache purge on content save — live edits in under 10 seconds.",
     "modes": [
-      "Local Builder \u2014 CLI launches a wizard at localhost:3000, exports a deployable Astro zip with deploy instructions",
-      "SaaS Hub \u2014 nexcms.io, fully in-browser, mobile-first, live editing without rebuild"
+      "Local Builder — CLI launches a wizard at localhost:3000, exports a deployable Astro zip with deploy instructions",
+      "SaaS Hub — nexcms.io, fully in-browser, mobile-first, live editing without rebuild"
     ],
     "businessTypes": [
       "Restaurant",
       "Food Truck",
       "Bar / Nightclub",
-      "Caf\u00e9 / Coffee Shop",
+      "Café / Coffee Shop",
       "Bakery / Dessert",
       "Catering",
       "Food Stand / Pop-Up",
       "Ghost Kitchen"
     ],
     "visualStyles": [
-      "Hearth \u2014 warm, rustic, editorial",
-      "Spark \u2014 bold, vibrant, energetic",
-      "Steel \u2014 corporate, clean, minimal",
-      "Bloom \u2014 bright, playful, airy",
-      "Obsidian \u2014 dark mode, moody, typographic",
-      "Ghost \u2014 monochrome, magazine-style"
+      "Hearth — warm, rustic, editorial",
+      "Spark — bold, vibrant, energetic",
+      "Steel — corporate, clean, minimal",
+      "Bloom — bright, playful, airy",
+      "Obsidian — dark mode, moody, typographic",
+      "Ghost — monochrome, magazine-style"
     ],
     "keyFeatures": [
-      "Guided onboarding wizard \u2014 coached step-by-step, not a blank form",
-      "Two-axis template system \u2014 business type + visual style chosen independently",
-      "SEO auto-generation \u2014 meta tags, sitemap, robots.txt, Schema.org",
+      "Guided onboarding wizard — coached step-by-step, not a blank form",
+      "Two-axis template system — business type + visual style chosen independently",
+      "SEO auto-generation — meta tags, sitemap, robots.txt, Schema.org",
       "OG image generation via satori + sharp",
       "Menu builder with categories, prices, photos, and dietary tags",
       "Food truck weekly location schedule",
       "Delivery platform links (DoorDash, Uber Eats, Grubhub)",
       "Live editing without rebuild in SaaS mode",
-      "Full Astro source export \u2014 no vendor lock-in",
+      "Full Astro source export — no vendor lock-in",
       "Mobile-first SaaS dashboard"
     ],
     "roadmap": [
-      "Phase 0 \u2014 Planning (Now \u2192 Jul 2026): Lock types, template spec, Supabase schema, monorepo scaffold",
-      "Phase 1 \u2014 Generator Core (Jul \u2192 Sep 2026): JSON in \u2192 Astro site out",
-      "Phase 2 \u2014 Local Builder (Sep \u2192 Nov 2026): Full wizard UI, all 8 business types, all 6 styles",
-      "Phase 3 \u2014 SaaS Foundation (Nov 2026 \u2192 Feb 2027): Supabase, account system, live editing",
-      "Phase 4 \u2014 SaaS Polish (Feb \u2192 Apr 2027): GitHub push, one-click deploy, analytics",
-      "Phase 5 \u2014 Public Launch (Q2 2027): nexcms.io public, pricing, template marketplace"
+      "Phase 0 — Planning (Now → Jul 2026): Lock types, template spec, Supabase schema, monorepo scaffold",
+      "Phase 1 — Generator Core (Jul → Sep 2026): JSON in → Astro site out",
+      "Phase 2 — Local Builder (Sep → Nov 2026): Full wizard UI, all 8 business types, all 6 styles",
+      "Phase 3 — SaaS Foundation (Nov 2026 → Feb 2027): Supabase, account system, live editing",
+      "Phase 4 — SaaS Polish (Feb → Apr 2027): GitHub push, one-click deploy, analytics",
+      "Phase 5 — Public Launch (Q2 2027): nexcms.io public, pricing, template marketplace"
     ],
     "deployTarget": "Railway (SaaS server) + Netlify / Vercel / Cloudflare Pages / GitHub (exported local sites)"
   }

@@ -11,7 +11,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
 
     <!-- DEV HALF -->
-    <a href="/dev" class="split-half split-dev" aria-label="Enter Developer portfolio">
+    <a href="/dev" class="split-half split-dev split-enter-left" aria-label="Enter Developer portfolio">
       <div class="split-inner">
         <!-- Mobile-only name shown inline in flow -->
         <div class="split-mobile-name">
@@ -33,7 +33,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </a>
 
     <!-- FOOD HALF -->
-    <a href="/food" class="split-half split-food" aria-label="Enter Chef portfolio">
+    <a href="/food" class="split-half split-food split-enter-right" aria-label="Enter Chef portfolio">
       <div class="split-inner">
         <div class="split-icon">&#127859;</div>
         <h2 class="split-title split-title-food">Chef</h2>
@@ -74,6 +74,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   gap: 0.3rem;
   pointer-events: none;
   text-align: center;
+  /* slideDown already applied via animate-slide-down class */
+  animation-delay: 0.35s;
+  animation-fill-mode: both;
+  opacity: 0;
 }
 .split-brand-name {
   font-size: clamp(1.1rem, 2.5vw, 1.6rem);
@@ -94,6 +98,25 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 /* Mobile inline name — hidden on desktop */
 .split-mobile-name {
   display: none;
+}
+
+/* Panel entrance animations */
+@keyframes splitEnterLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes splitEnterRight {
+  from { opacity: 0; transform: translateX(40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.split-enter-left {
+  opacity: 0;
+  animation: splitEnterLeft 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.05s forwards;
+}
+.split-enter-right {
+  opacity: 0;
+  animation: splitEnterRight 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
 }
 
 /* Halves */
@@ -148,13 +171,39 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .split-half:hover .split-inner { transform: scale(1.03); }
 }
 
+/* Stagger the inner content after the panel slides in */
+.split-inner > * {
+  opacity: 0;
+  animation: fadeInUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.split-dev .split-inner > *:nth-child(1) { animation-delay: 0.30s; }
+.split-dev .split-inner > *:nth-child(2) { animation-delay: 0.38s; }
+.split-dev .split-inner > *:nth-child(3) { animation-delay: 0.44s; }
+.split-dev .split-inner > *:nth-child(4) { animation-delay: 0.50s; }
+.split-dev .split-inner > *:nth-child(5) { animation-delay: 0.55s; }
+
+.split-food .split-inner > *:nth-child(1) { animation-delay: 0.38s; }
+.split-food .split-inner > *:nth-child(2) { animation-delay: 0.46s; }
+.split-food .split-inner > *:nth-child(3) { animation-delay: 0.52s; }
+.split-food .split-inner > *:nth-child(4) { animation-delay: 0.58s; }
+.split-food .split-inner > *:nth-child(5) { animation-delay: 0.63s; }
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 .split-icon {
   font-size: 3rem;
   line-height: 1;
   filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
-  animation: float 3.5s ease-in-out infinite;
+  animation: float 3.5s ease-in-out infinite !important;
+  /* float overrides the fadeInUp after it runs */
+  animation-delay: 0.30s !important;
 }
-.split-food .split-icon { animation-delay: 0.8s; }
+.split-food .split-icon {
+  animation-delay: 0.38s !important;
+}
 
 .split-title {
   font-size: clamp(2rem, 5vw, 3.2rem);
@@ -178,12 +227,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   flex-wrap: wrap;
   gap: 0.4rem;
   justify-content: center;
-  opacity: 0;
+  opacity: 0 !important;
   transform: translateY(8px);
   transition: opacity 0.3s ease 0.05s, transform 0.3s ease 0.05s;
+  animation: none !important;
 }
 @media (hover: hover) {
-  .split-half:hover .split-chips { opacity: 1; transform: translateY(0); }
+  .split-half:hover .split-chips { opacity: 1 !important; transform: translateY(0); }
 }
 @media (hover: none) {
   .split-chips, .split-cta { opacity: 1 !important; transform: none !important; }
@@ -204,12 +254,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   font-weight: 700;
   color: rgba(255,255,255,0.6);
   letter-spacing: 0.06em;
-  opacity: 0;
+  opacity: 0 !important;
   transform: translateY(6px);
   transition: opacity 0.3s ease 0.1s, transform 0.3s ease 0.1s;
+  animation: none !important;
 }
 @media (hover: hover) {
-  .split-half:hover .split-cta { opacity: 1; transform: translateY(0); color: rgba(255,255,255,0.95); }
+  .split-half:hover .split-cta { opacity: 1 !important; transform: translateY(0); color: rgba(255,255,255,0.95); }
 }
 
 /* Vertical divider line */
@@ -239,10 +290,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     min-height: 48vh;
     transition: none;
   }
+  /* Override panel slide animations on mobile to vertical fade-up */
+  .split-enter-left,
+  .split-enter-right {
+    animation-name: splitEnterMobile;
+  }
+  @keyframes splitEnterMobile {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
   .split-page::after { display: none; }
 
-  /* Hide the floating absolute brand — it can't reliably position
-     over a variable-height stacked layout */
+  /* Hide the floating absolute brand */
   .split-brand { display: none; }
 
   /* Show the inline name block at the top of the Dev panel only */
@@ -272,6 +331,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .split-icon { animation: none; }
+  .split-enter-left,
+  .split-enter-right,
+  .split-brand,
+  .split-inner > * {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .split-icon { animation: none !important; }
 }
 </style>

@@ -34,6 +34,54 @@ Every push to `main` triggers an auto-deploy.
 
 ---
 
+## 🗂️ Featured Projects
+
+### NexCMS
+
+**A guided website builder for the restaurant and hospitality industry.**
+
+> Build your restaurant website in minutes — not months.
+> Pick a template. Fill in your info. Export and deploy anywhere.
+> Or use the online hub and manage everything from your phone.
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![Status: Phase 0](https://img.shields.io/badge/Status-Phase%200%20Planning-yellow)]()
+[![Stack: Astro + Supabase + TypeScript](https://img.shields.io/badge/Stack-Astro%20%2B%20Supabase%20%2B%20TypeScript-blue)]()
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)]()
+
+NexCMS is a guided website builder built specifically for restaurants, food trucks, bars, cafés, and hospitality businesses. It walks users through every step — business info, hours, menu, social media, branding — and produces a professional, SEO-optimized website deployable anywhere.
+
+**Two modes:**
+- **Local Builder** — download the app, build on your computer, export a deployable zip with instructions
+- **SaaS Hub** — go to nexcms.io, build and manage your site entirely in-browser from any device
+
+**Tech Stack:** Turborepo + pnpm · TypeScript · Astro 5 · React 19 · Supabase (PostgreSQL) · Tailwind CSS · Railway · Cloudflare
+
+**Key Features:**
+- Guided onboarding wizard — coached step-by-step, not a blank form
+- Two-axis template system — pick a business type + a visual style independently
+- 8 hospitality business types: Restaurant, Food Truck, Bar, Café, Bakery, Catering, Food Stand, Ghost Kitchen
+- 6 visual styles: Hearth, Spark, Steel, Bloom, Obsidian, Ghost — each with Light/Dark variants
+- SEO auto-generation — meta tags, sitemap, robots.txt, Schema.org structured data
+- Live editing without rebuild (SaaS mode) — changes go live in under 10 seconds
+- Mobile-first SaaS dashboard designed for phone management
+- Full Astro source export — no vendor lock-in
+
+**Roadmap:**
+
+| Phase | Timeline | Goal |
+|---|---|---|
+| **Phase 0 — Replan** | Now → Jul 2026 | Lock types, template spec, Supabase schema, monorepo scaffold |
+| **Phase 1 — Generator Core** | Jul → Sep 2026 | `generator` + `template-engine`. JSON in → Astro site out |
+| **Phase 2 — Local Builder** | Sep → Nov 2026 | Full wizard UI, all 8 business types, all 6 styles |
+| **Phase 3 — SaaS Foundation** | Nov 2026 → Feb 2027 | Supabase, account system, mobile dashboard, live editing |
+| **Phase 4 — SaaS Polish** | Feb → Apr 2027 | GitHub push, one-click deploy, analytics, SEO automation |
+| **Phase 5 — Public Launch** | Q2 2027 | nexcms.io public, docs, pricing, template marketplace |
+
+🔗 [GitHub Repository](https://github.com/ShadowWalkerNC/NexCMS)
+
+---
+
 ## 🗂️ Session TODO Checklist
 
 > This checklist is committed to the repo so context is never lost between sessions.
@@ -59,7 +107,7 @@ Every push to `main` triggers an auto-deploy.
 
 ### 📁 Phase 4 — Projects Pages
 - [ ] **4.1** Define project data schema in `src/content/` (Astro Content Collections)
-- [ ] **4.2** Add all projects as content entries: Sigil, Shoreline, CulinaryOS, Post-Pilot, ASCILINE 2.0, ShadowBot
+- [ ] **4.2** Add all projects as content entries: Sigil, Shoreline, CulinaryOS, Post-Pilot, ASCILINE 2.0, ShadowBot, NexCMS
 - [ ] **4.3** Build `ProjectCard` component — title, description, tags, links (GitHub / live)
 - [ ] **4.4** Build `/projects` page — grouped by category (Discord Bots, Food Tech, Tools, etc.)
 - [ ] **4.5** Build featured projects section on homepage (top 3 picks)

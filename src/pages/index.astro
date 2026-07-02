@@ -229,15 +229,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     transition: none;
   }
   .split-page::after { display: none; }
+
+  /* Keep brand absolutely positioned over the stacked layout.
+     On mobile the page is taller than the viewport, so we anchor
+     it to the top of the first panel instead of mid-page. */
   .split-brand {
-    position: relative;
-    top: auto;
-    left: auto;
-    transform: none;
-    padding: 1rem;
-    background: #0f172a;
-    width: 100%;
+    top: 24vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: max-content;
+    max-width: 90vw;
   }
+
   .split-brand-name { color: white; }
   .split-icon { font-size: 2.4rem; }
   .split-title { font-size: clamp(1.6rem, 8vw, 2.4rem); }

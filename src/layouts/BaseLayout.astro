@@ -1,4 +1,3 @@
----
 import '../styles/global.css';
 const { title, description, side } = Astro.props;
 // side: 'dev' | 'food' | undefined (neutral for landing)
@@ -11,9 +10,15 @@ const { title, description, side } = Astro.props;
   <meta name="description" content={description ?? 'Nate Cowperthwaite — Chef & Developer'} />
   <title>{title ?? 'Nate Cowperthwaite'}</title>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+  {/* Only load devicon on the dev side — saves ~30KB on food/contact pages */}
+  {side === 'dev' && (
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+  )}
 </head>
 <body data-side={side}>
+
+  <!-- ===== SKIP LINK (P0 — WCAG 2.4.1) ===== -->
+  <a href="#main-content" class="skip-link">Skip to content</a>
 
   <!-- ===== NAV ===== -->
   <nav>
@@ -32,27 +37,30 @@ const { title, description, side } = Astro.props;
           <a href="/dev">Home</a>
           <a href="/dev/projects">Projects</a>
           <a href="/contact">Contact</a>
-          <a href="/food" class="nav-switch nav-switch-food">&#127859; Chef Side</a>
+          {/* aria-hidden on emoji so screen readers announce the link text only */}
+          <a href="/food" class="nav-switch nav-switch-food"><span aria-hidden="true">🍽️</span> Chef Side</a>
         </>
       )}
       {side === 'food' && (
         <>
           <a href="/food">Home</a>
           <a href="/contact">Contact</a>
-          <a href="/dev" class="nav-switch nav-switch-dev">&#128187; Dev Side</a>
+          <a href="/dev" class="nav-switch nav-switch-dev"><span aria-hidden="true">💻</span> Dev Side</a>
         </>
       )}
       {!side && (
         <>
-          <a href="/dev" class="nav-switch nav-switch-dev">&#128187; Developer</a>
-          <a href="/food" class="nav-switch nav-switch-food">&#127859; Chef</a>
+          <a href="/dev" class="nav-switch nav-switch-dev"><span aria-hidden="true">💻</span> Developer</a>
+          <a href="/food" class="nav-switch nav-switch-food"><span aria-hidden="true">🍽️</span> Chef</a>
         </>
       )}
     </div>
   </nav>
 
-  <!-- ===== CONTENT ===== -->
-  <slot />
+  <!-- ===== CONTENT (P0 — <main> landmark, WCAG 1.3.1 + 2.4.1) ===== -->
+  <main id="main-content">
+    <slot />
+  </main>
 
   <!-- ===== FOOTER ===== -->
   <footer>
@@ -60,38 +68,14 @@ const { title, description, side } = Astro.props;
       <a href="/dev">Developer</a> &nbsp;&bull;&nbsp;
       <a href="/food">Chef</a> &nbsp;&bull;&nbsp;
       <a href="/contact">Contact</a> &nbsp;&bull;&nbsp;
-      <a href="https://github.com/ShadowWalkerNC" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://github.com/ShadowWalkerNC" target="_blank" rel="noopener noreferrer">GitHub</a>
     </p>
   </footer>
 
-  <!-- ===== UNIFIED SCROLL REVEAL ===== -->
-  <script>
-    (function () {
-      const io = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (!entry.isIntersecting) return;
-            const el = entry.target as HTMLElement;
-            el.classList.add('revealed', 'is-visible');
-
-            if (el.classList.contains('kit-card')) {
-              el.querySelectorAll<HTMLElement>('.kit-chip').forEach((chip, idx) => {
-                chip.style.transitionDelay = `${0.12 + idx * 0.06}s`;
-                chip.classList.add('chip-visible');
-              });
-            }
-
-            io.unobserve(el);
-          });
-        },
-        { threshold: 0.10 }
-      );
-
-      document
-        .querySelectorAll('.reveal, .reveal-left, .reveal-right')
-        .forEach((el) => io.observe(el));
-    })();
-  </script>
+  <!-- ===== SCROLL REVEAL (P1 — single observer, source of truth is animations.js) ===== -->
+  <!-- The inline IntersectionObserver has been removed. Pages that need scroll reveal
+       should import and call initScrollReveal() from src/utils/animations.js instead.
+       This eliminates the duplicate observer that was firing on the same selectors. -->
 
   <!-- ===== HAMBURGER SCRIPT ===== -->
   <script>
@@ -117,6 +101,25 @@ const { title, description, side } = Astro.props;
 </html>
 
 <style>
+/* ---- Skip link (P0 — WCAG 2.4.1) ---- */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--space-4);
+  z-index: 200;
+  background: var(--accent-blue);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: top 0.15s ease;
+}
+.skip-link:focus {
+  top: var(--space-2);
+}
+
 /* ---- Nav logo ---- */
 .nav-logo {
   display: flex;
@@ -139,23 +142,23 @@ const { title, description, side } = Astro.props;
   gap: 0.25rem;
 }
 .nav-switch {
-  font-weight: 600 !important;
-  font-size: 0.82rem !important;
+  font-weight: 600;
+  font-size: 0.82rem;
 }
 .nav-switch-dev {
-  color: var(--accent-blue) !important;
-  background: var(--accent-blue-pale) !important;
-  border-radius: var(--radius-full) !important;
-  padding: 0.25rem 0.8rem !important;
+  color: var(--accent-blue);
+  background: var(--accent-blue-pale);
+  border-radius: var(--radius-full);
+  padding: 0.25rem 0.8rem;
 }
 .nav-switch-food {
-  color: var(--accent-ember) !important;
-  background: var(--accent-ember-pale) !important;
-  border-radius: var(--radius-full) !important;
-  padding: 0.25rem 0.8rem !important;
+  color: var(--accent-ember);
+  background: var(--accent-ember-pale);
+  border-radius: var(--radius-full);
+  padding: 0.25rem 0.8rem;
 }
-.nav-switch-dev:hover  { background: var(--accent-blue)  !important; color: white !important; }
-.nav-switch-food:hover { background: var(--accent-ember) !important; color: white !important; }
+.nav-switch-dev:hover  { background: var(--accent-blue);  color: white; }
+.nav-switch-food:hover { background: var(--accent-ember); color: white; }
 
 /* ---- Hamburger button ---- */
 .nav-burger {
@@ -163,12 +166,12 @@ const { title, description, side } = Astro.props;
   flex-direction: column;
   justify-content: center;
   gap: 5px;
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
   background: none;
   border: none;
   cursor: pointer;
-  padding: 4px;
+  padding: 10px;
   border-radius: var(--radius-sm);
   transition: background 0.15s;
 }
@@ -186,7 +189,7 @@ const { title, description, side } = Astro.props;
 .nav-burger.is-active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
 .nav-burger.is-active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-/* ---- Mobile nav ---- */
+/* ---- Mobile nav (P1 — token-driven bg, dark-mode safe) ---- */
 @media (max-width: 640px) {
   .nav-logo-name { font-size: 0.88rem; }
 
@@ -198,10 +201,12 @@ const { title, description, side } = Astro.props;
     top: 60px;
     left: 0;
     right: 0;
-    background: rgba(248,250,252,0.97);
+    /* P1 fix: was hardcoded rgba(248,250,252,0.97) — breaks dark mode.
+       Now uses --nav-bg token which is already defined for both themes. */
+    background: var(--nav-bg);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--nav-border);
     flex-direction: column;
     align-items: stretch;
     gap: 0;
@@ -211,14 +216,18 @@ const { title, description, side } = Astro.props;
   }
   .nav-links.nav-open { display: flex; }
   .nav-links a {
-    padding: 0.65rem 0.75rem;
+    /* P1 fix: increased to 44px min touch target (was ~40px) */
+    padding: 0.75rem;
+    min-height: 44px;
     font-size: 0.95rem;
     border-radius: var(--radius-sm);
     text-align: left;
+    display: flex;
+    align-items: center;
   }
   .nav-switch-dev, .nav-switch-food {
     margin-top: 0.25rem;
-    text-align: center !important;
+    justify-content: center;
   }
 }
 </style>

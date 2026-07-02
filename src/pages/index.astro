@@ -1,13 +1,13 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
-<BaseLayout title="Nate Cowperthwaite" description="Chef & Developer — two worlds, one portfolio.">
+<BaseLayout title="Nate Cowperthwaite" description="Professional chef and self-taught developer. Two distinct crafts, one person building them both.">
   <main class="split-page">
 
     <!-- Brand lockup centered over both halves -->
     <div class="split-brand animate-slide-down">
       <span class="split-brand-name">Nate Cowperthwaite</span>
-      <span class="split-brand-tag">Choose your side</span>
+      <span class="split-brand-tag">Two crafts. One person.</span>
     </div>
 
     <!-- DEV HALF -->
@@ -15,8 +15,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <div class="split-inner">
         <div class="split-icon">&#128187;</div>
         <h2 class="split-title split-title-dev">Developer</h2>
-        <p class="split-desc">Projects, tools, and the tech side of the story.</p>
-        <!-- Always visible chips on mobile; hover-revealed on desktop -->
+        <p class="split-desc">Self-taught. Problem-driven. Built from real kitchen friction.</p>
         <div class="split-chips">
           <span class="split-chip chip-dev">Astro</span>
           <span class="split-chip chip-dev">Python</span>
@@ -33,7 +32,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <div class="split-inner">
         <div class="split-icon">&#127859;</div>
         <h2 class="split-title split-title-food">Chef</h2>
-        <p class="split-desc">A decade in kitchens — the craft, the work, the food.</p>
+        <p class="split-desc">10+ years in Maine kitchens. Scratch cooking, real leadership, earned craft.</p>
         <div class="split-chips">
           <span class="split-chip chip-food">Scratch Cooking</span>
           <span class="split-chip chip-food">Sous Chef</span>
@@ -177,7 +176,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .split-half:hover .split-chips { opacity: 1; transform: translateY(0); }
 }
 @media (hover: none) {
-  /* Touch devices — always show chips & CTA */
   .split-chips, .split-cta { opacity: 1 !important; transform: none !important; }
 }
 .split-chip {

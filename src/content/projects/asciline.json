@@ -6,7 +6,7 @@
   "story": "Started as a one-night experiment to see how far image-to-ASCII mapping could go with just character density and contrast math. Ended up building a full engine with a CLI and web layer.",
   "journey": "Asciline was a late-night rabbit hole — I wanted to understand image-to-ASCII conversion at the math level, not just use a library. Once I had the density mapping working, the CLI came together fast. The web interface was a natural add-on so it wasn't just a terminal toy. It's the kind of project that's small enough to finish, but deep enough to actually learn from.",
   "forWho": "Developers, terminal enthusiasts, and anyone who wants to turn images or text into styled ASCII art programmatically or in a browser.",
-  "category": "Dev Tools",
+  "category": "dev",
   "tags": ["ascii", "cli", "image-processing", "terminal"],
   "stack": ["Python", "Flask", "Pillow", "HTML", "CSS"],
   "status": "active",

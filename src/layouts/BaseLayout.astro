@@ -40,12 +40,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://natecowp
   <meta property="og:image"       content={ogImage} />
   <meta property="og:site_name"   content="Nate Cowperthwaite" />
 
-  <!-- Twitter / X card -->
-  <meta name="twitter:card"        content="summary_large_image" />
-  <meta name="twitter:title"       content={title} />
-  <meta name="twitter:description" content={description} />
-  <meta name="twitter:image"       content={ogImage} />
-
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
   {/* Only load devicon on the dev side — saves ~30KB on food/contact pages */}

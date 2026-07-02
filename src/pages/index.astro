@@ -4,8 +4,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 <BaseLayout title="Nate Cowperthwaite" description="Professional chef and self-taught developer. Two distinct crafts, one person building them both.">
   <main class="split-page">
 
-    <!-- Brand lockup centered over both halves -->
-    <div class="split-brand animate-slide-down">
+    <!-- Brand lockup centered over both halves (desktop only) -->
+    <div class="split-brand animate-slide-down" aria-hidden="true">
       <span class="split-brand-name">Nate Cowperthwaite</span>
       <span class="split-brand-tag">Two crafts. One person.</span>
     </div>
@@ -13,6 +13,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <!-- DEV HALF -->
     <a href="/dev" class="split-half split-dev" aria-label="Enter Developer portfolio">
       <div class="split-inner">
+        <!-- Mobile-only name shown inline in flow -->
+        <div class="split-mobile-name">
+          <span class="split-brand-name">Nate Cowperthwaite</span>
+          <span class="split-brand-tag">Two crafts. One person.</span>
+        </div>
         <div class="split-icon">&#128187;</div>
         <h2 class="split-title split-title-dev">Developer</h2>
         <p class="split-desc">Self-taught. Problem-driven. Built from real kitchen friction.</p>
@@ -56,7 +61,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   overflow: hidden;
 }
 
-/* Centered brand over both halves */
+/* Centered brand over both halves — desktop only */
 .split-brand {
   position: absolute;
   top: 50%;
@@ -84,6 +89,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   text-transform: uppercase;
   letter-spacing: 0.14em;
   color: rgba(255,255,255,0.65);
+}
+
+/* Mobile inline name — hidden on desktop */
+.split-mobile-name {
+  display: none;
 }
 
 /* Halves */
@@ -222,6 +232,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     flex-direction: column;
     height: auto;
     min-height: calc(100vh - 60px);
+    overflow: visible;
   }
   .split-half {
     flex: none;
@@ -230,18 +241,26 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
   .split-page::after { display: none; }
 
-  /* Keep brand absolutely positioned over the stacked layout.
-     On mobile the page is taller than the viewport, so we anchor
-     it to the top of the first panel instead of mid-page. */
-  .split-brand {
-    top: 24vh;
-    left: 50%;
-    transform: translateX(-50%);
-    width: max-content;
-    max-width: 90vw;
+  /* Hide the floating absolute brand — it can't reliably position
+     over a variable-height stacked layout */
+  .split-brand { display: none; }
+
+  /* Show the inline name block at the top of the Dev panel only */
+  .split-mobile-name {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    margin-bottom: 0.25rem;
+    width: 100%;
+  }
+  .split-mobile-name .split-brand-name {
+    font-size: 1.1rem;
+    white-space: nowrap;
   }
 
-  .split-brand-name { color: white; }
   .split-icon { font-size: 2.4rem; }
   .split-title { font-size: clamp(1.6rem, 8vw, 2.4rem); }
   .split-desc { font-size: 0.82rem; }

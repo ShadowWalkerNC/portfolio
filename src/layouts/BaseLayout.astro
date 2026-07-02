@@ -1,16 +1,53 @@
 ---
 import '../styles/global.css';
-const { title, description, side } = Astro.props;
-// side: 'dev' | 'food' | undefined (neutral for landing)
+
+// Typed Props — catches misspelled prop names at build time
+interface Props {
+  title?:       string;
+  description?: string;
+  /** Controls which nav set renders and whether devicon loads.
+   *  'dev' | 'food' | undefined (neutral landing) */
+  side?:        'dev' | 'food';
+  /** Absolute URL for og:image. Defaults to /og-default.png */
+  ogImage?:     string;
+}
+
+const {
+  title       = 'Nate Cowperthwaite',
+  description = 'Professional chef and self-taught developer. Two distinct crafts, one person building them both.',
+  side,
+  ogImage     = '/og-default.png',
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://natecowperthwaite.com');
 ---
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content={description ?? 'Nate Cowperthwaite — Chef & Developer'} />
-  <title>{title ?? 'Nate Cowperthwaite'}</title>
+  <link rel="canonical" href={canonicalURL} />
+
+  <!-- Primary meta -->
+  <meta name="description" content={description} />
+  <title>{title}</title>
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content={canonicalURL} />
+  <meta property="og:title"       content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image"       content={ogImage} />
+  <meta property="og:site_name"   content="Nate Cowperthwaite" />
+
+  <!-- Twitter / X card -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image"       content={ogImage} />
+
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
   {/* Only load devicon on the dev side — saves ~30KB on food/contact pages */}
   {side === 'dev' && (
     <link
@@ -77,16 +114,10 @@ const { title, description, side } = Astro.props;
     </p>
   </footer>
 
-  <!-- ===== SCROLL REVEAL =====
-    Inline IntersectionObserver removed (was a duplicate of animations.js).
-    Pages needing scroll-reveal must import initScrollReveal() from
-    src/utils/animations.js and call it in their own <script> block.
-  ===== -->
-
   <!-- ===== HAMBURGER SCRIPT ===== -->
   <script>
-    const burger  = document.getElementById('navBurger');
-    const menu    = document.getElementById('navMenu');
+    const burger = document.getElementById('navBurger');
+    const menu   = document.getElementById('navMenu');
     if (burger && menu) {
       burger.addEventListener('click', () => {
         const open = menu.classList.toggle('nav-open');
@@ -107,7 +138,7 @@ const { title, description, side } = Astro.props;
 </html>
 
 <style>
-/* ---- Skip link (WCAG 2.4.1) ---- */
+/* ---- Skip link ---- */
 .skip-link {
   position: absolute;
   top: -100%;
@@ -122,9 +153,7 @@ const { title, description, side } = Astro.props;
   text-decoration: none;
   transition: top 0.15s ease;
 }
-.skip-link:focus {
-  top: var(--space-2);
-}
+.skip-link:focus { top: var(--space-2); }
 
 /* ---- Nav logo ---- */
 .nav-logo {
@@ -147,10 +176,7 @@ const { title, description, side } = Astro.props;
   align-items: center;
   gap: 0.25rem;
 }
-.nav-switch {
-  font-weight: 600;
-  font-size: 0.82rem;
-}
+.nav-switch { font-weight: 600; font-size: 0.82rem; }
 .nav-switch-dev {
   color: var(--accent-blue);
   background: var(--accent-blue-pale);
@@ -166,14 +192,13 @@ const { title, description, side } = Astro.props;
 .nav-switch-dev:hover  { background: var(--accent-blue);  color: white; }
 .nav-switch-food:hover { background: var(--accent-ember); color: white; }
 
-/* ---- Hamburger button ---- */
+/* ---- Hamburger ---- */
 .nav-burger {
   display: none;
   flex-direction: column;
   justify-content: center;
   gap: 5px;
-  width: 44px;
-  height: 44px;
+  width: 44px; height: 44px;
   background: none;
   border: none;
   cursor: pointer;
@@ -184,29 +209,24 @@ const { title, description, side } = Astro.props;
 .nav-burger:hover { background: var(--bg-elevated); }
 .nav-burger span {
   display: block;
-  height: 2px;
-  width: 22px;
+  height: 2px; width: 22px;
   background: var(--text-secondary);
   border-radius: 2px;
   transition: transform 0.25s ease, opacity 0.2s ease;
   transform-origin: center;
 }
-.nav-burger.is-active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-burger.is-active span:nth-child(1) { transform: translateY(7px)  rotate(45deg); }
 .nav-burger.is-active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
 .nav-burger.is-active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-/* ---- Mobile nav (token-driven bg — dark-mode safe) ---- */
+/* ---- Mobile nav ---- */
 @media (max-width: 640px) {
   .nav-logo-name { font-size: 0.88rem; }
-
   .nav-burger { display: flex; }
-
   .nav-links {
     display: none;
     position: absolute;
-    top: 60px;
-    left: 0;
-    right: 0;
+    top: 60px; left: 0; right: 0;
     background: var(--nav-bg);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -224,7 +244,6 @@ const { title, description, side } = Astro.props;
     min-height: 44px;
     font-size: 0.95rem;
     border-radius: var(--radius-sm);
-    text-align: left;
     display: flex;
     align-items: center;
   }

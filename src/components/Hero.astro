@@ -1,0 +1,235 @@
+---
+// Hero.astro — migrated from ShadowWalkerNC/ShadowWalkerNC README
+// Tagline: "Chef. Developer. The same discipline, two different kitchens."
+---
+
+<section class="hero" aria-labelledby="hero-heading">
+  <div class="hero-content animate-fade-in-up">
+
+    <div class="hero-kicker">
+      <span class="badge badge-blue">&#128187; Developer Portfolio</span>
+    </div>
+
+    <h1 class="hero-title" id="hero-heading">
+      Software built by someone<br />
+      <span class="hero-accent-blue glitch" data-text="who lived">who lived</span>
+      <span class="hero-accent-ember"> the problem.</span>
+    </h1>
+
+    <p class="hero-tagline">Chef. Developer. The same discipline, two different kitchens.</p>
+
+    <p class="hero-subtitle">
+      Self-taught since ~2017. 10+ years cooking every station in Maine kitchens.
+      I went back to code because no one was building the tools those kitchens actually needed
+      &mdash; so I built them myself using agentic workflows, AI tools, and modern APIs.
+    </p>
+
+    <div class="hero-actions">
+      <div class="shimmer-border">
+        <a href="/dev/projects" class="btn btn-primary">See the Work</a>
+      </div>
+      <a href="/contact" class="btn btn-ghost">Get in Touch</a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num glow-text counter" data-target="10" data-suffix="+">10+</span>
+        <span class="stat-label">Projects Shipped</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-num stat-ember glow-text-ember counter" data-target="4" data-suffix="">4</span>
+        <span class="stat-label">Culinary Tech Apps</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-num glow-text">~2017</span>
+        <span class="stat-label">Started Coding</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="hero-visual" aria-hidden="true">
+    <div class="code-block animate-scale-in animate-float">
+      <div class="code-line"><span class="c-comment">// chef who codes</span></div>
+      <div class="code-line">&nbsp;</div>
+      <div class="code-line"><span class="c-keyword">const</span> <span class="c-var">nate</span> <span class="c-op">=</span> <span class="c-paren">{</span></div>
+      <div class="code-line">&nbsp; <span class="c-prop">craft</span><span class="c-op">:</span>   <span class="c-ember">'culinary'</span><span class="c-op">,</span></div>
+      <div class="code-line">&nbsp; <span class="c-prop">coding</span><span class="c-op">:</span>  <span class="c-string">'2017-present'</span><span class="c-op">,</span></div>
+      <div class="code-line">&nbsp; <span class="c-prop">style</span><span class="c-op">:</span>   <span class="c-string">'problem-driven'</span><span class="c-op">,</span></div>
+      <div class="code-line">&nbsp; <span class="c-prop">tools</span><span class="c-op">:</span>   <span class="c-string">'AI + MCP + APIs'</span><span class="c-op">,</span></div>
+      <div class="code-line">&nbsp; <span class="c-prop">goal</span><span class="c-op">:</span>    <span class="c-ember">'Half Baked 2027'</span></div>
+      <div class="code-line"><span class="c-paren">};</span></div>
+      <div class="code-line">&nbsp;</div>
+      <div class="code-line"><span class="c-keyword">function</span> <span class="c-fn">solve</span><span class="c-paren">(</span><span class="c-var">problem</span><span class="c-paren">) {</span></div>
+      <div class="code-line">&nbsp; <span class="c-comment">// lived it first.</span></div>
+      <div class="code-line">&nbsp; <span class="c-keyword">return</span> <span class="c-fn">ship</span><span class="c-paren">(</span><span class="c-var">solution</span><span class="c-paren">);</span></div>
+      <div class="code-line"><span class="c-paren">}</span></div>
+    </div>
+  </div>
+</section>
+
+<style>
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  padding: 5rem 1.5rem 4rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.hero-kicker  { margin-bottom: 1rem; }
+.hero-title {
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  font-weight: 900;
+  line-height: 1.1;
+  color: var(--text-primary);
+  letter-spacing: -0.03em;
+  margin-bottom: 0.6rem;
+}
+.hero-tagline {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--accent-blue);
+  letter-spacing: 0.01em;
+  margin-bottom: 0.9rem;
+  opacity: 0.9;
+}
+.hero-accent-blue  { color: var(--accent-blue); }
+.hero-accent-ember { color: var(--accent-ember); }
+.hero-subtitle {
+  font-size: 1rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 2rem;
+  max-width: 480px;
+}
+.hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 2.5rem; align-items: center; }
+.hero-stats   { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+.stat { display: flex; flex-direction: column; gap: 2px; }
+.stat-num {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1;
+}
+.stat-num.stat-ember { color: var(--accent-ember); }
+.stat-label {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.stat-divider { width: 1px; height: 2rem; background: var(--border-subtle); }
+
+/* Code block visual */
+.code-block {
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: var(--radius-lg, 0.75rem);
+  padding: 1.5rem 1.75rem;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.82rem;
+  line-height: 1.9;
+  box-shadow: var(--shadow-lg);
+  overflow-x: auto;
+}
+.code-line { white-space: pre; }
+.c-comment { color: #4a5568; }
+.c-keyword { color: #c792ea; }
+.c-var     { color: #82aaff; }
+.c-prop    { color: #82aaff; }
+.c-fn      { color: #82cfff; }
+.c-string  { color: #c3e88d; }
+.c-ember   { color: var(--accent-ember); }
+.c-op      { color: #89ddff; }
+.c-paren   { color: #a9b1d6; }
+
+/* Animations */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.93); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-7px); }
+}
+.animate-fade-in-up { animation: fadeInUp 0.65s ease both; }
+.animate-scale-in   { animation: scaleIn  0.65s ease 0.2s both; }
+.animate-float      { animation: float 4s ease-in-out infinite; }
+
+@keyframes glitch-clip {
+  0%   { clip-path: inset(0 0 95% 0); transform: translateX(-3px); }
+  20%  { clip-path: inset(30% 0 50% 0); transform: translateX(3px); }
+  40%  { clip-path: inset(60% 0 20% 0); transform: translateX(-2px); }
+  60%  { clip-path: inset(80% 0 5% 0);  transform: translateX(2px); }
+  80%  { clip-path: inset(10% 0 75% 0); transform: translateX(-1px); }
+  100% { clip-path: inset(0 0 95% 0);   transform: translateX(0); }
+}
+.glitch { position: relative; display: inline-block; }
+.glitch::before, .glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.glitch::before { color: var(--accent-blue);  animation: glitch-clip 5s infinite; animation-delay: 2s;   opacity: 0.75; }
+.glitch::after  { color: var(--accent-ember); animation: glitch-clip 5s infinite; animation-delay: 2.1s; opacity: 0.6;  }
+
+/* Responsive */
+@media (max-width: 860px) {
+  .hero { grid-template-columns: 1fr; gap: 2rem; padding: 3.5rem 1.25rem 2.5rem; }
+  .hero-visual { display: none; }
+}
+@media (max-width: 640px) {
+  .hero { padding: 2.5rem 1rem 2rem; }
+  .hero-title { font-size: clamp(1.6rem, 7vw, 2.2rem); }
+  .hero-subtitle { font-size: 0.92rem; }
+  .hero-actions { gap: 0.5rem; }
+  .hero-stats { gap: 0.75rem; }
+  .stat-divider { display: none; }
+}
+@media (max-width: 400px) {
+  .hero-actions { flex-direction: column; }
+  .hero-actions .btn { width: 100%; justify-content: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-up, .animate-scale-in, .animate-float,
+  .glitch::before, .glitch::after { animation: none !important; opacity: 1; transform: none; }
+}
+</style>
+
+<script>
+(function () {
+  const counters = document.querySelectorAll('.hero .counter');
+  if (!counters.length) return;
+  const animateCounter = (el) => {
+    const target = parseInt(el.dataset.target ?? '0', 10);
+    const suffix = el.dataset.suffix ?? '';
+    const duration = 1400;
+    const startTime = performance.now();
+    const step = (now) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(eased * target) + suffix;
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      animateCounter(entry.target);
+      io.unobserve(entry.target);
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(el => io.observe(el));
+})();
+</script>

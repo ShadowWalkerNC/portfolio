@@ -1,14 +1,14 @@
 {
   "title": "Shoreline",
   "type": "original",
-  "tagline": "Modern reservation and guest management platform for restaurants.",
-  "description": "Shoreline is a full-stack reservation and guest management platform for restaurants \u2014 real-time table availability, guest profiles with visit history, waitlist management, and a front-of-house dashboard built for service speed. Designed as a direct alternative to OpenTable and Resy at a fraction of the cost.",
-  "story": "Built after watching one too many hosts struggle with an OpenTable iPad that couldn't tell them which tables were about to turn. Shoreline starts with the host stand experience and works outward from there.",
-  "journey": "Shoreline came from a specific front-of-house frustration: reservation platforms are built around the diner experience, not the host's. The host needs to know table status, cover counts, and waitlist queue at a glance \u2014 Shoreline's dashboard was designed around that use case first. The guest profile layer came second, because remembering a returning guest's preferences is one of the highest-value things a front-of-house can do and almost none of the affordable tools support it.",
-  "forWho": "Restaurant owners and front-of-house managers who need modern reservation and guest management without OpenTable's pricing or Resy's complexity.",
+  "tagline": "Full-stack dietary and kitchen operations control board for long-term care facilities.",
+  "description": "Shoreline is a browser-based operations platform built for Ross Manor Care Home. Its primary module, iMPAC, manages resident diet orders, weekly menu planning, production worksheets, staff scheduling, supplement tracking, inventory, maintenance work orders, and administrative records — all from a single LAN-accessible control board with real-time multi-device sync via Server-Sent Events. Currently stable at v4.0.0; a v5 rebuild targeting React, TypeScript, and PostgreSQL is in progress.",
+  "story": "Built after watching dietary staff juggle paper binders, spreadsheets, and disconnected tools to manage resident meal service at a care home. Shoreline starts with the host stand equivalent for dietary — the production worksheet and tray ticket workflow — and expands outward to cover every operational layer the kitchen and administration team touches daily.",
+  "journey": "Shoreline grew from a single frustration: dietary operations in long-term care are operationally complex but chronically underserved by software. The v4 system was built to be immediately deployable on any facility LAN with zero database setup — just Node.js, Express, and file-based JSON storage. Every device on the network — dining room tablet, kitchen laptop, nurse's station — shares live data through SSE-pushed updates. The v5 rebuild is converting that proven feature set into a productized, multi-tenant platform with PostgreSQL, Prisma, and a modern React frontend.",
+  "forWho": "Dietary managers, kitchen staff, and administrators at long-term care homes and care facilities who need a unified, real-time operations platform without the complexity or cost of enterprise healthcare software.",
   "category": "food",
-  "tags": ["reservations", "restaurant", "front-of-house", "guest-management", "saas"],
-  "stack": ["Next.js", "TypeScript", "Supabase", "Stripe", "TailwindCSS"],
+  "tags": ["dietary", "kitchen-ops", "long-term-care", "healthcare", "operations"],
+  "stack": ["Node.js", "Express", "JavaScript", "HTML5", "CSS3", "JSON"],
   "status": "wip",
   "inDevelopment": true,
   "featured": true,
@@ -17,16 +17,29 @@
     "demo": null
   },
   "detailedSpecs": {
-    "architecture": "Next.js App Router + TypeScript frontend. Supabase PostgreSQL + Realtime for live table and waitlist state. Stripe for subscription billing. TailwindCSS for the host dashboard UI.",
-    "dataFlow": "Reservation created \u2192 table marked held \u2192 Supabase Realtime pushes update to host dashboard \u2192 guest seated \u2192 visit logged to guest profile \u2192 table released back to availability pool.",
+    "architecture": "v4 (production): Node.js + Express REST API serving a vanilla JavaScript SPA with tab-based routing. File-based JSON storage — no database required. v5 (rebuild): React 18 + TypeScript + Vite frontend, Zustand state management, Express TypeScript backend migrating to PostgreSQL via Prisma, with Next.js SSR planned for Phase 3.",
+    "dataFlow": "Client action (diet order, menu save, task update) → Express REST endpoint → JSON file write → SSE broadcast to /api/events → all connected clients refresh active view in real time. Offline fallback: api-layer.js switches to localStorage reads/writes when server is unreachable.",
     "keyPatterns": [
-      "Supabase Realtime for live table availability",
-      "Guest profile with full visit history",
-      "Waitlist queue with SMS notification hooks",
-      "Host dashboard designed for service-speed use",
-      "Stripe subscription billing"
+      "Server-Sent Events (SSE) for real-time multi-device sync across LAN",
+      "Resident diet registry with allergen cross-contact audit against weekly menu planner",
+      "Production worksheet and tray ticket generation from live diet orders",
+      "Role-based frontend access (Admin, Supervisor, Cook, Server, Nurse, Note Taker)",
+      "File-based JSON storage with zero-dependency setup for LAN deployment",
+      "Offline/localStorage fallback mode when server is unreachable",
+      "Railway cloud deployment with persistent volume for data/ directory"
     ],
-    "deployTarget": "Vercel (frontend) + Supabase (backend)",
-    "notableFiles": ["app/dashboard", "app/reservations", "lib/realtime.ts"]
+    "deployTarget": "LAN (any Windows/Mac/Linux machine running Node.js) or Railway (cloud, with persistent /app/data volume). Optional PM2 for persistent background process.",
+    "notableFiles": [
+      "server.js",
+      "index.html",
+      "api-layer.js",
+      "app-residents.js",
+      "app-menu.js",
+      "app-production.js",
+      "app-admin.js",
+      "data-seed.js",
+      "ARCHITECTURE.md",
+      "ROADMAP.md"
+    ]
   }
 }

@@ -1,51 +1,32 @@
 {
   "title": "Shoreline",
   "type": "original",
-  "tagline": "Full-stack hospitality management platform with analytics.",
-  "description": "Shoreline is a restaurant and hospitality management platform featuring reservation tracking, staff scheduling, inventory control, and a live analytics dashboard — built with Flask and a PostgreSQL backend.",
-  "story": "Inspired by the chaos of watching a beachside restaurant try to manage reservations on a whiteboard and staff schedules on a shared Google Sheet. Shoreline was built to be the single source of truth for a hospitality operation.",
-  "journey": "Shoreline started as a direct response to a real problem I watched play out in an actual kitchen — paper schedules, whiteboard reservations, no single system. I built the first version in Flask to prove the concept worked. After watching operators use it, the technical debt became obvious: the monolith needed to become an API. v5 is that rethink — a ground-up rebuild designed to scale from one location to a regional chain without rewiring everything.",
-  "forWho": "Restaurant managers and hospitality operators who need a unified back-office system without the enterprise price tag.",
-  "category": "Culinary Tech",
-  "tags": ["hospitality", "analytics", "flask", "full-stack"],
-  "stack": ["Python", "Flask", "PostgreSQL", "Alembic", "Chart.js"],
-  "status": "active",
+  "tagline": "Modern reservation and guest management platform for restaurants.",
+  "description": "Shoreline is a full-stack reservation and guest management platform for restaurants \u2014 real-time table availability, guest profiles with visit history, waitlist management, and a front-of-house dashboard built for service speed. Designed as a direct alternative to OpenTable and Resy at a fraction of the cost.",
+  "story": "Built after watching one too many hosts struggle with an OpenTable iPad that couldn't tell them which tables were about to turn. Shoreline starts with the host stand experience and works outward from there.",
+  "journey": "Shoreline came from a specific front-of-house frustration: reservation platforms are built around the diner experience, not the host's. The host needs to know table status, cover counts, and waitlist queue at a glance \u2014 Shoreline's dashboard was designed around that use case first. The guest profile layer came second, because remembering a returning guest's preferences is one of the highest-value things a front-of-house can do and almost none of the affordable tools support it.",
+  "forWho": "Restaurant owners and front-of-house managers who need modern reservation and guest management without OpenTable's pricing or Resy's complexity.",
+  "category": "food",
+  "tags": ["reservations", "restaurant", "front-of-house", "guest-management", "saas"],
+  "stack": ["Next.js", "TypeScript", "Supabase", "Stripe", "TailwindCSS"],
+  "status": "wip",
+  "inDevelopment": true,
   "featured": true,
   "links": {
-    "github": "https://github.com/ShadowWalkerNC/shoreline",
+    "github": "https://github.com/ShadowWalkerNC/Shoreline",
     "demo": null
   },
   "detailedSpecs": {
-    "architecture": "Monolithic Flask app with Blueprint-based routing. PostgreSQL for persistent data, Alembic for schema versioning.",
+    "architecture": "Next.js App Router + TypeScript frontend. Supabase PostgreSQL + Realtime for live table and waitlist state. Stripe for subscription billing. TailwindCSS for the host dashboard UI.",
+    "dataFlow": "Reservation created \u2192 table marked held \u2192 Supabase Realtime pushes update to host dashboard \u2192 guest seated \u2192 visit logged to guest profile \u2192 table released back to availability pool.",
     "keyPatterns": [
-      "Blueprint modularization per domain (reservations, staff, inventory)",
-      "Alembic migration chain for zero-downtime schema changes",
-      "Chart.js dashboard fed by Flask API endpoints",
-      "Session-based auth with bcrypt hashing"
+      "Supabase Realtime for live table availability",
+      "Guest profile with full visit history",
+      "Waitlist queue with SMS notification hooks",
+      "Host dashboard designed for service-speed use",
+      "Stripe subscription billing"
     ],
-    "deployTarget": "Render (web service)",
-    "notableFiles": ["app/blueprints/reservations.py", "app/blueprints/analytics.py", "migrations/"]
-  },
-  "futureBranch": {
-    "label": "v5",
-    "tagline": "The next generation — rebuilt with a modern API-first architecture.",
-    "description": "Shoreline v5 is a ground-up rebuild transitioning from a monolithic Flask app to a clean REST API backend with a decoupled frontend, improved JWT auth, and a fully redesigned multi-tenant data model.",
-    "stack": ["Python", "Flask", "PostgreSQL", "REST API", "Railway"],
-    "status": "wip",
-    "links": {
-      "github": "https://github.com/ShadowWalkerNC/shoreline",
-      "demo": null
-    },
-    "detailedSpecs": {
-      "architecture": "Decoupled REST API (Flask) + headless frontend. JWT-based auth replacing sessions. Multi-tenant schema design with org-scoped data.",
-      "keyPatterns": [
-        "JWT access + refresh token flow",
-        "Multi-tenant row-level scoping via org_id",
-        "OpenAPI spec generation via Flasgger",
-        "CI/CD pipeline with automated migration runs"
-      ],
-      "deployTarget": "Railway",
-      "notableFiles": ["api/routes/v1/", "api/auth/jwt_handler.py", "db/schema_v5.sql"]
-    }
+    "deployTarget": "Vercel (frontend) + Supabase (backend)",
+    "notableFiles": ["app/dashboard", "app/reservations", "lib/realtime.ts", "supabase/"]
   }
 }

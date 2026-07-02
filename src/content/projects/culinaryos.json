@@ -2,12 +2,12 @@
   "title": "CulinaryOS",
   "type": "original",
   "tagline": "The operating system for the modern restaurant.",
-  "description": "CulinaryOS is a web-based SaaS restaurant OS built in the Toast model — one platform covering the full service cycle: tablet POS, real-time Kitchen Display System, inventory and pantry tracking with automated purchase orders, end-of-day reporting, Stripe-powered payments, a customer-facing online ordering storefront, and an owner/manager back-office. KitchenKit and CulinaryOps connect as MCP servers, giving CulinaryOS AI-agent access across recipe scaling, prep planning, labor, food cost, vendor management, and waste tracking.",
-  "story": "Built after years of watching kitchen staff juggle five different apps during a dinner rush. Every station had its own screen, its own tool, its own failure point. CulinaryOS started as a question: what if the whole kitchen ran on one OS? The Ratio Blueprint Engine — which stores recipes as relationships, not fixed quantities — is what makes it not just another POS.",
-  "journey": "CulinaryOS is the project that everything else in the culinary ecosystem feeds into. It started as a simple question — why does a kitchen need five apps open during service? — and grew into a full platform architecture. The Ratio Blueprint Engine was the technical unlock: once recipes became ratio relationships instead of fixed quantities, the entire prep, scaling, and AI-agent layer became possible. KitchenKit and CulinaryOps were built alongside it as standalone tools that also snap in as MCP servers, so CulinaryOS becomes the hub without forcing operators into a closed ecosystem.",
+  "description": "CulinaryOS is a web-based SaaS restaurant OS built in the Toast model \u2014 one platform covering the full service cycle: tablet POS, real-time Kitchen Display System, inventory and pantry tracking with automated purchase orders, end-of-day reporting, Stripe-powered payments, a customer-facing online ordering storefront, and an owner/manager back-office. KitchenKit and CulinaryOps connect as MCP servers, giving CulinaryOS AI-agent access across recipe scaling, prep planning, labor, food cost, vendor management, and waste tracking.",
+  "story": "Built after years of watching kitchen staff juggle five different apps during a dinner rush. Every station had its own screen, its own tool, its own failure point. CulinaryOS started as a question: what if the whole kitchen ran on one OS? The Ratio Blueprint Engine \u2014 which stores recipes as relationships, not fixed quantities \u2014 is what makes it not just another POS.",
+  "journey": "CulinaryOS is the project that everything else in the culinary ecosystem feeds into. It started as a simple question \u2014 why does a kitchen need five apps open during service? \u2014 and grew into a full platform architecture. The Ratio Blueprint Engine was the technical unlock: once recipes became ratio relationships instead of fixed quantities, the entire prep, scaling, and AI-agent layer became possible. KitchenKit and CulinaryOps were built alongside it as standalone tools that also snap in as MCP servers, so CulinaryOS becomes the hub without forcing operators into a closed ecosystem.",
   "forWho": "Restaurant owners, head chefs, and kitchen managers who need operations software built by someone who has actually worked the line.",
   "group": "culinary-ecosystem",
-  "category": "Culinary Tech",
+  "category": "food",
   "tags": ["flagship", "platform", "restaurant-os", "mcp-hub", "pos", "kds", "inventory"],
   "stack": ["TypeScript", "React 18", "Vite", "Hono", "Supabase", "Stripe", "Turborepo", "pnpm", "Railway"],
   "status": "wip",
@@ -19,25 +19,15 @@
   },
   "detailedSpecs": {
     "architecture": "pnpm monorepo managed by Turborepo. Five React 18 + Vite apps (pos, kds, admin, web, server) share a Hono API gateway, a Supabase PostgreSQL backend, and a suite of typed packages. Domain-split MCP servers expose the full operation layer to any MCP-compatible AI agent. KitchenKit and CulinaryOps plug in as external MCP servers, making CulinaryOS the unified hub across the entire culinary ecosystem.",
-    "dataFlow": "Order placed in POS → event emitted to event-bus → KDS receives ticket via Supabase Realtime → ratio-engine scales prep quantities → completion event written to domain_events audit ledger → EOD reports aggregated from domain_events.",
+    "dataFlow": "Order placed in POS \u2192 event emitted to event-bus \u2192 KDS receives ticket via Supabase Realtime \u2192 ratio-engine scales prep quantities \u2192 completion event written to domain_events audit ledger \u2192 EOD reports aggregated from domain_events.",
     "keyPatterns": [
-      "Ratio Blueprint Engine — recipes stored as ratio relationships, not fixed quantities",
-      "Domain-split MCP servers (pos, kds, inventory, admin, payments) — Zod-validated, never direct DB access",
-      "KitchenKit (recipe-mcp, prep-mcp) and CulinaryOps (culinaryops-mcp) connect as external MCP servers",
-      "Supabase RLS with mandatory tenant_id on every table",
-      "domain_events append-only audit ledger on every mutation",
-      "Stripe PaymentIntents for online payments + Stripe Terminal for card-present (Phase 12)"
+      "Ratio Blueprint Engine \u2014 recipes stored as ratio relationships, not fixed quantities",
+      "Domain-split MCP servers \u2014 full operation layer exposed to any AI agent",
+      "KitchenKit + CulinaryOps as external MCP satellites",
+      "Supabase Realtime for live KDS ticket flow",
+      "Stripe integration for payments and online ordering"
     ],
-    "deployTarget": "Railway (containerized per service) + Supabase hosted",
-    "notableFiles": [
-      "apps/pos",
-      "apps/kds",
-      "apps/admin",
-      "apps/web",
-      "apps/server",
-      "packages/ratio-engine",
-      "mcp/culinary-os-server.ts",
-      "supabase/migrations/"
-    ]
+    "deployTarget": "Railway",
+    "notableFiles": ["apps/pos", "apps/kds", "apps/admin", "packages/ratio-engine", "mcp/"]
   }
 }

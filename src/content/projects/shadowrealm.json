@@ -1,29 +1,29 @@
 {
   "title": "ShadowRealm",
   "type": "original",
-  "tagline": "Personal homelab and self-hosted infrastructure playground.",
-  "description": "ShadowRealm is the personal homelab environment — self-hosted services, network configuration, containerized workloads, and infrastructure experiments. Documented as a living reference for setup, tooling, and lessons learned.",
-  "story": "Every developer needs a place to break things safely. ShadowRealm is that place — where new stacks get tested, network configs get experimented on, and nothing is production-critical.",
-  "journey": "ShadowRealm started as a single Raspberry Pi and turned into a proper homelab over time. The real value wasn't the hardware — it was having a place where I could run anything, break anything, and actually understand what was happening at the infrastructure level. Networking, DNS, containers, reverse proxies — things that are abstracted away in cloud platforms became real and tangible here.",
-  "forWho": "Developers and infrastructure enthusiasts interested in self-hosted tooling, homelab setups, and hands-on networking.",
-  "category": "Infrastructure",
-  "tags": ["homelab", "self-hosted", "docker", "networking", "infrastructure"],
-  "stack": ["Docker", "Proxmox", "Nginx", "Cloudflare", "Linux"],
+  "tagline": "Self-hosted homelab infrastructure \u2014 documented.",
+  "description": "ShadowRealm is my personal homelab: a self-hosted infrastructure stack running on Proxmox VE, covering media, network services, monitoring, secrets management, and a private container registry. Documented here as a reference for the architectural decisions, not as a public project.",
+  "story": "Built because I wanted to actually own my infrastructure, not rent it. Every service that runs in ShadowRealm is something I chose to run myself instead of depending on a third-party SaaS.",
+  "journey": "ShadowRealm started as a single Raspberry Pi running Pi-hole and gradually expanded into a proper homelab with Proxmox, LXC containers, and a structured network. The jump from \"stuff running on a Pi\" to \"actual infrastructure\" happened when I started caring about uptime, backup strategy, and secrets management. Documenting it forces the architecture to be real \u2014 if it can't be explained, it's not designed.",
+  "forWho": "Self-hosters, homelab enthusiasts, and anyone who wants to see how a solo developer structures private infrastructure.",
+  "category": "dev",
+  "tags": ["homelab", "self-hosted", "proxmox", "infrastructure", "devops"],
+  "stack": ["Proxmox VE", "Docker", "Nginx", "Vault", "Prometheus", "Grafana"],
   "status": "active",
   "featured": false,
   "links": {
-    "github": "https://github.com/ShadowWalkerNC/ShadowRealm",
+    "github": null,
     "demo": null
   },
   "detailedSpecs": {
-    "architecture": "Proxmox hypervisor running containerized and VM workloads. Nginx reverse proxy with Cloudflare DNS. Docker Compose for service orchestration.",
+    "architecture": "Proxmox VE hypervisor running LXC containers and VMs. Nginx reverse proxy with Cloudflare tunnel for external access. Vault for secrets. Prometheus + Grafana for monitoring.",
     "keyPatterns": [
-      "Proxmox VM and LXC container management",
-      "Nginx reverse proxy with SSL termination",
-      "Cloudflare DNS + tunnel for external access",
-      "Docker Compose service stacks"
+      "Proxmox LXC containerization for service isolation",
+      "Cloudflare tunnel for secure external access without port forwarding",
+      "Vault for secrets and credential management",
+      "Prometheus + Grafana monitoring stack"
     ],
-    "deployTarget": "On-premise homelab hardware",
-    "notableFiles": ["docker-compose/", "nginx/", "docs/network-map.md"]
+    "deployTarget": "Self-hosted (on-prem Proxmox)",
+    "notableFiles": []
   }
 }

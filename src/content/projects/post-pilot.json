@@ -1,14 +1,14 @@
 {
   "title": "PostPilot",
   "type": "original",
-  "tagline": "Social media scheduling and queue management for solo creators.",
-  "description": "PostPilot is a lightweight social media scheduling tool built for solo creators and small teams — queue posts, manage drafts, and track scheduled content across platforms without the enterprise overhead.",
-  "story": "Built for the creator who needs a queue, not a dashboard with 40 analytics panels. PostPilot is intentionally minimal — schedule it, forget it, move on.",
-  "journey": "PostPilot came from a genuine personal need — I kept scheduling posts manually and losing track of drafts across platforms. Most scheduling tools are built for marketing teams and priced accordingly. I wanted something that covered the core loop (draft, schedule, publish) without the noise. It was also a good excuse to work through OAuth flows for multiple platforms in one project.",
-  "forWho": "Solo creators, freelancers, and small teams who need post scheduling without the enterprise price tag or complexity.",
-  "category": "Dev Tools",
-  "tags": ["social", "scheduling", "creator", "queue"],
-  "stack": ["Node.js", "Express", "PostgreSQL", "React", "Bull"],
+  "tagline": "Schedule, draft, and manage social content without the platform overhead.",
+  "description": "PostPilot is a social content scheduling tool built for solo creators and small teams who need drafting, scheduling, and basic analytics without the complexity or cost of enterprise tools. Connect accounts, write posts, schedule them, review performance.",
+  "story": "Built for the gap between \"just post manually\" and \"pay $99/month for a platform you use 10% of.\"",
+  "journey": "PostPilot started from a personal frustration: the scheduling tools that existed were either too simple (no drafts, no analytics) or too expensive for solo use. Building it was a good exercise in OAuth flows, queue management, and designing around the real constraints of social platform APIs \u2014 rate limits, token refresh, and platform-specific post formats all had to be handled properly.",
+  "forWho": "Solo creators, small teams, and indie makers who need content scheduling without enterprise pricing.",
+  "category": "dev",
+  "tags": ["social", "scheduling", "content", "creator-tools"],
+  "stack": ["Next.js", "TypeScript", "PostgreSQL", "Bull", "OAuth"],
   "status": "stable",
   "featured": false,
   "links": {
@@ -16,14 +16,14 @@
     "demo": null
   },
   "detailedSpecs": {
-    "architecture": "Express API with a Bull job queue for scheduled publishing. React frontend for draft and queue management. PostgreSQL for post storage.",
+    "architecture": "Next.js app router. PostgreSQL for post and account storage. Bull queue for scheduled post dispatch. OAuth for platform account connection.",
     "keyPatterns": [
-      "Bull queue for reliable scheduled publishing",
-      "Draft and queue management UI",
-      "Multi-platform OAuth integration",
-      "PostgreSQL post and schedule storage"
+      "OAuth account connection (per-platform)",
+      "Bull queue for reliable scheduled dispatch",
+      "Draft and scheduling workflow",
+      "Basic post performance analytics"
     ],
-    "deployTarget": "Any Node.js host with Redis for Bull",
-    "notableFiles": ["src/queue/", "src/api/posts.js", "src/frontend/"]
+    "deployTarget": "Railway or Vercel + Railway (queue)",
+    "notableFiles": ["app/", "lib/queue.ts", "lib/oauth/", "prisma/schema.prisma"]
   }
 }

@@ -1,14 +1,14 @@
 {
   "title": "NexCMS",
   "type": "original",
-  "tagline": "Headless CMS with a clean API and a minimal admin UI.",
-  "description": "NexCMS is a lightweight headless content management system with a REST API, a minimal admin dashboard, and flexible content type definitions — designed to be embedded into existing stacks without friction.",
-  "story": "Built out of frustration with CMS tools that either do too much or require too much config to do anything useful. NexCMS starts from a clean API contract and builds up from there.",
-  "journey": "NexCMS came from a recurring pattern — every project I built needed some form of content management, but full CMS platforms were always overkill and raw database access was always too raw. I wanted something that sat cleanly in the middle: a headless API with a minimal admin UI and flexible content types, without the 40-plugin setup. Building it also forced me to think carefully about schema design and API contract stability.",
-  "forWho": "Developers who need a lightweight, embeddable CMS without the overhead of a full platform.",
-  "category": "Dev Tools",
-  "tags": ["cms", "headless", "api", "admin"],
-  "stack": ["Node.js", "Express", "PostgreSQL", "React"],
+  "tagline": "Minimal headless CMS with a clean API and no-bloat philosophy.",
+  "description": "NexCMS is a lightweight headless CMS built around a single principle: content as structured data, delivered through a clean REST API. No plugins, no page builder, no UI complexity \u2014 just content types, entries, and an API.",
+  "story": "Built after one too many projects where the CMS was more complex than the app it was serving. NexCMS is the tool I wanted: define your content types, write your entries, get your data.",
+  "journey": "NexCMS came from a recurring frustration with every headless CMS being either too simple (no schema definition) or too complex (a full platform with billing). I wanted something that fit in the middle: schema-defined content types, a clean API, and nothing else. The build was fast once I stopped trying to add features and focused on getting the core right.",
+  "forWho": "Developers who need a lightweight, schema-defined headless CMS without the platform overhead of Contentful or Sanity.",
+  "category": "dev",
+  "tags": ["cms", "headless", "api", "rest", "minimal"],
+  "stack": ["Node.js", "Express", "PostgreSQL", "JWT"],
   "status": "stable",
   "featured": false,
   "links": {
@@ -16,14 +16,14 @@
     "demo": null
   },
   "detailedSpecs": {
-    "architecture": "Express REST API with a React admin dashboard. PostgreSQL for content storage with dynamic content type definitions.",
+    "architecture": "Node.js + Express REST API. PostgreSQL for content storage. JWT authentication. No frontend \u2014 API-only by design.",
     "keyPatterns": [
-      "Dynamic content type definitions via API",
-      "REST endpoints for content CRUD",
-      "Minimal React admin UI",
-      "JWT-based API auth"
+      "Schema-defined content types",
+      "REST API with JWT auth",
+      "No frontend or page builder",
+      "Minimal dependency footprint"
     ],
-    "deployTarget": "Any Node.js host",
-    "notableFiles": ["src/api/", "src/admin/", "src/db/schema.sql"]
+    "deployTarget": "Any Node.js host (Railway, Render, VPS)",
+    "notableFiles": ["src/api/", "src/models/", "src/middleware/auth.js"]
   }
 }

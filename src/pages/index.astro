@@ -74,7 +74,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   gap: 0.3rem;
   pointer-events: none;
   text-align: center;
-  /* slideDown already applied via animate-slide-down class */
   animation-delay: 0.35s;
   animation-fill-mode: both;
   opacity: 0;
@@ -131,7 +130,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   text-decoration: none;
   transition: flex 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
-/* Desktop hover expansion */
 @media (hover: hover) {
   .split-half:hover { flex: 1.45; }
   .split-page:has(.split-dev:hover)  .split-food { flex: 0.6; }
@@ -171,38 +169,41 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .split-half:hover .split-inner { transform: scale(1.03); }
 }
 
-/* Stagger the inner content after the panel slides in */
+/* Stagger fadeInUp for all inner children */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 .split-inner > * {
   opacity: 0;
   animation: fadeInUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
+
+/* Dev panel — child delays */
 .split-dev .split-inner > *:nth-child(1) { animation-delay: 0.30s; }
 .split-dev .split-inner > *:nth-child(2) { animation-delay: 0.38s; }
 .split-dev .split-inner > *:nth-child(3) { animation-delay: 0.44s; }
 .split-dev .split-inner > *:nth-child(4) { animation-delay: 0.50s; }
 .split-dev .split-inner > *:nth-child(5) { animation-delay: 0.55s; }
 
+/* Food panel — child delays (offset slightly later) */
 .split-food .split-inner > *:nth-child(1) { animation-delay: 0.38s; }
 .split-food .split-inner > *:nth-child(2) { animation-delay: 0.46s; }
 .split-food .split-inner > *:nth-child(3) { animation-delay: 0.52s; }
 .split-food .split-inner > *:nth-child(4) { animation-delay: 0.58s; }
 .split-food .split-inner > *:nth-child(5) { animation-delay: 0.63s; }
 
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
+/* Icon: float continuously after fading in */
 .split-icon {
   font-size: 3rem;
   line-height: 1;
   filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
-  animation: float 3.5s ease-in-out infinite !important;
-  /* float overrides the fadeInUp after it runs */
-  animation-delay: 0.30s !important;
 }
-.split-food .split-icon {
-  animation-delay: 0.38s !important;
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-7px); }
 }
 
 .split-title {
@@ -221,23 +222,28 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   line-height: 1.5;
 }
 
-/* Chips: hidden on desktop until hover, always shown on touch devices */
+/*
+  Chips: fade in via stagger (lands at opacity:1), then on desktop
+  we dim them back down until hover. We use a post-animation class
+  swap via a tiny JS trick — but simpler: just keep them visible
+  and let hover brighten them.
+*/
 .split-chips {
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
   justify-content: center;
-  opacity: 0 !important;
-  transform: translateY(8px);
-  transition: opacity 0.3s ease 0.05s, transform 0.3s ease 0.05s;
-  animation: none !important;
+  /* chips visible by default after stagger; dim slightly on desktop at rest */
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 @media (hover: hover) {
-  .split-half:hover .split-chips { opacity: 1 !important; transform: translateY(0); }
+  /* Dim at rest, brighten on hover */
+  .split-chips { opacity: 0.35; }
+  .split-half:hover .split-chips { opacity: 1; transform: translateY(0); }
 }
-@media (hover: none) {
-  .split-chips, .split-cta { opacity: 1 !important; transform: none !important; }
-}
+
 .split-chip {
   font-size: 0.7rem;
   font-weight: 700;
@@ -249,18 +255,20 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 .chip-dev  { background: rgba(255,255,255,0.15); color: #bfdbfe; border: 1px solid rgba(255,255,255,0.2); }
 .chip-food { background: rgba(255,255,255,0.15); color: #fed7aa; border: 1px solid rgba(255,255,255,0.2); }
 
+/* CTA: always visible after stagger, brightens on hover */
 .split-cta {
   font-size: 0.88rem;
   font-weight: 700;
-  color: rgba(255,255,255,0.6);
   letter-spacing: 0.06em;
-  opacity: 0 !important;
-  transform: translateY(6px);
-  transition: opacity 0.3s ease 0.1s, transform 0.3s ease 0.1s;
-  animation: none !important;
+  color: rgba(255,255,255,0.65);
+  transition: color 0.25s ease, transform 0.25s ease;
+  /* No opacity:0, no animation:none — stagger handles the entrance */
 }
 @media (hover: hover) {
-  .split-half:hover .split-cta { opacity: 1 !important; transform: translateY(0); color: rgba(255,255,255,0.95); }
+  .split-half:hover .split-cta {
+    color: #ffffff;
+    transform: translateX(4px);
+  }
 }
 
 /* Vertical divider line */
@@ -290,7 +298,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     min-height: 48vh;
     transition: none;
   }
-  /* Override panel slide animations on mobile to vertical fade-up */
   .split-enter-left,
   .split-enter-right {
     animation-name: splitEnterMobile;
@@ -300,11 +307,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     to   { opacity: 1; transform: translateY(0); }
   }
   .split-page::after { display: none; }
-
-  /* Hide the floating absolute brand */
   .split-brand { display: none; }
 
-  /* Show the inline name block at the top of the Dev panel only */
   .split-mobile-name {
     display: flex;
     flex-direction: column;
@@ -323,11 +327,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .split-icon { font-size: 2.4rem; }
   .split-title { font-size: clamp(1.6rem, 8vw, 2.4rem); }
   .split-desc { font-size: 0.82rem; }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50%       { transform: translateY(-7px); }
+  /* On touch: chips fully visible, CTA fully bright */
+  .split-chips { opacity: 1; }
+  .split-cta { color: rgba(255,255,255,0.9); }
 }
 
 @media (prefers-reduced-motion: reduce) {

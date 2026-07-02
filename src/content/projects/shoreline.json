@@ -27,6 +27,6 @@
       "Stripe subscription billing"
     ],
     "deployTarget": "Vercel (frontend) + Supabase (backend)",
-    "notableFiles": ["app/dashboard", "app/reservations", "lib/realtime.ts", "supabase/"]
+    "notableFiles": ["app/dashboard", "app/reservations", "lib/realtime.ts"]
   }
 }

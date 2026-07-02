@@ -8,7 +8,7 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
 ---
 
 <BaseLayout title="Nate Cowperthwaite — Developer" description="Agentic coding, AI tools, and API-driven software built by a professional chef who started coding in 2025." side="dev">
-  <main>
+  <main id="main-content">
 
     <!-- ===== HERO ===== -->
     <section class="hero">
@@ -116,7 +116,7 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
       <div class="devkit-grid">
 
         <!-- Languages -->
-        <div class="kit-card reveal">
+        <div class="kit-card">
           <div class="kit-card-header">
             <span class="kit-icon kit-icon-blue">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
@@ -186,7 +186,7 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
         </div>
 
         <!-- Frameworks -->
-        <div class="kit-card reveal">
+        <div class="kit-card">
           <div class="kit-card-header">
             <span class="kit-icon kit-icon-blue">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
@@ -230,7 +230,7 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
         </div>
 
         <!-- Data & Infra -->
-        <div class="kit-card reveal">
+        <div class="kit-card">
           <div class="kit-card-header">
             <span class="kit-icon kit-icon-blue">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg>
@@ -266,7 +266,7 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
         </div>
 
         <!-- AI & APIs -->
-        <div class="kit-card reveal">
+        <div class="kit-card">
           <div class="kit-card-header">
             <span class="kit-icon kit-icon-blue">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a4 4 0 0 1 4 4v1h1a3 3 0 0 1 0 6h-1v1a4 4 0 0 1-8 0v-1H7a3 3 0 0 1 0-6h1V6a4 4 0 0 1 4-4Z"/><circle cx="12" cy="10" r="2"/></svg>
@@ -360,6 +360,32 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
   }, { threshold: 0.5 });
 
   counters.forEach(el => io.observe(el));
+})();
+</script>
+
+<!-- Dev Kit chip reveal -->
+<script>
+(() => {
+  const chips = document.querySelectorAll<HTMLElement>('.kit-chip');
+  if (!chips.length) return;
+
+  // If the card is already in view on load (above the fold), show immediately
+  const show = (el: HTMLElement) => {
+    const i = parseFloat(el.style.getPropertyValue('--i') || '0');
+    setTimeout(() => el.classList.add('chip-visible'), i * 60);
+  };
+
+  const io = new IntersectionObserver(
+    (entries) => entries.forEach(e => {
+      if (e.isIntersecting) {
+        show(e.target as HTMLElement);
+        io.unobserve(e.target);
+      }
+    }),
+    { threshold: 0.05 }
+  );
+
+  chips.forEach(el => io.observe(el));
 })();
 </script>
 

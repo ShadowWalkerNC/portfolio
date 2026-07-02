@@ -85,9 +85,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://natecowp
     </div>
   </nav>
 
-  <main id="main-content">
-    <slot />
-  </main>
+  <!-- Each page provides its own main element -->
+  <slot />
 
   <footer>
     <p>&copy; {new Date().getFullYear()} Nathaniel Cowperthwaite &mdash;
@@ -98,10 +97,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://natecowp
     </p>
   </footer>
 
-  <!-- Global scroll-reveal observer (runs on every page) -->
+  <!-- Global scroll-reveal observer -->
   <script>
     (function () {
-      // Mark all reveal elements that are already in view on load
       const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
       if (!revealEls.length) return;
 

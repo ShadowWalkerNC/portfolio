@@ -84,7 +84,6 @@ const deviconMap: Record<string, string> = {
     </div>
     {forWho && (
       <p class="for-who-badge">
-        <!-- Person SVG icon -->
         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
           <circle cx="12" cy="7" r="4"/>
@@ -273,18 +272,35 @@ if (typeof window.__spotlightInit === 'undefined') {
 if (typeof window.__cardEntranceInit === 'undefined') {
   window.__cardEntranceInit = true;
   const cards = document.querySelectorAll('.card-entrance');
+
+  const reveal = (card, idx) => {
+    if (card.classList.contains('card-visible')) return;
+    card.style.animationDelay = (idx * 0.07) + 's';
+    card.classList.add('card-visible');
+  };
+
   const io = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
-      // Stagger by card index within its parent grid
       const siblings = Array.from(entry.target.parentElement?.children ?? []);
       const idx = siblings.indexOf(entry.target);
-      entry.target.style.animationDelay = (idx * 0.07) + 's';
-      entry.target.classList.add('card-visible');
+      reveal(entry.target, idx);
       io.unobserve(entry.target);
     });
-  }, { threshold: 0.08 });
+  }, {
+    // Fire as soon as 1px of the card enters the viewport
+    threshold: 0,
+    // Pull the trigger line 40px beyond the bottom edge so cards sitting
+    // right at the fold on short mobile screens still animate in
+    rootMargin: '0px 0px 40px 0px'
+  });
+
   cards.forEach(card => io.observe(card));
+
+  // Safety net: force-reveal any card the observer missed after 800ms
+  setTimeout(() => {
+    cards.forEach((card, idx) => reveal(card, idx));
+  }, 800);
 }
 </script>
 
@@ -344,7 +360,6 @@ if (typeof window.__cardEntranceInit === 'undefined') {
 @media (hover: hover) {
   .project-card:hover .card-border-glow { opacity: 1; }
 }
-/* Mask the fill so only the border ring shows */
 .card-border-glow::after {
   content: '';
   position: absolute;

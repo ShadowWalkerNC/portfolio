@@ -403,6 +403,33 @@ footer {
   z-index: 2;
 }
 
+/* ---- Shimmer border wrapper (used on primary CTA) ---- */
+.shimmer-border {
+  position: relative;
+  border-radius: var(--radius-md);
+  padding: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--accent-blue),
+    var(--accent-indigo),
+    var(--accent-blue)
+  );
+  background-size: 200% auto;
+  animation: shimmerBorder 3s linear infinite;
+}
+.shimmer-border > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---- Glow text ---- */
+.glow-text {
+  text-shadow: 0 0 18px rgba(37,99,235,0.35), 0 0 6px rgba(37,99,235,0.2);
+}
+.glow-text-ember {
+  text-shadow: 0 0 18px rgba(249,115,22,0.35), 0 0 6px rgba(249,115,22,0.2);
+}
+
 
 /* ============================================================
    CARD SYSTEM
@@ -816,4 +843,5 @@ footer {
   .hero-gradient-bg { animation: none; background: var(--bg-base); }
   .grain::before { animation: none; }
   .divider-animated { animation: none; }
+  .shimmer-border { animation: none; background: var(--accent-blue); }
 }

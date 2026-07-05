@@ -267,41 +267,6 @@ if (typeof window.__spotlightInit === 'undefined') {
     });
   });
 }
-
-// Staggered entrance animation via IntersectionObserver
-if (typeof window.__cardEntranceInit === 'undefined') {
-  window.__cardEntranceInit = true;
-  const cards = document.querySelectorAll('.card-entrance');
-
-  const reveal = (card, idx) => {
-    if (card.classList.contains('card-visible')) return;
-    card.style.animationDelay = (idx * 0.07) + 's';
-    card.classList.add('card-visible');
-  };
-
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      const siblings = Array.from(entry.target.parentElement?.children ?? []);
-      const idx = siblings.indexOf(entry.target);
-      reveal(entry.target, idx);
-      io.unobserve(entry.target);
-    });
-  }, {
-    // Fire as soon as 1px of the card enters the viewport
-    threshold: 0,
-    // Pull the trigger line 40px beyond the bottom edge so cards sitting
-    // right at the fold on short mobile screens still animate in
-    rootMargin: '0px 0px 40px 0px'
-  });
-
-  cards.forEach(card => io.observe(card));
-
-  // Safety net: force-reveal any card the observer missed after 800ms
-  setTimeout(() => {
-    cards.forEach((card, idx) => reveal(card, idx));
-  }, 800);
-}
 </script>
 
 <style>

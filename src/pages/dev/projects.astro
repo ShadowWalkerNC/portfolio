@@ -30,6 +30,37 @@ const allProjects = await getCollection('projects');
   </main>
 </BaseLayout>
 
+<script>
+  // Card entrance observer — runs once after all cards are in the DOM
+  const cards = document.querySelectorAll('.card-entrance');
+
+  const reveal = (card: Element, idx: number) => {
+    if (card.classList.contains('card-visible')) return;
+    (card as HTMLElement).style.animationDelay = (idx * 0.07) + 's';
+    card.classList.add('card-visible');
+  };
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const siblings = Array.from(entry.target.parentElement?.children ?? []);
+      const idx = siblings.indexOf(entry.target);
+      reveal(entry.target, idx);
+      io.unobserve(entry.target);
+    });
+  }, {
+    threshold: 0,
+    rootMargin: '0px 0px 40px 0px'
+  });
+
+  cards.forEach(card => io.observe(card));
+
+  // Safety net: force-reveal anything the observer missed after 800ms
+  setTimeout(() => {
+    cards.forEach((card, idx) => reveal(card, idx));
+  }, 800);
+</script>
+
 <style>
 .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.25rem; }
 @media (max-width: 640px) { .projects-grid { grid-template-columns: 1fr; } }

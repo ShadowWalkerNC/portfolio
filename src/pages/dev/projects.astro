@@ -7,26 +7,28 @@ const allProjects = await getCollection('projects');
 ---
 
 <BaseLayout title="Projects — Nate Cowperthwaite" description="All developer projects by Nate Cowperthwaite." side="dev">
-  <main class="section">
-    <h1 class="section-heading reveal">All Projects</h1>
-    <p class="section-sub reveal">Everything shipped so far. <a href="/dev" class="inline-link">&larr; Back to Dev Home</a></p>
-    <div class="projects-grid">
-      {allProjects.map(p => (
-        <ProjectCard
-          id={p.id}
-          title={p.data.title}
-          tagline={p.data.tagline}
-          description={p.data.description}
-          story={p.data.story}
-          forWho={p.data.forWho}
-          tags={p.data.tags}
-          stack={p.data.stack}
-          status={p.data.status}
-          links={p.data.links}
-          detailedSpecs={p.data.detailedSpecs}
-        />
-      ))}
-    </div>
+  <main id="main-content">
+    <section class="section">
+      <h1 class="section-heading reveal">All Projects</h1>
+      <p class="section-sub reveal">Everything shipped so far. <a href="/dev" class="inline-link">&larr; Back to Dev Home</a></p>
+      <div class="projects-grid">
+        {allProjects.map(p => (
+          <ProjectCard
+            id={p.id}
+            title={p.data.title}
+            tagline={p.data.tagline}
+            description={p.data.description}
+            story={p.data.story}
+            forWho={p.data.forWho}
+            tags={p.data.tags}
+            stack={p.data.stack}
+            status={p.data.status}
+            links={p.data.links}
+            detailedSpecs={p.data.detailedSpecs}
+          />
+        ))}
+      </div>
+    </section>
   </main>
 </BaseLayout>
 

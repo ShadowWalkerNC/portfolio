@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 <BaseLayout title="Nate Cowperthwaite" description="Professional chef and self-taught developer. Two distinct crafts, one person building them both.">
-  <main class="split-page">
+  <main class="split-page" id="main-content">
 
     <!-- Brand lockup centered over both halves (desktop only) -->
     <div class="split-brand animate-slide-down" aria-hidden="true">
@@ -135,6 +135,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   from { opacity: 0; transform: translateX(40px); }
   to   { opacity: 1; transform: translateX(0); }
 }
+@keyframes slideDown {
+  from { opacity: 0; transform: translate(-50%, calc(-50% - 16px)); }
+  to   { opacity: 1; transform: translate(-50%, -50%); }
+}
 
 .split-enter-left {
   opacity: 0;
@@ -143,6 +147,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 .split-enter-right {
   opacity: 0;
   animation: splitEnterRight 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+}
+.animate-slide-down {
+  animation: slideDown 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* Halves */

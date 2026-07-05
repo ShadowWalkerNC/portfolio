@@ -60,9 +60,14 @@
   --space-2xl: 3rem;
   --space-3xl: 4rem;
 
-  /* Spacing aliases used in nav/layout */
-  --space-1: 0.25rem;
-  --space-4: 1rem;
+  /* Spacing aliases */
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-6:  1.5rem;
+  --space-8:  2rem;
+  --space-12: 3rem;
 
   /* Radius */
   --radius-sm:   6px;
@@ -278,6 +283,10 @@ footer {
 @keyframes spinSlow {
   from { transform: rotate(0deg); }
   to   { transform: rotate(360deg); }
+}
+@keyframes dividerShimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
 }
 
 
@@ -577,6 +586,31 @@ footer {
   max-width: 520px;
 }
 
+/* Shared heading + sub used across all pages */
+.section-heading {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.03em;
+  margin-bottom: 0.4rem;
+}
+.section-sub {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+}
+
+/* Inline link helper */
+.inline-link {
+  color: var(--accent-blue);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s;
+}
+.inline-link:hover { color: var(--accent-indigo); }
+
+/* ---- Dividers ---- */
 .divider {
   width: 48px;
   height: 3px;
@@ -585,6 +619,41 @@ footer {
 }
 .divider-blue  { background: var(--accent-blue); }
 .divider-ember { background: var(--accent-ember); }
+
+/* Ember-to-blue gradient — food page section separator */
+.divider-fusion {
+  width: 100%;
+  max-width: 860px;
+  height: 1px;
+  margin: 0 auto;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--accent-ember) 30%,
+    var(--accent-blue) 70%,
+    transparent 100%
+  );
+  opacity: 0.35;
+}
+
+/* Shimmer sweep — contact page section separators */
+.divider-animated {
+  width: 100%;
+  max-width: 680px;
+  height: 1px;
+  margin: 0 auto;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--accent-blue) 20%,
+    var(--accent-indigo) 50%,
+    var(--accent-blue) 80%,
+    transparent 100%
+  );
+  background-size: 200% auto;
+  opacity: 0.3;
+  animation: dividerShimmer 4s linear infinite;
+}
 
 
 /* ============================================================
@@ -648,7 +717,6 @@ footer {
   cursor: pointer;
   padding: 0.5rem;
   border-radius: var(--radius-sm);
-  /* Ensure burger is always above page content */
   position: relative;
   z-index: 101;
 }
@@ -668,8 +736,6 @@ footer {
   .nav-burger { display: flex; }
 
   .nav-links {
-    /* Hidden by default — uses visibility+opacity instead of display:none
-       so layout is preserved and no reflow collapses the page */
     visibility: hidden;
     opacity: 0;
     pointer-events: none;
@@ -749,4 +815,5 @@ footer {
   }
   .hero-gradient-bg { animation: none; background: var(--bg-base); }
   .grain::before { animation: none; }
+  .divider-animated { animation: none; }
 }

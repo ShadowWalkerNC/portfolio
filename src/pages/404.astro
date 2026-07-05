@@ -1,21 +1,23 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
-<BaseLayout title="Page Not Found — Nate Cowperthwaite" description="This page doesn’t exist, but the rest of the portfolio does.">
-  <div class="not-found">
-    <div class="nf-code" aria-hidden="true">404</div>
-    <h1 class="nf-heading">Wrong kitchen.</h1>
-    <p class="nf-body">
-      That page doesn’t exist — either the URL is wrong or something
-      moved. Either way, you can find everything from the links below.
-    </p>
-    <nav class="nf-nav" aria-label="Return navigation">
-      <a href="/" class="btn btn-primary">Home</a>
-      <a href="/dev" class="btn btn-ghost">Developer</a>
-      <a href="/food" class="btn btn-ember">Chef</a>
-      <a href="/contact" class="btn btn-ghost">Contact</a>
-    </nav>
-  </div>
+<BaseLayout title="Page Not Found — Nate Cowperthwaite" description="This page doesn't exist, but the rest of the portfolio does.">
+  <main id="main-content">
+    <div class="not-found">
+      <div class="nf-code" aria-hidden="true">404</div>
+      <h1 class="nf-heading">Wrong kitchen.</h1>
+      <p class="nf-body">
+        That page doesn't exist — either the URL is wrong or something
+        moved. Either way, you can find everything from the links below.
+      </p>
+      <nav class="nf-nav" aria-label="Return navigation">
+        <a href="/" class="btn btn-primary">Home</a>
+        <a href="/dev" class="btn btn-ghost">Developer</a>
+        <a href="/food" class="btn btn-ember">Chef</a>
+        <a href="/contact" class="btn btn-ghost">Contact</a>
+      </nav>
+    </div>
+  </main>
 </BaseLayout>
 
 <style>

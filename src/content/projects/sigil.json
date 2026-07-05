@@ -1,0 +1,30 @@
+{
+  "title": "Sigil",
+  "type": "discord-bot",
+  "tagline": "Discord icon and brand kit generation — powered by AI.",
+  "description": "Sigil is a Discord bot that generates icon sets and brand kits on demand using the Google Gemini API. Users can request logos, icon packs, and visual identity assets directly inside Discord without ever leaving the server.",
+  "story": "Built because designers and community managers kept needing quick brand assets and had no fast way to get them without leaving Discord. Sigil closes that gap by bringing AI image generation into the conversation.",
+  "journey": "Sigil started as a simple slash-command experiment with Discord.js and grew into a full bot with Gemini-backed image generation, structured prompt pipelines, and a clean command surface. The core challenge was building a reliable prompt layer that consistently produced usable brand-quality output rather than generic AI art.",
+  "forWho": "Discord server owners, community managers, and indie developers who need fast, AI-generated icons and brand assets without a design workflow.",
+  "category": "dev",
+  "group": "Discord Bots",
+  "tags": ["discord", "discord-bot", "ai", "image-generation", "branding", "gemini"],
+  "stack": ["Node.js", "Discord.js", "Google Gemini API"],
+  "status": "active",
+  "featured": true,
+  "links": {
+    "github": null,
+    "demo": null
+  },
+  "detailedSpecs": {
+    "architecture": "Node.js bot using Discord.js slash commands. Prompt requests are structured and forwarded to the Google Gemini API, with responses formatted and returned as Discord embeds or file attachments.",
+    "keyPatterns": [
+      "Slash command interface for zero-friction UX inside Discord",
+      "Structured prompt pipeline to Gemini API for consistent brand-quality output",
+      "Discord.js interaction handling with deferred replies for async generation",
+      "Modular command registration for extensibility"
+    ],
+    "apiSurface": "Discord Interactions API (slash commands), Google Gemini API (image generation)",
+    "deployTarget": "Node.js server / Railway"
+  }
+}

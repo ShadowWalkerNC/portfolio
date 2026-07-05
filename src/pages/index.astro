@@ -12,13 +12,26 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
     <!-- DEV HALF -->
     <a href="/dev" class="split-half split-dev split-enter-left" aria-label="Enter Developer portfolio">
+      <!-- Noise texture overlay -->
+      <div class="split-noise" aria-hidden="true"></div>
+      <!-- Panel glow on hover -->
+      <div class="split-glow split-glow-dev" aria-hidden="true"></div>
+
       <div class="split-inner">
         <!-- Mobile-only name shown inline in flow -->
         <div class="split-mobile-name">
           <span class="split-brand-name">Nate Cowperthwaite</span>
           <span class="split-brand-tag">Two crafts. One person.</span>
         </div>
-        <div class="split-icon">&#128187;</div>
+
+        <!-- SVG: Laptop icon -->
+        <div class="split-icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="3" width="20" height="14" rx="2"/>
+            <path d="M1 21h22M8 21l1-4h6l1 4"/>
+          </svg>
+        </div>
+
         <h2 class="split-title split-title-dev">Developer</h2>
         <p class="split-desc">Self-taught. Problem-driven. Built from real kitchen friction.</p>
         <div class="split-chips">
@@ -29,13 +42,28 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </div>
         <span class="split-cta">Enter &rarr;</span>
       </div>
-      <div class="split-bg-dev" aria-hidden="true"></div>
     </a>
 
     <!-- FOOD HALF -->
     <a href="/food" class="split-half split-food split-enter-right" aria-label="Enter Chef portfolio">
+      <!-- Noise texture overlay -->
+      <div class="split-noise" aria-hidden="true"></div>
+      <!-- Panel glow on hover -->
+      <div class="split-glow split-glow-food" aria-hidden="true"></div>
+
       <div class="split-inner">
-        <div class="split-icon">&#127859;</div>
+        <!-- SVG: Fork & Knife icon -->
+        <div class="split-icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 2v7c0 1.1.9 2 2 2h0a2 2 0 0 0 2-2V2"/>
+            <path d="M5 11v11"/>
+            <path d="M7 2v4"/>
+            <path d="M3 2v4"/>
+            <path d="M18 2c0 0-1 4-1 7s.9 2 2 2h0c1.1 0 2 .9 2 2v9"/>
+            <path d="M19 2v20"/>
+          </svg>
+        </div>
+
         <h2 class="split-title split-title-food">Chef</h2>
         <p class="split-desc">10+ years in Maine kitchens. Scratch cooking, real leadership, earned craft.</p>
         <div class="split-chips">
@@ -46,7 +74,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </div>
         <span class="split-cta">Enter &rarr;</span>
       </div>
-      <div class="split-bg-food" aria-hidden="true"></div>
     </a>
 
   </main>
@@ -128,30 +155,50 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   overflow: hidden;
   cursor: pointer;
   text-decoration: none;
-  transition: flex 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: flex 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.35s ease;
 }
 @media (hover: hover) {
   .split-half:hover { flex: 1.45; }
   .split-page:has(.split-dev:hover)  .split-food { flex: 0.6; }
   .split-page:has(.split-food:hover) .split-dev  { flex: 0.6; }
+
+  /* Inner border glow on active panel */
+  .split-dev:hover  { box-shadow: inset 0 0 0 1.5px rgba(99,179,237,0.45),  inset 0 0 40px rgba(37,99,235,0.15); }
+  .split-food:hover { box-shadow: inset 0 0 0 1.5px rgba(251,146,60,0.45),  inset 0 0 40px rgba(249,115,22,0.15); }
 }
 
 /* Backgrounds */
 .split-dev  { background: linear-gradient(135deg, #1e3a5f 0%, #1e40af 50%, #2563eb 100%); }
 .split-food { background: linear-gradient(135deg, #7c2d12 0%, #c2410c 50%, #f97316 100%); }
 
-.split-bg-dev, .split-bg-food {
+/* ---- Noise texture overlay ---- */
+.split-noise {
   position: absolute;
   inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+}
+
+/* ---- Hover radial glow ---- */
+.split-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
   opacity: 0;
   transition: opacity 0.45s ease;
+  z-index: 2;
 }
 @media (hover: hover) {
-  .split-dev:hover  .split-bg-dev  { opacity: 1; }
-  .split-food:hover .split-bg-food { opacity: 1; }
+  .split-dev:hover  .split-glow-dev  { opacity: 1; }
+  .split-food:hover .split-glow-food { opacity: 1; }
 }
-.split-bg-dev  { background: radial-gradient(ellipse at center, rgba(99,179,237,0.15), transparent 70%); }
-.split-bg-food { background: radial-gradient(ellipse at center, rgba(253,186,116,0.15), transparent 70%); }
+.split-glow-dev  { background: radial-gradient(ellipse at center, rgba(99,179,237,0.18), transparent 70%); }
+.split-glow-food { background: radial-gradient(ellipse at center, rgba(253,186,116,0.18), transparent 70%); }
 
 /* Content */
 .split-inner {
@@ -194,13 +241,23 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 .split-food .split-inner > *:nth-child(4) { animation-delay: 0.58s; }
 .split-food .split-inner > *:nth-child(5) { animation-delay: 0.63s; }
 
-/* Icon: float continuously after fading in */
+/* ---- SVG Icon ---- */
 .split-icon {
-  font-size: 3rem;
-  line-height: 1;
-  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+  width: 3rem;
+  height: 3rem;
+  color: rgba(255,255,255,0.92);
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.35));
+  transition: transform 0.3s ease;
+}
+.split-icon svg {
+  width: 100%;
+  height: 100%;
+}
+@media (hover: hover) {
+  .split-half:hover .split-icon { transform: translateY(-4px) scale(1.08); }
 }
 
+/* Float animation after entrance */
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50%       { transform: translateY(-7px); }
@@ -218,28 +275,20 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 .split-desc {
   font-size: 0.9rem;
   color: rgba(255,255,255,0.75);
-  max-width: 220px;
+  max-width: 270px;
   line-height: 1.5;
 }
 
-/*
-  Chips: fade in via stagger (lands at opacity:1), then on desktop
-  we dim them back down until hover. We use a post-animation class
-  swap via a tiny JS trick — but simpler: just keep them visible
-  and let hover brighten them.
-*/
 .split-chips {
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
   justify-content: center;
-  /* chips visible by default after stagger; dim slightly on desktop at rest */
   opacity: 1;
   transform: none;
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 @media (hover: hover) {
-  /* Dim at rest, brighten on hover */
   .split-chips { opacity: 0.35; }
   .split-half:hover .split-chips { opacity: 1; transform: translateY(0); }
 }
@@ -251,18 +300,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   border-radius: var(--radius-full);
   letter-spacing: 0.04em;
   text-transform: uppercase;
+  backdrop-filter: blur(4px);
 }
-.chip-dev  { background: rgba(255,255,255,0.15); color: #bfdbfe; border: 1px solid rgba(255,255,255,0.2); }
-.chip-food { background: rgba(255,255,255,0.15); color: #fed7aa; border: 1px solid rgba(255,255,255,0.2); }
+.chip-dev  { background: rgba(255,255,255,0.12); color: #bfdbfe; border: 1px solid rgba(255,255,255,0.22); }
+.chip-food { background: rgba(255,255,255,0.12); color: #fed7aa; border: 1px solid rgba(255,255,255,0.22); }
 
-/* CTA: always visible after stagger, brightens on hover */
+/* CTA */
 .split-cta {
   font-size: 0.88rem;
   font-weight: 700;
   letter-spacing: 0.06em;
   color: rgba(255,255,255,0.65);
   transition: color 0.25s ease, transform 0.25s ease;
-  /* No opacity:0, no animation:none — stagger handles the entrance */
 }
 @media (hover: hover) {
   .split-half:hover .split-cta {
@@ -271,7 +320,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 }
 
-/* Vertical divider line */
+/* ---- Vertical divider with pulse glow ---- */
 .split-page::after {
   content: '';
   position: absolute;
@@ -279,10 +328,21 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   bottom: 10%;
   left: 50%;
   width: 1px;
-  background: rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.25);
   pointer-events: none;
   z-index: 15;
   transition: left 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: dividerPulse 3s ease-in-out 0.8s both;
+}
+@keyframes dividerPulse {
+  0%   { opacity: 0; box-shadow: none; }
+  30%  { opacity: 1; box-shadow: 0 0 12px 3px rgba(255,255,255,0.35); }
+  70%  { opacity: 1; box-shadow: 0 0 6px 1px rgba(255,255,255,0.15); }
+  100% { opacity: 1; box-shadow: none; }
+}
+@media (hover: hover) {
+  .split-page:has(.split-dev:hover)::after  { left: calc(50% + (50% - 50%) * 0.45); }
+  .split-page:has(.split-food:hover)::after { left: calc(50% - (50% - 50%) * 0.45); }
 }
 
 /* Mobile: stack vertically */
@@ -295,8 +355,20 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
   .split-half {
     flex: none;
-    min-height: 48vh;
+    min-height: 50vh;
     transition: none;
+  }
+  /* Bottom vignette so content doesn't feel cut off */
+  .split-half::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 48px;
+    background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.18));
+    pointer-events: none;
+    z-index: 5;
   }
   .split-enter-left,
   .split-enter-right {
@@ -324,10 +396,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     white-space: nowrap;
   }
 
-  .split-icon { font-size: 2.4rem; }
+  .split-icon { width: 2.4rem; height: 2.4rem; }
   .split-title { font-size: clamp(1.6rem, 8vw, 2.4rem); }
   .split-desc { font-size: 0.82rem; }
-  /* On touch: chips fully visible, CTA fully bright */
   .split-chips { opacity: 1; }
   .split-cta { color: rgba(255,255,255,0.9); }
 }
@@ -342,5 +413,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     transform: none !important;
   }
   .split-icon { animation: none !important; }
+  .split-page::after { animation: none !important; opacity: 1; }
 }
 </style>

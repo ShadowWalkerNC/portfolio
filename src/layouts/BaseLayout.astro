@@ -2,6 +2,8 @@
 import '../styles/global.css';
 const { title, description, side } = Astro.props;
 // side: 'dev' | 'food' | undefined (neutral for landing)
+
+const themeColor = side === 'food' ? '#f97316' : '#2563eb';
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -9,6 +11,7 @@ const { title, description, side } = Astro.props;
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content={description ?? 'Nate Cowperthwaite — Chef & Developer'} />
+  <meta name="theme-color" content={themeColor} />
   <title>{title ?? 'Nate Cowperthwaite'}</title>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   {side === 'dev' && (
@@ -34,28 +37,27 @@ const { title, description, side } = Astro.props;
       <span></span><span></span><span></span>
     </button>
 
-    <div class="nav-links" id="navMenu" role="list">
+    <div class="nav-links" id="navMenu">
       {side === 'dev' && (
         <>
-          <a href="/dev" role="listitem">Home</a>
-          <a href="/dev/projects" role="listitem">Projects</a>
-          <a href="/contact" role="listitem">Contact</a>
-          <a href="/food" class="nav-switch nav-switch-food" role="listitem">&#127859; Chef Side</a>
+          <a href="/dev">Home</a>
+          <a href="/dev/projects">Projects</a>
+          <a href="/contact">Contact</a>
+          <a href="/food" class="nav-switch nav-switch-food">&#127859; Chef Side</a>
         </>
       )}
       {side === 'food' && (
         <>
-          <a href="/food" role="listitem">Home</a>
-          <a href="/food/recipes" role="listitem">Recipes</a>
-          <a href="/contact" role="listitem">Contact</a>
-          <a href="/dev" class="nav-switch nav-switch-dev" role="listitem">&#128187; Dev Side</a>
+          <a href="/food">Home</a>
+          <a href="/contact">Contact</a>
+          <a href="/dev" class="nav-switch nav-switch-dev">&#128187; Dev Side</a>
         </>
       )}
       {!side && (
         <>
-          <a href="/dev" role="listitem">Dev</a>
-          <a href="/food" role="listitem">Food</a>
-          <a href="/contact" role="listitem">Contact</a>
+          <a href="/dev">Dev</a>
+          <a href="/food">Food</a>
+          <a href="/contact">Contact</a>
         </>
       )}
     </div>
@@ -66,7 +68,7 @@ const { title, description, side } = Astro.props;
 
   <!-- ===== FOOTER ===== -->
   <footer>
-    <p>Built with Astro &amp; a lot of ☕ &mdash; &copy; {new Date().getFullYear()} Nate Cowperthwaite</p>
+    <p>Built with Astro &amp; a lot of &#9749; &mdash; &copy; {new Date().getFullYear()} Nate Cowperthwaite</p>
     <p style="margin-top:0.4rem;">
       <a href="/dev">Dev</a> &middot;
       <a href="/food">Food</a> &middot;

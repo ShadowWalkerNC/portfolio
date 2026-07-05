@@ -32,7 +32,6 @@ const statusMap = {
 };
 const s = statusMap[status];
 
-// Map common tech names to Devicon slugs
 const deviconMap: Record<string, string> = {
   'JavaScript':  'javascript',
   'TypeScript':  'typescript',
@@ -67,10 +66,16 @@ const deviconMap: Record<string, string> = {
   'Chart.js':    'chartjs',
   'MCP':         null,
   'AI APIs':     null,
+  'Discord.js':  null,
+  'Google Gemini API': null,
 };
 ---
 
-<article class="project-card spotlight-card" id={`card-${id}`}>
+<article class="project-card spotlight-card card-entrance" id={`card-${id}`}>
+
+  <!-- Gradient border overlay (visible on hover via opacity) -->
+  <div class="card-border-glow" aria-hidden="true"></div>
+
   <!-- Header Row -->
   <div class="card-header">
     <div class="card-title-group">
@@ -78,7 +83,14 @@ const deviconMap: Record<string, string> = {
       <span class={`status-badge ${s.color}`}>{s.label}</span>
     </div>
     {forWho && (
-      <p class="for-who-badge">&#128100; {forWho}</p>
+      <p class="for-who-badge">
+        <!-- Person SVG icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+        {forWho}
+      </p>
     )}
   </div>
 
@@ -111,9 +123,36 @@ const deviconMap: Record<string, string> = {
   <!-- Links -->
   {links && (
     <div class="card-links">
-      {links.github && <a href={links.github} target="_blank" rel="noopener" class="card-link link-github">GitHub &rarr;</a>}
-      {links.live   && <a href={links.live}   target="_blank" rel="noopener" class="card-link link-live">Live Site &rarr;</a>}
-      {links.docs   && <a href={links.docs}   target="_blank" rel="noopener" class="card-link link-docs">Docs &rarr;</a>}
+      {links.github && (
+        <a href={links.github} target="_blank" rel="noopener" class="card-link link-github">
+          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02.005 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.82.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          GitHub
+        </a>
+      )}
+      {links.live && (
+        <a href={links.live} target="_blank" rel="noopener" class="card-link link-live">
+          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+            <polyline points="15 3 21 3 21 9"/>
+            <line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          Live Site
+        </a>
+      )}
+      {links.docs && (
+        <a href={links.docs} target="_blank" rel="noopener" class="card-link link-docs">
+          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+            <polyline points="10 9 9 9 8 9"/>
+          </svg>
+          Docs
+        </a>
+      )}
     </div>
   )}
 
@@ -135,25 +174,37 @@ const deviconMap: Record<string, string> = {
       <div id={`details-${id}`} class="accordion-body" hidden>
         {story && (
           <div class="spec-block">
-            <h4 class="spec-heading">&#128218; Origin Story</h4>
+            <h4 class="spec-heading">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+              Origin Story
+            </h4>
             <p class="spec-text">{story}</p>
           </div>
         )}
         {detailedSpecs?.architecture && (
           <div class="spec-block">
-            <h4 class="spec-heading">&#127959; Architecture</h4>
+            <h4 class="spec-heading">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+              Architecture
+            </h4>
             <p class="spec-text">{detailedSpecs.architecture}</p>
           </div>
         )}
         {detailedSpecs?.dataFlow && (
           <div class="spec-block">
-            <h4 class="spec-heading">&#10145; Data Flow</h4>
+            <h4 class="spec-heading">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="5 12 12 5 19 12"/><polyline points="5 19 12 12 19 19"/></svg>
+              Data Flow
+            </h4>
             <p class="spec-text">{detailedSpecs.dataFlow}</p>
           </div>
         )}
         {detailedSpecs?.keyPatterns && detailedSpecs.keyPatterns.length > 0 && (
           <div class="spec-block">
-            <h4 class="spec-heading">&#128207; Key Patterns</h4>
+            <h4 class="spec-heading">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              Key Patterns
+            </h4>
             <ul class="spec-list">
               {detailedSpecs.keyPatterns.map(p => <li>{p}</li>)}
             </ul>
@@ -161,19 +212,28 @@ const deviconMap: Record<string, string> = {
         )}
         {detailedSpecs?.apiSurface && (
           <div class="spec-block">
-            <h4 class="spec-heading">&#128225; API Surface</h4>
+            <h4 class="spec-heading">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1"/></svg>
+              API Surface
+            </h4>
             <p class="spec-text">{detailedSpecs.apiSurface}</p>
           </div>
         )}
         {detailedSpecs?.deployTarget && (
           <div class="spec-block">
-            <h4 class="spec-heading">&#128640; Deploy Target</h4>
+            <h4 class="spec-heading">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+              Deploy Target
+            </h4>
             <p class="spec-text">{detailedSpecs.deployTarget}</p>
           </div>
         )}
         {detailedSpecs?.notableFiles && detailedSpecs.notableFiles.length > 0 && (
           <div class="spec-block">
-            <h4 class="spec-heading">&#128196; Notable Files</h4>
+            <h4 class="spec-heading">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              Notable Files
+            </h4>
             <ul class="spec-list mono">
               {detailedSpecs.notableFiles.map(f => <li>{f}</li>)}
             </ul>
@@ -195,7 +255,7 @@ function toggleAccordion(id) {
   chevron.style.transform = open ? 'rotate(0deg)' : 'rotate(180deg)';
 }
 
-// Spotlight hover — runs once per page
+// Spotlight hover
 if (typeof window.__spotlightInit === 'undefined') {
   window.__spotlightInit = true;
   document.addEventListener('mousemove', (e) => {
@@ -208,20 +268,89 @@ if (typeof window.__spotlightInit === 'undefined') {
     });
   });
 }
+
+// Staggered entrance animation via IntersectionObserver
+if (typeof window.__cardEntranceInit === 'undefined') {
+  window.__cardEntranceInit = true;
+  const cards = document.querySelectorAll('.card-entrance');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      // Stagger by card index within its parent grid
+      const siblings = Array.from(entry.target.parentElement?.children ?? []);
+      const idx = siblings.indexOf(entry.target);
+      entry.target.style.animationDelay = (idx * 0.07) + 's';
+      entry.target.classList.add('card-visible');
+      io.unobserve(entry.target);
+    });
+  }, { threshold: 0.08 });
+  cards.forEach(card => io.observe(card));
+}
 </script>
 
 <style>
+/* ---- Entrance animation ---- */
+@keyframes cardEnter {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.card-entrance {
+  opacity: 0;
+}
+.card-entrance.card-visible {
+  animation: cardEnter 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ---- Card base ---- */
 .project-card {
   background: var(--card-bg);
   border: 1px solid var(--border-subtle);
   border-radius: 12px;
   padding: 1.5rem;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
   position: relative;
   overflow: hidden;
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Hover lift */
+@media (hover: hover) {
+  .project-card:hover {
+    transform: translateY(-3px);
+    border-color: transparent;
+    box-shadow:
+      0 8px 32px rgba(0,0,0,0.25),
+      0 0 0 1px rgba(99,179,237,0.3),
+      var(--glow-blue);
+  }
+}
+
+/* ---- Gradient border glow (hover only) ---- */
+.card-border-glow {
+  position: absolute;
+  inset: -1px;
+  border-radius: 13px;
+  background: linear-gradient(135deg, rgba(99,179,237,0.55), rgba(139,92,246,0.45), rgba(99,179,237,0.1));
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+@media (hover: hover) {
+  .project-card:hover .card-border-glow { opacity: 1; }
+}
+/* Mask the fill so only the border ring shows */
+.card-border-glow::after {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  border-radius: 12px;
+  background: var(--card-bg);
 }
 
 /* Spotlight beam layer */
@@ -238,25 +367,31 @@ if (typeof window.__spotlightInit === 'undefined') {
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.3s ease;
-  z-index: 0;
-}
-.spotlight-card:hover::before {
-  opacity: 1;
-}
-
-/* Push card content above the spotlight layer */
-.project-card > * {
-  position: relative;
   z-index: 1;
 }
+.spotlight-card:hover::before { opacity: 1; }
 
-.project-card:hover {
-  border-color: var(--accent-blue);
-  box-shadow: 0 0 0 1px var(--accent-blue), var(--glow-blue);
+/* Push all card content above decorative layers */
+.project-card > *:not(.card-border-glow) {
+  position: relative;
+  z-index: 2;
 }
+
+/* ---- Header ---- */
 .card-header { display: flex; flex-direction: column; gap: 0.35rem; }
 .card-title-group { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
-.card-title { font-size: 1.2rem; font-weight: 700; color: var(--text-primary); margin: 0; }
+.card-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+  transition: color 0.2s ease;
+}
+@media (hover: hover) {
+  .project-card:hover .card-title { color: #93c5fd; }
+}
+
+/* ---- Status badge ---- */
 .status-badge {
   font-size: 0.65rem; font-weight: 600; text-transform: uppercase;
   padding: 2px 8px; border-radius: 20px; letter-spacing: 0.05em;
@@ -265,13 +400,28 @@ if (typeof window.__spotlightInit === 'undefined') {
 .badge-stable   { background: rgba(59,130,246,0.15); color: #60a5fa; border: 1px solid rgba(59,130,246,0.3); }
 .badge-wip      { background: rgba(250,204,21,0.15); color: #fcd34d; border: 1px solid rgba(250,204,21,0.3); }
 .badge-archived { background: rgba(156,163,175,0.15);color: #9ca3af; border: 1px solid rgba(156,163,175,0.3); }
+
+/* ---- For-who badge ---- */
 .for-who-badge {
-  font-size: 0.78rem; color: var(--text-muted);
-  background: rgba(99,179,237,0.08); border: 1px solid rgba(99,179,237,0.2);
-  border-radius: 6px; padding: 4px 10px; margin: 0; width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  background: rgba(99,179,237,0.08);
+  border: 1px solid rgba(99,179,237,0.2);
+  border-radius: 6px;
+  padding: 4px 10px;
+  margin: 0;
+  width: fit-content;
 }
+.for-who-badge svg { flex-shrink: 0; opacity: 0.7; }
+
+/* ---- Tagline & description ---- */
 .card-tagline { font-size: 0.95rem; color: var(--accent-blue); font-style: italic; margin: 0; }
 .card-description { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; margin: 0; }
+
+/* ---- Tech stack chips ---- */
 .card-stack, .card-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 .tech-chip {
   display: inline-flex;
@@ -284,25 +434,69 @@ if (typeof window.__spotlightInit === 'undefined') {
   background: rgba(99,102,241,0.15);
   color: #a5b4fc;
   border: 1px solid rgba(99,102,241,0.3);
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  cursor: default;
 }
-.tech-chip i {
-  font-size: 0.9rem;
-  line-height: 1;
-  flex-shrink: 0;
+@media (hover: hover) {
+  .tech-chip:hover {
+    background: rgba(99,102,241,0.28);
+    border-color: rgba(99,102,241,0.6);
+    color: #c7d2fe;
+  }
 }
-.tag-chip { font-size: 0.7rem; color: var(--text-muted); opacity: 0.7; }
+.tech-chip i { font-size: 0.9rem; line-height: 1; flex-shrink: 0; }
+
+/* ---- Tag chips ---- */
+.tag-chip {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 4px;
+  padding: 1px 6px;
+  opacity: 1;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+@media (hover: hover) {
+  .tag-chip:hover {
+    color: var(--accent-blue);
+    border-color: rgba(99,179,237,0.35);
+  }
+}
+
+/* ---- Links ---- */
 .card-links { display: flex; flex-wrap: wrap; gap: 0.6rem; }
 .card-link {
-  font-size: 0.8rem; font-weight: 600; padding: 5px 14px; border-radius: 6px;
-  text-decoration: none; transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 5px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.2s ease;
 }
-.link-github { background: rgba(255,255,255,0.05); color: var(--text-secondary); border: 1px solid var(--border-subtle); }
+.link-github {
+  background: rgba(255,255,255,0.05);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-subtle);
+}
 .link-github:hover { border-color: var(--accent-blue); color: var(--accent-blue); }
-.link-live { background: var(--accent-blue); color: #0d1117; }
+.link-live {
+  background: var(--accent-blue);
+  color: #0d1117;
+  border: 1px solid transparent;
+}
 .link-live:hover { filter: brightness(1.15); }
-.link-docs { background: rgba(99,179,237,0.1); color: var(--accent-blue); border: 1px solid rgba(99,179,237,0.2); }
+.link-docs {
+  background: rgba(99,179,237,0.1);
+  color: var(--accent-blue);
+  border: 1px solid rgba(99,179,237,0.2);
+}
+.link-docs:hover { background: rgba(99,179,237,0.18); }
 
-/* Accordion */
+/* ---- Accordion ---- */
 .accordion-wrapper { border-top: 1px solid var(--border-subtle); padding-top: 0.75rem; margin-top: 0.25rem; }
 .accordion-trigger {
   display: flex; align-items: center; justify-content: space-between;
@@ -315,9 +509,27 @@ if (typeof window.__spotlightInit === 'undefined') {
 .chevron-icon { transition: transform 0.25s ease; flex-shrink: 0; }
 .accordion-body { margin-top: 1rem; display: flex; flex-direction: column; gap: 1rem; }
 .accordion-body[hidden] { display: none; }
+
+/* ---- Spec blocks ---- */
 .spec-block { display: flex; flex-direction: column; gap: 0.3rem; }
-.spec-heading { font-size: 0.78rem; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin: 0; }
+.spec-heading {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+.spec-heading svg { flex-shrink: 0; opacity: 0.75; }
 .spec-text { font-size: 0.83rem; color: var(--text-muted); line-height: 1.65; margin: 0; }
 .spec-list { font-size: 0.83rem; color: var(--text-muted); line-height: 1.8; margin: 0; padding-left: 1.2rem; }
 .spec-list.mono li { font-family: var(--font-mono); font-size: 0.78rem; color: #7dd3fc; }
+
+@media (prefers-reduced-motion: reduce) {
+  .card-entrance { opacity: 1 !important; animation: none !important; }
+  .project-card  { transition: none !important; transform: none !important; }
+}
 </style>

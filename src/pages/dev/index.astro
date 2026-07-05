@@ -283,29 +283,58 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
   </main>
 </BaseLayout>
 
-<!-- Dev Kit chip reveal -->
 <script>
-(() => {
-  const chips = document.querySelectorAll<HTMLElement>('.kit-chip');
-  if (!chips.length) return;
+  // ---- Kit chip staggered reveal ----
+  (() => {
+    const chips = document.querySelectorAll<HTMLElement>('.kit-chip');
+    if (!chips.length) return;
 
-  const show = (el: HTMLElement) => {
-    const i = parseFloat(el.style.getPropertyValue('--i') || '0');
-    setTimeout(() => el.classList.add('chip-visible'), i * 60);
-  };
+    const show = (el: HTMLElement) => {
+      const i = parseFloat(el.style.getPropertyValue('--i') || '0');
+      setTimeout(() => el.classList.add('chip-visible'), i * 60);
+    };
 
-  const io = new IntersectionObserver(
-    (entries) => entries.forEach(e => {
-      if (e.isIntersecting) {
-        show(e.target as HTMLElement);
-        io.unobserve(e.target);
-      }
-    }),
-    { threshold: 0.05 }
-  );
+    const io = new IntersectionObserver(
+      (entries) => entries.forEach(e => {
+        if (e.isIntersecting) {
+          show(e.target as HTMLElement);
+          io.unobserve(e.target);
+        }
+      }),
+      { threshold: 0, rootMargin: '0px 0px 40px 0px' }
+    );
 
-  chips.forEach(el => io.observe(el));
-})();
+    chips.forEach(el => io.observe(el));
+
+    // Safety net
+    setTimeout(() => chips.forEach(el => show(el)), 800);
+  })();
+
+  // ---- Featured card entrance observer ----
+  (() => {
+    const cards = document.querySelectorAll<Element>('.featured-grid .card-entrance');
+    if (!cards.length) return;
+
+    const reveal = (card: Element, idx: number) => {
+      if (card.classList.contains('card-visible')) return;
+      (card as HTMLElement).style.animationDelay = (idx * 0.07) + 's';
+      card.classList.add('card-visible');
+    };
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const siblings = Array.from(entry.target.parentElement?.children ?? []);
+        const idx = siblings.indexOf(entry.target);
+        reveal(entry.target, idx);
+        io.unobserve(entry.target);
+      });
+    }, { threshold: 0, rootMargin: '0px 0px 40px 0px' });
+
+    cards.forEach(card => io.observe(card));
+
+    setTimeout(() => cards.forEach((card, idx) => reveal(card, idx)), 800);
+  })();
 </script>
 
 <style>

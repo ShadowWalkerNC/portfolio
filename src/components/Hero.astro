@@ -209,7 +209,10 @@
 (function () {
   const counters = document.querySelectorAll('.hero .counter');
   if (!counters.length) return;
+
   const animateCounter = (el) => {
+    if (el.dataset.animated) return;
+    el.dataset.animated = '1';
     const target = parseInt(el.dataset.target ?? '0', 10);
     const suffix = el.dataset.suffix ?? '';
     const duration = 1400;
@@ -223,13 +226,18 @@
     };
     requestAnimationFrame(step);
   };
+
   const io = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
       animateCounter(entry.target);
       io.unobserve(entry.target);
     });
-  }, { threshold: 0.5 });
+  }, { threshold: 0.1 });
+
   counters.forEach(el => io.observe(el));
+
+  // Safety net: fire any counter the observer missed after 1s
+  setTimeout(() => counters.forEach(el => animateCounter(el)), 1000);
 })();
 </script>

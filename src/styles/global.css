@@ -60,6 +60,10 @@
   --space-2xl: 3rem;
   --space-3xl: 4rem;
 
+  /* Spacing aliases used in nav/layout */
+  --space-1: 0.25rem;
+  --space-4: 1rem;
+
   /* Radius */
   --radius-sm:   6px;
   --radius-md:   10px;
@@ -82,13 +86,15 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Prevent horizontal scroll from entrance animations without clipping vertical content */
+  overflow-x: clip;
 }
 
 body {
   min-height: 100vh;
   background: var(--bg-base);
   line-height: 1.6;
-  overflow-x: hidden;
+  /* Removed overflow-x: hidden — was clipping mobile viewport height during translateX animations */
 }
 
 /* ---- Typography ---- */
@@ -153,6 +159,22 @@ nav a:hover,
 nav a[aria-current='page'] {
   color: var(--accent-blue);
   background: var(--accent-blue-pale);
+}
+
+/* Active link underline indicator */
+nav a[aria-current='page'] {
+  position: relative;
+}
+nav a[aria-current='page']::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 2px;
+  border-radius: var(--radius-full);
+  background: var(--accent-blue);
 }
 
 /* ---- Footer ---- */
@@ -310,7 +332,6 @@ footer {
    HERO VISUAL EFFECTS
    ============================================================ */
 
-/* Animated gradient hero background — add .hero-gradient-bg to any section */
 .hero-gradient-bg {
   position: relative;
   background: linear-gradient(
@@ -325,7 +346,6 @@ footer {
   animation: heroGradientPulse 12s ease infinite;
 }
 
-/* Ambient orbs — place two .orb elements inside a .orb-container */
 .orb-container {
   position: absolute;
   inset: 0;
@@ -353,7 +373,6 @@ footer {
   animation: orbDriftAlt 22s ease-in-out infinite;
 }
 
-/* Grain overlay — add .grain to any element */
 .grain {
   position: relative;
   isolation: isolate;
@@ -370,7 +389,6 @@ footer {
   animation: grainShift 7s steps(10) infinite;
 }
 
-/* Content within hero sits above orbs + grain */
 .hero-content {
   position: relative;
   z-index: 2;
@@ -400,7 +418,6 @@ footer {
   border-color: var(--border-ember);
 }
 
-/* Glass card */
 .card-glass {
   background: rgba(255,255,255,0.72);
   backdrop-filter: blur(16px);
@@ -410,7 +427,6 @@ footer {
   box-shadow: var(--shadow-md);
 }
 
-/* Shimmer loading skeleton */
 .skeleton {
   border-radius: var(--radius-md);
   background: linear-gradient(
@@ -632,6 +648,9 @@ footer {
   cursor: pointer;
   padding: 0.5rem;
   border-radius: var(--radius-sm);
+  /* Ensure burger is always above page content */
+  position: relative;
+  z-index: 101;
 }
 .nav-burger span {
   display: block;
@@ -642,26 +661,42 @@ footer {
   transition: all 0.25s ease;
 }
 .nav-burger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-.nav-burger.open span:nth-child(2) { opacity: 0; }
+.nav-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
 .nav-burger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
 @media (max-width: 640px) {
   .nav-burger { display: flex; }
+
   .nav-links {
-    display: none;
-    position: absolute;
+    /* Hidden by default — uses visibility+opacity instead of display:none
+       so layout is preserved and no reflow collapses the page */
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    position: fixed;
     top: 60px;
     left: 0;
     right: 0;
     flex-direction: column;
     align-items: stretch;
-    background: var(--bg-base);
+    background: rgba(248,250,252,0.97);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border-subtle);
     padding: 0.75rem 1rem 1rem;
     gap: 0.25rem;
-    z-index: 99;
+    z-index: 100;
+    transform: translateY(-8px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s linear 0.2s;
+    box-shadow: 0 8px 24px rgba(15,23,42,0.08);
   }
-  .nav-links.open { display: flex; }
+  .nav-links.open {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s linear 0s;
+  }
   .nav-links a { padding: 0.5rem 0.75rem; }
   .nav-switch { margin-left: 0; margin-top: 0.25rem; }
 }

@@ -1,26 +1,68 @@
 ---
 ---
 
-<footer class="border-t px-6 py-10 mt-20" style="border-color: var(--dark-border);">
-  <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-    <p class="text-sm font-mono" style="color: var(--text-muted);">
-      Nate Cowperthwaite — Bangor, ME
-    </p>
-    <p class="text-sm font-mono" style="color: var(--text-muted);">
-      Build for operators, not investors.
-    </p>
-    <div class="flex items-center gap-4">
+<footer>
+  <div class="footer-inner">
+    <p class="footer-text">Nate Cowperthwaite &mdash; Bangor, ME</p>
+    <p class="footer-text">Build for operators, not investors.</p>
+    <div class="footer-links">
       <a
         href="https://github.com/ShadowWalkerNC"
         target="_blank"
         rel="noopener noreferrer"
-        class="text-sm transition"
-        style="color: var(--text-muted);"
-        onmouseover="this.style.color='var(--blue-bright)'"
-        onmouseout="this.style.color='var(--text-muted)'"
+        class="footer-link"
       >
         GitHub
       </a>
     </div>
   </div>
 </footer>
+
+<style>
+  footer {
+    border-top: 1px solid var(--border-subtle);
+    padding: 2.5rem 1.5rem;
+    margin-top: 5rem;
+    background: var(--bg-surface);
+  }
+
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-text {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  .footer-links {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .footer-link {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  .footer-link:hover { color: var(--accent-blue); }
+
+  @media (max-width: 640px) {
+    .footer-inner {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+</style>

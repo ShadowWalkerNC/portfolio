@@ -59,7 +59,7 @@ Every push to `main` triggers an auto-deploy.
 
 ### 📁 Phase 4 — Projects Pages
 - [ ] **4.1** Define project data schema in `src/content/` (Astro Content Collections)
-- [ ] **4.2** Add all projects as content entries: Sigil, Shoreline, CulinaryOS, Post-Pilot, ASCILINE 2.0, ShadowBot, NexCMS
+- [x] **4.2** Add all projects as content entries: Sigil, Shoreline, CulinaryOS, Post-Pilot, ASCILINE 2.0, ShadowBot, **Plated**
 - [ ] **4.3** Build `ProjectCard` component — title, description, tags, links (GitHub / live)
 - [ ] **4.4** Build `/projects` page — grouped by category (Discord Bots, Food Tech, Tools, etc.)
 - [ ] **4.5** Build featured projects section on homepage (top 3 picks)

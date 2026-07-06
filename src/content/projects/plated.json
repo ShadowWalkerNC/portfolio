@@ -1,0 +1,56 @@
+{
+  "title": "Plated",
+  "type": "original",
+  "tagline": "Beautiful restaurant websites, built in minutes.",
+  "description": "Plated is a full-stack SaaS + Electron desktop app that lets restaurant owners generate, customise, and deploy a beautiful Astro-powered static site without touching code. A 4-step onboarding wizard captures the restaurant's details, theme preference, and conversion goals — then Plated builds a fully deployable, SEO-optimised site. No developer required.",
+  "story": "Built because restaurant owners shouldn't need a developer to have a great website. Every existing option is either too expensive, too generic, or too technical. Plated fills that gap with hospitality-first themes, a guided onboarding wizard, Stripe-gated plans, one-click Vercel/Netlify deploys, and custom domain verification — all in a product named and designed for the people who actually use it.",
+  "journey": "Started as NexCMS — a headless CMS experiment — and fully pivoted once the real problem became clear: restaurant owners don't need a CMS, they need a product that speaks their language. The rebuild focused entirely on hospitality: a warm visual identity (amber, sienna, cream), an onboarding wizard that asks about reservations and delivery links rather than DNS records, and a name — Plated — that signals the output rather than the tool.",
+  "forWho": "Restaurant owners, food truck operators, bar and café owners, and hospitality businesses who want a professional website without hiring a developer.",
+  "category": "food",
+  "tags": ["website-builder", "hospitality", "restaurants", "astro", "saas", "typescript", "electron", "next.js"],
+  "stack": ["TypeScript", "Next.js 15", "Astro 5", "React 19", "Electron", "Drizzle ORM", "PostgreSQL", "Clerk", "Stripe", "Resend", "Upstash Redis", "Vercel"],
+  "status": "active",
+  "phase": "Active Development",
+  "featured": true,
+  "links": {
+    "github": "https://github.com/ShadowWalkerNC/Plated",
+    "demo": null,
+    "live": null
+  },
+  "detailedSpecs": {
+    "architecture": "pnpm monorepo with five packages: saas (Next.js 15 + Clerk + Stripe + Drizzle + Resend), builder (Electron + Vite + React), generator (schema → Astro file tree), astro-output (Astro project builder + ZIP exporter), types (shared TypeScript interfaces). Custom domain routing via Next.js middleware reading the Host header and rewiring to /sites/[domain]/[[...slug]].",
+    "modes": [
+      "SaaS — app.plated.io, browser-based dashboard, onboarding wizard, project management, one-click Vercel/Netlify deploy",
+      "Desktop — Electron builder app, offline-capable, auto-updates via electron-updater and GitHub Releases"
+    ],
+    "themes": [
+      "Hearth — warm amber tones, serif headlines, intimate and chef-driven",
+      "Editorial — clean whites, strong photography, refined and elevated",
+      "Bistro — bold colours, energetic layout, casual neighbourhood feel"
+    ],
+    "keyFeatures": [
+      "4-step onboarding wizard — restaurant name, cuisine, city, description, theme, CTA preference",
+      "Plan-gated project limits — Free / Pro / Agency tiers via Stripe",
+      "One-click deploy to Vercel or Netlify with provider API integration",
+      "Custom domain verification via DNS TXT record (_nexcms.{domain} → nexcms-verify={token})",
+      "CNAME routing through cname.plated.io with middleware Host-header rewriting",
+      "Transactional email (welcome, deploy success/failure, upgrade, payment failed) via Resend",
+      "Electron desktop builder with splash screen, auto-updater, and offline support",
+      "Rate limiting via Upstash Redis",
+      "SEO-optimised Astro output with sitemap and robots.txt"
+    ],
+    "roadmap": [
+      "Done — monorepo scaffold, shared types, Astro generator core",
+      "Done — Stripe billing (Free/Pro/Agency), plan gates, Clerk auth",
+      "Done — Electron builder with splash screen, auto-updater, IPC handlers",
+      "Done — One-click Vercel + Netlify deploy with provider API wiring",
+      "Done — Custom domain verification (DNS TXT) + CNAME middleware routing",
+      "Done — Onboarding wizard (4-step) with project creation API",
+      "Done — Transactional email templates (welcome, deploy, billing)",
+      "Next — Metered/usage billing with Stripe",
+      "Next — Logo upload, menu items, and opening hours in onboarding wizard",
+      "Next — Public launch at plated.io"
+    ],
+    "deployTarget": "Vercel (SaaS) + one-click Vercel / Netlify for restaurant sites + GitHub Releases for Electron builds"
+  }
+}

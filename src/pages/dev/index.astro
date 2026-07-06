@@ -338,31 +338,6 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
 </script>
 
 <style>
-/* ============================================================
-   SCROLL REVEAL
-   ============================================================ */
-.reveal {
-  opacity: 0;
-  transform: translateY(22px);
-  transition: opacity 0.55s ease, transform 0.55s ease;
-}
-.reveal-left {
-  opacity: 0;
-  transform: translateX(-24px);
-  transition: opacity 0.55s ease, transform 0.55s ease;
-}
-.reveal-right {
-  opacity: 0;
-  transform: translateX(24px);
-  transition: opacity 0.55s ease, transform 0.55s ease;
-}
-.reveal.is-visible,    .reveal.revealed,
-.reveal-left.is-visible, .reveal-left.revealed,
-.reveal-right.is-visible, .reveal-right.revealed {
-  opacity: 1;
-  transform: none;
-}
-
 /* ---- Timeline ---- */
 .timeline {
   padding-left: 1rem;
@@ -541,7 +516,7 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
 
 /* Neutral rows for Frameworks / Data & Infra / AI & APIs */
 .lang-neutral {
-  background: var(--bg-elevated, var(--bg-card));
+  background: var(--bg-elevated);
   border-color: var(--border-subtle);
   color: var(--text-secondary);
 }
@@ -568,9 +543,7 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal, .reveal-left, .reveal-right,
   .kit-chip { transition: none !important; animation: none !important; }
-  .reveal, .reveal-left, .reveal-right { opacity: 1; transform: none; }
   .kit-chip { opacity: 1; transform: none; }
 }
 </style>

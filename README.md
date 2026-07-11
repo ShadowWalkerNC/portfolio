@@ -64,7 +64,7 @@ src/
 
 ---
 
-## Design System
+## Design System & Premium Features
 
 All styling runs through CSS custom properties defined in `src/styles/global.css`. No utility framework — every component uses scoped `<style>` blocks that reference global tokens.
 
@@ -74,9 +74,18 @@ All styling runs through CSS custom properties defined in `src/styles/global.css
 --text-primary, --text-secondary, --text-muted
 --accent-blue, --accent-blue-pale        /* dev side */
 --accent-ember, --accent-ember-pale      /* food side */
---border-subtle
+--border-subtle, --font-serif            /* custom typography */
 --radius-sm, --radius-md, --radius-lg, --radius-full
 ```
+
+### Upgraded Premium Features
+1. **Dynamic Cursor Spotlight Glows**: Custom JavaScript tracks cursor positioning (`--mouse-x` and `--mouse-y`) to power interactive spotlight hover glows across project cards, split-halves, and showcase elements.
+2. **Layered Mesh Gradients**: Deep radial mesh backgrounds on the portal landing screen replace standard linear gradients.
+3. **Refined Brand Identity**: Custom imported **DM Serif Display** font accents applied to Chef side headings for a hand-crafted, artisanal feel.
+4. **macOS IDE Code Showcase**: Interactive, sleek macOS code preview container on the developer home page.
+5. **Context-Aware Favicons**: Dynamic tab emoji indicators that swap dynamically between 💻 (Developer routes) and 👨‍🍳 (Chef routes).
+6. **Client-Side Project Filtering**: Interactive, animated categories on `/dev/projects` to instantly filter works.
+7. **Native Culinary Gallery**: Custom curated Maine-focused high-resolution food showcase cards natively embedded on `/food`.
 
 ---
 

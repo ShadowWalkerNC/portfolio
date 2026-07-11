@@ -4,12 +4,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 <BaseLayout title="Nate Cowperthwaite" description="Professional chef and self-taught developer. Two distinct crafts, one person building them both.">
   <main class="split-page" id="main-content">
 
-    <!-- Brand lockup centered over both halves (desktop only) -->
-    <div class="split-brand animate-slide-down" aria-hidden="true">
-      <span class="split-brand-name">Nate Cowperthwaite</span>
-      <span class="split-brand-tag">Two crafts. One person.</span>
-    </div>
-
     <!-- DEV HALF -->
     <a href="/dev" class="split-half split-dev split-enter-left" aria-label="Enter Developer portfolio">
       <!-- Noise texture overlay -->
@@ -18,11 +12,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <div class="split-glow split-glow-dev" aria-hidden="true"></div>
 
       <div class="split-inner">
-        <!-- Mobile-only name shown inline in flow -->
-        <div class="split-mobile-name">
-          <span class="split-brand-name">Nate Cowperthwaite</span>
-          <span class="split-brand-tag">Two crafts. One person.</span>
-        </div>
 
         <!-- SVG: Laptop icon -->
         <div class="split-icon" aria-hidden="true">
@@ -104,6 +93,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   animation-delay: 0.35s;
   animation-fill-mode: both;
   opacity: 0;
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.split-page:has(.split-half:hover) .split-brand {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.92);
 }
 .split-brand-name {
   font-size: clamp(1.1rem, 2.5vw, 1.6rem);
@@ -176,8 +170,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 }
 
 /* Backgrounds */
-.split-dev  { background: linear-gradient(135deg, #1e3a5f 0%, #1e40af 50%, #2563eb 100%); }
-.split-food { background: linear-gradient(135deg, #7c2d12 0%, #c2410c 50%, #f97316 100%); }
+.split-dev  {
+  background: radial-gradient(at 0% 0%, rgba(30, 58, 95, 0.95), transparent 60%),
+              radial-gradient(at 100% 100%, rgba(37, 99, 235, 0.9), transparent 75%),
+              #0f172a;
+}
+.split-food {
+  background: radial-gradient(at 100% 0%, rgba(124, 45, 18, 0.95), transparent 60%),
+              radial-gradient(at 0% 100%, rgba(249, 115, 22, 0.9), transparent 75%),
+              #1c0c08;
+}
 
 /* ---- Noise texture overlay ---- */
 .split-noise {
@@ -204,8 +206,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .split-dev:hover  .split-glow-dev  { opacity: 1; }
   .split-food:hover .split-glow-food { opacity: 1; }
 }
-.split-glow-dev  { background: radial-gradient(ellipse at center, rgba(99,179,237,0.18), transparent 70%); }
-.split-glow-food { background: radial-gradient(ellipse at center, rgba(253,186,116,0.18), transparent 70%); }
+.split-glow-dev  { background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(99,179,237,0.22), transparent 70%); }
+.split-glow-food { background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(253,186,116,0.22), transparent 70%); }
 
 /* Content */
 .split-inner {

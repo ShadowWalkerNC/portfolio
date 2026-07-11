@@ -299,14 +299,57 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
     <div class="divider"></div>
 
-    <!-- ===== FOOD GALLERY CTA ===== -->
-    <section class="section reveal">
-      <div class="gallery-strip">
-        <div class="gallery-strip-text">
-          <div class="gallery-strip-title">&#127752; Food Photography</div>
-          <p class="gallery-strip-sub">Real dishes from real service — nothing staged, nothing styled for a camera.</p>
+    <!-- ===== CULINARY GALLERY ===== -->
+    <section class="section" id="gallery">
+      <h2 class="section-heading reveal">Culinary Showcase</h2>
+      <p class="section-sub reveal">A look at the dishes and scratch-baked crafts built at the pass. Interactive spotlight hover details below.</p>
+      
+      <div class="culinary-gallery-grid stagger">
+        <div class="gallery-card card spotlight-card reveal">
+          <div class="gallery-image-wrapper">
+            <img src="/images/seafood.png" alt="Pan-Seared Maine Scallops" class="gallery-img" />
+          </div>
+          <div class="gallery-info">
+            <div>
+              <span class="badge badge-ember">Fine Dining</span>
+            </div>
+            <h3 class="gallery-item-title">Maine Seafood Plating</h3>
+            <p class="gallery-item-desc">Seared scallops with vibrant purees, microgreens, and contemporary coastal plating.</p>
+          </div>
         </div>
-        <a href="https://photos.app.goo.gl/JGgx37aAA1vhip3z9" target="_blank" rel="noopener" class="btn btn-ember">Open Gallery &rarr;</a>
+
+        <div class="gallery-card card spotlight-card reveal">
+          <div class="gallery-image-wrapper">
+            <img src="/images/baking.png" alt="Artisanal Scratch Baking" class="gallery-img" />
+          </div>
+          <div class="gallery-info">
+            <div>
+              <span class="badge badge-ember">Scratch Baking</span>
+            </div>
+            <h3 class="gallery-item-title">Artisanal Bakehouse</h3>
+            <p class="gallery-item-desc">High-hydration sourdough loaves and baked items prepared from scratch daily.</p>
+          </div>
+        </div>
+
+        <div class="gallery-card card spotlight-card reveal">
+          <div class="gallery-image-wrapper">
+            <img src="/images/plated.png" alt="Modern Plated Gourmet Dessert" class="gallery-img" />
+          </div>
+          <div class="gallery-info">
+            <div>
+              <span class="badge badge-ember">Technique</span>
+            </div>
+            <h3 class="gallery-item-title">Precision Pastry &amp; Plating</h3>
+            <p class="gallery-item-desc">Refined chocolate ganache designs, raspberry coulis, and edible gold leaf garnishes.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="gallery-footer-action reveal">
+        <a href="https://photos.app.goo.gl/JGgx37aAA1vhip3z9" target="_blank" rel="noopener" class="btn btn-ember">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-right:0.25rem;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          View Full Google Photos Album &rarr;
+        </a>
       </div>
     </section>
 
@@ -382,10 +425,11 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 }
 .food-hero-inner .badge { margin-bottom: 1.25rem; }
 .food-hero-title {
-  font-size: clamp(2rem, 5vw, 3.4rem);
-  font-weight: 900;
-  letter-spacing: -0.03em;
-  line-height: 1.1;
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5.5vw, 3.8rem);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
   color: var(--text-primary);
   margin-bottom: 1.25rem;
 }
@@ -536,30 +580,59 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   letter-spacing: 0.04em;
 }
 
-/* ===== Gallery Strip ===== */
-.gallery-strip {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+/* ===== Culinary Gallery Grid ===== */
+.culinary-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 1.5rem;
-  flex-wrap: wrap;
-  padding: 1.5rem 2rem;
-  background: linear-gradient(135deg, rgba(249,115,22,0.06) 0%, var(--bg-elevated) 70%);
-  border: 1px solid rgba(249,115,22,0.15);
-  border-left: 3px solid var(--accent-ember);
-  border-radius: var(--radius-lg);
-  max-width: 860px;
+  margin-bottom: 2rem;
 }
-.gallery-strip-title {
-  font-size: 1rem;
+.gallery-card {
+  padding: 0 !important;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.gallery-image-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--bg-elevated);
+}
+.gallery-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.gallery-card:hover .gallery-img {
+  transform: scale(1.04);
+}
+.gallery-info {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex-grow: 1;
+}
+.gallery-item-title {
+  font-size: 1.05rem;
   font-weight: 700;
   color: var(--text-primary);
-  margin-bottom: 0.2rem;
+  margin: 0;
 }
-.gallery-strip-sub {
+.gallery-item-desc {
   font-size: 0.85rem;
   color: var(--text-muted);
+  line-height: 1.5;
   margin: 0;
+}
+.gallery-footer-action {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
 }
 
 /* ===== Responsive ===== */
@@ -568,6 +641,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   .food-hero-stats { padding: 0.75rem 1rem; }
   .skills-row { grid-template-columns: 1fr; gap: 0.5rem; }
   .exp-cards  { grid-template-columns: 1fr; }
-  .gallery-strip { flex-direction: column; align-items: flex-start; }
+  .culinary-gallery-grid { grid-template-columns: 1fr; }
 }
 </style>

@@ -13,7 +13,9 @@ const themeColor = side === 'food' ? '#f97316' : '#2563eb';
   <meta name="description" content={description ?? 'Nate Cowperthwaite — Chef & Developer'} />
   <meta name="theme-color" content={themeColor} />
   <title>{title ?? 'Nate Cowperthwaite'}</title>
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  {side === 'dev' && <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>💻</text></svg>" />}
+  {side === 'food' && <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>👨‍🍳</text></svg>" />}
+  {!side && <link rel="icon" type="image/svg+xml" href="/favicon.svg" />}
   {side === 'dev' && (
     <link
       rel="stylesheet"
@@ -103,7 +105,7 @@ const themeColor = side === 'food' ? '#f97316' : '#2563eb';
     })();
   </script>
 
-  <!-- ===== MOBILE NAV ===== -->
+  <!-- ===== MOBILE NAV & INTERACTION ===== -->
   <script>
     const burger = document.getElementById('navBurger');
     const menu   = document.getElementById('navMenu');
@@ -119,6 +121,25 @@ const themeColor = side === 'food' ? '#f97316' : '#2563eb';
         if (a.getAttribute('href') === path) a.setAttribute('aria-current', 'page');
       });
     }
+
+    // High-performance dynamic mouse spotlight glow tracking
+    const updateGlow = (e: MouseEvent) => {
+      const targets = document.querySelectorAll('.spotlight-card, .split-half');
+      targets.forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        (el as HTMLElement).style.setProperty('--mouse-x', `${x}px`);
+        (el as HTMLElement).style.setProperty('--mouse-y', `${y}px`);
+      });
+    };
+    
+    // Throttled listener for scroll/move performance
+    let frameId: number | null = null;
+    document.addEventListener('mousemove', (e) => {
+      if (frameId) cancelAnimationFrame(frameId);
+      frameId = requestAnimationFrame(() => updateGlow(e));
+    });
   </script>
 
 </body>

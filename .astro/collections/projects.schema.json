@@ -1,0 +1,143 @@
+{
+  "$ref": "#/definitions/projects",
+  "definitions": {
+    "projects": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "tagline": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "story": {
+          "type": "string"
+        },
+        "journey": {
+          "type": "string"
+        },
+        "forWho": {
+          "type": "string"
+        },
+        "group": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string",
+          "enum": [
+            "dev",
+            "food",
+            "other"
+          ]
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "stack": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "active",
+            "stable",
+            "archived",
+            "wip"
+          ]
+        },
+        "featured": {
+          "type": "boolean",
+          "default": false
+        },
+        "links": {
+          "type": "object",
+          "properties": {
+            "github": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "uri"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "live": {
+              "$ref": "#/definitions/projects/properties/links/properties/github"
+            },
+            "demo": {
+              "$ref": "#/definitions/projects/properties/links/properties/github"
+            },
+            "docs": {
+              "$ref": "#/definitions/projects/properties/links/properties/github"
+            }
+          },
+          "additionalProperties": false
+        },
+        "detailedSpecs": {
+          "type": "object",
+          "properties": {
+            "architecture": {
+              "type": "string"
+            },
+            "dataFlow": {
+              "type": "string"
+            },
+            "keyPatterns": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "apiSurface": {
+              "type": "string"
+            },
+            "deployTarget": {
+              "type": "string"
+            },
+            "notableFiles": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "tagline",
+        "description",
+        "category",
+        "tags",
+        "stack",
+        "status"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

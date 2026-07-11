@@ -20,9 +20,10 @@ interface Props {
   links?: { github?: string; live?: string; docs?: string };
   detailedSpecs?: DetailedSpecs;
   id: string;
+  category: 'dev' | 'food' | 'other';
 }
 
-const { title, tagline, description, story, forWho, tags, stack, status, links, detailedSpecs, id } = Astro.props;
+const { title, tagline, description, story, forWho, tags, stack, status, links, detailedSpecs, id, category } = Astro.props;
 
 const statusMap = {
   active:   { label: 'Active',      color: 'badge-active' },
@@ -71,7 +72,7 @@ const deviconMap: Record<string, string> = {
 };
 ---
 
-<article class="project-card spotlight-card card-entrance" id={`card-${id}`}>
+<article class="project-card spotlight-card card-entrance" id={`card-${id}`} data-category={category}>
 
   <!-- Gradient border overlay (visible on hover via opacity) -->
   <div class="card-border-glow" aria-hidden="true"></div>
@@ -285,6 +286,8 @@ if (typeof window.__spotlightInit === 'undefined') {
 /* ---- Card base ---- */
 .project-card {
   background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--border-subtle);
   border-radius: 12px;
   padding: 1.5rem;

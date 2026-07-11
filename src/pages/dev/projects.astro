@@ -11,6 +11,15 @@ const allProjects = await getCollection('projects');
     <section class="section">
       <h1 class="section-heading reveal">All Projects</h1>
       <p class="section-sub reveal">Everything shipped so far. <a href="/dev" class="inline-link">&larr; Back to Dev Home</a></p>
+
+      <!-- Interactive Filter Bar -->
+      <div class="filter-bar reveal">
+        <button class="filter-btn active" data-filter="all">All Projects</button>
+        <button class="filter-btn" data-filter="dev">Developer Tools</button>
+        <button class="filter-btn" data-filter="food">Culinary Tech</button>
+        <button class="filter-btn" data-filter="other">Other Projects</button>
+      </div>
+
       <div class="projects-grid">
         {allProjects.map(p => (
           <ProjectCard
@@ -25,6 +34,7 @@ const allProjects = await getCollection('projects');
             status={p.data.status}
             links={p.data.links}
             detailedSpecs={p.data.detailedSpecs}
+            category={p.data.category}
           />
         ))}
       </div>
@@ -61,9 +71,62 @@ const allProjects = await getCollection('projects');
   setTimeout(() => {
     cards.forEach((card, idx) => reveal(card, idx));
   }, 800);
+
+  // Dynamic filter implementation
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      
+      const filterValue = (btn as HTMLElement).dataset.filter;
+      const projectCards = document.querySelectorAll('.project-card');
+      
+      projectCards.forEach(card => {
+        const cat = (card as HTMLElement).dataset.category;
+        if (filterValue === 'all' || cat === filterValue) {
+          (card as HTMLElement).style.display = 'flex';
+          // Re-trigger entrance fade in
+          (card as HTMLElement).style.animationDelay = '0s';
+          card.classList.add('card-visible');
+        } else {
+          (card as HTMLElement).style.display = 'none';
+        }
+      });
+    });
+  });
 </script>
 
 <style>
+.filter-bar {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+.filter-btn {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.45rem 1.15rem;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
+}
+.filter-btn:hover {
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
+  background: var(--bg-elevated);
+}
+.filter-btn.active {
+  background: var(--accent-blue-pale);
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
+  box-shadow: 0 2px 8px rgba(37,99,235,0.06);
+}
 .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.25rem; }
 @media (max-width: 640px) { .projects-grid { grid-template-columns: 1fr; } }
 </style>

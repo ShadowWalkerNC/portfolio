@@ -1,133 +1,112 @@
-# Nate Cowperthwaite — Portfolio
+# Nate Cowperthwaite
+### Chef · Co-Founder · Developer
 
-Personal portfolio site for **Nate Cowperthwaite** — professional chef, co-founder, and self-taught developer.
-Built with [Astro](https://astro.build) and a custom CSS design token system. Hosted on [Render](https://render.com).
+A dual-identity portfolio where the precision of a professional chef meets the ingenuity of a self-taught developer. I build robust, high-performance digital experiences that blend operational rigor with creative design.
 
-🌐 **Live site:** [shadowwalker.onrender.com](https://shadowwalker.onrender.com) *(or your custom domain)*
+🌐 **Live Site:** [shadowwalker.onrender.com](https://shadowwalker.onrender.com)
 
 ---
 
-## Stack
+## 💡 Philosophy
 
-| Layer | Technology |
+The best software — like the best cuisine — is built on clean ingredients and executed with absolute precision. My background in the culinary arts informs everything I build: a relentless focus on the end user, operational efficiency under pressure, and the discipline to refine until it's right.
+
+---
+
+## 🛠️ Featured Work
+
+| Project | What it does |
 |---|---|
-| Framework | Astro 4 (static output) |
-| Styling | Custom CSS design tokens — no Tailwind |
-| Content | Astro Content Collections (`src/content/projects/`) |
-| Icons | Devicon CDN |
-| Hosting | Render (static site, free tier, global CDN) |
-| Node | 20 |
+| [**CulinaryOS**](https://github.com/ShadowWalkerNC/CulinaryOS) | AI-powered kitchen operations platform — the hub of the culinary ecosystem |
+| [**KitchenKit**](https://github.com/ShadowWalkerNC/KitchenKit) | Recipe manager + shift prep planner with ratio engine and mise en place generation |
+| [**Plated**](https://github.com/ShadowWalkerNC/Plated) | Open-source restaurant website builder — 6 hospitality themes, one-click deploy, CulinaryOS native |
+| [**Post-Pilot**](https://github.com/ShadowWalkerNC/Post-Pilot) | Automated social media post generator for food & hospitality businesses |
+| [**Shoreline**](https://github.com/ShadowWalkerNC/Shoreline) | Mission-control Discord bot for care operations |
+| [**Sigil**](https://github.com/ShadowWalkerNC/Sigil) | Discord bot for community management |
+| [**ASCILINE 2.0**](https://github.com/ShadowWalkerNC/ASCILINE) | ASCII art CLI tool |
+
+→ [View all projects on the live site](/dev/projects)
 
 ---
 
-## Site Structure
+## ⚙️ Stack
+
+- **Framework:** Astro 4 (static output, zero JS by default)
+- **Styling:** Custom CSS design token system — no utility framework
+- **Content:** Astro Content Collections (`src/content/projects/`)
+- **Icons:** Devicon CDN
+- **Hosting:** Render (static site, global CDN)
+- **Node:** 20
+
+---
+
+## ✨ Signature Features
+
+1. **Dynamic Cursor Spotlight Glows** — JavaScript tracks cursor position (`--mouse-x` / `--mouse-y`) to power interactive glow effects across cards and split-panels
+2. **Layered Mesh Gradients** — Deep radial mesh backgrounds replace flat linear gradients on the portal landing screen
+3. **Context-Aware Favicons** — Tab emoji swaps dynamically between 💻 (dev routes) and 👨‍🍳 (chef routes)
+4. **macOS IDE Code Showcase** — Sleek code preview container on the developer home page
+5. **DM Serif Display** — Custom font accents on the chef side for a hand-crafted, artisanal feel
+6. **Client-Side Project Filtering** — Animated category filters on `/dev/projects`
+7. **Culinary Gallery** — Curated Maine food photography natively embedded on `/food`
+
+---
+
+## 🔬 Architecture
 
 ```
 src/
 ├── components/
 │   ├── EcosystemBanner.astro   # "Two worlds, one person" dual-identity banner
-│   ├── Footer.astro             # Site-wide footer
 │   ├── Hero.astro               # Dev-side hero with orb animations + stat bar
-│   ├── ProjectCard.astro        # Full-featured project card (expand/collapse)
+│   ├── ProjectCard.astro        # Full-featured card (expand/collapse, spotlight glow)
 │   ├── ProjectGroup.astro       # Grouped project section header
-│   └── TechBadge.astro          # Inline tech stack pill badge
-├── content/
-│   └── projects/                # One .md/.yaml file per project
-├── layouts/
-│   └── BaseLayout.astro         # Root layout — head, nav, footer, scroll-reveal
+│   ├── TechBadge.astro          # Tech stack pill badge
+│   └── Footer.astro
+├── content/projects/            # One JSON file per project (Content Collections)
+├── layouts/BaseLayout.astro     # Root layout — head, nav, scroll-reveal init
 ├── pages/
-│   ├── index.astro              # Landing page — dual identity hub
-│   ├── contact.astro            # Contact page
-│   ├── 404.astro                # Custom 404
-│   ├── dev/
-│   │   ├── index.astro          # Dev side — timeline, dev kit, featured projects
-│   │   └── projects.astro       # All dev projects grouped by ecosystem
-│   └── food/
-│       └── index.astro          # Food side — skills table, experience, gallery CTA
-├── styles/
-│   └── global.css               # Design tokens, resets, shared components
-└── utils/                       # Shared JS utilities
+│   ├── index.astro              # Landing — dual identity hub
+│   ├── dev/index.astro          # Dev profile — timeline, kit, featured projects
+│   ├── dev/projects.astro       # All dev projects, grouped + filterable
+│   ├── food/index.astro         # Chef profile — skills, experience, gallery
+│   ├── contact.astro
+│   └── 404.astro
+├── styles/global.css            # Design tokens, resets, shared utilities
+└── utils/                       # Shared JS helpers
 ```
 
----
-
-## Pages
-
-| Route | Description |
-|---|---|
-| `/` | Landing — dual identity hub with ecosystem banner |
-| `/dev` | Developer profile — journey timeline, dev kit, featured projects |
-| `/dev/projects` | All dev projects grouped by category |
-| `/food` | Chef profile — skills, experience, gallery link |
-| `/contact` | Email, GitHub, Discord contact page |
-| `/404` | Custom not-found page |
-
----
-
-## Design System & Premium Features
-
-All styling runs through CSS custom properties defined in `src/styles/global.css`. No utility framework — every component uses scoped `<style>` blocks that reference global tokens.
-
-**Key tokens:**
+**Design tokens (key subset):**
 ```css
---bg-base, --bg-surface, --bg-elevated   /* surface layers */
---text-primary, --text-secondary, --text-muted
---accent-blue, --accent-blue-pale        /* dev side */
---accent-ember, --accent-ember-pale      /* food side */
---border-subtle, --font-serif            /* custom typography */
---radius-sm, --radius-md, --radius-lg, --radius-full
+--bg-base, --bg-surface, --bg-elevated
+--accent-blue, --accent-blue-pale   /* dev side */
+--accent-ember, --accent-ember-pale /* food side */
+--text-primary, --text-muted
+--border-subtle, --font-serif
 ```
-
-### Upgraded Premium Features
-1. **Dynamic Cursor Spotlight Glows**: Custom JavaScript tracks cursor positioning (`--mouse-x` and `--mouse-y`) to power interactive spotlight hover glows across project cards, split-halves, and showcase elements.
-2. **Layered Mesh Gradients**: Deep radial mesh backgrounds on the portal landing screen replace standard linear gradients.
-3. **Refined Brand Identity**: Custom imported **DM Serif Display** font accents applied to Chef side headings for a hand-crafted, artisanal feel.
-4. **macOS IDE Code Showcase**: Interactive, sleek macOS code preview container on the developer home page.
-5. **Context-Aware Favicons**: Dynamic tab emoji indicators that swap dynamically between 💻 (Developer routes) and 👨‍🍳 (Chef routes).
-6. **Client-Side Project Filtering**: Interactive, animated categories on `/dev/projects` to instantly filter works.
-7. **Native Culinary Gallery**: Custom curated Maine-focused high-resolution food showcase cards natively embedded on `/food`.
 
 ---
 
-## Local Dev
+## 🚀 Local Dev
 
 ```bash
 npm install
-npm run dev
+npm run dev       # → http://localhost:4321
 ```
 
-Site runs at `http://localhost:4321`.
-
----
-
-## Deploy (Render)
+**Deploy (Render):**
 
 | Setting | Value |
 |---|---|
 | Build Command | `npm install && npm run build` |
 | Publish Directory | `dist` |
-| Environment Variable | `NODE_VERSION=20` |
+| Env Var | `NODE_VERSION=20` |
 
-Every push to `main` triggers an auto-deploy on Render.
-
----
-
-## Projects in Content Collection
-
-Projects live in `src/content/projects/` as individual files. Current entries include:
-
-- **CulinaryOS** — AI-powered kitchen operations platform
-- **KitchenKit** — BOH management tooling
-- **CulinaryOps** — Ops automation utilities
-- **Plated** — Food-focused app project
-- **Sigil** — Discord bot
-- **Shoreline** — Discord bot
-- **Post-Pilot** — Social automation tool
-- **ASCILINE 2.0** — ASCII art CLI tool
-- **ShadowBot** — Discord utility bot
+Every push to `main` auto-deploys on Render.
 
 ---
 
-## Status
+## 📬 Contact
 
-All 12 core components and pages are built, token-clean, and committed to `main`. The site is fully functional and deployable.
+Built and maintained by **Nate Cowperthwaite.**
+→ [Live site](https://shadowwalker.onrender.com) · [GitHub](https://github.com/ShadowWalkerNC) · Discord: ShadowWalkerNC

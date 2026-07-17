@@ -92,15 +92,32 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* Prevent horizontal scroll from entrance animations without clipping vertical content */
   overflow-x: clip;
+  height: 100%;
 }
 
 body {
-  min-height: 100vh;
+  min-height: 100%;
   background: var(--bg-base);
   line-height: 1.6;
-  /* Removed overflow-x: hidden — was clipping mobile viewport height during translateX animations */
+  display: flex;
+  flex-direction: column;
+}
+
+/* main fills all remaining space between nav and footer */
+main {
+  flex: 1 0 auto;
+}
+
+/* footer always stays at bottom */
+footer {
+  flex-shrink: 0;
+  border-top: 1px solid var(--border-subtle);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  background: var(--bg-surface);
 }
 
 /* ---- Typography ---- */
@@ -151,6 +168,7 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-shrink: 0;
 }
 
 nav a {
@@ -167,7 +185,6 @@ nav a[aria-current='page'] {
   background: var(--accent-blue-pale);
 }
 
-/* Active link underline indicator */
 nav a[aria-current='page'] {
   position: relative;
 }
@@ -181,16 +198,6 @@ nav a[aria-current='page']::after {
   height: 2px;
   border-radius: var(--radius-full);
   background: var(--accent-blue);
-}
-
-/* ---- Footer ---- */
-footer {
-  border-top: 1px solid var(--border-subtle);
-  padding: 2rem 1.5rem;
-  text-align: center;
-  color: var(--text-muted);
-  font-size: 0.82rem;
-  background: var(--bg-surface);
 }
 
 
@@ -382,6 +389,12 @@ footer {
   bottom: -80px; right: -100px;
   animation: orbDriftAlt 22s ease-in-out infinite;
 }
+.orb-indigo {
+  width: 380px; height: 380px;
+  background: radial-gradient(circle at 50% 50%, #e0e7ff, #ede9fe);
+  top: 20px; right: -80px;
+  animation: orbDriftAlt 20s ease-in-out infinite;
+}
 
 .grain {
   position: relative;
@@ -404,7 +417,6 @@ footer {
   z-index: 2;
 }
 
-/* ---- Shimmer border wrapper (used on primary CTA) ---- */
 .shimmer-border {
   position: relative;
   border-radius: var(--radius-md);
@@ -423,7 +435,6 @@ footer {
   z-index: 1;
 }
 
-/* ---- Glow text ---- */
 .glow-text {
   text-shadow: 0 0 18px rgba(37,99,235,0.35), 0 0 6px rgba(37,99,235,0.2);
 }
@@ -614,7 +625,6 @@ footer {
   max-width: 520px;
 }
 
-/* Shared heading + sub used across all pages */
 .section-heading {
   font-size: clamp(1.5rem, 3vw, 2rem);
   font-weight: 800;
@@ -633,7 +643,6 @@ body[data-side="food"] .section-heading {
   margin-bottom: 2rem;
 }
 
-/* Inline link helper */
 .inline-link {
   color: var(--accent-blue);
   font-weight: 500;
@@ -653,7 +662,6 @@ body[data-side="food"] .section-heading {
 .divider-blue  { background: var(--accent-blue); }
 .divider-ember { background: var(--accent-ember); }
 
-/* Ember-to-blue gradient — food page section separator */
 .divider-fusion {
   width: 100%;
   max-width: 860px;
@@ -669,7 +677,6 @@ body[data-side="food"] .section-heading {
   opacity: 0.35;
 }
 
-/* Shimmer sweep — contact page section separators */
 .divider-animated {
   width: 100%;
   max-width: 680px;
@@ -736,6 +743,9 @@ body[data-side="food"] .section-heading {
   font-weight: 600;
   transition: all 0.2s;
   text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
 }
 .nav-switch-dev  { background: var(--accent-blue-pale); color: var(--accent-blue); }
 .nav-switch-food { background: var(--accent-ember-pale); color: var(--accent-ember-dim); }

@@ -8,7 +8,7 @@ const projects = await getCollection('projects');
 const featured = projects.filter(p => p.data.featured).slice(0, 3);
 ---
 
-<BaseLayout title="Nate Cowperthwaite — Developer" description="Agentic coding, AI tools, and API-driven software built by a professional chef who started coding in 2025." side="dev">
+<BaseLayout title="Nate Cowperthwaite — Developer" description="Self-taught developer with a tech background stretching back to age 12. CompTIA A+, cybersecurity fundamentals, and a decade in kitchens that made the software problems obvious." side="dev">
   <main id="main-content">
 
     <!-- ===== HERO ===== -->
@@ -19,42 +19,69 @@ const featured = projects.filter(p => p.data.featured).slice(0, 3);
     <!-- ===== JOURNEY TIMELINE ===== -->
     <section class="section">
       <h2 class="section-heading reveal">The Journey</h2>
-      <p class="section-sub reveal">A decade in professional kitchens &mdash; and one side project that grew from all of it.</p>
+      <p class="section-sub reveal">Tech first. Kitchens second. Both converging now.</p>
       <div class="timeline">
 
         <div class="timeline-item reveal-left">
           <div class="timeline-dot dot-blue"></div>
           <div class="timeline-content">
-            <div class="timeline-era">2014 &mdash; First Kitchen Role</div>
-            <h3 class="timeline-title">Samoset Resort, Rockport ME</h3>
-            <p class="timeline-text">Premier Maine coastal resort. First major culinary role — banquet, hospitality, and the discipline of a real kitchen. Where the foundation was laid.</p>
+            <div class="timeline-era">~2008 &mdash; Age 12</div>
+            <h3 class="timeline-title">Started Coding</h3>
+            <p class="timeline-text">Learned to code before most kids had a smartphone. Started tinkering with code, systems, and hardware from home &mdash; entirely self-directed, no classroom, no curriculum. Just curiosity and a computer.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal-left">
+          <div class="timeline-dot dot-blue"></div>
+          <div class="timeline-content">
+            <div class="timeline-era">~2009 &mdash; Age 13</div>
+            <h3 class="timeline-title">Computer Repair</h3>
+            <p class="timeline-text">Started doing real hardware work at 13 &mdash; diagnosing, disassembling, and repairing machines. Built a foundation in how computers actually work from the ground up, not from a textbook.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal-left">
+          <div class="timeline-dot dot-blue"></div>
+          <div class="timeline-content">
+            <div class="timeline-era">~2011 &mdash; Age 15</div>
+            <h3 class="timeline-title">CompTIA A+ &amp; Cybersecurity Fundamentals</h3>
+            <p class="timeline-text">Studied CompTIA A+ at 15, covering hardware, operating systems, networking, and troubleshooting. Followed it with self-directed study into cybersecurity basics and cross-platform OS knowledge &mdash; Windows, Linux, and beyond. At this point, tech was the path.</p>
           </div>
         </div>
 
         <div class="timeline-item reveal-left">
           <div class="timeline-dot dot-ember"></div>
           <div class="timeline-content">
-            <div class="timeline-era era-ember">2019&ndash;2022 &mdash; Rising Through the Ranks</div>
-            <h3 class="timeline-title">Boynton McKay &rarr; Ports of Italy &rarr; Daddy B&rsquo;s</h3>
-            <p class="timeline-text">Scratch breakfast at an iconic Maine café, sous chef at Italian fine dining, then sous chef on a food truck &mdash; the role that directly sparked Northern Fixin's. Each step added technique, leadership, and clarity about what kitchens were missing.</p>
+            <div class="timeline-era era-ember">2014 &mdash; The Detour That Wasn't</div>
+            <h3 class="timeline-title">Professional Kitchens</h3>
+            <p class="timeline-text">Took a role at Samoset Resort and discovered a second craft. Spent the next decade in professional kitchens across Maine and Texas &mdash; working every station from prep cook to shift manager. The tech background didn't disappear; it just went dormant while the culinary career took off.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal-left">
+          <div class="timeline-dot dot-blue"></div>
+          <div class="timeline-content">
+            <div class="timeline-era">2017 &mdash; 2018</div>
+            <h3 class="timeline-title">Tech Supervisor, Staples &mdash; Rockland, ME</h3>
+            <p class="timeline-text">Ran the tech department at Staples while still cooking on the side. Sold computers, repaired devices, advised customers on hardware and software, and trained staff. The intersection of tech knowledge and customer-facing work in one role.</p>
           </div>
         </div>
 
         <div class="timeline-item reveal-left">
           <div class="timeline-dot dot-ember"></div>
           <div class="timeline-content">
-            <div class="timeline-era era-ember">2023&ndash;Present &mdash; Co-Founder</div>
+            <div class="timeline-era era-ember">2023 &mdash; Co-Founder</div>
             <h3 class="timeline-title">Northern Fixin&rsquo;s / Half Baked Co.</h3>
-            <p class="timeline-text">Co-founded a Maine-inspired elevated café, scratch bakehouse, and food truck concept. Brick-and-mortar café targeting 2027. Still actively cooking and running kitchen operations at Ross Manor.</p>
+            <p class="timeline-text">Co-founded a Maine-inspired elevated caf&eacute;, scratch bakehouse, and food truck concept targeting brick-and-mortar in 2027. Needed software to run it. Nothing off the shelf fit. That gap is what reignited everything.</p>
           </div>
         </div>
 
         <div class="timeline-item reveal-left timeline-branch">
           <div class="timeline-dot dot-blue dot-branch"></div>
           <div class="timeline-content">
-            <div class="timeline-era">2025&ndash;Present &mdash; Side Project</div>
-            <h3 class="timeline-title">Developer <span class="timeline-branch-tag">Branch</span></h3>
-            <p class="timeline-text">Started coding in 2025 using agentic workflows, AI tools, and APIs. Built CulinaryOS, KitchenKit, CulinaryOps, and more &mdash; every project rooted in real kitchen problems. Still cooking full-time; this is a side project that got serious.</p>
+            <div class="timeline-era">2025 &mdash; Present</div>
+            <h3 class="timeline-title">Back to Code <span class="timeline-branch-tag">Now</span></h3>
+            <p class="timeline-text">The tech foundation laid at 12 finally met a decade of real-world kitchen problems. Started building production software using agentic workflows, AI APIs, and modern tooling &mdash; CulinaryOS, KitchenKit, CulinaryOps, and more. Not a career pivot. A convergence.</p>
           </div>
         </div>
 

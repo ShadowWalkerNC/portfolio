@@ -5,5 +5,5 @@ import react from '@astrojs/react';
 export default defineConfig({
   integrations: [tailwind(), react()],
   output: 'static',
-  site: 'https://shadowwalkernc.onrender.com',
+  site: 'https://portfolio-enmu.onrender.com',
 });

@@ -87,8 +87,14 @@ const themeColor = side === 'food' ? '#f97316' : '#2563eb';
     </p>
   </footer>
 
+  <!-- ===== SCROLL REVEAL & BACKGROUND PARTICLES ===== -->
   <script>
+    import { initBackgroundParticles } from '../utils/particles.js';
+    
     (() => {
+      // Initialize cursor-responsive floating canvas particles
+      initBackgroundParticles();
+
       const els = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
       const reveal = (el: Element) => el.classList.add('revealed');
       const observer = new IntersectionObserver(

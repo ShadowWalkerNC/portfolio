@@ -104,18 +104,54 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
             <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
             Certified
           </span>
-          <div class="skill-chips">
-            <span class="sc sc-cert">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-              Food Handler
+          <div class="skills-row">
+          <div class="skills-cat">🏆 Certifications</div>
+          <div class="skills-chips">
+            <span class="sk sk-cert">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+              Food Handler Certified
             </span>
-            <span class="sc sc-cert">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-              Driver&rsquo;s License
+            <span class="sk sk-cert">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+              Valid Driver’s License
             </span>
           </div>
         </div>
 
+      </div>
+    </section>
+
+    <!-- ===== RECIPE SCALER WIDGET ===== -->
+    <section class="section section-ember-tint" id="recipe-scaler">
+      <h2 class="section-heading reveal">Ratio Scaling Engine Showcase</h2>
+      <p class="section-sub reveal">A live demonstration of the proprietary recipe ratio scaler logic built for **KitchenKit**. Ingredient metrics adjust with mathematical precision.</p>
+
+      <div class="scaler-widget card spotlight-card reveal">
+        <div class="scaler-controls">
+          <div class="scaler-control-group">
+            <label for="recipe-select" class="scaler-label">Select Recipe Blueprint:</label>
+            <select id="recipe-select" class="form-select scaler-select">
+              <option value="sourdough">Artisanal Sourdough (Baker's Percentages)</option>
+              <option value="scallops">Maine Scallops &amp; Herb Puree</option>
+              <option value="sauce">Classic Demi-Glace Scratch Reduction</option>
+            </select>
+          </div>
+
+          <div class="scaler-control-group">
+            <div class="slider-labels">
+              <span class="scaler-label">Target Yield:</span>
+              <span class="slider-value" id="yield-display">4 Portions</span>
+            </div>
+            <input type="range" id="yield-slider" min="1" max="24" value="4" class="scaler-slider" />
+          </div>
+        </div>
+
+        <div class="scaler-results">
+          <h3 class="scaler-results-title" id="recipe-title">Artisanal Sourdough</h3>
+          <div class="ingredients-list" id="ingredients-container">
+            <!-- Populated dynamically via JS -->
+          </div>
+        </div>
       </div>
     </section>
 
@@ -533,15 +569,206 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 .gallery-item-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; margin: 0; }
 .gallery-footer-action { display: flex; justify-content: center; margin-top: 1.5rem; }
 
-/* ===== RESPONSIVE ===== */
+/* ===== Responsive ===== */
 @media (max-width: 640px) {
-  .chef-hero { padding: 3.5rem 1rem 2.5rem; }
-  .chef-stats { padding: 0.7rem 1rem; gap: 0.5rem; }
-  .cs-div { display: none; }
-  .chef-skills-inner { gap: 1rem; }
-  .featured-grid { grid-template-columns: 1fr; }
-  .tl-item { grid-template-columns: 80px 20px 1fr; gap: 0 0.6rem; }
-  .tl-date { font-size: 0.62rem; }
+  .food-hero  { padding: 3.5rem 1rem 2.5rem; }
+  .food-hero-stats { padding: 0.75rem 1rem; }
+  .skills-row { grid-template-columns: 1fr; gap: 0.5rem; }
+  .exp-cards  { grid-template-columns: 1fr; }
   .culinary-gallery-grid { grid-template-columns: 1fr; }
 }
+
+/* ===== Recipe Scaler Widget ===== */
+.scaler-widget {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 2rem;
+  padding: 2rem;
+  margin-top: 1.5rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+}
+@media (max-width: 768px) {
+  .scaler-widget { grid-template-columns: 1fr; gap: 1.5rem; }
+}
+.scaler-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  justify-content: center;
+}
+.scaler-control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.scaler-label {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.scaler-select {
+  width: 100%;
+  padding: 0.65rem 0.85rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-weight: 600;
+  outline: none;
+  cursor: pointer;
+}
+.slider-labels {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.slider-value {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--accent-ember);
+}
+.scaler-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background: var(--border-subtle);
+  outline: none;
+}
+.scaler-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent-ember);
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.1s ease;
+}
+.scaler-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+.scaler-results {
+  background: var(--bg-elevated);
+  padding: 1.5rem;
+  border-radius: var(--radius-md);
+  border: 1px dashed var(--border-subtle);
+}
+.scaler-results-title {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: var(--accent-ember-dim);
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+.ingredients-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.ingredient-row {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr auto;
+  gap: 1rem;
+  align-items: center;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+.ing-name {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.ing-ratio-name {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+.ing-amount {
+  font-weight: 700;
+  color: var(--accent-ember-dim);
+  text-align: right;
+}
 </style>
+
+<script>
+  const recipes = {
+    sourdough: {
+      title: "Artisanal Sourdough (Baker's Percentages)",
+      baseYield: 4,
+      ingredients: [
+        { name: "King Arthur Bread Flour", baseAmt: 1000, unit: "g", ratioName: "Flour (100%)" },
+        { name: "Filtered Water", baseAmt: 720, unit: "g", ratioName: "Hydration (72%)" },
+        { name: "Active Sourdough Starter", baseAmt: 200, unit: "g", ratioName: "Starter (20%)" },
+        { name: "Fine Sea Salt", baseAmt: 20, unit: "g", ratioName: "Salt (2%)" }
+      ]
+    },
+    scallops: {
+      title: "Maine Scallops & Herb Puree",
+      baseYield: 2,
+      ingredients: [
+        { name: "Fresh Maine Scallops", baseAmt: 8, unit: "pcs", ratioName: "Protein Base" },
+        { name: "Unsalted Butter", baseAmt: 60, unit: "g", ratioName: "Basting Fat" },
+        { name: "Chervil & Tarragon Blend", baseAmt: 40, unit: "g", ratioName: "Herb Base" },
+        { name: "Extra Virgin Olive Oil", baseAmt: 30, unit: "ml", ratioName: "Emulsifier" },
+        { name: "Lemon Juice", baseAmt: 15, unit: "ml", ratioName: "Acid Balance" }
+      ]
+    },
+    sauce: {
+      title: "Classic Demi-Glace Scratch Reduction",
+      baseYield: 10,
+      ingredients: [
+        { name: "Roast Beef Bones (Brown Stock)", baseAmt: 2000, unit: "g", ratioName: "Bone Weight" },
+        { name: "Mirepoix (Onions/Celery/Carrots)", baseAmt: 400, unit: "g", ratioName: "Aromatics (20%)" },
+        { name: "Tomato Paste", baseAmt: 60, unit: "g", ratioName: "Acid/Color (3%)" },
+        { name: "Red Wine", baseAmt: 300, unit: "ml", ratioName: "Deglazing (15%)" },
+        { name: "Fresh Thyme & Bay Leaf", baseAmt: 10, unit: "g", ratioName: "Herbs" }
+      ]
+    }
+  };
+
+  const select = document.getElementById('recipe-select') as HTMLSelectElement;
+  const slider = document.getElementById('yield-slider') as HTMLInputElement;
+  const yieldDisplay = document.getElementById('yield-display');
+  const recipeTitle = document.getElementById('recipe-title');
+  const container = document.getElementById('ingredients-container');
+
+  const updateScaler = () => {
+    if (!select || !slider || !yieldDisplay || !recipeTitle || !container) return;
+    const recipeKey = select.value as keyof typeof recipes;
+    const yieldVal = parseInt(slider.value, 10);
+    const recipe = recipes[recipeKey];
+
+    yieldDisplay.textContent = `${yieldVal} ${yieldVal === 1 ? 'Portion' : 'Portions'}`;
+    recipeTitle.textContent = recipe.title;
+
+    const scaleFactor = yieldVal / recipe.baseYield;
+
+    container.innerHTML = recipe.ingredients.map(ing => {
+      const scaledAmt = (ing.baseAmt * scaleFactor).toFixed(1).replace(/\.0$/, '');
+      return `
+        <div class="ingredient-row">
+          <span class="ing-name">${ing.name}</span>
+          <span class="ing-ratio-name">${ing.ratioName}</span>
+          <span class="ing-amount font-mono">${scaledAmt} ${ing.unit}</span>
+        </div>
+      `;
+    }).join('');
+  };
+
+  if (select && slider) {
+    select.addEventListener('change', updateScaler);
+    slider.addEventListener('input', updateScaler);
+    updateScaler();
+  }
+</script>

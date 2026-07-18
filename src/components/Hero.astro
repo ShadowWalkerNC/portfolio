@@ -50,29 +50,24 @@
 
   </div>
 
-  <div class="hero-visual" aria-hidden="true">
+  <div class="hero-visual">
     <div class="code-block-wrapper animate-scale-in animate-float-slow">
       <div class="code-block-header">
         <span class="dot dot-red"></span>
         <span class="dot dot-yellow"></span>
         <span class="dot dot-green"></span>
-        <span class="code-block-title">nate.ts</span>
+        <span class="code-block-title">terminal — nate@culinaryos:~</span>
       </div>
-      <div class="code-block">
-        <div class="code-line"><span class="c-comment">// chef who codes</span></div>
-        <div class="code-line">&nbsp;</div>
-        <div class="code-line"><span class="c-keyword">const</span> <span class="c-var">nate</span> <span class="c-op">=</span> <span class="c-paren">{</span></div>
-        <div class="code-line">&nbsp; <span class="c-prop">craft</span><span class="c-op">:</span>   <span class="c-ember">'culinary'</span><span class="c-op">,</span></div>
-        <div class="code-line">&nbsp; <span class="c-prop">coding</span><span class="c-op">:</span>  <span class="c-string">'2017-present'</span><span class="c-op">,</span></div>
-        <div class="code-line">&nbsp; <span class="c-prop">style</span><span class="c-op">:</span>   <span class="c-string">'problem-driven'</span><span class="c-op">,</span></div>
-        <div class="code-line">&nbsp; <span class="c-prop">tools</span><span class="c-op">:</span>   <span class="c-string">'AI + MCP + APIs'</span><span class="c-op">,</span></div>
-        <div class="code-line">&nbsp; <span class="c-prop">goal</span><span class="c-op">:</span>    <span class="c-ember">'Half Baked 2027'</span></div>
-        <div class="code-line"><span class="c-paren">};</span></div>
-        <div class="code-line">&nbsp;</div>
-        <div class="code-line"><span class="c-keyword">function</span> <span class="c-fn">solve</span><span class="c-paren">(</span><span class="c-var">problem</span><span class="c-paren">) {</span></div>
-        <div class="code-line">&nbsp; <span class="c-comment">// lived it first.</span></div>
-        <div class="code-line">&nbsp; <span class="c-keyword">return</span> <span class="c-fn">ship</span><span class="c-paren">(</span><span class="c-var">solution</span><span class="c-paren">);</span></div>
-        <div class="code-line"><span class="c-paren">}</span></div>
+      <div class="code-block terminal-body" id="terminal-body">
+        <div class="terminal-output">
+          <div class="code-line"><span class="c-comment">// Welcome to Nate's Interactive Terminal.</span></div>
+          <div class="code-line"><span class="c-comment">// Type 'help' to see available commands.</span></div>
+          <div class="code-line">&nbsp;</div>
+        </div>
+        <div class="terminal-input-line">
+          <span class="terminal-prompt">nate@culinaryos:~$</span>
+          <input type="text" class="terminal-input" id="terminal-input" autocomplete="off" spellcheck="false" aria-label="Terminal input prompt" />
+        </div>
       </div>
     </div>
   </div>
@@ -171,7 +166,39 @@
   line-height: 1.9;
   overflow-x: auto;
 }
-.code-line { white-space: pre; }
+.terminal-body {
+  height: 230px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  cursor: text;
+  text-align: left;
+}
+.terminal-output {
+  display: flex;
+  flex-direction: column;
+}
+.terminal-input-line {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-bottom: 1rem;
+}
+.terminal-prompt {
+  color: var(--accent-blue-dim);
+  font-weight: 700;
+  white-space: nowrap;
+}
+.terminal-input {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  outline: none;
+  width: 100%;
+}
+.code-line { white-space: pre-wrap; }
 .c-comment { color: #4a5568; }
 .c-keyword { color: #c792ea; }
 .c-var     { color: #82aaff; }
@@ -257,5 +284,74 @@
 
   // Safety net: fire any counter the observer missed after 1s
   setTimeout(() => counters.forEach(el => animateCounter(el)), 1000);
+})();
+
+// Terminal command line interface logic
+(function () {
+  const input = document.getElementById('terminal-input') as HTMLInputElement;
+  const body = document.getElementById('terminal-body');
+  const output = body?.querySelector('.terminal-output');
+
+  const printLine = (text: string, isHtml = false) => {
+    if (!output) return;
+    const line = document.createElement('div');
+    line.className = 'code-line';
+    if (isHtml) {
+      line.innerHTML = text;
+    } else {
+      line.textContent = text;
+    }
+    output.appendChild(line);
+    if (body) body.scrollTop = body.scrollHeight;
+  };
+
+  const handleCommand = (cmd: string) => {
+    const trimmed = cmd.trim().toLowerCase();
+    printLine(`nate@culinaryos:~$ ${cmd}`);
+    
+    if (trimmed === 'help') {
+      printLine("Available commands:");
+      printLine("  skills   - Print Nate's development stack & dev kit");
+      printLine("  menu     - Get a scratch kitchen dinner recommendation");
+      printLine("  clear    - Clear the terminal console");
+      printLine("  about    - Brief background narrative");
+    } else if (trimmed === 'skills') {
+      printLine("Dev Kit Stack:");
+      printLine("  - Languages: JS, TS, Python, SQL, HTML/CSS");
+      printLine("  - Frameworks: Astro, React, Node.js, Flask, Tailwind");
+      printLine("  - Database: PostgreSQL, SQLite, Supabase");
+      printLine("  - Tooling: AI APIs, MCP, Git, Docker, Railway");
+    } else if (trimmed === 'menu') {
+      const items = [
+        "Pan-seared Maine Scallops with charred herb puree and lemon emulsifier 🦪",
+        "12-Hour Slow Braised Beef Short Rib with brown stock reduction 🥩",
+        "House Baked High-Hydration Sourdough Boule with salted butter 🥖",
+        "Edible gold leaf plated dark chocolate ganache with raspberry coulis 🍫"
+      ];
+      const selected = items[Math.floor(Math.random() * items.length)];
+      printLine(`Kitchen Recommend: ${selected}`);
+    } else if (trimmed === 'clear') {
+      if (output) output.innerHTML = '';
+    } else if (trimmed === 'about') {
+      printLine("Nate Cowperthwaite — 10+ years running kitchen lines in Maine.");
+      printLine("Self-taught developer since 2017. Builds tools to fix real kitchen friction.");
+    } else if (trimmed !== '') {
+      printLine(`Command not found: '${trimmed}'. Type 'help' for options.`);
+    }
+    printLine(" ");
+  };
+
+  if (input) {
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        handleCommand(input.value);
+        input.value = '';
+      }
+    });
+
+    body?.addEventListener('click', () => {
+      input.focus();
+    });
+  }
 })();
 </script>

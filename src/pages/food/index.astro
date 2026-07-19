@@ -13,7 +13,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     <section class="chef-hero">
       <div class="orb-container" aria-hidden="true">
         <div class="orb orb-ember"></div>
-        <div class="orb orb-amber"></div>
+        <div class="orb orb-indigo"></div>
       </div>
       <div class="chef-hero-inner">
         <span class="badge badge-ember animate-fade-in-up">
@@ -48,78 +48,64 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       </div>
     </section>
 
-    <!-- ===== SKILLS ===== -->
-    <section class="section chef-skills-section" id="skills">
-      <div class="chef-skills-inner">
-
-        <div class="skill-group">
-          <span class="skill-group-label">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-            Technique
-          </span>
-          <div class="skill-chips">
-            <span class="sc">Knife Skills</span>
-            <span class="sc">Saut&eacute;ing</span>
-            <span class="sc">Flat-top Griddle</span>
-            <span class="sc">Deep Frying</span>
-            <span class="sc">Combi Ovens</span>
-            <span class="sc">Scratch Baking</span>
-            <span class="sc">Stocks &amp; Sauces</span>
-            <span class="sc">Butchery</span>
-          </div>
-        </div>
-
-        <div class="skill-group">
-          <span class="skill-group-label">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>
-            Service
-          </span>
-          <div class="skill-chips">
-            <span class="sc">Fine Dining</span>
-            <span class="sc">Banquet &amp; Catering</span>
-            <span class="sc">Food Truck</span>
-            <span class="sc">High-Volume Line</span>
-            <span class="sc">Breakfast / Brunch</span>
-            <span class="sc">Assisted Living</span>
-          </div>
-        </div>
-
-        <div class="skill-group">
-          <span class="skill-group-label">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            Leadership
-          </span>
-          <div class="skill-chips">
-            <span class="sc">Shift Supervision</span>
-            <span class="sc">Staff Coordination</span>
-            <span class="sc">Dietary Management</span>
-            <span class="sc">Menu Development</span>
-            <span class="sc">Recipe Costing</span>
-            <span class="sc">Inventory Control</span>
-          </div>
-        </div>
-
-        <div class="skill-group">
-          <span class="skill-group-label">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-            Certified
-          </span>
-          <div class="skills-row">
-          <div class="skills-cat">🏆 Certifications</div>
-          <div class="skills-chips">
-            <span class="sk sk-cert">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-              Food Handler Certified
-            </span>
-            <span class="sk sk-cert">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-              Valid Driver’s License
-            </span>
-          </div>
-        </div>
-
+<section class="section chef-skills-section" id="skills" data-animate="fade">
+  <div class="chef-skills-inner">
+    <section class="skill-card">
+      <h3 class="skill-card-title">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        Technique
+      </h3>
+      <div class="skill-chips">
+        <span class="skill-chip">Knife Skills</span>
+        <span class="skill-chip">Sautéing</span>
+        <span class="skill-chip">Flat-top Griddle</span>
+        <span class="skill-chip">Deep Frying</span>
+        <span class="skill-chip">Combi Ovens</span>
+        <span class="skill-chip">Scratch Baking</span>
+        <span class="skill-chip">Stocks & Sauces</span>
+        <span class="skill-chip">Butchery</span>
       </div>
     </section>
+    <section class="skill-card">
+      <h3 class="skill-card-title">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>
+        Service
+      </h3>
+      <div class="skill-chips">
+        <span class="skill-chip">Fine Dining</span>
+        <span class="skill-chip">Banquet & Catering</span>
+        <span class="skill-chip">Food Truck</span>
+        <span class="skill-chip">High-Volume Line</span>
+        <span class="skill-chip">Breakfast / Brunch</span>
+        <span class="skill-chip">Assisted Living</span>
+      </div>
+    </section>
+    <section class="skill-card">
+      <h3 class="skill-card-title">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Leadership
+      </h3>
+      <div class="skill-chips">
+        <span class="skill-chip">Shift Supervision</span>
+        <span class="skill-chip">Staff Coordination</span>
+        <span class="skill-chip">Dietary Management</span>
+        <span class="skill-chip">Menu Development</span>
+        <span class="skill-chip">Recipe Costing</span>
+        <span class="skill-chip">Inventory Control</span>
+      </div>
+    </section>
+    <section class="certifications-card">
+      <h3 class="skill-card-title">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        Certifications
+      </h3>
+      <div class="skill-chips">
+        <span class="skill-chip">Food Handler Certified</span>
+        <span class="skill-chip">Valid Driver’s License</span>
+      </div>
+    </section>
+  </div>
+</section>
 
     <!-- ===== RECIPE SCALER WIDGET ===== -->
     <section class="section section-ember-tint" id="recipe-scaler">

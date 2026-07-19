@@ -8,10 +8,10 @@
 /* ---- Design Tokens ---- */
 :root {
   /* Backgrounds */
-  --bg-base:        #fafafa;
+  --bg-base:        #ffffff;
   --bg-surface:     #ffffff;
-  --bg-elevated:    #f5f5f7;
-  --card-bg:        rgba(255, 255, 255, 0.7);
+  --bg-elevated:    #fafafa;
+  --card-bg:        rgba(255, 255, 255, 0.85);
 
   /* Text */
   --text-primary:   #09090b;
